@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "eslint:recommended", "prettier", "prettier/react"],
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["./src"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/display-name": [0],
+    "react/prop-types": [0],
+    "import/prefer-default-export": [0]
+  }
+}

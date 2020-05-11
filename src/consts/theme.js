@@ -1,0 +1,20 @@
+export const THEME = {
+  color: {
+    primary: '#525fc4',
+    main: '#f5f5f5',
+    dark: '#171727;',
+    darkBlue: '#0a1331',
+    darkGray: '#5d5f65',
+    error: '#F21430',
+    gray: '#4b4b4b',
+    light: '#f8f8f8',
+    silver: '#C2C2C2',
+    dustyGray: '#A1A2A0',
+    lightBlue: '#21273d',
+    lightGray: '#efefef',
+    shadow: '0px 2px 10px 2px rgba(231, 234, 242, 1)',
+    success: '# ',
+    white: '#ffffff',
+    bluewood: '#283C46',
+  },
+}
