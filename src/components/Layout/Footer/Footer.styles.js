@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+
 import { Link } from 'gatsby'
 
 import { mq } from 'utils/mediaQueries'
@@ -43,7 +44,8 @@ export const FooterTitle = styled.h3`
 `
 
 export const FooterLink = styled(Link)`
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme, isBolded }) =>
+    theme.color[isBolded ? 'darkBlue' : 'white']};
   opacity: 0.5;
   text-decoration: none;
   font-size: ${({ small }) => (small ? '12px' : '18px')};
