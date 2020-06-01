@@ -5,7 +5,7 @@ export const DataAbout = [
     text: 'Pałacyku Hasbacha w Białymstoku',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 1,
   },
 
@@ -13,7 +13,7 @@ export const DataAbout = [
     text: 'Pałacyku Lubomirskich (obecna siedziba WSAP, Białystok)',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 2,
   },
 
@@ -21,7 +21,7 @@ export const DataAbout = [
     text: 'Urzędzie Wojewódzkim w Białymstoku',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 3,
   },
 
@@ -29,7 +29,7 @@ export const DataAbout = [
     text: 'Siedzibie MPEC (ul. Warszawska w Białymstoku)',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 4,
   },
 
@@ -37,7 +37,7 @@ export const DataAbout = [
     text: 'Siedzibie Birk-Budu Uniwersytecie w Białymstoku',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 5,
   },
 ]
