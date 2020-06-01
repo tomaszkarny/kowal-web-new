@@ -1,19 +1,15 @@
 import React from 'react'
-import { FooterLink } from 'components/Layout/Footer/Footer.styles'
+import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 
 import { StyledSection } from 'components/Layout/AsideFooter/AsideFooter.styles'
 
 export const AsideFooter = () => (
   <StyledSection>
     <p>
-      ©&nbsp;2020 ·{' '}
-      <FooterLink small to="/">
-        Dealwithgrowth
-      </FooterLink>{' '}
-      · Ecommerce consultancy powered by{' '}
-      <FooterLink small to="https://tomaszkarny.netlify.com/">
+      ©&nbsp;2020 · Ecommerce consultancy powered by{' '}
+      <StyledAnchor small href="https://tomaszkarny.netlify.com/">
         Tomasz Karny
-      </FooterLink>
+      </StyledAnchor>
       · Currently based in Poland
     </p>
   </StyledSection>

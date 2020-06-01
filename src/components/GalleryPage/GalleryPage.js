@@ -19,7 +19,6 @@ export const GalleryPage = () => {
                 sizes
                 srcSetWebp
                 originalName
-                originalName
               }
             }
           }
@@ -53,7 +52,7 @@ export const GalleryPage = () => {
 
   return (
     <div style={{ padding: '3rem' }}>
-      <Gallery photos={galleryPhotos} onClick={openLightbox} />
+      <Gallery photos={galleryPhotos} onClick={openLightbox} margin={4} />
       <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>

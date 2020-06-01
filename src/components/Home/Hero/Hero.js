@@ -39,7 +39,7 @@ export const Hero = () => {
             elementów ozdobnych.
           </SectionDescription>
           <LinkWrapper>
-            <Link primary="primary" text="dowiedz się więcej" to="/products/" />
+            <Link primary="primary" text="dowiedz się więcej" to="/" />
             <Link text="zobacz nasze prace" to="/gallery/" />
           </LinkWrapper>
         </TitleWrapper>

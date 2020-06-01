@@ -56,5 +56,3 @@ export const LinkWrapper = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 `
-
-// trans

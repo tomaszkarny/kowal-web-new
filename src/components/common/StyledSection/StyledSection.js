@@ -7,7 +7,7 @@ export const StyledSection = styled.section`
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${({ isAligned }) => (isAligned ? '' : 'center')};
   align-content: center;
   align-items: left;
   width: 100%;
@@ -15,6 +15,6 @@ export const StyledSection = styled.section`
   padding: 2rem;
 
   ${mq('tablet')} {
-    padding: 4rem;
+    padding: 5rem;
   }
 `

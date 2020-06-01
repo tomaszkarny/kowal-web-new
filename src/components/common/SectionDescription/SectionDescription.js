@@ -3,9 +3,10 @@ import styled from '@emotion/styled'
 import { mq } from 'utils/mediaQueries'
 
 export const SectionDescription = styled.p`
-  font-weight: 400;
-  line-height: 2.5;
-  color: ${({ theme }) => theme.color.bluewood};
+  font-weight: ${({ isBolded }) => (isBolded ? 500 : 400)};
+  line-height: ${({ isUnderLined }) => (isUnderLined ? 'none' : '2.5')};
+  color: ${({ theme, isBolded }) =>
+    theme.color[isBolded ? 'darkBlue' : 'bluewood']};
   font-size: 15px;
   text-align: ${({ main }) => (main ? 'left' : 'center')};
   box-sizing: inherit;
@@ -14,7 +15,7 @@ export const SectionDescription = styled.p`
   max-width: ${({ main }) => (main ? 'auto' : '')};
 
   ${mq('tablet')} {
-    font-size: 1.2rem;
-    padding-top: 3rem;
+    font-size: ${({ isBolded }) => (isBolded ? '18px' : '1.2rem')};
+    padding-top: ${({ isBolded }) => (isBolded ? '0' : '3rem')};
   }
 `
