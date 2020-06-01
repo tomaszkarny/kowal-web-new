@@ -16,5 +16,6 @@ export const THEME = {
     success: '# ',
     white: '#ffffff',
     bluewood: '#283C46',
+    mirage: '#1D2D35',
   },
 }
