@@ -21,7 +21,7 @@ export const ContactForm = () => {
         netlify-honeypot="bot-field"
         data-netlify="true"
       >
-        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="bot-field" value="contact" />
         {FORM_INPUTS.map(({ label, type, name }) => (
           <>
             <Label htmlFor={name}>{label}</Label>
@@ -31,6 +31,7 @@ export const ContactForm = () => {
               name={name}
               isTextarea={type === 'textarea'}
               as={type === 'textarea' ? 'textarea' : Input}
+              required
             />
           </>
         ))}
