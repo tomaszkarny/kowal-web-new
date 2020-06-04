@@ -81,7 +81,7 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.color.primary};
   border-radius: 10px;
   display: inline-block;
-  font-size: 1em;
+  font-size: 12px;
   width: auto;
   padding: 22px 36px 20px;
   margin-left: 0px;
