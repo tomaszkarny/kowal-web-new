@@ -13,7 +13,9 @@ import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 import { Link } from 'components/common/Link/Link'
 import { LinkWrapper } from 'components/common/Link/Link.styles'
 
-export const Hero = () => {
+import { SECTION_IDS } from 'consts/sectionID'
+
+export const Hero = ({ id }) => {
   const { image } = useStaticQuery(graphql`
     query MyQuery {
       image: file(relativePath: { eq: "forge.jpg" }) {
@@ -25,6 +27,17 @@ export const Hero = () => {
       }
     }
   `)
+
+  const handleItemClick = e => {
+    e.preventDefault()
+
+    const element = document.querySelector(`#${e.target.name}`)
+
+    window.scroll({
+      top: element.offsetTop - 60,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <>
@@ -39,13 +52,19 @@ export const Hero = () => {
             elementów ozdobnych.
           </SectionDescription>
           <LinkWrapper>
-            <Link primary="primary" text="dowiedz się więcej" to="/" />
+            <Link
+              primary="primary"
+              text="dowiedz się więcej"
+              to="/"
+              onClick={handleItemClick}
+              name={SECTION_IDS.MAIN}
+            />
             <Link text="zobacz nasze prace" to="/gallery/" />
           </LinkWrapper>
         </TitleWrapper>
         <Image fluid={image.sharp.fluid} alt="alt" style={{ width: '100%' }} />
       </HeroWrapper>
-      <SectionMain main />
+      <SectionMain main id={id} />
     </>
   )
 }

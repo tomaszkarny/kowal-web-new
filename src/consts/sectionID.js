@@ -1,5 +1,5 @@
 export const SECTION_IDS = {
-  ABOUT: '',
+  MAIN: 'main',
   HERO: 'hero',
   MY_PROJECTS: 'myProjects',
   SKILLS: 'skills',

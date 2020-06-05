@@ -11,8 +11,8 @@ import { StyledSection } from 'components/common/StyledSection/StyledSection'
 
 import { Link } from 'components/common/Link/Link'
 
-export const SectionMain = () => (
-  <StyledSection>
+export const SectionMain = ({ id }) => (
+  <StyledSection id={id}>
     <SectionTitle main>Specjalizujemy się w wykonywaniu:</SectionTitle>
     <StyledUl>
       {ListItemData.map(data => (
