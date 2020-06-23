@@ -12,7 +12,7 @@ import { MainNav } from 'components/Layout/MainNav/MainNav'
 import { Footer } from 'components/Layout/Footer/Footer'
 import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
-import { LayoutWrapper, LayoutContent } from 'components/Layout/Layout.styles'
+import { LayoutContent } from 'components/Layout/Layout.styles'
 
 export const Layout = ({ children }) => {
   const { title, description } = useSiteMetadata()
@@ -20,18 +20,17 @@ export const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={THEME}>
       <Global styles={GlobalStyles} />
-      <LayoutWrapper>
-        <Helmet>
-          <html lang="en" />
-          <title> {title}</title>
-          <meta name="description" content={description} />
-        </Helmet>
-        <MainNav />
 
-        <LayoutContent>{children}</LayoutContent>
-        <Footer />
-        <AsideFooter />
-      </LayoutWrapper>
+      <Helmet>
+        <html lang="en" />
+        <title> {title}</title>
+        <meta name="description" content={description} />
+      </Helmet>
+      <MainNav />
+
+      <LayoutContent>{children}</LayoutContent>
+      <Footer />
+      <AsideFooter />
     </ThemeProvider>
   )
 }
