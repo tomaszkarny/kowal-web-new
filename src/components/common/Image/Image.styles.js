@@ -28,7 +28,7 @@ export const StyledImg = styled(Img)`
   border-radius: ${({ small }) => (small ? '50%' : '')};
 
   ${mq('tablet')} {
-    width: ${({ small }) => (small ? '300px' : '')};
-    height: ${({ small }) => (small ? '300px' : '')};
+    width: ${({ small }) => (small ? '350px' : '')};
+    height: ${({ small }) => (small ? '350px' : '')};
   }
 `

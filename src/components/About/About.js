@@ -16,7 +16,7 @@ import { SectionDescription } from 'components/common/SectionDescription/Section
 export const About = () => {
   const { image, imageSecond } = useStaticQuery(graphql`
     query AboutQuery {
-      image: file(relativePath: { eq: "zjd23.png" }) {
+      image: file(relativePath: { eq: "zjd24.png" }) {
         sharp: childImageSharp {
           fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid_withWebp
