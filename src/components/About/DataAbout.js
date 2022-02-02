@@ -10,7 +10,7 @@ export const DataAbout = [
   },
 
   {
-    text: 'Pałacyku Lubomirskich (obecna siedziba WSAP, Białystok)',
+    text: 'Pałacyku Lubomirskich',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
     fixedWidth: true,
@@ -34,10 +34,17 @@ export const DataAbout = [
   },
 
   {
-    text: 'Siedzibie Birk-Budu Uniwersytecie w Białymstoku',
+    text: 'Siedzibie Birk-Budu',
     icon: faCircleNotch,
     style: { color: '#525fc4', marginRight: '10px' },
     fixedWidth: true,
     id: 5,
+  },
+  {
+    text: 'Uniwersytecie w Białymstoku',
+    icon: faCircleNotch,
+    style: { color: '#525fc4', marginRight: '10px' },
+    fixedWidth: true,
+    id: 6,
   },
 ]
