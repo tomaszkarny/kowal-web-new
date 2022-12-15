@@ -17,7 +17,7 @@ export const ContactForm = () => {
       <SectionTitle>Napisz do nas. </SectionTitle>
       <StyledForm
         name="contact"
-        method="post"
+        method="POST"
         data-netlify-honeypot="bot-field"
         data-netlify="true"
         netlify
