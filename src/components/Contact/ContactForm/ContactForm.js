@@ -18,8 +18,10 @@ export const ContactForm = () => {
       <StyledForm
         name="contact"
         method="post"
-        netlify-honeypot="bot-field"
+        data-netlify-honeypot="bot-field"
         data-netlify="true"
+        netlify
+        hidden
       >
         <input type="hidden" name="bot-field" value="contact" />
         {FORM_INPUTS.map(({ label, type, name }) => (
