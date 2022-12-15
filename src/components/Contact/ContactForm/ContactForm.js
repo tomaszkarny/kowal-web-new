@@ -23,7 +23,7 @@ export const ContactForm = () => {
         netlify
         hidden
       >
-        <input type="hidden" name="bot-field" value="contact" />
+        <input type="hidden" name="contact" value="contact" />
         {FORM_INPUTS.map(({ label, type, name }) => (
           <>
             <Label htmlFor={name}>{label}</Label>
