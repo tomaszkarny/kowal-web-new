@@ -34,7 +34,7 @@ export const Footer = () => (
         {CONTACT_DETAILS.EMAIL_ADDRESS}
       </StyledAnchor>
 
-      <StyledAnchor href={`mailto:${CONTACT_DETAILS.FACEBOOK_URL}`}>
+      <StyledAnchor href={`https://${CONTACT_DETAILS.FACEBOOK_URL}`}>
         {CONTACT_DETAILS.FACEBOOK_URL}
       </StyledAnchor>
 
