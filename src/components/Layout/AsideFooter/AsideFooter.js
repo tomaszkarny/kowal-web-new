@@ -7,9 +7,7 @@ export const AsideFooter = () => (
   <StyledSection>
     <p>
       ©&nbsp;2020 · powered by{' '}
-      <StyledAnchor small href="https://karny-tomasz.netlify.app">
-        Tomasz Karny
-      </StyledAnchor>
+      kowalstwo-karny
       ·
     </p>
   </StyledSection>
