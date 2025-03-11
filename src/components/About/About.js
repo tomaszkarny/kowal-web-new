@@ -2,6 +2,7 @@ import React from 'react'
 import { Image } from 'components/common/Image/Image'
 
 import { graphql, useStaticQuery } from 'gatsby'
+import { getImage } from 'gatsby-plugin-image'
 
 import { DataAbout } from 'components/About/DataAbout'
 import { ListItem } from 'components/common/ListItem/ListItem'
@@ -17,22 +18,22 @@ export const About = () => {
   const { image, imageSecond } = useStaticQuery(graphql`
     query AboutQuery {
       image: file(relativePath: { eq: "zjd24.png" }) {
-        sharp: childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+        childImageSharp {
+          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
         }
       }
 
       imageSecond: file(relativePath: { eq: "anvil.jpg" }) {
-        sharp: childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+        childImageSharp {
+          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
         }
       }
     }
   `)
+  
+  // Create the image objects for Gatsby Image
+  const mainImage = image?.childImageSharp ? getImage(image.childImageSharp) : null
+  const secondImage = imageSecond?.childImageSharp ? getImage(imageSecond.childImageSharp) : null
 
   return (
     <StyledSection>
@@ -40,7 +41,7 @@ export const About = () => {
         Pracownia Kowalstwa Artystycznego Tadeusza Karny
       </SectionTitle>
       <Wrapper>
-        <Image fluid={image.sharp.fluid} alt="old-person" small />
+        <Image image={mainImage} alt="old-person" small />
         <SectionDescription main>
           Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku.
           Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w
@@ -57,7 +58,7 @@ export const About = () => {
       </Wrapper>
 
       <Image
-        fluid={imageSecond.sharp.fluid}
+        image={secondImage}
         alt="fire"
         style={{ width: '700px' }}
       />

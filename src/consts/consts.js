@@ -1,2 +1,2 @@
-export const GOOGLE_MAP_DIRECTIONS = { lat: 53.080585, lng: 23.137139 }
-export const GOOGLE_MAP_MARKER = { lat: 53.081096, lng: 23.13696 }
+export const WORKSHOP_LOCATION = { lat: 53.079393, lng: 23.136083 }
+export const GOOGLE_MAP_MARKER = { lat: 53.079393, lng: 23.136083 }

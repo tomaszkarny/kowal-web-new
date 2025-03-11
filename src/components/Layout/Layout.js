@@ -1,8 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import { ThemeProvider } from 'emotion-theming'
-import { Global } from '@emotion/core'
+import { ThemeProvider } from '@emotion/react'
+import { Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
 import { GlobalStyles } from 'components/common/GlobalStyles'
 

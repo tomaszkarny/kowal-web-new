@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import Img from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import { mq } from 'utils/mediaQueries'
 
@@ -18,7 +18,7 @@ export const ImageWrapper = styled.div`
   }
 `
 
-export const StyledImg = styled(Img)`
+export const StyledImg = styled(GatsbyImage)`
   object-fit: cover;
   /* max-width: 100%;
   max-height: 100%; */

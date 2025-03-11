@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 import { graphql, useStaticQuery } from 'gatsby'
+import { getImage, getSrc } from 'gatsby-plugin-image'
 
 import Gallery from 'react-photo-gallery'
 
@@ -11,31 +12,30 @@ export const GalleryPage = () => {
         edges {
           node {
             id
-            sharp: childImageSharp {
-              fluid(maxWidth: 1200) {
-                srcWebp
-                presentationWidth
-                presentationHeight
-                sizes
-                srcSetWebp
-                originalName
+            childImageSharp {
+              gatsbyImageData(width: 1200, formats: [AUTO, WEBP], placeholder: BLURRED)
+              original {
+                width
+                height
               }
             }
+            name
           }
         }
       }
     }
   `)
 
-  const galleryPhotos = images.edges.map(photo => ({
-    src: photo.node.sharp.fluid.srcWebp,
-    width: photo.node.sharp.fluid.presentationWidth,
-    height: photo.node.sharp.fluid.presentationHeight,
-    sizes: photo.node.sharp.fluid.sizes,
-    srcSet: photo.node.sharp.fluid.srcSetWebp,
-    alt: photo.node.sharp.fluid.originalName,
-    title: photo.node.sharp.fluid.originalName,
-  }))
+  const galleryPhotos = images.edges.map(photo => {
+    const imageData = getImage(photo.node.childImageSharp)
+    return {
+      src: getSrc(imageData),
+      width: photo.node.childImageSharp.original.width,
+      height: photo.node.childImageSharp.original.height,
+      alt: photo.node.name,
+      title: photo.node.name,
+    }
+  })
 
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)

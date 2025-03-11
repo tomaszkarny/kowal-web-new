@@ -5,8 +5,12 @@ import { Hero } from 'components/Home/Hero/Hero'
 
 import { SECTION_IDS } from 'consts/sectionID'
 
-export default () => (
-  <Layout>
-    <Hero id={SECTION_IDS.MAIN} />
-  </Layout>
-)
+const IndexPage = () => {
+  return (
+    <Layout>
+      <Hero id={SECTION_IDS.MAIN} />
+    </Layout>
+  )
+}
+
+export default IndexPage

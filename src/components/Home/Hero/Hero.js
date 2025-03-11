@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { graphql, useStaticQuery } from 'gatsby'
+import { getImage } from 'gatsby-plugin-image'
 
 import { Image } from 'components/common/Image/Image'
 
@@ -19,10 +20,8 @@ export const Hero = ({ id }) => {
   const { image } = useStaticQuery(graphql`
     query MyQuery {
       image: file(relativePath: { eq: "forge.jpg" }) {
-        sharp: childImageSharp {
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+        childImageSharp {
+          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
         }
       }
     }
@@ -62,7 +61,7 @@ export const Hero = ({ id }) => {
             <Link text="zobacz nasze prace" to="/gallery/" />
           </LinkWrapper>
         </TitleWrapper>
-        <Image fluid={image.sharp.fluid} alt="alt" style={{ width: '100%' }} />
+        <Image image={getImage(image.childImageSharp)} alt="Pracownia kowalstwa artystycznego" style={{ width: '100%' }} />
       </HeroWrapper>
       <SectionMain main id={id} />
     </>

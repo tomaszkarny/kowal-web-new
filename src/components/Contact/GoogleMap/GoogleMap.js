@@ -7,7 +7,7 @@ import {
   InfoWindow,
 } from 'react-google-maps'
 
-import { GOOGLE_MAP_DIRECTIONS, GOOGLE_MAP_MARKER } from 'consts/consts'
+import { WORKSHOP_LOCATION, GOOGLE_MAP_MARKER } from 'consts/consts'
 
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 
@@ -28,13 +28,14 @@ const Map = ({ isMarkerShown }) => {
   }, [])
 
   return (
-    <GoogleMap defaultZoom={8} defaultCenter={GOOGLE_MAP_DIRECTIONS}>
+    <GoogleMap defaultZoom={15} defaultCenter={GOOGLE_MAP_MARKER}>
       {isMarkerShown && (
         <Marker
-          position={GOOGLE_MAP_DIRECTIONS}
+          position={GOOGLE_MAP_MARKER}
           onClick={() => {
             setSelectedMarker(!selectedMarker)
           }}
+          title="Pracownia Kowalstwa Artystycznego - Tadeusz Karny"
         />
       )}
 
@@ -53,7 +54,8 @@ const Map = ({ isMarkerShown }) => {
             <p>kom: +48 604 253 145</p>
             <StyledAnchor
               isBolded
-              href="https://www.google.com/maps/place/Pracownia+Kowalstwa+Artystycznego+-+Tadeusz+Karny/@53.1207196,23.079953,12z/data=!4m19!1m13!4m12!1m4!2m2!1d23.1397079!2d53.1595208!4e1!1m6!1m2!1s0x471ff978bd2b0fa3:0xe1a3131fbae4b7cd!2sPracownia+Kowalstwa+Artystycznego+-+Tadeusz+Karny,+k,+Bia%C5%82ystok+31,+15-378+Hryniewicze!2m2!1d23.1371503!2d53.0805839!3m4!1s0x471ff978bd2b0fa3:0xe1a3131fbae4b7cd!8m2!3d53.0805839!4d23.1371503"
+              href="https://www.google.com/maps/place/Pracownia+Kowalstwa+Artystycznego+-+Tadeusz+Karny/@53.079393,23.136083,18z/data=!3m1!4b1!4m6!3m5!1s0x471ff978bd2b0fa3:0xe1a3131fbae4b7cd!8m2!3d53.079393!4d23.136083!16s%2Fg%2F11ptsbc7kn"
+              style={{ color: '#0066CC', opacity: 1, textDecoration: 'underline', fontSize: '14px' }}
             >
               See on Google Maps
             </StyledAnchor>

@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const StyledAnchor = styled.a`
   color: ${({ theme, isBolded }) =>
-    theme.color[isBolded ? 'darkBlue' : 'white']};
+    theme && theme.color ? theme.color[isBolded ? 'darkBlue' : 'white'] : 'white'};
   opacity: 0.5;
   text-decoration: none;
   font-size: ${({ small }) => (small ? '12px' : '18px')};
