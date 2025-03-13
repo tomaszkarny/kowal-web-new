@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { Link } from 'gatsby'
+import { Link } from 'gatsby-plugin-react-i18next'
 
 import { mq } from 'utils/mediaQueries'
 
@@ -22,6 +22,16 @@ export const FooterSection = styled.section`
   height: 100%;
   display: flex;
   flex-direction: column;
+`
+
+/**
+ * Styled component for language switcher links
+ */
+export const LanguageLink = styled(Link)`
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+  color: ${props => props.active ? '#ffcc00' : '#ffffff'};
 `
 
 export const FooterParagraph = styled.p`

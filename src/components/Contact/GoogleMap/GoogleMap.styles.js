@@ -42,3 +42,10 @@ export const mapContainerStyle = {
   width: '100%',
   height: '100%'
 }
+
+/**
+ * Loading element for the Google Map
+ */
+export const MapLoadingElement = styled.div`
+  height: 100%;
+`

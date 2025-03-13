@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { StyledListItem } from 'components/common/ListItem/ListItem.styles'
+import { StyledIcon } from 'components/common/Icon/Icon.styles'
 
 export const ListItem = ({ data }) => {
   // If translationKey starts with 'locations.', use the 'about' namespace and format key correctly
@@ -19,9 +19,8 @@ export const ListItem = ({ data }) => {
   
   return (
   <StyledListItem>
-    <FontAwesomeIcon
+    <StyledIcon
       icon={data.icon}
-      style={data.style}
       fixedWidth={data.fixedWidth}
     />
     {translationKey ? t(translationKey, data.text) : data.text}

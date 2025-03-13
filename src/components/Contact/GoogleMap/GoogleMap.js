@@ -7,7 +7,8 @@ import {
   MapContainer,
   InfoTitle,
   InfoText,
-  mapContainerStyle
+  mapContainerStyle,
+  MapLoadingElement
 } from './GoogleMap.styles'
 
 export const WrappedGoogleMap = ({ isMarkerShown }) => {
@@ -35,7 +36,7 @@ export const WrappedGoogleMap = ({ isMarkerShown }) => {
     <MapContainer>
       <LoadScript
         googleMapsApiKey={process.env.GATSBY_GOOGLE_API_KEY || ''}
-        loadingElement={<div style={{ height: '100%' }} />}
+        loadingElement={<MapLoadingElement />}
       >
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

@@ -5,6 +5,7 @@ import { getImage, getSrc } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import Gallery from 'react-photo-gallery'
+import { ContentContainer } from 'components/common/Container/Container.styles'
 
 export const GalleryPage = () => {
   const { t } = useTranslation('gallery')
@@ -55,7 +56,7 @@ export const GalleryPage = () => {
   }
 
   return (
-    <div style={{ padding: '3rem' }}>
+    <ContentContainer>
       <Gallery photos={galleryPhotos} onClick={openLightbox} margin={4} />
       <ModalGateway>
         {viewerIsOpen ? (
@@ -71,6 +72,6 @@ export const GalleryPage = () => {
           </Modal>
         ) : null}
       </ModalGateway>
-    </div>
+    </ContentContainer>
   )
 }

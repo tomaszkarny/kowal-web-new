@@ -9,7 +9,8 @@ import {
   FooterSection,
   FooterTitle,
   FooterParagraph,
-  FooterLink
+  FooterLink,
+  LanguageLink
 } from 'components/Layout/Footer/Footer.styles'
 
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
@@ -52,19 +53,14 @@ export const Footer = () => {
       <FooterSection>
         <FooterTitle>{t('international')}</FooterTitle>
         {languages.map(lng => (
-          <Link 
+          <LanguageLink 
             key={lng} 
             to={originalPath} 
             language={lng}
-            style={{
-              textDecoration: 'none',
-              marginBottom: '10px',
-              display: 'block',
-              color: lng === language ? '#ffcc00' : '#ffffff'
-            }}
+            active={lng === language}
           >
             {lng === 'en' ? t('englishVersion') : t('polishVersion')}
-          </Link>
+          </LanguageLink>
         ))}
       </FooterSection>
     </StyledFooter>
