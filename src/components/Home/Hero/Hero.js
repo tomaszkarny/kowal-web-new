@@ -2,6 +2,7 @@ import React from 'react'
 
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage } from 'gatsby-plugin-image'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Image } from 'components/common/Image/Image'
 
@@ -17,6 +18,7 @@ import { LinkWrapper } from 'components/common/Link/Link.styles'
 import { SECTION_IDS } from 'consts/sectionID'
 
 export const Hero = ({ id }) => {
+  const { t } = useTranslation('common')
   const { image } = useStaticQuery(graphql`
     query MyQuery {
       image: file(relativePath: { eq: "forge.jpg" }) {
@@ -43,25 +45,23 @@ export const Hero = ({ id }) => {
       <HeroWrapper>
         <TitleWrapper>
           <SectionTitle>
-            Pracownia Kowalstwa Artystycznego Tadeusz Karny
+            {t('heroTitle')}
           </SectionTitle>
           <SectionDescription>
-            {' '}
-            Oferujemy bogate wzornictwo bram balustrad ogrodzeń krat oraz innych
-            elementów ozdobnych.
+            {t('heroDescription')}
           </SectionDescription>
           <LinkWrapper>
             <Link
               primary="primary"
-              text="dowiedz się więcej"
+              text={t('learnMore')}
               to="/"
               onClick={handleItemClick}
               name={SECTION_IDS.MAIN}
             />
-            <Link text="zobacz nasze prace" to="/gallery/" />
+            <Link text={t('seeOurWork')} to="/gallery/" />
           </LinkWrapper>
         </TitleWrapper>
-        <Image image={getImage(image.childImageSharp)} alt="Pracownia kowalstwa artystycznego" style={{ width: '100%' }} />
+        <Image image={getImage(image.childImageSharp)} alt={t('siteTitle')} />
       </HeroWrapper>
       <SectionMain main id={id} />
     </>

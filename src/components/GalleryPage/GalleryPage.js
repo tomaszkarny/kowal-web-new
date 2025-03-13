@@ -2,10 +2,12 @@ import React, { useState, useCallback } from 'react'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage, getSrc } from 'gatsby-plugin-image'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import Gallery from 'react-photo-gallery'
 
 export const GalleryPage = () => {
+  const { t } = useTranslation('gallery')
   const { images } = useStaticQuery(graphql`
     query GalleryQuery {
       images: allFile(filter: { relativeDirectory: { eq: "gallery" } }) {
@@ -28,12 +30,14 @@ export const GalleryPage = () => {
 
   const galleryPhotos = images.edges.map(photo => {
     const imageData = getImage(photo.node.childImageSharp)
+    // Try to find a translation key based on the image name, fall back to the name itself
+    const translationKey = `images.${photo.node.name}`
     return {
       src: getSrc(imageData),
       width: photo.node.childImageSharp.original.width,
       height: photo.node.childImageSharp.original.height,
-      alt: photo.node.name,
-      title: photo.node.name,
+      alt: t(translationKey, photo.node.name),
+      title: t(translationKey, photo.node.name),
     }
   })
 

@@ -25,10 +25,11 @@ export const Description = styled.p`
   margin: 0 0 28px;
   padding: 0;
 `
+
 export const HeroWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 4rem 0;
+  padding: 5rem 0;
 
   display: flex;
   flex-direction: column;
