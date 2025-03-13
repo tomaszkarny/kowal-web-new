@@ -1,0 +1,14 @@
+{
+  "title": "Our Sample Works",
+  "backToGallery": "Back to Gallery",
+  "images": {
+    "brama1": "Entrance Gate - Classic Design",
+    "brama2": "Decorative Gate - Floral Motif",
+    "balustrada1": "Interior Railing - Stairs",
+    "balustrada2": "Exterior Railing - Terrace",
+    "ogrodzenie1": "Property Fence - Geometric Pattern",
+    "krata1": "Window Grating - Security",
+    "swiecznik1": "Wall Candleholder - Rustic Style",
+    "meble1": "Coffee Table - Steel and Wood"
+  }
+}

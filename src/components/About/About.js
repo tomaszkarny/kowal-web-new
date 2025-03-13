@@ -3,6 +3,7 @@ import { Image } from 'components/common/Image/Image'
 
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage } from 'gatsby-plugin-image'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { DataAbout } from 'components/About/DataAbout'
 import { ListItem } from 'components/common/ListItem/ListItem'
@@ -15,6 +16,7 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 
 export const About = () => {
+  const { t } = useTranslation('about')
   const { image, imageSecond } = useStaticQuery(graphql`
     query AboutQuery {
       image: file(relativePath: { eq: "zjd24.png" }) {
@@ -38,17 +40,13 @@ export const About = () => {
   return (
     <StyledSection>
       <SectionTitle main>
-        Pracownia Kowalstwa Artystycznego Tadeusza Karny
+        {t('title', 'Pracownia Kowalstwa Artystycznego Tadeusza Karny')}
       </SectionTitle>
       <Wrapper>
-        <Image image={mainImage} alt="old-person" small />
+        <Image image={mainImage} alt={t('mainImageAlt', 'Workshop owner')} small />
         <SectionDescription main>
-          Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku.
-          Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w
-          Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada
-          uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które
-          obecnie wykorzystuje prowadząc własną działalność. Nasze wyroby
-          znajdują się między innymi w:
+          {t('description', 'Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku. Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie wykorzystuje prowadząc własną działalność.')}
+          {t('ourWorks', 'Nasze wyroby znajdują się między innymi w:')}
           <StyledUl>
             {DataAbout.map(data => (
               <ListItem data={data} key={data.id} />
@@ -59,11 +57,11 @@ export const About = () => {
 
       <Image
         image={secondImage}
-        alt="fire"
+        alt={t('secondImageAlt', 'Blacksmith anvil')}
         style={{ width: '700px' }}
       />
 
-      <Link to="/contact/" primary text="Skontaktuj się z nami" />
+      <Link to="/contact/" primary text={t('contactUs', 'Skontaktuj się z nami')} />
     </StyledSection>
   )
 }

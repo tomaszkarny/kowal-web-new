@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { FORM_INPUTS } from 'components/Contact/ContactForm/ContactFormUtils'
 
@@ -12,21 +13,21 @@ import {
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
 export const ContactForm = () => {
+  const { t } = useTranslation('contact')
   return (
     <FormWrapper>
-      <SectionTitle>Napisz do nas. </SectionTitle>
+      <SectionTitle>{t('writeToUs')}</SectionTitle>
       <StyledForm
         name="contact"
         method="POST"
         data-netlify-honeypot="bot-field"
         data-netlify="true"
         netlify
-        hidden
       >
         <input type="hidden" name="contact" value="contact" />
-        {FORM_INPUTS.map(({ label, type, name }) => (
-          <>
-            <Label htmlFor={name}>{label}</Label>
+        {FORM_INPUTS.map(({ label, type, name, translationKey }) => (
+          <React.Fragment key={name}>
+            <Label htmlFor={name}>{t(`form_${translationKey || name}`, label)}</Label>
 
             <Input
               type={type}
@@ -35,10 +36,10 @@ export const ContactForm = () => {
               as={type === 'textarea' ? 'textarea' : Input}
               required
             />
-          </>
+          </React.Fragment>
         ))}
 
-        <Button type="submit">Wyślij</Button>
+        <Button type="submit">{t('form_send')}</Button>
       </StyledForm>
     </FormWrapper>
   )

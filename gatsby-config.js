@@ -14,6 +14,23 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`,
+        languages: [`pl`, `en`],
+        defaultLanguage: `pl`,
+        siteUrl: `https://example.com`,
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false
+          },
+          keySeparator: false,
+          nsSeparator: false
+        }
+      }
+    },
 
     {
       resolve: 'gatsby-plugin-root-import',
@@ -34,6 +51,13 @@ module.exports = {
       options: {
         name: `images`,
         path: path.join(__dirname, `src/assets/images`),
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `locale`,
+        path: path.join(__dirname, `locales`),
       },
     },
     {

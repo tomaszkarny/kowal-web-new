@@ -1,5 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { ThemeProvider } from '@emotion/react'
 import { Global } from '@emotion/react'
@@ -16,15 +18,17 @@ import { LayoutContent } from 'components/Layout/Layout.styles'
 
 export const Layout = ({ children }) => {
   const { title, description } = useSiteMetadata()
+  const { t } = useTranslation('common')
+  const { language } = useI18next()
 
   return (
     <ThemeProvider theme={THEME}>
       <Global styles={GlobalStyles} />
 
       <Helmet>
-        <html lang="en" />
-        <title> {title}</title>
-        <meta name="description" content={description} />
+        <html lang={language} />
+        <title>{t('siteTitle', title)}</title>
+        <meta name="description" content={t('siteDescription', description)} />
       </Helmet>
       <MainNav />
 

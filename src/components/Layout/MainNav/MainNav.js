@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Hamburger } from 'components/Layout/Hamburger/Hamburger'
 import { NavLink } from 'components/Layout/NavLink/NavLink'
@@ -12,6 +13,7 @@ import {
 import { useOnClickOutside } from 'utils/hooks/useOnClickOutside'
 
 export const MainNav = () => {
+  const { t } = useTranslation('common')
   const [isOpen, setOpen] = useState(false)
   const handleBurgerClick = () => setOpen(!isOpen)
   const handleItemClick = () => setOpen(!isOpen)
@@ -26,7 +28,7 @@ export const MainNav = () => {
           {NavLinkData.map(data => (
             <NavItem isOpen={isOpen} key={data.id}>
               <NavLink
-                text={data.text}
+                text={t(data.translationKey, data.text)}
                 to={data.to}
                 onClick={handleItemClick}
                 activeClassName="current-page"
