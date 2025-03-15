@@ -1,10 +1,13 @@
 import React, { useState, useCallback } from 'react'
-import Carousel, { Modal, ModalGateway } from 'react-images'
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage, getSrc } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
-import Gallery from 'react-photo-gallery'
+// Import the modern lightbox library
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
+
+import { GalleryWrapper } from 'components/common/GalleryWrapper/GalleryWrapper'
 import { ContentContainer } from 'components/common/Container/Container.styles'
 
 export const GalleryPage = () => {
@@ -41,6 +44,13 @@ export const GalleryPage = () => {
       title: t(translationKey, photo.node.name),
     }
   })
+  
+  // Format photos for lightbox which has a slightly different format
+  const lightboxPhotos = galleryPhotos.map(photo => ({
+    src: photo.src,
+    alt: photo.alt,
+    title: photo.title,
+  }))
 
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
@@ -57,21 +67,20 @@ export const GalleryPage = () => {
 
   return (
     <ContentContainer>
-      <Gallery photos={galleryPhotos} onClick={openLightbox} margin={4} />
-      <ModalGateway>
-        {viewerIsOpen ? (
-          <Modal onClose={closeLightbox}>
-            <Carousel
-              currentIndex={currentImage}
-              views={galleryPhotos.map(x => ({
-                ...x,
-                srcset: x.srcSet,
-                caption: x.title,
-              }))}
-            />
-          </Modal>
-        ) : null}
-      </ModalGateway>
+      <GalleryWrapper photos={galleryPhotos} onClick={openLightbox} margin={4} />
+      
+      {/* Modern Lightbox component that doesn't use deprecated React APIs */}
+      <Lightbox
+        open={viewerIsOpen}
+        close={closeLightbox}
+        index={currentImage}
+        slides={lightboxPhotos}
+        carousel={{ finite: true }}
+        render={{
+          buttonPrev: currentImage === 0 ? () => null : undefined,
+          buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
+        }}
+      />
     </ContentContainer>
   )
 }

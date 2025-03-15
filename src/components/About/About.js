@@ -53,13 +53,15 @@ export const About = () => {
               'uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie ' +
               'wykorzystuje prowadząc własną działalność.'
           )}
-          {t('ourWorks', 'Nasze wyroby znajdują się między innymi w:')}
-          <StyledUl>
-            {DataAbout.map(data => (
-              <ListItem data={data} key={data.id} />
-            ))}
-          </StyledUl>
         </SectionDescription>
+        <SectionDescription main>
+          {t('ourWorks', 'Nasze wyroby znajdują się między innymi w:')}
+        </SectionDescription>
+        <StyledUl>
+          {DataAbout.map(data => (
+            <ListItem data={data} key={data.id} />
+          ))}
+        </StyledUl>
       </Wrapper>
 
       <Image

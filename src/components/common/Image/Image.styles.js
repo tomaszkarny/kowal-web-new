@@ -18,7 +18,9 @@ export const ImageWrapper = styled.div`
   }
 `
 
-export const StyledImg = styled(GatsbyImage)`
+export const StyledImg = styled(GatsbyImage, {
+  shouldForwardProp: (prop) => prop !== 'small'
+})`
   object-fit: cover;
   /* max-width: 100%;
   max-height: 100%; */
