@@ -32,7 +32,7 @@ export const About = () => {
       }
     }
   `)
-  
+
   // Create the image objects for Gatsby Image
   const mainImage = image?.childImageSharp ? getImage(image.childImageSharp) : null
   const secondImage = imageSecond?.childImageSharp ? getImage(imageSecond.childImageSharp) : null
@@ -45,7 +45,14 @@ export const About = () => {
       <Wrapper>
         <Image image={mainImage} alt={t('mainImageAlt', 'Workshop owner')} small />
         <SectionDescription main>
-          {t('description', 'Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku. Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie wykorzystuje prowadząc własną działalność.')}
+          {t(
+            'description',
+            'Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku. ' +
+              'Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w ' +
+              'Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada ' +
+              'uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie ' +
+              'wykorzystuje prowadząc własną działalność.'
+          )}
           {t('ourWorks', 'Nasze wyroby znajdują się między innymi w:')}
           <StyledUl>
             {DataAbout.map(data => (
@@ -58,7 +65,11 @@ export const About = () => {
       <Image
         image={secondImage}
         alt={t('secondImageAlt', 'Blacksmith anvil')}
-        style={{ width: '700px' }}
+        style={{
+          maxWidth: '700px',
+          width: '100%',
+          height: 'auto',
+        }}
       />
 
       <Link to="/contact/" primary text={t('contactUs', 'Skontaktuj się z nami')} />
