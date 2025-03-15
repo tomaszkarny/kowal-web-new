@@ -8,21 +8,21 @@ import Gallery from 'react-photo-gallery'
  */
 export const GalleryWrapper = (props) => {
   // Define all default values here instead of relying on defaultProps
-  const { 
-    photos, 
-    onClick, 
+  const {
+    photos,
+    onClick,
     margin = 2,  // Set default margin
     targetRowHeight = 300,  // Default from react-photo-gallery
-    columns = undefined,  // Default from react-photo-gallery
+    columns = 1,  // Default from react-photo-gallery
     direction = 'row',  // Default from react-photo-gallery
     renderImage = undefined  // Default from react-photo-gallery
   } = props;
-  
+
   return (
-    <Gallery 
-      photos={photos} 
-      onClick={onClick} 
-      margin={margin} 
+    <Gallery
+      photos={photos}
+      onClick={onClick}
+      margin={margin}
       targetRowHeight={targetRowHeight}
       columns={columns}
       direction={direction}

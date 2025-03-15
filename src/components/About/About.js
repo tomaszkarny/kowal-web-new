@@ -42,16 +42,17 @@ export const About = () => {
       <SectionTitle main>
         {t('title', 'Pracownia Kowalstwa Artystycznego Tadeusza Karny')}
       </SectionTitle>
+
+      <Image image={mainImage} alt={t('mainImageAlt', 'Workshop owner')} small />
       <Wrapper>
-        <Image image={mainImage} alt={t('mainImageAlt', 'Workshop owner')} small />
         <SectionDescription main>
           {t(
             'description',
             'Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku. ' +
-              'Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w ' +
-              'Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada ' +
-              'uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie ' +
-              'wykorzystuje prowadząc własną działalność.'
+            'Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w ' +
+            'Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada ' +
+            'uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie ' +
+            'wykorzystuje prowadząc własną działalność.'
           )}
         </SectionDescription>
         <SectionDescription main>

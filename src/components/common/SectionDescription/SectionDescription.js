@@ -10,12 +10,19 @@ export const SectionDescription = styled.p`
   font-size: 15px;
   text-align: ${({ main }) => (main ? 'left' : 'center')};
   box-sizing: inherit;
-  margin: 0 0 28px;
-
-  max-width: ${({ main }) => (main ? 'auto' : '')};
+  margin: 0 0 15px;
+  max-width: ${({ main }) => (main ? '100%' : '')};
+  ${mq('small')} {
+    max-width: ${({ main }) => (main ? '55ch' : '')};
+  }
 
   ${mq('tablet')} {
     font-size: ${({ isBolded }) => (isBolded ? '18px' : '1.2rem')};
     padding-top: ${({ isBolded }) => (isBolded ? '0' : '3rem')};
+    max-width: ${({ main }) => (main ? '65ch' : '')};
+  }
+  
+  ${mq('large')} {
+    max-width: ${({ main }) => (main ? '80ch' : '')};
   }
 `

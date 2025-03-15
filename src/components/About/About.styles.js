@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   /* padding-top: 20px; */
   width: 100%;
   justify-content: center;
-  ${mq('medium')} {
-    flex-direction: row;
-  }
+  // ${mq('medium')} {
+  //   flex-direction: row;
+  // }
 `
