@@ -14,7 +14,7 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    
+
     {
       resolve: `gatsby-plugin-react-i18next`,
       options: {
@@ -26,6 +26,16 @@ module.exports = {
           interpolation: {
             escapeValue: false
           },
+          // This is the key change - disable suspense to prevent the loading spinner
+          react: {
+            useSuspense: false
+          },
+          // Cache translations for faster loading
+          cache: {
+            enabled: true
+          },
+          // Load only language code without region for better performance
+          load: 'languageOnly',
           keySeparator: false,
           nsSeparator: false
         }

@@ -3,6 +3,9 @@ import Helmet from 'react-helmet'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 
+// Import the translation preloader
+import TranslationPreloader from 'components/common/TranslationPreloader/TranslationPreloader'
+
 import { ThemeProvider } from '@emotion/react'
 import { Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
@@ -23,6 +26,8 @@ export const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={THEME}>
+      {/* Add the translation preloader to improve page transition performance */}
+      <TranslationPreloader />
       <Global styles={GlobalStyles} />
 
       <Helmet>
