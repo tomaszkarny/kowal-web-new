@@ -1,10 +1,12 @@
 import styled from '@emotion/styled'
-
+import isPropValid from '@emotion/is-prop-valid'
 import { Link } from 'gatsby'
 
 import { mq } from 'utils/mediaQueries'
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link, {
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary'
+})`
   width: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

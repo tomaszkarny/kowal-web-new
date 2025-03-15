@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
-
+import isPropValid from '@emotion/is-prop-valid'
 import { mq } from 'utils/mediaQueries'
 
-export const SectionTitle = styled.h1`
+export const SectionTitle = styled('h1', {
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'isUnderLined' && prop !== 'isAligned'
+})`
   text-align: ${({ isAligned }) => (isAligned ? 'left' : 'center')};
   box-sizing: inherit;
   font-weight: 700;

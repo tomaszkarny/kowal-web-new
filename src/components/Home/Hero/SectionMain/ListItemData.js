@@ -9,7 +9,7 @@ export const ListItemData = [
     text: 'bram (skrzydłowych, przesuwanych, furtek)',
     translationKey: 'specialties_items_gates',
     icon: faCheckSquare,
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 1,
   },
 
@@ -17,7 +17,7 @@ export const ListItemData = [
     text: 'balustrad (wewnętrznych i zewnętrznych)',
     translationKey: 'specialties_items_railings',
     icon: faCheckSquare,
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 2,
   },
 
@@ -25,7 +25,7 @@ export const ListItemData = [
     text: 'ogrodzeń',
     translationKey: 'specialties_items_fences',
     icon: faCheckSquare,
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 3,
   },
 
@@ -33,7 +33,7 @@ export const ListItemData = [
     text: 'krat',
     translationKey: 'specialties_items_gratings',
     icon: faCheckSquare,
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 4,
   },
 
@@ -42,7 +42,7 @@ export const ListItemData = [
       'innych elementów ozdobnych (świeczniki, meble, konstrukcje stalowe) itp.',
     translationKey: 'specialties_items_decorative',
     icon: faCheckSquare,
-    fixedWidth: 'fixedWidth',
+    fixedWidth: true,
     id: 5,
   },
 ]

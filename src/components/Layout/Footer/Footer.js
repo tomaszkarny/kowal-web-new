@@ -58,6 +58,12 @@ export const Footer = () => {
             to={originalPath} 
             language={lng}
             active={lng === language}
+            onClick={() => {
+              // Save language preference to localStorage when clicked
+              if (typeof window !== 'undefined') {
+                window.localStorage.setItem('language', lng);
+              }
+            }}
           >
             {lng === 'en' ? t('englishVersion') : t('polishVersion')}
           </LanguageLink>

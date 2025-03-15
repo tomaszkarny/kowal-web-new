@@ -26,12 +26,21 @@ export const FooterSection = styled.section`
 
 /**
  * Styled component for language switcher links
+ * Using shouldForwardProp to prevent 'active' prop from reaching the DOM
  */
-export const LanguageLink = styled(Link)`
+export const LanguageLink = styled(Link, {
+  shouldForwardProp: (prop) => prop !== 'active'
+})`
   text-decoration: none;
   margin-bottom: 10px;
   display: block;
   color: ${props => props.active ? '#ffcc00' : '#ffffff'};
+
+  &:hover {
+    opacity: 1;
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+  }
 `
 
 export const FooterParagraph = styled.p`
