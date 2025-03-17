@@ -4,6 +4,21 @@ import { Link } from 'gatsby'
 
 import { mq } from 'utils/mediaQueries'
 
+// Define fallback colors to prevent theme access issues
+const fallbackColors = {
+  primary: '#e22c2f',  // Red primary color
+  white: '#ffffff',    // White
+  bluewood: '#2c3e50'  // Dark blue/slate
+}
+
+// Safe color accessor function to prevent undefined theme errors
+const getColor = (theme, colorKey, fallback) => {
+  if (!theme || !theme.color || !theme.color[colorKey]) {
+    return fallback
+  }
+  return theme.color[colorKey]
+}
+
 export const StyledLink = styled(Link, {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary'
 })`
@@ -17,7 +32,9 @@ export const StyledLink = styled(Link, {
   box-shadow: ${({ primary }) =>
     primary ? '0 7px 16px 0 rgba(0, 0, 0, 0.2)' : 'none'};
   color: ${({ primary, theme }) =>
-    primary ? theme.color.white : theme.color.bluewood};
+    primary 
+      ? getColor(theme, 'white', fallbackColors.white)
+      : getColor(theme, 'bluewood', fallbackColors.bluewood)};
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
@@ -30,16 +47,18 @@ export const StyledLink = styled(Link, {
   white-space: normal;
   display: inline-block;
   background-color: ${({ primary, theme }) =>
-    primary ? theme.color.primary : theme.color.white};
+    primary ? getColor(theme, 'primary', fallbackColors.primary) : 'transparent'};
   border-radius: ${({ primary }) => (primary ? '10px' : '')};
-  background-color: ${({ primary }) => (primary ? '' : 'transparent')};
-  border-bottom: ${({ primary }) => (primary ? '' : '2px solid #e22c2f')};
-  border-color: ${({ primary, theme }) => (primary ? '' : theme.color.primary)};
+  border-bottom: ${({ primary }) => (primary ? '' : `2px solid ${fallbackColors.primary}`)};
+  border-color: ${({ primary, theme }) => 
+    (primary ? '' : getColor(theme, 'primary', fallbackColors.primary))};
 
   &:hover {
     box-shadow: ${({ primary }) => (primary ? 'none' : '')};
     color: ${({ primary, theme }) =>
-      primary ? theme.color.white : theme.color.primary};
+      primary 
+        ? getColor(theme, 'white', fallbackColors.white)
+        : getColor(theme, 'primary', fallbackColors.primary)};
     outline-offset: ${({ primary }) => (primary ? '3px' : '')};
   }
   ${mq('tablet')} {
@@ -48,6 +67,7 @@ export const StyledLink = styled(Link, {
     font-size: 14px;
   }
 `
+
 export const LinkWrapper = styled.div`
   padding-top: 20px;
   display: grid;

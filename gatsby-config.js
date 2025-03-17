@@ -22,22 +22,40 @@ module.exports = {
         languages: [`pl`, `en`],
         defaultLanguage: `pl`,
         siteUrl: `https://example.com`,
+        // Fix for doubled language paths
+        localeStructure: '{{lng}}/{{ns}}',
+        // Set this to false to prevent doubled language codes
+        addRedirectPage: false,
+        // Create redirects for the root path to the default language
+        redirect: true,
+        // Force default language as the first loaded
+        pathDefaultsToDefaultLanguage: true,
         i18nextOptions: {
           interpolation: {
             escapeValue: false
           },
-          // This is the key change - disable suspense to prevent the loading spinner
+          // Disable suspense to prevent the loading spinner
           react: {
             useSuspense: false
           },
-          // Cache translations for faster loading
+          // Enhanced caching for translations
           cache: {
-            enabled: true
+            enabled: true,
+            expirationTime: 7 * 24 * 60 * 60 * 1000, // 7 days
+            cleanupInterval: 60 * 60 * 1000 // 1 hour
           },
-          // Load only language code without region for better performance
+          // Performance optimizations
           load: 'languageOnly',
           keySeparator: false,
-          nsSeparator: false
+          nsSeparator: false,
+          // Preload all translations at startup
+          partialBundledLanguages: true,
+          ns: ['common', 'about', 'gallery', 'contact'],
+          defaultNS: 'common',
+          // More aggressive fallbacks for faster loads
+          fallbackLng: 'pl',
+          // Debug only in development to avoid console spam in production
+          debug: process.env.NODE_ENV === 'development'
         }
       }
     },

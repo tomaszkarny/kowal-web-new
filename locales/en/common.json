@@ -18,5 +18,8 @@
   "specialties_items_railings": "railings (interior and exterior)",
   "specialties_items_fences": "fences",
   "specialties_items_gratings": "gratings",
-  "specialties_items_decorative": "other decorative elements (candlesticks, furniture, steel structures), etc."
+  "specialties_items_decorative": "other decorative elements (candlesticks, furniture, steel structures), etc.",
+  "notFoundTitle": "Page Not Found",
+  "notFoundMessage": "Sorry, the page you're looking for doesn't exist.",
+  "goHome": "Return to Homepage"
 }

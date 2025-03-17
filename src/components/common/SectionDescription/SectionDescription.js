@@ -6,7 +6,7 @@ export const SectionDescription = styled.p`
   font-weight: ${({ isBolded }) => (isBolded ? 500 : 400)};
   line-height: ${({ isUnderLined }) => (isUnderLined ? 'none' : '2.5')};
   color: ${({ theme, isBolded }) =>
-    theme.color[isBolded ? 'darkBlue' : 'bluewood']};
+    theme?.color?.[isBolded ? 'darkBlue' : 'bluewood'] || (isBolded ? '#1a365d' : '#2c3e50')};
   font-size: 15px;
   text-align: ${({ main }) => (main ? 'left' : 'center')};
   box-sizing: inherit;

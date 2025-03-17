@@ -20,11 +20,18 @@ export const ContactForm = () => {
       <StyledForm
         name="contact"
         method="POST"
+        action="/"
         data-netlify-honeypot="bot-field"
         data-netlify="true"
-        netlify
       >
-        <input type="hidden" name="contact" value="contact" />
+        {/* This hidden input is required for Netlify forms */}
+        <input type="hidden" name="form-name" value="contact" />
+        {/* Honeypot field to catch bots */}
+        <p hidden>
+          <label>
+            Don't fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
         {FORM_INPUTS.map(({ label, type, name, translationKey }) => (
           <React.Fragment key={name}>
             <Label htmlFor={name}>{t(`form_${translationKey || name}`, label)}</Label>

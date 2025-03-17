@@ -18,5 +18,8 @@
   "specialties_items_railings": "balustrad (wewnętrznych i zewnętrznych)",
   "specialties_items_fences": "ogrodzeń",
   "specialties_items_gratings": "krat",
-  "specialties_items_decorative": "innych elementów ozdobnych (świeczniki, meble, konstrukcje stalowe) itp."
+  "specialties_items_decorative": "innych elementów ozdobnych (świeczniki, meble, konstrukcje stalowe) itp.",
+  "notFoundTitle": "Strona nie znaleziona",
+  "notFoundMessage": "Przepraszamy, strona której szukasz nie istnieje.",
+  "goHome": "Wróć do strony głównej"
 }
