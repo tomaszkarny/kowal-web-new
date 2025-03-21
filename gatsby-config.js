@@ -3,7 +3,11 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: 'Tadeusz Karny Kowalstwo Artystyczne',
-    description: 'Kowalstwo Artystyczne',
+    description: 'Kowalstwo Artystyczne - oferujemy bogate wzornictwo bram, balustrad, ogrodzeń, krat oraz innych elementów ozdobnych',
+    siteUrl: 'https://example.com', // Zmień na rzeczywisty adres strony
+    image: '/images/logo.jpg', // Ścieżka do obrazu logo/ogólnego dla social media
+    author: 'Tadeusz Karny',
+    twitterUsername: '', // Dodaj jeśli masz konto Twitter
   },
 
   plugins: [
@@ -31,6 +35,11 @@ module.exports = {
         // Force default language as the first loaded
         pathDefaultsToDefaultLanguage: true,
         i18nextOptions: {
+          // Configure proper path to translation files to fix the backend warning
+          backend: {
+            // This tells i18next where to find the translation files
+            loadPath: '/locales/{{lng}}/{{ns}}.json',
+          },
           interpolation: {
             escapeValue: false
           },
@@ -55,7 +64,21 @@ module.exports = {
           // More aggressive fallbacks for faster loads
           fallbackLng: 'pl',
           // Debug only in development to avoid console spam in production
-          debug: process.env.NODE_ENV === 'development'
+          debug: process.env.NODE_ENV === 'development',
+
+          // Disable warnings for gallery images
+          saveMissing: false,
+          missingKeyHandler: (lng, ns, key) => {
+            // Ignore warnings for gallery image keys
+            if (key.includes('gallery images')) {
+              return;
+            }
+            
+            // For other keys, log warnings in development mode only
+            if (process.env.NODE_ENV === 'development') {
+              console.warn(`Missing translation key: ${key}`);
+            }
+          }
         }
       }
     },
@@ -94,6 +117,35 @@ module.exports = {
         fonts: ['Merriweather', 'Helvtica', 'Arial', 'serif', 'PT Sans'],
         display: 'swap',
       },
+    },
+    // SEO plugins
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: ['/**/404', '/**/404.html'],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://example.com', // Zmień na rzeczywisty adres strony
+        sitemap: 'https://example.com/sitemap-index.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
     },
   ],
 }

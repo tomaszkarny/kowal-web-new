@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react'
-import Helmet from 'react-helmet'
+import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { useLocation } from '@reach/router'
 
 // Import the translation preloader
 import TranslationPreloader from 'components/common/TranslationPreloader/TranslationPreloader'
@@ -11,7 +10,7 @@ import { Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
 import { GlobalStyles } from 'components/common/GlobalStyles'
 
-import { useSiteMetadata } from 'utils/hooks/useSiteMetadata'
+import { SEO } from 'components/SEO/SEO'
 
 import { MainNav } from 'components/Layout/MainNav/MainNav'
 import { Footer } from 'components/Layout/Footer/Footer'
@@ -19,23 +18,11 @@ import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
 import { LayoutContent } from 'components/Layout/Layout.styles'
 
-export const Layout = ({ children }) => {
-  const { title, description } = useSiteMetadata()
+export const Layout = ({ children, title, description, image, article }) => {
   const { t } = useTranslation('common')
-  const { language } = useI18next()
+  const location = useLocation()
   
-  // Only initialize these once to prevent re-renders
-  const metaTags = useMemo(() => (
-    <Helmet>
-      <html lang={language} />
-      <title>{t('siteTitle', title)}</title>
-      <meta name="description" content={t('siteDescription', description)} />
-      {/* Add preload hint for faster navigation */}
-      <link rel="prefetch" href="/about" />
-      <link rel="prefetch" href="/gallery" />
-      <link rel="prefetch" href="/contact" />
-    </Helmet>
-  ), [language, t, title, description])
+  // Preload translations for better performance
 
   return (
     <ThemeProvider theme={THEME}>
@@ -43,7 +30,21 @@ export const Layout = ({ children }) => {
       <TranslationPreloader namespaces={['common', 'about', 'gallery', 'contact']} />
       <Global styles={GlobalStyles} />
 
-      {metaTags}
+      <SEO 
+        title={title}
+        description={description}
+        pathname={location.pathname}
+        image={image}
+        article={article}
+      >
+        {/* Add preload hints for faster navigation with proper 'as' attributes */}
+        <link rel="prefetch" href="/about" as="document" />
+        <link rel="prefetch" href="/gallery" as="document" />
+        <link rel="prefetch" href="/contact" as="document" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </SEO>
+      
       <MainNav />
 
       <LayoutContent>{children}</LayoutContent>
