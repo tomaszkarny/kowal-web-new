@@ -1,5 +1,5 @@
 [build]
-  command = "npm install --legacy-peer-deps --include=optional && npm run build"
+  command = "npm install --legacy-peer-deps --include=optional && npm install @parcel/watcher-linux-x64-glibc && npm run build"
   publish = "public"
 
 [build.environment]
