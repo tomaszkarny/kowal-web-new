@@ -97,3 +97,22 @@ export const Button = styled.button`
     font-size: 14px;
   }
 `
+
+export const FormErrorWrapper = styled.div`
+  padding: 10px;
+  background-color: #fff3f3;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #f44336;
+`
+
+export const FormErrorText = styled.p`
+  color: #f44336;
+  margin: 0;
+`
+
+export const FormErrorMessage = styled.small`
+  display: block;
+  color: #666;
+  margin-top: 5px;
+`

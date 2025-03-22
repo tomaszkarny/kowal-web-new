@@ -68,11 +68,7 @@ export const About = () => {
       <Image
         image={secondImage}
         alt={t('secondImageAlt', 'Blacksmith anvil')}
-        style={{
-          maxWidth: '700px',
-          width: '100%',
-          height: 'auto',
-        }}
+        secondary
       />
 
       <Link to="/contact/" primary text={t('contactUs', 'Skontaktuj się z nami')} />

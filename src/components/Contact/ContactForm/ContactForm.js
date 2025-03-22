@@ -9,6 +9,9 @@ import {
   Label,
   Input,
   Button,
+  FormErrorWrapper,
+  FormErrorText,
+  FormErrorMessage
 } from 'components/Contact/ContactForm/ContactForm.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
@@ -76,16 +79,10 @@ export const ContactForm = () => {
         ))}
 
         {formError && (
-          <div style={{
-            padding: '10px',
-            backgroundColor: '#fff3f3',
-            borderRadius: '4px',
-            marginBottom: '20px',
-            borderLeft: '4px solid #f44336'
-          }}>
-            <p style={{ color: '#f44336', margin: 0 }}>{t('form_error', 'There was an error submitting the form. Please try again.')}</p>
-            <small>{formError}</small>
-          </div>
+          <FormErrorWrapper>
+            <FormErrorText>{t('form_error', 'There was an error submitting the form. Please try again.')}</FormErrorText>
+            <FormErrorMessage>{formError}</FormErrorMessage>
+          </FormErrorWrapper>
         )}
 
         <Button

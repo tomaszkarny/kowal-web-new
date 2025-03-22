@@ -19,7 +19,7 @@ export const ImageWrapper = styled.div`
 `
 
 export const StyledImg = styled(GatsbyImage, {
-  shouldForwardProp: (prop) => prop !== 'small'
+  shouldForwardProp: (prop) => prop !== 'small' && prop !== 'secondary'
 })`
   object-fit: cover;
   /* max-width: 100%;
@@ -28,6 +28,11 @@ export const StyledImg = styled(GatsbyImage, {
   width: ${({ small }) => (small ? '180px' : '')};
   height: ${({ small }) => (small ? '180px' : '')};
   border-radius: ${({ small }) => (small ? '50%' : '')};
+  
+  /* Secondary image style */
+  max-width: ${({ secondary }) => (secondary ? '700px' : '')};
+  width: ${({ secondary }) => (secondary ? '100%' : '')};
+  height: ${({ secondary }) => (secondary ? 'auto' : '')};
 
   ${mq('tablet')} {
     width: ${({ small }) => (small ? '350px' : '')};

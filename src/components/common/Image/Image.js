@@ -6,14 +6,14 @@ import { ImageWrapper, StyledImg } from 'components/common/Image/Image.styles'
 
 // import forge from 'assets/images/forge.jpg'
 
-export const Image = ({ alt, style, small, image }) => {
+export const Image = ({ alt, small, secondary, image }) => {
   return (
     <ImageWrapper>
       <StyledImg
         image={image}
         alt={alt || ""}
-        style={style}
         small={small}
+        secondary={secondary}
       />
     </ImageWrapper>
   )
