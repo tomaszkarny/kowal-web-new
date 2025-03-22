@@ -9,5 +9,8 @@
   "form_email": "Email",
   "form_subject": "Tytuł",
   "form_message": "Wiadomość",
-  "form_send": "Wyślij"
+  "form_send": "Wyślij",
+  "form_success_title": "Dziękujemy!",
+  "form_success_message": "Twoja wiadomość została wysłana pomyślnie. Skontaktujemy się z Tobą wkrótce.",
+  "form_send_another": "Wyślij kolejną wiadomość"
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { FORM_INPUTS } from 'components/Contact/ContactForm/ContactFormUtils'
@@ -14,15 +14,44 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
 export const ContactForm = () => {
   const { t } = useTranslation('contact')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formError, setFormError] = useState(null)
+
+  const handleSubmit = async (event) => {
+    // We don't need to prevent default since we want the form to submit naturally to Netlify
+    // We just want to show a submitting state
+    setIsSubmitting(true)
+    setFormError(null)
+    
+    // The actual form submission will be handled by Netlify automatically
+    // This function just handles the UI feedback during submission
+    
+    // If there's an error during form submission, it will be caught here
+    try {
+      // We set a timeout to reset the submitting state in case the form navigation takes too long
+      // This ensures the UI doesn't get stuck in a submitting state if something goes wrong
+      setTimeout(() => {
+        setIsSubmitting(false)
+      }, 5000)  
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setIsSubmitting(false)
+      setFormError(error.message)
+      // Prevent the form from submitting if there's an error
+      event.preventDefault()
+    }
+  }
+
   return (
     <FormWrapper>
       <SectionTitle>{t('writeToUs')}</SectionTitle>
       <StyledForm
         name="contact"
         method="POST"
-        action="/"
         data-netlify-honeypot="bot-field"
         data-netlify="true"
+        action="/contact/?success=true"
+        onSubmit={handleSubmit}
       >
         {/* This hidden input is required for Netlify forms */}
         <input type="hidden" name="form-name" value="contact" />
@@ -46,7 +75,25 @@ export const ContactForm = () => {
           </React.Fragment>
         ))}
 
-        <Button type="submit">{t('form_send')}</Button>
+        {formError && (
+          <div style={{
+            padding: '10px',
+            backgroundColor: '#fff3f3',
+            borderRadius: '4px',
+            marginBottom: '20px',
+            borderLeft: '4px solid #f44336'
+          }}>
+            <p style={{ color: '#f44336', margin: 0 }}>{t('form_error', 'There was an error submitting the form. Please try again.')}</p>
+            <small>{formError}</small>
+          </div>
+        )}
+
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? t('form_sending', 'Sending...') : t('form_send')}
+        </Button>
       </StyledForm>
     </FormWrapper>
   )
