@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Link } from 'gatsby'
+import { Link } from 'gatsby-plugin-react-i18next'
 
 export const StyledNavLink = styled(Link)`
   color: ${({ theme }) => theme.color.dark};
