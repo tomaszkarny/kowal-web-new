@@ -72,11 +72,11 @@ export const Hero = ({ id }) => {
             />
           </LinkWrapper>
         </TitleWrapper>
-        <div style={{ position: 'relative', flex: '1', overflow: 'hidden', zIndex: '0' }}>
+        <div style={{ position: 'relative', flex: '1', overflow: 'hidden', zIndex: '0', margin: 0, padding: 0 }}>
           <Image
             image={getImage(image.childImageSharp)}
             alt={t('siteTitle')}
-            style={{ height: '100%', objectFit: 'cover' }}
+            isHero
           />
         </div>
       </HeroWrapper>

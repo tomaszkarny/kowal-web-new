@@ -48,6 +48,9 @@ export const HeroWrapper = styled.div`
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  border: none;
+  box-sizing: border-box;
+  background: #000;
   
   ${mq('medium')} {
     flex-direction: row;
