@@ -20,47 +20,82 @@ const getColor = (theme, colorKey, fallback) => {
 }
 
 export const StyledLink = styled(Link, {
-  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary'
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary' && prop !== 'customStyles'
 })`
+  ${({ customStyles }) => customStyles || ''}
   width: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   font-family: 'PT Sans', 'Helvetica', 'Arial', sans-serif;
   box-sizing: inherit;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: 0;
   box-shadow: ${({ primary }) =>
-    primary ? '0 7px 16px 0 rgba(0, 0, 0, 0.2)' : 'none'};
+    primary ? '0 6px 15px -3px rgba(82, 95, 196, 0.4)' : 'none'};
   color: ${({ primary, theme }) =>
     primary 
       ? getColor(theme, 'white', fallbackColors.white)
       : getColor(theme, 'bluewood', fallbackColors.bluewood)};
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   line-height: 1;
-  padding: ${({ primary }) => (primary ? '22px 36px 20px' : '16px 0 6px 0')};
+  padding: ${({ primary }) => (primary ? '18px 32px 16px' : '16px 0 6px 0')};
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   white-space: normal;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${({ primary, theme }) =>
     primary ? getColor(theme, 'primary', fallbackColors.primary) : 'transparent'};
   border-radius: ${({ primary }) => (primary ? '10px' : '')};
   border-bottom: ${({ primary }) => (primary ? '' : `2px solid ${fallbackColors.primary}`)};
   border-color: ${({ primary, theme }) => 
     (primary ? '' : getColor(theme, 'primary', fallbackColors.primary))};
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: 1;
+    opacity: 0;
+  }
 
   &:hover {
-    box-shadow: ${({ primary }) => (primary ? 'none' : '')};
+    box-shadow: ${({ primary }) => (primary ? '0 8px 20px -4px rgba(82, 95, 196, 0.6)' : 'none')};
     color: ${({ primary, theme }) =>
       primary 
         ? getColor(theme, 'white', fallbackColors.white)
         : getColor(theme, 'primary', fallbackColors.primary)};
-    outline-offset: ${({ primary }) => (primary ? '3px' : '')};
+    transform: translateY(-2px);
+    
+    &:before {
+      transform: translateX(100%);
+      opacity: 1;
+    }
   }
+  
+  &:active {
+    transform: translateY(1px);
+    box-shadow: ${({ primary }) => (primary ? '0 3px 10px -2px rgba(82, 95, 196, 0.5)' : 'none')};
+  }
+  
   ${mq('tablet')} {
     align-self: center;
     width: ${({ main }) => (main ? '250px' : 'auto')};
@@ -69,12 +104,23 @@ export const StyledLink = styled(Link, {
 `
 
 export const LinkWrapper = styled.div`
-  padding-top: 20px;
+  padding-top: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-
-  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-gap: 1.5rem;
+  width: 100%;
+  max-width: 450px;
+  justify-content: center;
+  margin: 0 auto;
+  
   ${mq('tablet')} {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    grid-gap: 2rem;
+  }
+  
+  ${mq('medium')} {
+    justify-content: center;
+    margin: 0 auto;
   }
 `

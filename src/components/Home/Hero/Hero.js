@@ -6,7 +6,12 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Image } from 'components/common/Image/Image'
 
-import { HeroWrapper, TitleWrapper } from 'components/Home/Hero/Hero.styles'
+import {
+  HeroWrapper,
+  TitleWrapper,
+  ImageOverlay,
+  ButtonStyles
+} from 'components/Home/Hero/Hero.styles'
 
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
@@ -21,7 +26,7 @@ export const Hero = ({ id }) => {
   const { t } = useTranslation('common')
   const { image } = useStaticQuery(graphql`
     query MyQuery {
-      image: file(relativePath: { eq: "forge.jpg" }) {
+      image: file(relativePath: { eq: "Hero_image.webp" }) {
         childImageSharp {
           gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
         }
@@ -43,6 +48,7 @@ export const Hero = ({ id }) => {
   return (
     <>
       <HeroWrapper>
+        <ImageOverlay />
         <TitleWrapper>
           <SectionTitle>
             {t('heroTitle')}
@@ -57,11 +63,22 @@ export const Hero = ({ id }) => {
               to="/"
               onClick={handleItemClick}
               name={SECTION_IDS.MAIN}
+              customStyles={ButtonStyles.primary}
             />
-            <Link text={t('seeOurWork')} to="/gallery/" />
+            <Link
+              text={t('seeOurWork')}
+              to="/gallery/"
+              customStyles={ButtonStyles.secondary}
+            />
           </LinkWrapper>
         </TitleWrapper>
-        <Image image={getImage(image.childImageSharp)} alt={t('siteTitle')} />
+        <div style={{ position: 'relative', flex: '1', overflow: 'hidden', zIndex: '0' }}>
+          <Image
+            image={getImage(image.childImageSharp)}
+            alt={t('siteTitle')}
+            style={{ height: '100%', objectFit: 'cover' }}
+          />
+        </div>
       </HeroWrapper>
       <SectionMain main id={id} />
     </>
