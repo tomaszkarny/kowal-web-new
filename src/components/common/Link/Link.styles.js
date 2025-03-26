@@ -105,22 +105,27 @@ export const StyledLink = styled(Link, {
 
 export const LinkWrapper = styled.div`
   padding-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  grid-gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 100%;
   max-width: 450px;
-  justify-content: center;
+  align-items: center;
+  align-self: center;
   margin: 0 auto;
   
-  ${mq('tablet')} {
-    grid-template-columns: auto auto;
+  ${mq('small')} {
+    flex-direction: row;
+    gap: 1.5rem;
     justify-content: center;
-    grid-gap: 2rem;
   }
   
-  ${mq('medium')} {
+  ${mq('tablet')} {
+    gap: 2rem;
+  }
+  
+  a {
+    min-width: 160px;
     justify-content: center;
-    margin: 0 auto;
   }
 `
