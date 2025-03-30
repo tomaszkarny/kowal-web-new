@@ -325,16 +325,24 @@ export const SpecialtyImage = styled.div`
     z-index: 1;
   }
   
-  /* Applying animation to image transitions */
+  /* Usunięto animację fadeIn, aby nie dublować efektu przy zmianie zdjęcia */
   .specialty-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: ${fadeIn} 0.7s ease-out;
-    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1); /* Slower, smoother transform */
     filter: brightness(1.02) contrast(1.05);
     position: relative;
-    z-index: 2; /* Ensure image is above the placeholder */
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  
+  &.fade-out .specialty-image {
+    opacity: 0;
+  }
+  
+  &.fade-in .specialty-image {
+    opacity: 1;
   }
   
   &:hover .specialty-image {

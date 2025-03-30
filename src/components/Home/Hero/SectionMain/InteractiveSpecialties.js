@@ -28,6 +28,7 @@ export const InteractiveSpecialties = () => {
   const [activeItem, setActiveItem] = useState(1) // Default to first item
   const [progress, setProgress] = useState(0) // Progress for auto-cycling
   const [isTransitioning, setIsTransitioning] = useState(false) // For image transition effect
+  const [fadeOut, setFadeOut] = useState(false) // Stan do obsługi efektu fade-out
   const autoTimerRef = useRef(null) // Reference to the auto-cycle timer
   const progressTimerRef = useRef(null) // Reference for progress bar updates
   const { t } = useTranslation('common')
@@ -82,6 +83,7 @@ export const InteractiveSpecialties = () => {
     const updateInterval = 50; // Update progress every 50ms
     const totalSteps = cycleDuration / updateInterval;
     let currentStep = 0;
+    const fadeDuration = 500 // czas trwania animacji fade-out/fade-in (ms)
 
     // Clear existing timers
     if (progressTimerRef.current) clearInterval(progressTimerRef.current);
@@ -98,21 +100,17 @@ export const InteractiveSpecialties = () => {
       }
     }, updateInterval);
 
-    // Auto-cycle timer
+    // Timer auto-cyklu: po zakończeniu paska postępu uruchom fade-out
     autoTimerRef.current = setTimeout(() => {
-      const currentIndex = ListItemData.findIndex(item => item.id === activeItem);
-      const nextIndex = (currentIndex + 1) % ListItemData.length;
-
-      // Simple, quick transition for auto-cycling
-      setActiveItem(ListItemData[nextIndex].id);
-      setIsTransitioning(true);
-
+      setFadeOut(true);
       setTimeout(() => {
-        setIsTransitioning(false);
+        const currentIndex = ListItemData.findIndex(item => item.id === activeItem);
+        const nextIndex = (currentIndex + 1) % ListItemData.length;
+        setActiveItem(ListItemData[nextIndex].id);
+        setFadeOut(false);
         setProgress(0);
-        startProgressAndAutoCycle(); // Restart for next cycle
-      }, 250); // Brief transition
-
+        startProgressAndAutoCycle(); // Restart cyklu
+      }, fadeDuration);
     }, cycleDuration);
   }, [activeItem]);
 
@@ -224,7 +222,7 @@ export const InteractiveSpecialties = () => {
 
       <ImageContainer>
         <ProgressBar progress={progress} />
-        <SpecialtyImage className={isTransitioning ? 'animate-transition' : ''}>
+        <SpecialtyImage className={fadeOut ? 'fade-out' : 'fade-in'}>
           <GatsbyImage
             image={imageMap[activeItem]}
             alt={labelMap[activeItem]}
@@ -232,6 +230,8 @@ export const InteractiveSpecialties = () => {
             objectFit="cover"
             objectPosition="center"
             loading="eager"
+            fadeIn={false}
+            placeholder="none"
           />
           <div className="image-caption">{labelMap[activeItem]}</div>
         </SpecialtyImage>
