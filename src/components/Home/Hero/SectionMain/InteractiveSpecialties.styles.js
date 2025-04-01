@@ -310,22 +310,11 @@ export const SpecialtyImage = styled.div`
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.07);
-  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); /* Improved easing for smoother transition */
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: 2;
   
-  /* Create a placeholder that resembles all images to prevent flashing */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f0f0f0;
-    z-index: 1;
-  }
+  /* Removed the ::before pseudo-element so we don't cover the image with a white rectangle */
   
-  /* Usunięto animację fadeIn, aby nie dublować efektu przy zmianie zdjęcia */
   .specialty-image {
     width: 100%;
     height: 100%;
@@ -333,17 +322,22 @@ export const SpecialtyImage = styled.div`
     filter: brightness(1.02) contrast(1.05);
     position: relative;
     z-index: 2;
+    /* Return to default fadeIn from GatsbyImage by removing fadeIn={false} */
     opacity: 1;
     transition: opacity 0.5s ease;
   }
   
   &.fade-out .specialty-image {
     opacity: 0;
+    transition: opacity 0.25s ease; /* Faster transition */
   }
   
   &.fade-in .specialty-image {
     opacity: 1;
+    transition: opacity 0.25s ease; /* Faster transition */
   }
+  
+  /* CSS for fade animations */
   
   &:hover .specialty-image {
     transform: scale(1.07); /* Slightly larger scale for more impact */
@@ -391,4 +385,11 @@ export const SpecialtyImage = styled.div`
       transform: translateY(-5px);
     }
   }
+`
+
+export const FallbackImage = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
