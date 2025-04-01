@@ -10,6 +10,7 @@
   "gallery": "Galeria",
   "contact": "Kontakt",
   "gallery_title": "Nasze przykładowe prace",
+  "specialties_section_title": "Specjalizujemy się w wykonywaniu",
   "specialties_title": "Specjalizujemy się w wykonywaniu:",
   "specialties_description1": "Oferta obejmuje szeroką gamę kolorów (na życzenie klienta np.: stare złoto, srebro itp.). Wszystkie wyroby zabezpieczone są antykorozyjnie (malowanie, ocynk).",
   "specialties_description2": "Realizujemy prace według projektów własnych jak i powierzonych.",
@@ -29,6 +30,7 @@
   "specialties_items_fences": "ogrodzeń",
   "specialties_items_gratings": "krat",
   "specialties_items_decorative": "innych elementów ozdobnych (świeczniki, meble, konstrukcje stalowe) itp.",
+  "hover_to_see": "Najedź lub kliknij, aby zobaczyć przykłady",
   "notFoundTitle": "Strona nie znaleziona",
   "notFoundMessage": "Przepraszamy, strona której szukasz nie istnieje.",
   "goHome": "Wróć do strony głównej"

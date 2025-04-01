@@ -10,6 +10,7 @@
   "gallery": "Gallery",
   "contact": "Contact",
   "gallery_title": "Our Sample Works",
+  "specialties_section_title": "We specialize in making",
   "specialties_title": "We specialize in creating:",
   "specialties_description1": "Our offer includes a wide range of colors (at the customer's request, e.g., antique gold, silver, etc.). All products are protected against corrosion (painting, galvanizing).",
   "specialties_description2": "We implement works according to our own and commissioned designs.",
@@ -29,6 +30,7 @@
   "specialties_items_fences": "fences",
   "specialties_items_gratings": "gratings",
   "specialties_items_decorative": "other decorative elements (candlesticks, furniture, steel structures, etc.)",
+  "hover_to_see": "Hover or click to see examples",
   "notFoundTitle": "Page Not Found",
   "notFoundMessage": "Sorry, the page you're looking for doesn't exist.",
   "goHome": "Return to Homepage"

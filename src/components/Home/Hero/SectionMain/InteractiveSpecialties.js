@@ -83,7 +83,7 @@ export const InteractiveSpecialties = () => {
     const updateInterval = 50; // Update progress every 50ms
     const totalSteps = cycleDuration / updateInterval;
     let currentStep = 0;
-    const fadeDuration = 500 // czas trwania animacji fade-out/fade-in (ms)
+    const fadeDuration = 500 // 
 
     // Clear existing timers
     if (progressTimerRef.current) clearInterval(progressTimerRef.current);
@@ -100,7 +100,7 @@ export const InteractiveSpecialties = () => {
       }
     }, updateInterval);
 
-    // Timer auto-cyklu: po zakończeniu paska postępu uruchom fade-out
+    // Auto-cycle timer
     autoTimerRef.current = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
@@ -109,7 +109,7 @@ export const InteractiveSpecialties = () => {
         setActiveItem(ListItemData[nextIndex].id);
         setFadeOut(false);
         setProgress(0);
-        startProgressAndAutoCycle(); // Restart cyklu
+        startProgressAndAutoCycle();
       }, fadeDuration);
     }, cycleDuration);
   }, [activeItem]);
@@ -167,19 +167,19 @@ export const InteractiveSpecialties = () => {
 
   // Custom label map for captions
   const labelMap = {
-    1: t('specialties_items_gates', 'Bramy (skrzydłowe, przesuwane, furtki)'),
-    2: t('specialties_items_railings', 'Balustrady (wewnętrzne i zewnętrzne)'),
-    3: t('specialties_items_fences', 'Ogrodzenia'),
-    4: t('specialties_items_gratings', 'Kraty'),
-    5: t('specialties_items_decorative', 'Inne elementy dekoracyjne (świeczniki, meble, itp.)'),
+    1: t('specialties_items_gates', 'Gates (wing, sliding, wickets)'),
+    2: t('specialties_items_railings', 'Railings (interior and exterior)'),
+    3: t('specialties_items_fences', 'Fences'),
+    4: t('specialties_items_gratings', 'Gratings'),
+    5: t('specialties_items_decorative', 'Other decorative elements (candlesticks, furniture, etc.)'),
   }
 
   return (
     <SpecialtyContainer>
       <SpecialtyContent>
         <SectionHeading>
-          <FontAwesomeIcon icon={faHammer} />
-          {t('specialties_section_title', 'Specjalizujemy się w wykonywaniu')}
+          <StyledIcon icon={faHammer} />
+          {t('specialties_section_title', 'We specialize in making')}
         </SectionHeading>
 
         <SpecialtyList>
@@ -205,7 +205,7 @@ export const InteractiveSpecialties = () => {
 
         <HelpText>
           <FontAwesomeIcon icon={faInfoCircle} />
-          {t('hover_to_see', 'Najedź lub kliknij, aby zobaczyć przykłady')}
+          {t('hover_to_see', 'Hover or click to see examples')}
         </HelpText>
 
         <ProgressContainer>
