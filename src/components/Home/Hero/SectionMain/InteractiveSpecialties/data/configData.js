@@ -12,7 +12,12 @@ export const config = {
       padding: { left: 16, right: 16 }
     },
     styles: {
-      container: { backgroundColor: "rgba(0, 0, 0, .9)" }
+      container: { backgroundColor: "rgba(0, 0, 0, .9)" },
+      slide: { 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }
     },
     captions: { descriptionTextAlign: "center" }
   }
