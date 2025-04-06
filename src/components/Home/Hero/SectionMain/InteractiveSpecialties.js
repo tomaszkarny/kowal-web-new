@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,16 +20,15 @@ import {
   createLightboxPhotos 
 } from './InteractiveSpecialties/utils/lightboxUtils.js';
 import { handleKeyNavigation } from './InteractiveSpecialties/utils/navigationUtils.js';
-import { 
-  openLightbox as openLightboxUtil,
-  handleLightboxClose 
-} from './InteractiveSpecialties/utils/lightboxScrollUtils.js';
+
+// Import modern lightbox library
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 // Import components
 import { SpecialtyItems } from './InteractiveSpecialties/components/SpecialtyItems';
 import { ProgressDots } from './InteractiveSpecialties/components/ProgressDots';
 import { SpecialtyImageDisplay } from './InteractiveSpecialties/components/SpecialtyImageDisplay';
-import { SpecialtyLightbox } from './InteractiveSpecialties/components/SpecialtyLightbox';
 
 /**
  * Interactive specialties component with enhanced UI elements and animations
@@ -40,15 +39,13 @@ export const InteractiveSpecialties = () => {
   const [progress, setProgress] = useState(0); // Progress for auto-cycling
   const [isTransitioning, setIsTransitioning] = useState(false); // For image transition effect
   const [fadeOut, setFadeOut] = useState(false); // Handle fade-out effect
-  const [isViewerOpen, setIsViewerOpen] = useState(false); // Lightbox open state
-  const [currentSlide, setCurrentSlide] = useState(0); // Current slide index for lightbox
+  const [viewerIsOpen, setViewerIsOpen] = useState(false); // Lightbox open state
+  const [currentImage, setCurrentImage] = useState(0); // Current slide index for lightbox
   
   // Refs
   const autoTimerRef = useRef(null); // Reference to the auto-cycle timer
   const progressTimerRef = useRef(null); // Reference for progress bar updates
   const specialtyContainerRef = useRef(null); // Reference to the specialty container
-  const scrollPosRef = useRef(0); // Use ref for scroll position to avoid SSR issues
-  const hasOpenedLightbox = useRef(false); // Track whether the lightbox has been opened
 
   // Translation hook
   const { t } = useTranslation('common');
@@ -180,18 +177,22 @@ export const InteractiveSpecialties = () => {
     );
   }, [activeItem]);
 
-  // Handle opening the lightbox
-  const openLightbox = useCallback(() => {
-    openLightboxUtil(
-      autoTimerRef,
-      progressTimerRef,
-      scrollPosRef,
-      hasOpenedLightbox,
-      activeItem,
-      setCurrentSlide,
-      setIsViewerOpen
-    );
-  }, [activeItem]);
+  // Open lightbox handler
+  const openLightbox = useCallback((event, photoProps) => {
+    const index = typeof photoProps === 'object' ? photoProps.index : photoProps;
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+    // Pause auto-cycling when lightbox is open
+    if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
+    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+  }, []);
+
+  // Close lightbox handler
+  const closeLightbox = useCallback(() => {
+    setViewerIsOpen(false);
+    // Resume auto-cycling
+    startProgressAndAutoCycle();
+  }, [startProgressAndAutoCycle]);
 
   // Start auto-cycle when component mounts
   useEffect(() => {
@@ -205,57 +206,56 @@ export const InteractiveSpecialties = () => {
   }, [startProgressAndAutoCycle]);
 
   return (
-    <>
-      <SpecialtyContainer ref={specialtyContainerRef}>
-        <SpecialtyContent>
-          <SectionHeading>
-            <StyledIcon icon={faHammer} />
-            {t('specialties_section_title', 'We specialize in making')}
-          </SectionHeading>
+    <SpecialtyContainer ref={specialtyContainerRef}>
+      <SpecialtyContent>
+        <SectionHeading>
+          <StyledIcon icon={faHammer} />
+          {t('specialties_section_title', 'We specialize in making')}
+        </SectionHeading>
 
-          <SpecialtyItems 
-            items={ListItemData}
-            activeItem={activeItem}
-            handleMouseEnter={handleMouseEnter}
-            handleItemChange={handleItemChange}
-            handleKeyDown={handleKeyDown}
-            t={t}
-          />
-
-          <HelpText>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            {t('hover_to_see', 'Hover or click to see examples')}
-          </HelpText>
-
-          <ProgressDots 
-            items={ListItemData}
-            activeItem={activeItem}
-            handleItemChange={handleItemChange}
-            t={t}
-          />
-        </SpecialtyContent>
-
-        <SpecialtyImageDisplay
-          progress={progress}
-          fadeOut={fadeOut}
+        <SpecialtyItems 
+          items={ListItemData}
           activeItem={activeItem}
-          imageMap={imageMap}
-          labelMap={labelMap}
-          openLightbox={openLightbox}
+          handleMouseEnter={handleMouseEnter}
+          handleItemChange={handleItemChange}
+          handleKeyDown={handleKeyDown}
+          t={t}
         />
-      </SpecialtyContainer>
-      
-      <SpecialtyLightbox
-        isViewerOpen={isViewerOpen}
-        currentSlide={currentSlide}
-        lightboxPhotos={lightboxPhotos}
-        scrollPosRef={scrollPosRef}
-        setIsViewerOpen={setIsViewerOpen}
-        setFadeOut={setFadeOut}
-        setCurrentSlide={setCurrentSlide}
-        startProgressAndAutoCycle={startProgressAndAutoCycle}
-        lightboxSettings={config.lightboxSettings}
+
+        <HelpText>
+          <FontAwesomeIcon icon={faInfoCircle} />
+          {t('hover_to_see', 'Hover or click to see examples')}
+        </HelpText>
+
+        <ProgressDots 
+          items={ListItemData}
+          activeItem={activeItem}
+          handleItemChange={handleItemChange}
+          t={t}
+        />
+      </SpecialtyContent>
+
+      <SpecialtyImageDisplay
+        progress={progress}
+        fadeOut={fadeOut}
+        activeItem={activeItem}
+        imageMap={imageMap}
+        labelMap={labelMap}
+        openLightbox={openLightbox}
       />
-    </>
+
+      {/* Modern Lightbox component */}
+      <Lightbox
+        open={viewerIsOpen}
+        close={closeLightbox}
+        index={currentImage}
+        slides={lightboxPhotos}
+        carousel={{ finite: true }}
+        render={{
+          buttonPrev: currentImage === 0 ? () => null : undefined,
+          buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
+        }}
+      />
+    </SpecialtyContainer>
   );
 };
