@@ -608,10 +608,34 @@ export const GlobalStyles = css`
     height: 100%;
     & > div {
       height: 100%;
+      position: relative;
+      z-index: 1;
     }
   }
   .slider-control-centerright,
   .slider-control-centerleft {
     height: 100%;
+  }
+
+  /* Fix for yet-another-react-lightbox */
+  .yarl__container {
+    z-index: 9999 !important;
+  }
+
+  .yarl__root {
+    z-index: 9999 !important;
+  }
+
+  /* Fix for overlapping components */
+  section {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  /* Ensure proper stacking for interactive elements */
+  .interactive-component {
+    position: relative;
+    z-index: 5;
   }
 `

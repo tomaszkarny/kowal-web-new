@@ -14,14 +14,28 @@ import { StyledLink } from 'components/common/Link/Link.styles'
  * @param {string} customStyles - Optional custom CSS styles as template literal
  */
 export const Link = ({ text, primary, to, main, onClick, name, customStyles }) => {
+  // Custom click handler
+  const handleClick = (e) => {
+    // If there's a custom onClick handler, call it
+    if (onClick) {
+      onClick(e);
+    }
+  };
+
+  // Check if external link
+  const isExternal = to && (to.startsWith('http') || to.startsWith('mailto') || to.startsWith('tel'));
+
   return (
     <StyledLink
       to={to}
       primary={primary}
       main={main}
-      onClick={onClick}
+      onClick={handleClick}
       name={name}
       customStyles={customStyles}
+      data-gatsby-link="true"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
     >
       {text}
     </StyledLink>

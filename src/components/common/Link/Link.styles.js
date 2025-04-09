@@ -22,6 +22,10 @@ const getColor = (theme, colorKey, fallback) => {
 export const StyledLink = styled(Link, {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary' && prop !== 'customStyles'
 })`
+  /* Add data attribute to help with navigation handling */
+  &[data-gatsby-link="true"] {
+    z-index: 2;
+  }
   ${({ customStyles }) => customStyles || ''}
   width: auto;
   text-rendering: optimizeLegibility;
@@ -33,7 +37,7 @@ export const StyledLink = styled(Link, {
   box-shadow: ${({ primary }) =>
     primary ? '0 6px 15px -3px rgba(82, 95, 196, 0.4)' : 'none'};
   color: ${({ primary, theme }) =>
-    primary 
+    primary
       ? getColor(theme, 'white', fallbackColors.white)
       : getColor(theme, 'bluewood', fallbackColors.bluewood)};
   cursor: pointer;
@@ -53,7 +57,7 @@ export const StyledLink = styled(Link, {
     primary ? getColor(theme, 'primary', fallbackColors.primary) : 'transparent'};
   border-radius: ${({ primary }) => (primary ? '10px' : '')};
   border-bottom: ${({ primary }) => (primary ? '' : `2px solid ${fallbackColors.primary}`)};
-  border-color: ${({ primary, theme }) => 
+  border-color: ${({ primary, theme }) =>
     (primary ? '' : getColor(theme, 'primary', fallbackColors.primary))};
   position: relative;
   overflow: hidden;
@@ -80,22 +84,22 @@ export const StyledLink = styled(Link, {
   &:hover {
     box-shadow: ${({ primary }) => (primary ? '0 8px 20px -4px rgba(82, 95, 196, 0.6)' : 'none')};
     color: ${({ primary, theme }) =>
-      primary 
+      primary
         ? getColor(theme, 'white', fallbackColors.white)
         : getColor(theme, 'primary', fallbackColors.primary)};
     transform: translateY(-2px);
-    
+
     &:before {
       transform: translateX(100%);
       opacity: 1;
     }
   }
-  
+
   &:active {
     transform: translateY(1px);
     box-shadow: ${({ primary }) => (primary ? '0 3px 10px -2px rgba(82, 95, 196, 0.5)' : 'none')};
   }
-  
+
   ${mq('tablet')} {
     align-self: center;
     width: ${({ main }) => (main ? '250px' : 'auto')};
@@ -113,17 +117,17 @@ export const LinkWrapper = styled.div`
   align-items: center;
   align-self: center;
   margin: 0 auto;
-  
+
   ${mq('small')} {
     flex-direction: row;
     gap: 1.5rem;
     justify-content: center;
   }
-  
+
   ${mq('tablet')} {
     gap: 2rem;
   }
-  
+
   a {
     min-width: 160px;
     justify-content: center;

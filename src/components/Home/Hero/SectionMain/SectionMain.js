@@ -18,20 +18,33 @@ import {
 
 export const SectionMain = ({ id }) => {
   const { t } = useTranslation('common')
-  
+
   return (
     <SpecializationWrapper id={id}>
       <SectionTitle main>
         {t('specialties_title', 'Specjalizujemy się w wykonywaniu:')}
       </SectionTitle>
-      
-      <InteractiveSpecialties />
 
+      {/* Interactive specialties component */}
+      <div style={{ width: '100%', position: 'relative', zIndex: 5 }}>
+        <InteractiveSpecialties />
+      </div>
+
+      {/* Clear separator to ensure no overlap */}
+      <div style={{
+        width: '100%',
+        height: '2rem',
+        clear: 'both',
+        position: 'relative',
+        zIndex: 1
+      }} />
+
+      {/* Content section */}
       <ContentWrapper>
         <MainDescription>
           <p>
             <HighlightedText>{t('color_palette')}</HighlightedText>
-            {t('color_list')} 
+            {t('color_list')}
             <HighlightedText>{t('protection')}</HighlightedText>.
           </p>
           <p>
@@ -46,12 +59,12 @@ export const SectionMain = ({ id }) => {
             {t('experience_guarantee')}
           </p>
         </MainDescription>
-        
+
         <CtaButton>
-          <Link 
+          <Link
             primary="primary"
-            text={t('gallery', 'Zobacz nasze realizacje')} 
-            to="/gallery/" 
+            text={t('gallery', 'Zobacz nasze realizacje')}
+            to="/gallery/"
             customStyles={ButtonStyles.primary}
           />
         </CtaButton>

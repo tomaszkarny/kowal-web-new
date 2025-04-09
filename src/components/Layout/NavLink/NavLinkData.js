@@ -22,12 +22,12 @@ export const NavLinkData = [
     text: 'Galeria',
     translationKey: 'gallery',
     id: 4,
-    to: '/gallery',
+    to: '/gallery/',
   },
   {
     text: 'Kontakt',
     translationKey: 'contact',
     id: 5,
-    to: '/contact',
+    to: '/contact/',
   },
 ]

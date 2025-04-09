@@ -19,9 +19,11 @@ export const SpecializationWrapper = styled.section`
   width: 100%;
   padding: 5rem 2rem;
   position: relative;
-  
+  overflow: hidden; /* Prevent any content from spilling out */
+  min-height: 100vh; /* Ensure enough space for content */
+
   /* Top decorative bar */
-  &:after {
+  &:before {
     content: '';
     position: absolute;
     top: 0;
@@ -32,10 +34,11 @@ export const SpecializationWrapper = styled.section`
     background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
     border-radius: 3px;
     box-shadow: 0 2px 10px rgba(82, 95, 196, 0.2);
+    z-index: 2;
   }
-  
+
   /* Add subtle pattern for texture */
-  &:before {
+  &:after {
     content: '';
     position: absolute;
     top: 0;
@@ -48,32 +51,26 @@ export const SpecializationWrapper = styled.section`
     pointer-events: none;
     z-index: 0;
   }
-  
-  /* Add decorative corner elements */
-  &:after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    width: 120px;
-    height: 120px;
-    background-image: radial-gradient(circle, #f0f2ff 2px, transparent 2px);
-    background-size: 20px 20px;
-    opacity: 0.4;
-    z-index: 0;
-    border-radius: 60px;
-  }
-  
+
   /* Ensure content stays above the pattern */
   & > * {
     position: relative;
     z-index: 1;
   }
-  
+
+  /* Ensure the title is above everything */
+  & > h1, & > h2 {
+    z-index: 10;
+    position: relative;
+    margin-bottom: 3rem;
+    width: 100%;
+    text-align: center;
+  }
+
   ${mq('tablet')} {
     padding: 6rem 3rem 7rem;
   }
-  
+
   ${mq('desktop')} {
     padding: 7rem 3rem 8rem;
   }
@@ -91,7 +88,7 @@ export const SectionHeading = styled.h3`
   font-weight: 600;
   display: flex;
   align-items: center;
-  
+
   svg {
     margin-right: 0.8rem;
     color: #525fc4;
@@ -106,7 +103,7 @@ export const HelpText = styled.div`
   font-style: italic;
   display: flex;
   align-items: center;
-  
+
   svg {
     margin-right: 0.5rem;
     color: #525fc4;
@@ -125,7 +122,7 @@ export const StyledSpecialtyList = styled.ul`
   background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  
+
   ${mq('tablet')} {
     padding: 2rem;
     gap: 1.25rem;
@@ -140,17 +137,17 @@ export const SpecialtyItem = styled.li`
   border-bottom: 1px solid rgba(0,0,0,0.05);
   page-break-inside: avoid;
   break-inside: avoid;
-  
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   &:hover {
     transform: translateX(5px);
     background: rgba(82, 95, 196, 0.05);
     border-radius: 4px;
   }
-  
+
   /* Apply forge-inspired hover glow effect */
   &:hover svg {
     color: #e85c41;
@@ -163,7 +160,7 @@ export const ItemIcon = styled.div`
   color: #525fc4;
   font-size: 24px;
   position: relative;
-  
+
   &:before {
     content: '';
     position: absolute;
@@ -182,6 +179,27 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 2rem 1rem 0;
+  position: relative;
+  z-index: 1; /* Ensure it's below the InteractiveSpecialties component */
+  clear: both; /* Ensure it starts on a new line */
+  margin-top: 8rem; /* Add extra space to prevent overlap */
+
+  /* Add a visual separator to ensure content is clearly separated */
+  &:before {
+    content: '';
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
 `
 
 export const HighlightedText = styled.span`
@@ -189,12 +207,12 @@ export const HighlightedText = styled.span`
   font-weight: 500;
   position: relative;
   display: inline;
-  
+
   /* Add subtle animation effect on hover */
   transition: all 0.3s ease;
-  
+
   &:hover {
-    color: ${props => {
+    color: ${() => {
       // Darken the primary color slightly on hover
       const color = THEME.color.primary;
       return color.replace('#', '#3a4d');
@@ -211,11 +229,13 @@ export const MainDescription = styled.div`
   padding: 0;
   text-align: center;
   display: block;
-  
+  z-index: 1; /* Ensure proper stacking */
+  width: 100%; /* Ensure full width */
+
   p {
     margin-bottom: 1.2rem;
   }
-  
+
   /* Add subtle highlight effect */
   &:before {
     content: '';
@@ -228,7 +248,7 @@ export const MainDescription = styled.div`
     z-index: -1;
     opacity: 0.7;
   }
-  
+
   p {
     margin: 0 auto 1.5rem;
     color: #333;
@@ -237,22 +257,25 @@ export const MainDescription = styled.div`
     max-width: 100%;
     padding: 0 1rem;
     letter-spacing: 0.2px;
-    
+    position: relative; /* Ensure text is positioned properly */
+    display: block; /* Ensure block display */
+    width: 100%; /* Ensure full width */
+
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     /* Highlight key phrases */
     strong {
       color: #525fc4;
       font-weight: 600;
     }
-    
+
     ${mq('small')} {
       font-size: 1.2rem;
       padding: 0 1.5rem;
     }
-    
+
     ${mq('medium')} {
       font-size: 1.35rem;
       max-width: 850px;
@@ -267,4 +290,6 @@ export const CtaButton = styled.div`
   justify-content: center;
   width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 1;
 `

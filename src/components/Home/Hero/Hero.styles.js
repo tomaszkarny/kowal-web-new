@@ -28,7 +28,7 @@ export const Title = styled.h1`
   font-family: 'Merriweather';
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   position: relative;
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -39,7 +39,7 @@ export const Title = styled.h1`
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   ${mq('medium')} {
     font-size: 48px;
   }
@@ -70,12 +70,12 @@ export const HeroWrapper = styled.div`
   border: none;
   box-sizing: border-box;
   background: #000;
-  
+
   /* Ensure proper height on smaller screens */
   ${mq('small')} {
     min-height: 100vh;
   }
-  
+
   ${mq('medium')} {
     flex-direction: row;
     min-height: 80vh;
@@ -89,6 +89,15 @@ export const HeroWrapper = styled.div`
   }
 `
 
+export const ImageContainer = styled.div`
+  position: relative;
+  flex: 1;
+  overflow: visible;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+`
+
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -96,7 +105,7 @@ export const TitleWrapper = styled.div`
   justify-content: center;
   flex: 1;
   align-items: center; // Center-aligned content
-  text-align: center; 
+  text-align: center;
   position: relative;
   z-index: 2;
   /* Mobile gradient - more opaque since content is stacked */
@@ -107,7 +116,7 @@ export const TitleWrapper = styled.div`
     rgba(255, 255, 255, 0.92) 100%
   );
   backdrop-filter: blur(5px);
-  
+
   ${mq('medium')} {
     padding: 5rem;
     padding-right: 10rem; /* Extended padding for content to blend with image */
@@ -139,12 +148,12 @@ export const ImageOverlay = styled.div`
     rgba(0, 0, 0, 0.5) 100%
   );
   z-index: 1;
-  
+
   ${mq('medium')} {
     background: linear-gradient(
       to right,
       rgba(255, 255, 255, 0.05) 10%,
-      rgba(82, 95, 196, 0.05) 40%, 
+      rgba(82, 95, 196, 0.05) 40%,
       rgba(0, 0, 0, 0.2) 100%
     );
     /* Creates subtle texture for better visual integration */
@@ -159,7 +168,7 @@ export const ImageOverlay = styled.div`
       opacity: 0.3;
     }
   }
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -187,7 +196,7 @@ export const ButtonStyles = {
     border-radius: 4px;
     font-weight: 600;
     letter-spacing: 0.5px;
-    
+
     &:before {
       content: '';
       position: absolute;
@@ -198,14 +207,14 @@ export const ButtonStyles = {
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: all 0.5s ease;
     }
-    
+
     &:hover {
       background: #4450a9;
       border-color: #4450a9;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(82, 95, 196, 0.3);
       animation: ${forgeGlow} 2s infinite;
-      
+
       &:before {
         left: 100%;
         animation: ${forgeSpark} 1s forwards;
@@ -221,7 +230,7 @@ export const ButtonStyles = {
     border-radius: 4px;
     font-weight: 600;
     letter-spacing: 0.5px;
-    
+
     &:hover {
       background: rgba(58, 58, 58, 0.05);
       transform: translateY(-2px);

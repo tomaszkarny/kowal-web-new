@@ -28,7 +28,7 @@ const shimmer = keyframes`
 `
 
 export const SpecialtyContainer = styled.div`
-  display: flex;
+  display: none; /* Hide on mobile by default */
   flex-direction: column;
   width: 100%;
   max-width: 1020px;
@@ -40,7 +40,11 @@ export const SpecialtyContainer = styled.div`
   position: relative;
   transform: translateY(0);
   transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
-  
+  z-index: 5; /* Ensure it's above other elements */
+  margin-bottom: 6rem; /* Add extra space below to prevent overlap */
+  height: auto; /* Allow container to size based on content */
+  min-height: 500px; /* Ensure minimum height to prevent layout shifts */
+
   /* Add a subtle decorative border accent */
   &:before {
     content: '';
@@ -53,15 +57,22 @@ export const SpecialtyContainer = styled.div`
     background-size: 200% 100%;
     animation: ${shimmer} 3s infinite linear;
   }
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14), 0 8px 20px rgba(0, 0, 0, 0.08);
   }
-  
+
+  ${mq('tablet')} {
+    display: flex; /* Show on tablet and up */
+    flex-direction: column;
+    min-height: 600px; /* Larger minimum height on tablet */
+  }
+
   ${mq('medium')} {
     flex-direction: row;
     max-width: 1100px;
+    min-height: 650px; /* Even larger minimum height on desktop */
   }
 `
 
@@ -73,7 +84,7 @@ export const SpecialtyContent = styled.div`
   justify-content: center;
   position: relative;
   z-index: 1;
-  
+
   /* Subtle background pattern */
   &:after {
     content: '';
@@ -89,11 +100,11 @@ export const SpecialtyContent = styled.div`
     border-radius: 50%;
     transform: translate(50%, -30%);
   }
-  
+
   ${mq('small')} {
     padding: 2.2rem;
   }
-  
+
   ${mq('medium')} {
     padding: 3rem;
     width: 40%;
@@ -125,12 +136,12 @@ export const ProgressDot = styled.button`
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); /* Spring-like effect */
   position: relative;
   outline: none;
-  
+
   &:hover, &:focus {
     background-color: ${({ active }) => active ? '#525fc4' : '#bbbbbb'};
     transform: scale(1.15); /* Subtle scale effect on hover for inactive dots */
   }
-  
+
   ${({ active }) => active && css`
     transform: scale(1.4);
     box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
@@ -156,13 +167,13 @@ export const SpecialtyList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  
+
   /* Add animation to list items */
   & > li {
     animation: ${slideIn} 0.4s ease-out;
     animation-fill-mode: both;
   }
-  
+
   /* Stagger animation timing for each item */
   & > li:nth-of-type(2) { animation-delay: 0.1s; }
   & > li:nth-of-type(3) { animation-delay: 0.2s; }
@@ -183,13 +194,13 @@ export const SpecialtyItem = styled.li`
   margin-bottom: 0.3rem;
   box-shadow: ${({ isActive }) => isActive ? '0 4px 12px rgba(82, 95, 196, 0.1)' : 'none'};
   outline: none; /* Remove default focus outline */
-  
+
   /* Add custom focus style for keyboard navigation */
   &:focus-visible {
     box-shadow: 0 0 0 3px rgba(82, 95, 196, 0.4);
     background: rgba(82, 95, 196, 0.05);
   }
-  
+
   /* Subtle pulse animation for the active item */
   ${({ isActive }) => isActive && css`
     &:after {
@@ -205,13 +216,13 @@ export const SpecialtyItem = styled.li`
       animation: ${pulse} 2s infinite ease-in-out;
     }
   `}
-  
+
   &:hover {
     background: rgba(82, 95, 196, 0.08); /* Slightly more visible background on hover */
     transform: translateX(8px); /* Slightly more movement for better visual feedback */
     box-shadow: 0 6px 14px rgba(82, 95, 196, 0.08); /* Subtle shadow on hover */
   }
-  
+
   /* Create subtle border effect for inactive items */
   &:not(:last-child):after {
     content: '';
@@ -224,18 +235,18 @@ export const SpecialtyItem = styled.li`
     opacity: ${({ isActive }) => isActive ? '0' : '1'};
     transition: opacity 0.3s ease;
   }
-  
+
   /* Active state */
   ${({ isActive }) => isActive && `
     transform: translateX(8px);
     font-weight: 500;
-    
+
     svg {
       color: #525fc4;
       transform: scale(1.2);
     }
   `}
-  
+
   /* Icon styling */
   svg {
     margin-right: 1.2rem;
@@ -243,13 +254,13 @@ export const SpecialtyItem = styled.li`
     color: ${({ isActive }) => isActive ? '#525fc4' : '#888'};
     font-size: 1.15rem;
   }
-  
+
   span {
     font-size: 1.05rem;
     color: #333;
     transition: all 0.15s ease; /* Faster transition for text */
     letter-spacing: 0.3px;
-    
+
     ${mq('small')} {
       font-size: 1.2rem;
     }
@@ -264,7 +275,7 @@ export const ImageContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  
+
   /* Add subtle pattern for texture */
   &:before {
     content: '';
@@ -278,7 +289,7 @@ export const ImageContainer = styled.div`
     opacity: 0.03;
     pointer-events: none;
   }
-  
+
   /* Add decorative corner accent */
   &:after {
     content: '';
@@ -290,7 +301,7 @@ export const ImageContainer = styled.div`
     background: linear-gradient(135deg, transparent 50%, rgba(82, 95, 196, 0.06) 50%);
     z-index: 1;
   }
-  
+
   ${mq('medium')} {
     width: 60%;
     padding: 2.5rem;
@@ -312,9 +323,9 @@ export const SpecialtyImage = styled.div`
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.07);
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: 2;
-  
+
   /* Removed the ::before pseudo-element so we don't cover the image with a white rectangle */
-  
+
   .specialty-image {
     width: 100%;
     height: 100%;
@@ -326,29 +337,29 @@ export const SpecialtyImage = styled.div`
     opacity: 1;
     transition: opacity 0.5s ease;
   }
-  
+
   &.fade-out .specialty-image {
     opacity: 0;
     transition: opacity 0.25s ease; /* Faster transition */
   }
-  
+
   &.fade-in .specialty-image {
     opacity: 1;
     transition: opacity 0.25s ease; /* Faster transition */
   }
-  
+
   /* CSS for fade animations */
-  
+
   &:hover .specialty-image {
     transform: scale(1.07); /* Slightly larger scale for more impact */
     filter: brightness(1.05) contrast(1.07); /* Enhanced filter on hover */
   }
-  
+
   &.animate-transition .specialty-image {
     animation: ${crossFade} 0.25s cubic-bezier(0.25, 0.1, 0.25, 1); /* Much faster transition */
     will-change: opacity, transform; /* Performance optimization */
   }
-  
+
   /* Caption overlay */
   .image-caption {
     position: absolute;
@@ -364,7 +375,7 @@ export const SpecialtyImage = styled.div`
     letter-spacing: 0.5px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
-  
+
   /* Add subtle border highlight */
   &:before {
     content: '';
@@ -375,10 +386,10 @@ export const SpecialtyImage = styled.div`
     z-index: 2;
     pointer-events: none;
   }
-  
+
   ${mq('medium')} {
     height: 490px;
-    
+
     /* Create a forge-inspired glow on hover */
     &:hover {
       animation: ${forgeGlow} 3s infinite;

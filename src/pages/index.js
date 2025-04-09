@@ -4,13 +4,15 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
+import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 
 import { SECTION_IDS } from 'consts/sectionID'
 
 const IndexPage = () => {
   return (
     <Layout>
-      <Hero id={SECTION_IDS.MAIN} />
+      <Hero />
+      <SectionMain id={SECTION_IDS.MAIN} />
     </Layout>
   )
 }

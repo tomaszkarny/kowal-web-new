@@ -15,9 +15,9 @@ import { config } from './InteractiveSpecialties/data/configData';
 
 // Import utility functions
 import { startAutoCycleTimer } from './InteractiveSpecialties/utils/timerUtils.js';
-import { 
+import {
   createImageAndLabelMaps,
-  createLightboxPhotos 
+  createLightboxPhotos
 } from './InteractiveSpecialties/utils/lightboxUtils.js';
 import { handleKeyNavigation } from './InteractiveSpecialties/utils/navigationUtils.js';
 
@@ -25,10 +25,13 @@ import { handleKeyNavigation } from './InteractiveSpecialties/utils/navigationUt
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-// Import components
+// Import desktop components
 import { SpecialtyItems } from './InteractiveSpecialties/components/SpecialtyItems';
 import { ProgressDots } from './InteractiveSpecialties/components/ProgressDots';
 import { SpecialtyImageDisplay } from './InteractiveSpecialties/components/SpecialtyImageDisplay';
+
+// Import mobile components
+import { MobileSpecialtyContainer } from './InteractiveSpecialties/components/MobileSpecialtyContainer';
 
 /**
  * Interactive specialties component with enhanced UI elements and animations
@@ -37,11 +40,10 @@ export const InteractiveSpecialties = () => {
   // State management
   const [activeItem, setActiveItem] = useState(1); // Default to first item
   const [progress, setProgress] = useState(0); // Progress for auto-cycling
-  const [isTransitioning, setIsTransitioning] = useState(false); // For image transition effect
   const [fadeOut, setFadeOut] = useState(false); // Handle fade-out effect
   const [viewerIsOpen, setViewerIsOpen] = useState(false); // Lightbox open state
   const [currentImage, setCurrentImage] = useState(0); // Current slide index for lightbox
-  
+
   // Refs
   const autoTimerRef = useRef(null); // Reference to the auto-cycle timer
   const progressTimerRef = useRef(null); // Reference for progress bar updates
@@ -105,10 +107,10 @@ export const InteractiveSpecialties = () => {
       }
     }
   `);
-  
+
   // Create image and label maps using utility function
   const { imageMap, labelMap } = createImageAndLabelMaps(data, t);
-  
+
   // Create lightbox photos array
   const lightboxPhotos = createLightboxPhotos(imageMap, labelMap);
 
@@ -123,12 +125,6 @@ export const InteractiveSpecialties = () => {
 
     // Immediately change the active item with minimal transition
     setActiveItem(id);
-
-    // Update transition state briefly for smooth appearance
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, config.fadeDuration); // Quick transition
 
     // Reset progress
     setProgress(0);
@@ -166,26 +162,42 @@ export const InteractiveSpecialties = () => {
 
     // Auto-cycle timer - use imported function
     autoTimerRef.current = startAutoCycleTimer(
-      cycleDuration, 
-      fadeDuration, 
-      activeItem, 
-      ListItemData, 
-      setFadeOut, 
-      setActiveItem, 
-      setProgress, 
+      cycleDuration,
+      fadeDuration,
+      activeItem,
+      ListItemData,
+      setFadeOut,
+      setActiveItem,
+      setProgress,
       startProgressAndAutoCycle
     );
   }, [activeItem]);
 
   // Open lightbox handler
-  const openLightbox = useCallback((event, photoProps) => {
-    const index = typeof photoProps === 'object' ? photoProps.index : photoProps;
+  const openLightbox = useCallback((_, photoProps) => {
+    // If no specific index is provided, use the activeItem as the index
+    // This ensures the lightbox shows the currently active image
+    const index = photoProps !== undefined
+      ? (typeof photoProps === 'object' ? photoProps.index : photoProps)
+      : activeItem - 1; // Subtract 1 because activeItem is 1-indexed but lightbox is 0-indexed
+
+    // Prevent scrolling to top when opening lightbox
+    if (typeof window !== 'undefined') {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+
+      // Set timeout to restore scroll position after state updates
+      setTimeout(() => {
+        window.scrollTo(0, scrollY);
+      }, 50);
+    }
+
     setCurrentImage(index);
     setViewerIsOpen(true);
     // Pause auto-cycling when lightbox is open
     if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
     if (progressTimerRef.current) clearInterval(progressTimerRef.current);
-  }, []);
+  }, [activeItem]);
 
   // Close lightbox handler
   const closeLightbox = useCallback(() => {
@@ -206,56 +218,99 @@ export const InteractiveSpecialties = () => {
   }, [startProgressAndAutoCycle]);
 
   return (
-    <SpecialtyContainer ref={specialtyContainerRef}>
-      <SpecialtyContent>
-        <SectionHeading>
-          <StyledIcon icon={faHammer} />
-          {t('specialties_section_title', 'We specialize in making')}
-        </SectionHeading>
-
-        <SpecialtyItems 
-          items={ListItemData}
-          activeItem={activeItem}
-          handleMouseEnter={handleMouseEnter}
-          handleItemChange={handleItemChange}
-          handleKeyDown={handleKeyDown}
-          t={t}
-        />
-
-        <HelpText>
-          <FontAwesomeIcon icon={faInfoCircle} />
-          {t('hover_to_see', 'Hover or click to see examples')}
-        </HelpText>
-
-        <ProgressDots 
-          items={ListItemData}
-          activeItem={activeItem}
-          handleItemChange={handleItemChange}
-          t={t}
-        />
-      </SpecialtyContent>
-
-      <SpecialtyImageDisplay
-        progress={progress}
-        fadeOut={fadeOut}
+    <>
+      {/* Mobile version */}
+      <MobileSpecialtyContainer
+        className="interactive-component"
+        t={t}
+        ListItemData={ListItemData}
         activeItem={activeItem}
+        handleItemChange={handleItemChange}
+        fadeOut={fadeOut}
         imageMap={imageMap}
         labelMap={labelMap}
         openLightbox={openLightbox}
       />
 
-      {/* Modern Lightbox component */}
-      <Lightbox
-        open={viewerIsOpen}
-        close={closeLightbox}
-        index={currentImage}
-        slides={lightboxPhotos}
-        carousel={{ finite: true }}
-        render={{
-          buttonPrev: currentImage === 0 ? () => null : undefined,
-          buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
-        }}
-      />
-    </SpecialtyContainer>
+      {/* Desktop version */}
+      <SpecialtyContainer className="interactive-component" ref={specialtyContainerRef}>
+        <SpecialtyContent>
+          <SectionHeading>
+            <StyledIcon icon={faHammer} />
+            {t('specialties_section_title', 'We specialize in making')}
+          </SectionHeading>
+
+          <SpecialtyItems
+            items={ListItemData}
+            activeItem={activeItem}
+            handleMouseEnter={handleMouseEnter}
+            handleItemChange={handleItemChange}
+            handleKeyDown={handleKeyDown}
+            t={t}
+          />
+
+          <HelpText>
+            <FontAwesomeIcon icon={faInfoCircle} />
+            {t('hover_to_see', 'Hover or click to see examples')}
+          </HelpText>
+
+          <ProgressDots
+            items={ListItemData}
+            activeItem={activeItem}
+            handleItemChange={handleItemChange}
+            t={t}
+          />
+        </SpecialtyContent>
+
+        <SpecialtyImageDisplay
+          progress={progress}
+          fadeOut={fadeOut}
+          activeItem={activeItem}
+          imageMap={imageMap}
+          labelMap={labelMap}
+          openLightbox={openLightbox}
+          handleItemChange={handleItemChange}
+        />
+      </SpecialtyContainer>
+
+      {/* Modern Lightbox component - shared between mobile and desktop */}
+      {viewerIsOpen && (
+        <Lightbox
+          open={viewerIsOpen}
+          close={closeLightbox}
+          index={currentImage}
+          slides={lightboxPhotos}
+          carousel={{ finite: true }}
+          styles={{
+            container: { zIndex: 9999 }, // Ensure lightbox is above everything
+            root: { zIndex: 9999 },
+            navigationPrev: { zIndex: 10000 },
+            navigationNext: { zIndex: 10000 },
+            captionsTitle: { zIndex: 10000 },
+            captionsDescription: { zIndex: 10000 }
+          }}
+          render={{
+            buttonPrev: currentImage === 0 ? () => null : undefined,
+            buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
+          }}
+          animation={{ fade: 300 }}
+          controller={{
+            closeOnBackdropClick: true,
+            // Prevent scrolling when lightbox is open
+            touchAction: 'none'
+          }}
+          on={{
+            // Prevent scrolling to top when lightbox opens
+            view: () => {
+              // Maintain scroll position
+              if (typeof window !== 'undefined') {
+                const scrollY = window.scrollY;
+                setTimeout(() => window.scrollTo(0, scrollY), 10);
+              }
+            }
+          }}
+        />
+      )}
+    </>
   );
 };

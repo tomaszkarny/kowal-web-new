@@ -71,3 +71,8 @@ yarn-error.log
 
 # windsurf rules
 .windsurfrules
+
+# AI assistant files
+.mcp.json
+.aider.chat.history.md
+src/aider_mcp_server/

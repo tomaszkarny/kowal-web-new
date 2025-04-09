@@ -10,19 +10,19 @@ import {
   HeroWrapper,
   TitleWrapper,
   ImageOverlay,
-  ButtonStyles
+  ButtonStyles,
+  ImageContainer
 } from 'components/Home/Hero/Hero.styles'
 
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
-import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 
 import { Link } from 'components/common/Link/Link'
 import { LinkWrapper } from 'components/common/Link/Link.styles'
 
 import { SECTION_IDS } from 'consts/sectionID'
 
-export const Hero = ({ id }) => {
+export const Hero = () => {
   const { t } = useTranslation('common')
   const { image } = useStaticQuery(graphql`
     query MyQuery {
@@ -72,15 +72,14 @@ export const Hero = ({ id }) => {
             />
           </LinkWrapper>
         </TitleWrapper>
-        <div className="image-container" style={{ position: 'relative', flex: '1', overflow: 'visible', zIndex: '0', margin: 0, padding: 0 }}>
+        <ImageContainer className="image-container">
           <Image
             image={getImage(image.childImageSharp)}
             alt={t('siteTitle')}
             isHero
           />
-        </div>
+        </ImageContainer>
       </HeroWrapper>
-      <SectionMain main id={id} />
     </>
   )
 }
