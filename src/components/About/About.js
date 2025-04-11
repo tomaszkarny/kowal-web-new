@@ -1,81 +1,54 @@
-import React from 'react'
-import { Image } from 'components/common/Image/Image'
-
-import { graphql, useStaticQuery } from 'gatsby'
-import { getImage } from 'gatsby-plugin-image'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
-
-import { DataAbout } from 'components/About/DataAbout'
-import { ListItem } from 'components/common/ListItem/ListItem'
-import { StyledUl } from 'components/common/ListItem/ListItem.styles'
-import { Wrapper } from 'components/About/About.styles'
-import { Link } from 'components/common/Link/Link'
-
+import React, { useEffect } from 'react'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
-import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
-import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
+import { Link } from 'components/common/Link/Link'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { AboutIntro } from './AboutIntro'
+import { AboutLocations } from './AboutLocations'
+import { AboutImages } from './AboutImages'
+import { AboutCraft } from './AboutCraft'
+import { AboutTestimonials } from './AboutTestimonials'
+import { AboutTimeline } from './AboutTimeline'
+import { SectionDivider, SectionWave, LinkWrapper } from './About.styles'
 
 export const About = () => {
   const { t } = useTranslation('about')
-  const { image, imageSecond } = useStaticQuery(graphql`
-    query AboutQuery {
-      image: file(relativePath: { eq: "zjd24.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
-        }
-      }
 
-      imageSecond: file(relativePath: { eq: "anvil.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
-        }
-      }
-    }
-  `)
+  // Add smooth scrolling behavior to the page
+  useEffect(() => {
+    // Save the original scroll behavior
+    const originalStyle = window.getComputedStyle(document.documentElement).scrollBehavior;
 
-  // Create the image objects for Gatsby Image
-  const mainImage = image?.childImageSharp ? getImage(image.childImageSharp) : null
-  const secondImage = imageSecond?.childImageSharp ? getImage(imageSecond.childImageSharp) : null
+    // Set smooth scrolling
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Restore original scroll behavior on unmount
+    return () => {
+      document.documentElement.style.scrollBehavior = originalStyle;
+    };
+  }, []);
 
   return (
     <StyledSection>
-      <SectionTitle main>
-        {t('title', 'Pracownia Kowalstwa Artystycznego Tadeusza Karny')}
-      </SectionTitle>
-
-      <Image image={mainImage} alt={t('mainImageAlt', 'Workshop owner')} small />
-      <Wrapper>
-        <SectionDescription main>
-          {t(
-            'description',
-            'Pracownia Kowalstwa Artystycznego Tadeusza Karny powstała w 1993 roku. ' +
-            'Właściciel pracowni zdobył bogate doświadczenie podczas zatrudnienia w ' +
-            'Pracowni Konserwacji Zabytków w Białymstoku, dzięki temu posiada ' +
-            'uprawnienia konserwatorskie, oraz wszechstronne kwalifikacje, które obecnie ' +
-            'wykorzystuje prowadząc własną działalność.'
-          )}
-        </SectionDescription>
-        <SectionDescription main>
-          {t('ourWorks', 'Nasze wyroby znajdują się między innymi w:')}
-        </SectionDescription>
-        <StyledUl>
-          {DataAbout.map(data => (
-            <ListItem data={data} key={data.id} />
-          ))}
-        </StyledUl>
-      </Wrapper>
-
-      <Image
-        image={secondImage}
-        alt={t('secondImageAlt', 'Blacksmith anvil')}
-        style={{
-          maxWidth: '700px',
-          width: '100%',
-          height: 'auto',
-        }}
-      />
-
-      <Link to="/contact/" primary text={t('contactUs', 'Skontaktuj się z nami')} />
+      <AboutIntro />
+      <SectionWave>
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 0C360 60 1080 0 1440 60V60H0V0Z" fill="#f8fafc" />
+        </svg>
+      </SectionWave>
+      <AboutImages />
+      <SectionDivider />
+      <AboutCraft />
+      <SectionDivider />
+      <AboutTestimonials />
+      <SectionDivider />
+      <AboutTimeline />
+      <SectionDivider />
+      <AboutLocations />
+      <SectionDivider />
+      <LinkWrapper>
+        <Link to="/contact/" primary text={t('contactUs')} />
+        <Link to="/gallery/" text={t('viewGallery')} />
+      </LinkWrapper>
     </StyledSection>
   )
 }
