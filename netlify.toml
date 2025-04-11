@@ -1,0 +1,9 @@
+[build]
+  command = "npm install --legacy-peer-deps --include=optional && npm install @parcel/watcher-linux-x64-glibc && npm run build"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "18.17.0"
+  NPM_FLAGS = "--legacy-peer-deps --include=optional"
+  GATSBY_TELEMETRY_DISABLED = "1"
+  GATSBY_EXPERIMENTAL_LMDB_STORE = "1"

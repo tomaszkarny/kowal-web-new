@@ -9,5 +9,10 @@
   "form_email": "Email",
   "form_subject": "Tytuł",
   "form_message": "Wiadomość",
-  "form_send": "Wyślij"
+  "form_send": "Wyślij",
+  "form_sending": "Wysyłanie...",
+  "form_success_title": "Wiadomość wysłana!",
+  "form_success_message": "Dziękujemy za Twoją wiadomość. Odpowiemy najszybciej jak to możliwe.",
+  "form_send_another": "Wyślij kolejną wiadomość",
+  "form_error": "Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie."
 }

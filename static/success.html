@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission Successful</title>
+  <script>
+    // Redirect to the contact page with success parameter
+    window.onload = function() {
+      window.location.href = "/contact/?success=true";
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f5f5f5;
+    }
+    .success-message {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f0f8f0;
+      padding: 30px;
+      border-radius: 8px;
+      border-left: 4px solid #4caf50;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-message">
+    <h1>Thank you for your message!</h1>
+    <p>We have received your message and will get back to you as soon as possible.</p>
+    <p>If you are not redirected automatically, <a href="/contact/?success=true">click here</a>.</p>
+  </div>
+</body>
+</html>
