@@ -96,12 +96,33 @@ export const ImageContainer = styled.div`
   z-index: 0;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 50vh;
+  min-height: 260px;
+
+  ${mq('small')} {
+    height: 85vh;
+    min-height: 380px;
+    max-height: none;
+  }
+
+  ${mq('tablet')} {
+    height: 60vh;
+    min-height: 320px;
+    max-height: 500px;
+  }
+
+  ${mq('medium')} {
+    height: 100%;
+    min-height: unset;
+    max-height: unset;
+  }
 `
 
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 4rem 2rem;
+  padding: 1.2rem 0.5rem;
   justify-content: center;
   flex: 1;
   align-items: center; // Center-aligned content
