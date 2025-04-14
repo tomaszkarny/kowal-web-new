@@ -5,7 +5,7 @@ import {
   ProgressBar,
   SpecialtyImage,
   FallbackImage
-} from '../styles';
+} from '../styles/styles.js';
 
 export const SpecialtyImageDisplay = ({
   progress,

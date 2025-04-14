@@ -81,6 +81,12 @@ export const SectionConnector = styled.div`
   display: none;
 `
 
+export const InteractiveSpecialtiesContainer = styled.div`
+  width: 100%;
+  position: relative;
+  z-index: 5;
+`
+
 export const SectionHeading = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 1.5rem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProgressContainer, ProgressDot } from '../styles';
+import { ProgressContainer, ProgressDot } from '../styles/styles.js';
 
 export const ProgressDots = ({ 
   items, 

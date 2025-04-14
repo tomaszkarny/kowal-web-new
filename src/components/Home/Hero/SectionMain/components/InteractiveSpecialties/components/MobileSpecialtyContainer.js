@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
 import { MobileSpecialtyContainer as Container } from '../styles/mobile.styles';
-import { SectionHeading } from '../../SectionMain.styles';
+import { SectionHeading } from '../../../SectionMain.styles';
 import { StyledIcon } from 'components/common/Icon/Icon.styles';
 import { MobileSpecialtyItems } from './MobileSpecialtyItems';
 import { MobileSpecialtyImageDisplay } from './MobileSpecialtyImageDisplay';

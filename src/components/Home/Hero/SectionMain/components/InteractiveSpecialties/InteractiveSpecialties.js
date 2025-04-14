@@ -6,32 +6,32 @@ import { faHammer, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Import styles
 import { StyledIcon } from 'components/common/Icon/Icon.styles';
-import { SectionHeading, HelpText } from './SectionMain.styles';
+import { SectionHeading, HelpText } from '../../SectionMain.styles';
 import { SpecialtyContainer, SpecialtyContent } from './InteractiveSpecialties.styles';
 
 // Import data
-import { ListItemData } from './ListItemData';
-import { config } from './InteractiveSpecialties/data/configData';
+import { ListItemData } from './data/ListItemData';
+import { config } from './data/configData';
 
 // Import utility functions
-import { startAutoCycleTimer } from './InteractiveSpecialties/utils/timerUtils.js';
+import { startAutoCycleTimer } from './utils/timerUtils.js';
 import {
   createImageAndLabelMaps,
   createLightboxPhotos
-} from './InteractiveSpecialties/utils/lightboxUtils.js';
-import { handleKeyNavigation } from './InteractiveSpecialties/utils/navigationUtils.js';
+} from './utils/lightboxUtils.js';
+import { handleKeyNavigation } from './utils/navigationUtils.js';
 
 // Import modern lightbox library
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
 // Import desktop components
-import { SpecialtyItems } from './InteractiveSpecialties/components/SpecialtyItems';
-import { ProgressDots } from './InteractiveSpecialties/components/ProgressDots';
-import { SpecialtyImageDisplay } from './InteractiveSpecialties/components/SpecialtyImageDisplay';
+import { SpecialtyItems } from './components/SpecialtyItems';
+import { ProgressDots } from './components/ProgressDots';
+import { SpecialtyImageDisplay } from './components/SpecialtyImageDisplay';
 
 // Import mobile components
-import { MobileSpecialtyContainer } from './InteractiveSpecialties/components/MobileSpecialtyContainer';
+import { MobileSpecialtyContainer } from './components/MobileSpecialtyContainer';
 
 /**
  * Interactive specialties component with enhanced UI elements and animations

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledIcon } from 'components/common/Icon/Icon.styles';
-import { SpecialtyList, SpecialtyItem } from '../styles';
+import { SpecialtyList, SpecialtyItem } from '../styles/styles.js';
 
 export const SpecialtyItems = ({ 
   items, 
