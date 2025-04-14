@@ -46,8 +46,8 @@ export const MobileSpecialtyContainer = styled.div`
     opacity: 0.5;
   }
 
-  /* Only apply these styles on mobile */
-  ${mq('tablet')} {
+  /* Show for mobile and tablet, hide for desktop */
+  ${mq('medium')} {
     display: none;
   }
 `
