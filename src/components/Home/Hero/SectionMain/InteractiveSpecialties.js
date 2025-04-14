@@ -206,6 +206,27 @@ export const InteractiveSpecialties = () => {
     startProgressAndAutoCycle();
   }, [startProgressAndAutoCycle]);
 
+  // Add state for viewport detection
+  const [isMobileView, setIsMobileView] = useState(null);
+
+  // Initialize viewport detection (safely for SSR)
+  useEffect(() => {
+    // Handler to update viewport state
+    const handleResize = () => {
+      // Use 992px to match 'medium' breakpoint in mediaQueries.js
+      setIsMobileView(window.innerWidth < 992);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Start auto-cycle when component mounts
   useEffect(() => {
     startProgressAndAutoCycle();
@@ -217,23 +238,31 @@ export const InteractiveSpecialties = () => {
     };
   }, [startProgressAndAutoCycle]);
 
+  // Only render when isMobileView is determined (prevents hydration issues)
+  if (isMobileView === null) {
+    return null; // Return nothing during initial render to prevent flash
+  }
+
   return (
     <>
-      {/* Mobile version */}
-      <MobileSpecialtyContainer
-        className="interactive-component"
-        t={t}
-        ListItemData={ListItemData}
-        activeItem={activeItem}
-        handleItemChange={handleItemChange}
-        fadeOut={fadeOut}
-        imageMap={imageMap}
-        labelMap={labelMap}
-        openLightbox={openLightbox}
-      />
+      {/* Mobile version - only render when in mobile view */}
+      {isMobileView && (
+        <MobileSpecialtyContainer
+          className="interactive-component"
+          t={t}
+          ListItemData={ListItemData}
+          activeItem={activeItem}
+          handleItemChange={handleItemChange}
+          fadeOut={fadeOut}
+          imageMap={imageMap}
+          labelMap={labelMap}
+          openLightbox={openLightbox}
+        />
+      )}
 
-      {/* Desktop version */}
-      <SpecialtyContainer className="interactive-component" ref={specialtyContainerRef}>
+      {/* Desktop version - only render when not in mobile view */}
+      {!isMobileView && (
+        <SpecialtyContainer className="interactive-component" ref={specialtyContainerRef}>
         <SpecialtyContent>
           <SectionHeading>
             <StyledIcon icon={faHammer} />
@@ -272,6 +301,7 @@ export const InteractiveSpecialties = () => {
           handleItemChange={handleItemChange}
         />
       </SpecialtyContainer>
+      )}
 
       {/* Modern Lightbox component - shared between mobile and desktop */}
       {viewerIsOpen && (
