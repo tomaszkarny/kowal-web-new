@@ -2,13 +2,9 @@ import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
-import { css, keyframes } from '@emotion/react'
+import { css } from '@emotion/react'
+import { fadeIn } from 'components/common/animations/animations'
 import { TimelineContainer, TimelineWrapper, TimelineItem, TimelineYear, TimelineContent, TimelineDot, TimelineLine } from './About.styles'
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(32px);}
-  to { opacity: 1; transform: none;}
-`
 
 // Timeline data - this would ideally come from a CMS or translation file
 const timelineData = [

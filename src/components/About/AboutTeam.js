@@ -2,12 +2,8 @@ import React from 'react'
 import { TeamSection, TeamGrid, TeamCard, TeamPhoto, TeamName, TeamRole } from './About.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
-import { css, keyframes } from '@emotion/react'
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(32px);}
-  to { opacity: 1; transform: none;}
-`
+import { css } from '@emotion/react'
+import { fadeIn } from 'components/common/animations/animations'
 
 const team = [
     {

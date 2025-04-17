@@ -6,12 +6,8 @@ import { StyledUl } from 'components/common/ListItem/ListItem.styles'
 import { LocationsContainer, LocationsPanel, LocationsTitle } from './About.styles'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
-import { css, keyframes } from '@emotion/react'
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(32px);}
-  to { opacity: 1; transform: none;}
-`;
+import { css } from '@emotion/react'
+import { fadeIn } from 'components/common/animations/animations'
 
 export const AboutLocations = () => {
     const { t } = useTranslation('about')

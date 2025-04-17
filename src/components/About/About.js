@@ -32,7 +32,8 @@ export const About = () => {
       <AboutIntro />
       <SectionWave>
         <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 0C360 60 1080 0 1440 60V60H0V0Z" fill="#f8fafc" />
+          {/* Subtler path with reduced height and transparent primary color fill */}
+          <path d="M0 0 Q 360 40 720 20 T 1440 0 V 60 H 0 V 0 Z" fill="rgba(82, 95, 196, 0.15)" />
         </svg>
       </SectionWave>
       <AboutImages />

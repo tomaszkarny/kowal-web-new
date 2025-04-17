@@ -76,3 +76,4 @@ yarn-error.log
 .mcp.json
 .aider.chat.history.md
 src/aider_mcp_server/
+CLAUDE.md

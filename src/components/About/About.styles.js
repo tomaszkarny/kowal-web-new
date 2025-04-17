@@ -1,12 +1,8 @@
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import { fadeIn } from 'components/common/animations/animations'
 
 import { mq } from 'utils/mediaQueries'
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(32px);}
-  to { opacity: 1; transform: none;}
-`;
 
 export const HeroContainer = styled.section`
   position: relative;

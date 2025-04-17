@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+// import shared animations (if needed)
 
 export const GlobalStyles = css`
   * {

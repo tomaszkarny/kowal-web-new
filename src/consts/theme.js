@@ -18,4 +18,13 @@ export const THEME = {
     bluewood: '#283C46',
     mirage: '#1D2D35',
   },
+  breakpoints: {
+    small: 576,
+    tablet: 768,
+    medium: 992,
+    large: 1170,
+  },
+  shadows: {
+    default: '0px 2px 10px 2px rgba(231, 234, 242, 1)',
+  },
 }

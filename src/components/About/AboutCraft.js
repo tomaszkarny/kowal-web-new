@@ -3,14 +3,10 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { CraftSection, CraftContent, CraftImage, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText } from './About.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
-import { css, keyframes } from '@emotion/react'
+import { css } from '@emotion/react'
+import { fadeIn } from 'components/common/animations/animations'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHammer, faFire, faGem, faHistory } from '@fortawesome/free-solid-svg-icons'
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(32px);}
-  to { opacity: 1; transform: none;}
-`
 
 export const AboutCraft = () => {
     const { t } = useTranslation('about')
