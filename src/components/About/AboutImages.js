@@ -18,7 +18,7 @@ export const AboutImages = () => {
                     gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
                 }
             }
-            imageSecond: file(relativePath: { eq: "anvil.jpg" }) {
+            imageSecond: file(relativePath: { eq: "anvil_2.webp" }) {
                 childImageSharp {
                     gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
                 }
