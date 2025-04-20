@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { CraftSection, CraftContent, CraftImage, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText } from './About.styles'
+import { CraftSection, CraftContent, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText, CraftVideo, CraftMediaContainer, CenteredTitle } from './About.styles'
 import heatVideo from 'src/assets/video/RedToWhiteHeat.mp4'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
@@ -25,45 +25,36 @@ export const AboutCraft = () => {
                 animation: ${fadeIn} 1.2s cubic-bezier(0.4,0,0.2,1);
             `}
         >
-            <CraftContent>
+            <CenteredTitle>
                 <SectionTitle>{t('craftTitle', 'Nasze Rzemiosło')}</SectionTitle>
+            </CenteredTitle>
+            <CraftContent>
                 <SectionDescription>
                     {t('craftDescription', 'Kowalstwo artystyczne to połączenie tradycji, siły i kreatywności. Każdy element jest ręcznie kuty, formowany w ogniu i wykańczany z dbałością o detale. Używamy sprawdzonych technik, aby tworzyć unikalne bramy, balustrady i elementy dekoracyjne, które przetrwają próbę czasu.')}
                 </SectionDescription>
-
-                <CraftFeatures>
-                    {features.map((feature, index) => (
-                        <CraftFeatureItem key={index}>
-                            <CraftFeatureIcon>
-                                <FontAwesomeIcon icon={feature.icon} />
-                            </CraftFeatureIcon>
-                            <CraftFeatureText>{t(feature.translationKey, feature.text)}</CraftFeatureText>
-                        </CraftFeatureItem>
-                    ))}
-                </CraftFeatures>
             </CraftContent>
 
-            <video
-                css={css`
-                    flex: 1 1 260px;
-                    min-width: 260px;
-                    max-width: 450px;
-                    width: 100%;
-                    margin-left: auto;
-                    margin-right: auto;
-                    border-radius: 14px;
-                    box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.10);
-                    object-fit: cover;
-                    background: #e3e6f3;
-                    transition: transform 0.3s ease, box-shadow 0.3s ease;
-                `}
-                src={heatVideo}
-                alt={t('craftImageAlt', 'Artistic blacksmithing process')}
-                autoPlay
-                loop
-                muted
-                playsInline
-            />
+            <CraftMediaContainer>
+                <CraftVideo
+                    src={heatVideo}
+                    alt={t('craftImageAlt', 'Artistic blacksmithing process')}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
+            </CraftMediaContainer>
+            
+            <CraftFeatures>
+                {features.map((feature, index) => (
+                    <CraftFeatureItem key={index}>
+                        <CraftFeatureIcon>
+                            <FontAwesomeIcon icon={feature.icon} />
+                        </CraftFeatureIcon>
+                        <CraftFeatureText>{t(feature.translationKey, feature.text)}</CraftFeatureText>
+                    </CraftFeatureItem>
+                ))}
+            </CraftFeatures>
         </CraftSection>
     );
 }

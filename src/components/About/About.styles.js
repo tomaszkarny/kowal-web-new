@@ -29,8 +29,17 @@ export const HeroContainer = styled.section`
 export const HeroOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(30,30,40,0.82) 60%, rgba(60,60,90,0.7) 100%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* overlay should never intercept clicks */
+  /* Mobile‑first: vertical gradient for narrow screens */
+  background: linear-gradient(180deg, rgba(30,30,40,0.85) 35%, rgba(60,60,90,0.78) 100%);
   z-index: 1;
+
+  /* ≥576 px: restore original angled gradient */
+  ${mq('small')} {
+    background: linear-gradient(120deg, rgba(30,30,40,0.82) 60%, rgba(60,60,90,0.7) 100%);
+  }
 `;
 
 export const HeroContent = styled.div`
@@ -76,6 +85,10 @@ export const HeroDescription = styled.p`
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 const bounce = keyframes`
@@ -416,11 +429,13 @@ export const CraftSection = styled.section`
   gap: 2rem;                /* air between text & image */
 
   ${mq('medium')} {
-    flex-direction: row;     /* side‑by‑side from md up   */
-    flex-wrap: wrap;         /* let blocks wrap if needed */
-    justify-content: center; /* centers when wrapping     */
-    gap: 3rem;               /* wider gap on tablets/desks*/
     padding: 2.5rem;
+  }
+  ${mq('large')} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
   }
 `;
 
@@ -428,15 +443,20 @@ export const CraftContent = styled.div`
   flex: 1 1 300px;           /* can grow/shrink – basis 300px */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   margin-bottom: 2rem;
 
   ${mq('medium')} {
-    max-width: 520px;        /* stop super‑wide lines      */
+    align-items: center;
+    text-align: center;
+  }
+  ${mq('large')} {
+    max-width: 520px;
     margin-bottom: 0;
-    margin-right: 0;         /* gap handles horizontal rhythm */
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -444,8 +464,9 @@ export const CraftFeatures = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   width: 100%;
+  max-width: 1000px;
 
   ${mq('xsmall')} {
     grid-template-columns: 1fr;
@@ -453,6 +474,11 @@ export const CraftFeatures = styled.div`
 
   ${mq('small')} {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  ${mq('medium')} {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
   }
 `;
 
@@ -495,12 +521,48 @@ export const CraftFeatureText = styled.div`
   }
 `;
 
+export const CraftVideo = styled.video`
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.10);
+  object-fit: cover;
+  background: #e3e6f3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 30px 0 rgba(60, 60, 90, 0.15);
+  }
+`;
+
+export const CraftMediaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 260px;
+  min-width: 260px;
+  max-width: 450px;
+`;
+
+export const CenteredTitle = styled.div`
+  width: 100%;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+`;
+
 export const CraftImage = styled.img`
   flex: 1 1 260px;   /* participates in flexbox math */
   min-width: 260px;  /* never smaller than this       */
   max-width: 450px;  /* cap at desktop                */
 
   width: 100%;       /* keep the img responsive       */
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 14px;
   box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.10);
   object-fit: cover;
