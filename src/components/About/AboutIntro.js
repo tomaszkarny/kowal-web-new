@@ -2,8 +2,15 @@ import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage } from 'gatsby-plugin-image'
-import { Image } from 'components/common/Image/Image'
-import { HeroContainer, HeroOverlay, HeroContent, HeroTitle, HeroDescription, HeroScrollIndicator } from './About.styles'
+import workbenchImg from 'assets/images/workbench.png'
+import {
+    HeroContainer,
+    HeroOverlay,
+    HeroContent,
+    HeroTitle,
+    HeroDescription,
+    HeroScrollIndicator
+} from './About.styles'
 
 export const AboutIntro = () => {
     const { t } = useTranslation('about')
@@ -12,7 +19,7 @@ export const AboutIntro = () => {
     // Query for a better hero image
     const { heroImage } = useStaticQuery(graphql`
         query AboutHeroImageQuery {
-            heroImage: file(relativePath: { eq: "zjd24.png" }) {
+            heroImage: file(relativePath: { eq: "workbench.png" }) {
                 childImageSharp {
                     gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP], quality: 90)
                 }
@@ -39,7 +46,14 @@ export const AboutIntro = () => {
     }, [])
 
     return (
-        <HeroContainer ref={containerRef}>
+        <HeroContainer
+            ref={containerRef}
+            style={{
+                backgroundImage: `url(${workbenchImg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}
+        >
             <HeroOverlay />
             <HeroContent>
                 <HeroTitle>

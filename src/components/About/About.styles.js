@@ -11,18 +11,17 @@ export const HeroContainer = styled.section`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  min-height: 340px;
-  max-height: 520px;
+  min-height: 440px;
+  max-height: 620px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('/src/assets/images/zjd24.png') center/cover no-repeat;
   overflow: hidden;
   animation: ${fadeIn} 1.1s cubic-bezier(0.4,0,0.2,1);
 
   @media (max-width: 600px) {
-    min-height: 220px;
-    max-height: 320px;
+    min-height: 320px;
+    max-height: 420px;
   }
 `;
 
@@ -512,13 +511,9 @@ export const CraftFeatureIcon = styled.div`
 `;
 
 export const CraftFeatureText = styled.div`
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #2c3e50;
-
-  ${mq('medium')} {
-    font-size: 1.1rem;
-  }
 `;
 
 export const CraftVideo = styled.video`
