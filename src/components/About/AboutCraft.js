@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { CraftSection, CraftContent, CraftImage, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText } from './About.styles'
+import heatVideo from 'src/assets/video/RedToWhiteHeat.mp4'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { css } from '@emotion/react'
@@ -42,9 +43,26 @@ export const AboutCraft = () => {
                 </CraftFeatures>
             </CraftContent>
 
-            <CraftImage
-                src="https://placehold.co/480x320/3a4b7c/fff?text=Forging+in+Progress"
+            <video
+                css={css`
+                    flex: 1 1 260px;
+                    min-width: 260px;
+                    max-width: 450px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border-radius: 14px;
+                    box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.10);
+                    object-fit: cover;
+                    background: #e3e6f3;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                `}
+                src={heatVideo}
                 alt={t('craftImageAlt', 'Artistic blacksmithing process')}
+                autoPlay
+                loop
+                muted
+                playsInline
             />
         </CraftSection>
     );

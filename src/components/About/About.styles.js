@@ -413,16 +413,19 @@ export const CraftSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;                /* air between text & image */
 
   ${mq('medium')} {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 2.5rem 2.5rem 2.5rem 2.5rem;
+    flex-direction: row;     /* side‑by‑side from md up   */
+    flex-wrap: wrap;         /* let blocks wrap if needed */
+    justify-content: center; /* centers when wrapping     */
+    gap: 3rem;               /* wider gap on tablets/desks*/
+    padding: 2.5rem;
   }
 `;
 
 export const CraftContent = styled.div`
-  flex: 1 1 0;
+  flex: 1 1 300px;           /* can grow/shrink – basis 300px */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -430,8 +433,9 @@ export const CraftContent = styled.div`
   margin-bottom: 2rem;
 
   ${mq('medium')} {
+    max-width: 520px;        /* stop super‑wide lines      */
     margin-bottom: 0;
-    margin-right: 2.5rem;
+    margin-right: 0;         /* gap handles horizontal rhythm */
     align-items: flex-start;
   }
 `;
@@ -442,6 +446,10 @@ export const CraftFeatures = styled.div`
   gap: 1.2rem;
   margin-top: 2rem;
   width: 100%;
+
+  ${mq('xsmall')} {
+    grid-template-columns: 1fr;
+  }
 
   ${mq('small')} {
     grid-template-columns: repeat(2, 1fr);
@@ -488,8 +496,11 @@ export const CraftFeatureText = styled.div`
 `;
 
 export const CraftImage = styled.img`
-  width: 100%;
-  max-width: 420px;
+  flex: 1 1 260px;   /* participates in flexbox math */
+  min-width: 260px;  /* never smaller than this       */
+  max-width: 450px;  /* cap at desktop                */
+
+  width: 100%;       /* keep the img responsive       */
   border-radius: 14px;
   box-shadow: 0 2px 12px 0 rgba(60, 60, 90, 0.10);
   object-fit: cover;

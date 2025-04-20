@@ -77,3 +77,7 @@ yarn-error.log
 .aider.chat.history.md
 src/aider_mcp_server/
 CLAUDE.md
+.claude/commands/context_prime_w_aider.md
+.claude/commands/context_prime.md
+.claude/commands/jprompt_ultra_diff_review.md
+.claude/commands/multi_aider_sub_agent.md
