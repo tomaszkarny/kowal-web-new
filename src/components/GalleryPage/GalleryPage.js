@@ -259,8 +259,8 @@ export const GalleryPage = () => {
             onClick={() => setActiveCategory('all')}
             aria-pressed={activeCategory === 'all'}
           >
-            {/* Use direct translated value */}
-            All
+            {/* Use translated value from translation files */}
+            {t('categories.all')}
           </FilterButton>
           
           {/* Only show balustrades directly */}
@@ -269,9 +269,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'balustrades'}
             onClick={() => setActiveCategory('balustrades')}
             aria-pressed={activeCategory === 'balustrades'}
-            title="Elegant railings for staircases, balconies and terraces"
+            title={t('descriptions.balustrades')}
           >
-            Balustrades
+            {t('categories.balustrades')}
           </FilterButton>
 
           {/* Direct interior balustrades button */}
@@ -280,9 +280,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'balustrades-interior'}
             onClick={() => setActiveCategory('balustrades-interior')}
             aria-pressed={activeCategory === 'balustrades-interior'}
-            title="Sophisticated indoor railings with intricate detailing"
+            title={t('descriptions.balustrades_interior')}
           >
-            Interior Balustrades
+            {t('subcategories.balustrades.interior')}
           </FilterButton>
 
           {/* Direct exterior balustrades button */}
@@ -291,9 +291,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'balustrades-exterior'}
             onClick={() => setActiveCategory('balustrades-exterior')}
             aria-pressed={activeCategory === 'balustrades-exterior'}
-            title="Durable outdoor railings designed to withstand the elements"
+            title={t('descriptions.balustrades_exterior')}
           >
-            Exterior Balustrades
+            {t('subcategories.balustrades.exterior')}
           </FilterButton>
 
           {/* Gates button */}
@@ -302,9 +302,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'gates'}
             onClick={() => setActiveCategory('gates')}
             aria-pressed={activeCategory === 'gates'}
-            title="Custom entrance gates for residential and commercial properties"
+            title={t('descriptions.gates')}
           >
-            Gates
+            {t('categories.gates')}
           </FilterButton>
           
           {/* Fences button */}
@@ -313,9 +313,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'fences'}
             onClick={() => setActiveCategory('fences')}
             aria-pressed={activeCategory === 'fences'}
-            title="Perimeter fencing solutions combining security and aesthetics"
+            title={t('descriptions.fences')}
           >
-            Fences
+            {t('categories.fences')}
           </FilterButton>
           
           {/* Decorative Elements button */}
@@ -324,9 +324,9 @@ export const GalleryPage = () => {
             active={activeCategory === 'decorative_elements'}
             onClick={() => setActiveCategory('decorative_elements')}
             aria-pressed={activeCategory === 'decorative_elements'}
-            title="Ornamental metalwork features for interior and exterior use"
+            title={t('descriptions.decorative_elements')}
           >
-            Decorative Elements
+            {t('categories.decorative_elements')}
           </FilterButton>
         </FilterButtonGroup>
         
@@ -334,7 +334,11 @@ export const GalleryPage = () => {
       </GalleryFilterContainer>
 
       {galleryPhotos.length > 0 ? (
-        <GalleryWrapper photos={galleryPhotos} onClick={openLightbox} margin={4} />
+        <GalleryWrapper 
+          photos={galleryPhotos.map(({ relativeDirectory, ...rest }) => rest)} 
+          onClick={openLightbox} 
+          margin={4} 
+        />
       ) : (
         <EmptyStateMessage>{t('emptyState', 'No images found in this category')}</EmptyStateMessage>
       )}

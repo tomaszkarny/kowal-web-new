@@ -12,9 +12,28 @@ exports.wrapRootElement = ({ element }) => {
 
 /**
  * This function runs when the site is first loaded in the browser
+ * We use this to customize behavior and suppress specific console warnings
  */
 exports.onClientEntry = () => {
   console.log('Website initialized with i18next backend support');
+  
+  // Suppress the defaultProps warning in memo components
+  // This is particularly an issue with react-photo-gallery
+  if (typeof window !== 'undefined') {
+    const originalConsoleError = console.error;
+    console.error = (...args) => {
+      const message = args[0] || '';
+      
+      // Filter out defaultProps warnings for memo components
+      if (typeof message === 'string' && 
+          message.includes('defaultProps will be removed from memo components')) {
+        return;
+      }
+      
+      // Pass through all other console errors
+      return originalConsoleError.apply(console, args);
+    };
+  }
 };
 
 // Add support for prefetching pages

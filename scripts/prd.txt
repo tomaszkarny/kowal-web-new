@@ -1,0 +1,13 @@
+Project: Kowal Web - Blacksmithing Website
+
+Requirement: Add folder-based sorting to existing Galeria/Gallery page
+
+Description: 
+The Gallery page needs enhancement to display images grouped by folders (balustrades, fences, gates, decorative_elements) and add filtering functionality to show images from specific categories.
+
+Key Features:
+1. GraphQL data layer to fetch images grouped by relativeDirectory
+2. Filter UI with buttons/chips using Kotra design system components
+3. i18n support for Polish and English
+4. Consistent styling and responsive layout
+5. Unit and E2E testing

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { keyframes } from '@emotion/react'
+import { keyframes, css } from '@emotion/react'
 
 import { mq } from 'utils/mediaQueries'
 
@@ -206,7 +206,7 @@ export const ImageOverlay = styled.div`
 `
 
 export const ButtonStyles = {
-  primary: `
+  primary: css`
     background: #525fc4;
     color: #fff;
     border: 2px solid #525fc4;
@@ -242,7 +242,7 @@ export const ButtonStyles = {
       }
     }
   `,
-  secondary: `
+  secondary: css`
     background: transparent;
     color: #3a3a3a;
     border: 2px solid #3a3a3a;

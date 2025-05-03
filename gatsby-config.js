@@ -55,8 +55,8 @@ module.exports = {
           },
           // Performance optimizations
           load: 'languageOnly',
-          keySeparator: false,
-          nsSeparator: false,
+          keySeparator: ".",
+          nsSeparator: ":",
           // Preload all translations at startup
           partialBundledLanguages: true,
           ns: ['common', 'about', 'gallery', 'contact'],
