@@ -3,6 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { getImage, getSrc } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+import { fadeInScale, slideUp, springScale } from 'components/common/animations/animations'
 
 // Import the modern lightbox library
 import Lightbox from 'yet-another-react-lightbox'
@@ -15,9 +17,14 @@ import { THEME } from 'consts/theme'
 // Styled components for the filter UI
 const GalleryFilterContainer = styled.div`
   margin-bottom: 2rem;
+  animation: ${fadeInScale} 0.6s ease-out forwards;
   
   @media (max-width: ${THEME.breakpoints.tablet}px) {
     margin-bottom: 1.5rem;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `
 
@@ -53,21 +60,35 @@ const FilterButton = styled.button`
   border-radius: 4px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: center;
   min-width: 100px; /* Ensure buttons maintain minimum width for shorter text */
   white-space: normal; /* Allow wrapping for extra long translations */
   hyphens: auto; /* Enable hyphenation for long words in Polish */
   
+  /* Simple transitions for smooth effects */
+  transition: background-color 0.3s ease,
+              color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.3s ease,
+              transform 0.2s ease;
+  
+  /* Active state styles */
+  ${props => props.active && css`
+    transform: scale(1.05);
+    box-shadow: 0 2px 10px rgba(82, 95, 196, 0.3);
+  `}
+  
   &:hover, &:focus {
     background: ${props => props.active ? THEME.color.primary : THEME.color.lightGray};
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     outline: none;
+    transform: translateY(-2px);
   }
   
   &:focus-visible {
     outline: 2px solid ${THEME.color.primary};
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
   }
   
   @media (max-width: ${THEME.breakpoints.tablet}px) {
@@ -81,7 +102,12 @@ const FilterButton = styled.button`
     font-size: 0.8rem;
     min-width: 80px;
   }
-`
+  
+  @media (prefers-reduced-motion: reduce) {
+    transform: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+`;
 
 const SubcategoryFilterGroup = styled.div`
   margin-top: 1rem;
@@ -255,6 +281,7 @@ export const GalleryPage = () => {
         <FilterButtonGroup>
           <FilterButton 
             key="all"
+            index={0}
             active={activeCategory === 'all'}
             onClick={() => setActiveCategory('all')}
             aria-pressed={activeCategory === 'all'}
@@ -266,6 +293,7 @@ export const GalleryPage = () => {
           {/* Only show balustrades directly */}
           <FilterButton 
             key="balustrades"
+            index={1}
             active={activeCategory === 'balustrades'}
             onClick={() => setActiveCategory('balustrades')}
             aria-pressed={activeCategory === 'balustrades'}
@@ -277,6 +305,7 @@ export const GalleryPage = () => {
           {/* Direct interior balustrades button */}
           <FilterButton 
             key="balustrades-interior"
+            index={2}
             active={activeCategory === 'balustrades-interior'}
             onClick={() => setActiveCategory('balustrades-interior')}
             aria-pressed={activeCategory === 'balustrades-interior'}
@@ -288,6 +317,7 @@ export const GalleryPage = () => {
           {/* Direct exterior balustrades button */}
           <FilterButton 
             key="balustrades-exterior"
+            index={3}
             active={activeCategory === 'balustrades-exterior'}
             onClick={() => setActiveCategory('balustrades-exterior')}
             aria-pressed={activeCategory === 'balustrades-exterior'}
@@ -299,6 +329,7 @@ export const GalleryPage = () => {
           {/* Gates button */}
           <FilterButton 
             key="gates"
+            index={4}
             active={activeCategory === 'gates'}
             onClick={() => setActiveCategory('gates')}
             aria-pressed={activeCategory === 'gates'}
@@ -310,6 +341,7 @@ export const GalleryPage = () => {
           {/* Fences button */}
           <FilterButton 
             key="fences"
+            index={5}
             active={activeCategory === 'fences'}
             onClick={() => setActiveCategory('fences')}
             aria-pressed={activeCategory === 'fences'}
@@ -321,6 +353,7 @@ export const GalleryPage = () => {
           {/* Decorative Elements button */}
           <FilterButton 
             key="decorative_elements"
+            index={6}
             active={activeCategory === 'decorative_elements'}
             onClick={() => setActiveCategory('decorative_elements')}
             aria-pressed={activeCategory === 'decorative_elements'}

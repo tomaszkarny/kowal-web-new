@@ -1,5 +1,66 @@
 import React, { useEffect, useState } from 'react'
 import Gallery from 'react-photo-gallery'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+// Simple animation imports not needed anymore
+import { THEME } from 'consts/theme'
+
+/**
+ * Styled wrapper for enhanced gallery images with animations
+ */
+const AnimatedImage = styled.img`
+  transition: transform 0.3s ease, 
+              box-shadow 0.3s ease;
+  border-radius: 3px;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.03) translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+  
+  &:focus-visible {
+    outline: 2px solid ${THEME.color.primary};
+    outline-offset: 2px;
+    transform: scale(1.03);
+    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow 0.3s ease;
+    &:hover, &:focus {
+      transform: none;
+    }
+  }
+`
+
+/**
+ * Custom image renderer for Gallery component
+ */
+const imageRenderer = ({ index, photo, margin, direction, top, left, onClick }) => {
+  const imgStyle = { margin, display: 'block', cursor: 'pointer' }
+  if (direction === 'column') {
+    imgStyle.position = 'absolute'
+    imgStyle.left = left
+    imgStyle.top = top
+  }
+  
+  return (
+    <AnimatedImage
+      key={index}
+      src={photo.src}
+      width={photo.width}
+      height={photo.height}
+      alt={photo.alt || ''}
+      title={photo.title || ''}
+      onClick={(e) => onClick && onClick(e, { index })}
+      style={imgStyle}
+      loading="lazy"
+      tabIndex={0}
+    />
+  )
+}
 
 /**
  * Wrapper component for react-photo-gallery to handle the gallery functionality
@@ -9,6 +70,7 @@ import Gallery from 'react-photo-gallery'
  * 1. The defaultProps warning in memo components (from react-photo-gallery)
  * 2. Proper prop forwarding with sensible defaults
  * 3. Ensures consistent rendering across different screen sizes
+ * 4. Adds hover/focus animations to gallery images
  */
 export const GalleryWrapper = ({
   photos,
@@ -52,12 +114,12 @@ export const GalleryWrapper = ({
     onClick,
     margin,
     targetRowHeight,
-    direction
+    direction,
+    renderImage: renderImage || imageRenderer  // Use our custom renderer by default
   };
   
   // Only add optional props if they are explicitly specified
   if (columns !== undefined) galleryProps.columns = columns;
-  if (renderImage !== undefined) galleryProps.renderImage = renderImage;
 
   return <Gallery {...galleryProps} />;
 }
