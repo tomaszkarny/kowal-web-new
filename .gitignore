@@ -81,3 +81,24 @@ CLAUDE.md
 .claude/commands/context_prime.md
 .claude/commands/jprompt_ultra_diff_review.md
 .claude/commands/multi_aider_sub_agent.md
+
+# Added by Claude Task Master
+dev-debug.log
+# Environment variables
+.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+# Task files
+tasks.json
+tasks/ 
+.cursor
+README-task-master.md
+scripts/example_prd.txt
+scripts/prd.txt
