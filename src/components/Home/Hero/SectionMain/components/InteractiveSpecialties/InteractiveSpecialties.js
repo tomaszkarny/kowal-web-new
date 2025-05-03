@@ -55,7 +55,7 @@ export const InteractiveSpecialties = () => {
   // Fetch images data with an inline query
   const data = useStaticQuery(graphql`
     query {
-      gates: file(relativePath: { eq: "gallery/bramy1.jpg" }) {
+      gates: file(relativePath: { eq: "gallery/bramy3.jpg" }) {
         childImageSharp {
           gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
           original {
@@ -65,7 +65,7 @@ export const InteractiveSpecialties = () => {
           }
         }
       }
-      railings: file(relativePath: { eq: "gallery/balu1.jpg" }) {
+      railings: file(relativePath: { eq: "gallery/balu3.jpg" }) {
         childImageSharp {
           gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
           original {
@@ -75,7 +75,7 @@ export const InteractiveSpecialties = () => {
           }
         }
       }
-      fences: file(relativePath: { eq: "gallery/ogrodz1.jpg" }) {
+      fences: file(relativePath: { eq: "gallery/ogrodz2.jpg" }) {
         childImageSharp {
           gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
           original {
@@ -85,7 +85,7 @@ export const InteractiveSpecialties = () => {
           }
         }
       }
-      gratings: file(relativePath: { eq: "gallery/elo5.jpg" }) {
+      gratings: file(relativePath: { eq: "gallery/ogrodz6.jpg" }) {
         childImageSharp {
           gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
           original {
@@ -95,7 +95,7 @@ export const InteractiveSpecialties = () => {
           }
         }
       }
-      decorative: file(relativePath: { eq: "gallery/elo1.jpg" }) {
+      decorative: file(relativePath: { eq: "gallery/elo3.jpg" }) {
         childImageSharp {
           gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
           original {
@@ -216,13 +216,13 @@ export const InteractiveSpecialties = () => {
       // Use 992px to match 'medium' breakpoint in mediaQueries.js
       setIsMobileView(window.innerWidth < 992);
     };
-    
+
     // Set initial value
     handleResize();
-    
+
     // Add resize listener
     window.addEventListener('resize', handleResize);
-    
+
     // Cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -263,44 +263,44 @@ export const InteractiveSpecialties = () => {
       {/* Desktop version - only render when not in mobile view */}
       {!isMobileView && (
         <SpecialtyContainer className="interactive-component" ref={specialtyContainerRef}>
-        <SpecialtyContent>
-          <SectionHeading>
-            <StyledIcon icon={faHammer} />
-            {t('specialties_section_title', 'We specialize in making')}
-          </SectionHeading>
+          <SpecialtyContent>
+            <SectionHeading>
+              <StyledIcon icon={faHammer} />
+              {t('specialties_section_title', 'We specialize in making')}
+            </SectionHeading>
 
-          <SpecialtyItems
-            items={ListItemData}
+            <SpecialtyItems
+              items={ListItemData}
+              activeItem={activeItem}
+              handleMouseEnter={handleMouseEnter}
+              handleItemChange={handleItemChange}
+              handleKeyDown={handleKeyDown}
+              t={t}
+            />
+
+            <HelpText>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              {t('hover_to_see', 'Hover or click to see examples')}
+            </HelpText>
+
+            <ProgressDots
+              items={ListItemData}
+              activeItem={activeItem}
+              handleItemChange={handleItemChange}
+              t={t}
+            />
+          </SpecialtyContent>
+
+          <SpecialtyImageDisplay
+            progress={progress}
+            fadeOut={fadeOut}
             activeItem={activeItem}
-            handleMouseEnter={handleMouseEnter}
+            imageMap={imageMap}
+            labelMap={labelMap}
+            openLightbox={openLightbox}
             handleItemChange={handleItemChange}
-            handleKeyDown={handleKeyDown}
-            t={t}
           />
-
-          <HelpText>
-            <FontAwesomeIcon icon={faInfoCircle} />
-            {t('hover_to_see', 'Hover or click to see examples')}
-          </HelpText>
-
-          <ProgressDots
-            items={ListItemData}
-            activeItem={activeItem}
-            handleItemChange={handleItemChange}
-            t={t}
-          />
-        </SpecialtyContent>
-
-        <SpecialtyImageDisplay
-          progress={progress}
-          fadeOut={fadeOut}
-          activeItem={activeItem}
-          imageMap={imageMap}
-          labelMap={labelMap}
-          openLightbox={openLightbox}
-          handleItemChange={handleItemChange}
-        />
-      </SpecialtyContainer>
+        </SpecialtyContainer>
       )}
 
       {/* Modern Lightbox component - shared between mobile and desktop */}
