@@ -64,7 +64,6 @@
     "eslint-config-airbnb": "^19.0.4",
     "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-root-import": "^2.0.9",
-    "gatsby-plugin-stylelint": "^3.2.0",
     "prettier": "^3.2.5"
   },
   "repository": {
