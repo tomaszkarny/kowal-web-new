@@ -59,6 +59,7 @@ export const SwipeableArea = styled.div`
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   scrollbar-width: none; /* Hide scrollbar on Firefox */
   position: relative;
+  padding: 0.2rem 0;
 
   /* Hide scrollbar on Chrome/Safari */
   &::-webkit-scrollbar {
@@ -70,9 +71,9 @@ export const SwipeableArea = styled.div`
     content: '';
     position: absolute;
     top: 50%;
-    right: 15px;
-    width: 30px;
-    height: 30px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23525fc4' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
@@ -82,33 +83,63 @@ export const SwipeableArea = styled.div`
     pointer-events: none;
     z-index: 10;
   }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    padding: 0.1rem 0;
+    margin: 0 -0.5rem; /* Negative margin to make better use of screen width */
+    width: calc(100% + 1rem);
+  }
 `
 
 // Horizontal list for mobile
 export const MobileSpecialtyList = styled.ul`
   list-style: none;
-  padding: 1rem 0.5rem;
+  padding: 0.6rem 0.3rem;
   margin: 0;
   display: flex;
   flex-direction: row;
   min-width: max-content;
-  gap: 0.8rem;
+  gap: 0.4rem;
+  
+  /* Much tighter spacing on small mobile */
+  @media (max-width: 480px) {
+    padding: 0.4rem 0.2rem;
+    gap: 0.3rem;
+  }
 `
 
 // Mobile specialty item
 export const MobileSpecialtyItem = styled.li`
-  padding: 1rem 1.2rem;
+  padding: 0.4rem 0.6rem;
+  padding-bottom: 0.3rem;
   display: flex;
+  flex-direction: column; /* Stack icon and text vertically */
   align-items: center;
-  border-radius: 12px;
+  justify-content: center;
+  border-radius: 8px;
   transition: all 0.2s ease;
   cursor: pointer;
   position: relative;
   background: ${({ isActive }) => isActive ? 'rgba(82, 95, 196, 0.1)' : 'rgba(245, 246, 250, 0.8)'};
-  border-bottom: ${({ isActive }) => isActive ? '3px solid #525fc4' : '3px solid transparent'};
-  box-shadow: ${({ isActive }) => isActive ? '0 4px 12px rgba(82, 95, 196, 0.1)' : '0 2px 6px rgba(0, 0, 0, 0.05)'};
-  white-space: nowrap;
-  min-width: 120px;
+  border-bottom: ${({ isActive }) => isActive ? '2px solid #525fc4' : '2px solid transparent'};
+  box-shadow: ${({ isActive }) => isActive ? '0 2px 6px rgba(82, 95, 196, 0.1)' : '0 1px 2px rgba(0, 0, 0, 0.05)'};
+  white-space: normal; /* Allow text to wrap */
+  min-width: 75px;
+  max-width: 95px; /* Prevent overly wide items */
+  word-wrap: break-word; /* Enable word breaking */
+  text-align: center; /* Center-align for better text layout */
+  height: auto; /* Allow height to adjust to content */
+  
+  /* Even smaller on mobile */
+  @media (max-width: 480px) {
+    padding: 0.3rem 0.4rem;
+    padding-bottom: 0.2rem;
+    min-width: 60px;
+    max-width: 80px;
+    border-radius: 5px;
+    border-bottom-width: 1px;
+  }
 
   /* Active state animation */
   ${({ isActive }) => isActive && css`
@@ -138,17 +169,33 @@ export const MobileSpecialtyItem = styled.li`
 
   /* Icon styling */
   svg {
-    margin-right: 0.8rem;
+    margin-bottom: 0.3rem;
     transition: all 0.15s ease;
     color: ${({ isActive }) => isActive ? '#525fc4' : '#888'};
-    font-size: 1rem;
+    font-size: 0.9rem;
+    
+    @media (max-width: 480px) {
+      font-size: 0.75rem;
+      margin-bottom: 0.2rem;
+    }
   }
 
   span {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: #333;
     transition: all 0.15s ease;
     font-weight: ${({ isActive }) => isActive ? '500' : '400'};
+    display: block; /* Make span a block element for better wrapping */
+    padding: 0;
+    margin: 0;
+    line-height: 1.1; /* Improve readability with better line height */
+    hyphens: auto; /* Enable hyphenation for long words */
+    
+    @media (max-width: 480px) {
+      font-size: 0.65rem;
+      line-height: 1;
+      letter-spacing: -0.2px; /* Slightly tighter letter spacing */
+    }
   }
 `
 
@@ -260,12 +307,18 @@ export const MobileSpecialtyImage = styled.div`
     right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
     color: white;
-    padding: 2rem 1rem 1rem;
-    font-size: 1.1rem;
+    padding: 1.5rem 0.75rem 0.75rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
     letter-spacing: 0.5px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    /* Ensure text is fully visible */
+    max-height: none;
+    overflow: visible;
+    line-height: 1.3;
+    word-break: break-word;
+    z-index: 5;
   }
 
   /* Touch feedback */
@@ -309,6 +362,57 @@ export const MobileProgressDot = styled.button`
     transform: scale(1.4);
     box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
   `}
+`
+
+// Swipe indicators for visual feedback during active swipes
+export const SwipeIndicator = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* Don't interfere with touches */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  
+  &.left {
+    left: 15px;
+  }
+  
+  &.right {
+    right: 15px;
+  }
+  
+  &.active {
+    opacity: 1;
+  }
+  
+  svg {
+    font-size: 1.2rem;
+    color: #525fc4;
+  }
+`
+
+// Caption text styling (displayed below the image)
+export const SpecialtyCaption = styled.div`
+  text-align: center;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem auto;
+  max-width: 90%;
+  line-height: 1.3;
+  background-color: rgba(245, 246, 250, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 `
 
 // Swipe instruction text

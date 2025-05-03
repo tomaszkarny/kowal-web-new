@@ -38,8 +38,7 @@ export const ListItemData = [
   },
 
   {
-    text:
-      'innych elementów ozdobnych (świeczniki, meble, konstrukcje stalowe) itp.',
+    text: 'elementów ozdobnych',
     translationKey: 'specialties_items_decorative',
     icon: faCheckSquare,
     fixedWidth: true,
