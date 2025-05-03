@@ -7,7 +7,6 @@ import { AboutLocations } from './AboutLocations'
 import { AboutImages } from './AboutImages'
 import { AboutCraft } from './AboutCraft'
 import { AboutTestimonials } from './AboutTestimonials'
-import { AboutTimeline } from './AboutTimeline'
 import { SectionDivider, SectionWave, LinkWrapper } from './About.styles'
 
 export const About = () => {
@@ -41,8 +40,6 @@ export const About = () => {
       <AboutCraft />
       <SectionDivider />
       <AboutTestimonials />
-      <SectionDivider />
-      <AboutTimeline />
       <SectionDivider />
       <AboutLocations />
       <SectionDivider />
