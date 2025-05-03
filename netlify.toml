@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci --legacy-peer-deps && npm install @parcel/watcher-linux-x64-glibc && gatsby clean && npm run build"
+  command = "npm i --legacy-peer-deps --force && npm install @parcel/watcher-linux-x64-glibc && gatsby clean && npm run build"
   publish = "public"
 
 [build.environment]
