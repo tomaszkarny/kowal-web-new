@@ -14,30 +14,30 @@ import {
   TestimonialRating
 } from './About.styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faStarHalfAlt, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
 // Sample testimonial data - this would ideally come from a CMS or translation file
 const testimonials = [
   {
     quote: 'Pracownia Kowalstwa Artystycznego Tadeusza Karny wykonała dla nas piękną bramę wjazdową. Jakość wykonania przewyższyła nasze oczekiwania.',
-    author: 'Jan Kowalski',
+    author: 'Adam Kołodziej',
     company: 'Właściciel posesji w Białymstoku',
     rating: 5,
-    translationKey: 'testimonials_janKowalski'
+    translationKey: 'testimonials_adamKolodziej'
   },
   {
     quote: 'Współpraca z Panem Tadeuszem to czysta przyjemność. Profesjonalne podejście i dbałość o każdy detal. Polecam!',
-    author: 'Anna Nowak',
+    author: 'Maja Kowalczyk',
     company: 'Architekt wnętrz',
-    rating: 5,
-    translationKey: 'testimonials_annaNowak'
+    rating: 4.5,
+    translationKey: 'testimonials_majaKowalczyk'
   },
   {
     quote: 'Zamówiliśmy balustrady do naszego biura. Efekt jest zachwycający, a realizacja przebiegła sprawnie i terminowo.',
-    author: 'Marek Wiśniewski',
-    company: 'Dyrektor MPEC Białystok',
+    author: 'Tomasz Borkowski',
+    company: 'Kierownik Działu Technicznego, Przedsiębiorstwo Budowlane Podlasie',
     rating: 5,
-    translationKey: 'testimonials_marekWisniewski'
+    translationKey: 'testimonials_tomaszBorkowski'
   }
 ]
 
@@ -74,9 +74,12 @@ export const AboutTestimonials = () => {
               {t(testimonial.translationKey, testimonial.quote)}
             </TestimonialQuote>
             <TestimonialRating>
-              {[...Array(testimonial.rating)].map((_, i) => (
+              {Array.from({ length: Math.floor(testimonial.rating) }).map((_, i) => (
                 <FontAwesomeIcon key={i} icon={faStar} />
               ))}
+              {testimonial.rating % 1 !== 0 && (
+                <FontAwesomeIcon icon={faStarHalfAlt} />
+              )}
             </TestimonialRating>
             <TestimonialAuthor>
               {t(`${testimonial.translationKey}_author`, testimonial.author)}
