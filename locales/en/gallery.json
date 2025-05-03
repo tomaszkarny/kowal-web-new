@@ -1,6 +1,37 @@
 {
   "title": "Our Sample Works",
   "backToGallery": "Back to Gallery",
+  "filter": "Filter By Category",
+  "emptyState": "No images found in this category",
+  "categories": {
+    "all": "All Works",
+    "balustrades": "Balustrades",
+    "gates": "Gates",
+    "fences": "Fences",
+    "decorative_elements": "Decorative Elements"
+  },
+  "subcategories": {
+    "balustrades": {
+      "exterior": "Exterior Balustrades",
+      "interior": "Interior Balustrades"
+    }
+  },
+  "descriptions": {
+    "balustrades": "Elegant railings for staircases, balconies and terraces",
+    "balustrades_exterior": "Durable outdoor railings designed to withstand the elements",
+    "balustrades_interior": "Sophisticated indoor railings with intricate detailing",
+    "gates": "Custom entrance gates for residential and commercial properties",
+    "fences": "Perimeter fencing solutions combining security and aesthetics",
+    "decorative_elements": "Ornamental metalwork features for interior and exterior use"
+  },
+  "filterLabels": {
+    "showAll": "Show All",
+    "resetFilters": "Reset Filters",
+    "sortBy": "Sort By",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "aToZ": "A to Z"
+  },
   "images": {
     "brama1": "Entrance Gate - Classic Design",
     "brama2": "Decorative Gate - Floral Motif",

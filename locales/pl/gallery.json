@@ -1,6 +1,37 @@
 {
   "title": "Nasze przykładowe prace",
   "backToGallery": "Powrót do galerii",
+  "filter": "Filtruj według kategorii",
+  "emptyState": "Brak zdjęć w tej kategorii",
+  "categories": {
+    "all": "Wszystkie prace",
+    "balustrades": "Balustrady",
+    "gates": "Bramy",
+    "fences": "Ogrodzenia",
+    "decorative_elements": "Elementy ozdobne"
+  },
+  "subcategories": {
+    "balustrades": {
+      "exterior": "Balustrady zewnętrzne",
+      "interior": "Balustrady wewnętrzne"
+    }
+  },
+  "descriptions": {
+    "balustrades": "Eleganckie poręcze do schodów, balkonów i tarasów",
+    "balustrades_exterior": "Trwałe poręcze zewnętrzne odporne na warunki atmosferyczne",
+    "balustrades_interior": "Wyrafinowane poręcze wewnętrzne z detalami zdobniczymi",
+    "gates": "Niestandardowe bramy wjazdowe dla posesji mieszkalnych i komercyjnych",
+    "fences": "Rozwiązania ogrodzeniowe łączące bezpieczeństwo i estetykę",
+    "decorative_elements": "Ozdobne elementy metalowe do zastosowań wewnętrznych i zewnętrznych"
+  },
+  "filterLabels": {
+    "showAll": "Pokaż wszystkie",
+    "resetFilters": "Resetuj filtry",
+    "sortBy": "Sortuj według",
+    "newest": "Najnowsze",
+    "oldest": "Najstarsze",
+    "aToZ": "A do Z"
+  },
   "images": {
     "brama1": "Brama wjazdowa - wzór klasyczny",
     "brama2": "Brama ozdobna - motyw roślinny",
