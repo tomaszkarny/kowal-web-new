@@ -4,10 +4,10 @@ module.exports = {
   siteMetadata: {
     title: 'Tadeusz Karny Kowalstwo Artystyczne',
     description: 'Kowalstwo Artystyczne - oferujemy bogate wzornictwo bram, balustrad, ogrodzeń, krat oraz innych elementów ozdobnych',
-    siteUrl: 'https://example.com', // Zmień na rzeczywisty adres strony
-    image: '/images/logo.jpg', // Ścieżka do obrazu logo/ogólnego dla social media
+    siteUrl: 'https://kowalstwo-karny.pl',
+    image: '/images/logo.jpg',
     author: 'Tadeusz Karny',
-    twitterUsername: '', // Dodaj jeśli masz konto Twitter
+    twitterUsername: '',
   },
 
   plugins: [
@@ -25,7 +25,7 @@ module.exports = {
         localeJsonSourceName: `locale`,
         languages: [`pl`, `en`],
         defaultLanguage: `pl`,
-        siteUrl: `https://example.com`,
+        siteUrl: `https://kowalstwo-karny.pl`,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
         // Set this to false to prevent doubled language codes
@@ -73,7 +73,7 @@ module.exports = {
             if (key.includes('gallery images')) {
               return;
             }
-            
+
             // For other keys, log warnings in development mode only
             if (process.env.NODE_ENV === 'development') {
               console.warn(`Missing translation key: ${key}`);
@@ -111,13 +111,6 @@ module.exports = {
         path: path.join(__dirname, `locales`),
       },
     },
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: ['Merriweather', 'Helvtica', 'Arial', 'serif', 'PT Sans'],
-        display: 'swap',
-      },
-    },
     // SEO plugins
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -142,8 +135,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://example.com', // Zmień na rzeczywisty adres strony
-        sitemap: 'https://example.com/sitemap-index.xml',
+        host: 'https://kowalstwo-karny.pl',
+        sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
