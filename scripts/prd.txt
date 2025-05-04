@@ -1,13 +1,26 @@
-Project: Kowal Web - Blacksmithing Website
+# PRD: i18n Cleanup & Translation Consolidation
 
-Requirement: Add folder-based sorting to existing Galeria/Gallery page
+## Business Goal
+Simplify translation management by eliminating duplicated JSON files that cause build-time errors and drift.  
+Guarantee that both languages (pl and en) always share an identical set of keys.
 
-Description: 
-The Gallery page needs enhancement to display images grouped by folders (balustrades, fences, gates, decorative_elements) and add filtering functionality to show images from specific categories.
+## Functional Scope
+1. **Remove** the `/static/locales` directory and all code or configuration references to it.  
+2. **Audit** JSON keys in the remaining `/locales` tree (pl vs en) and detect any missing or mismatched entries  
+   – e.g. `specialties_section_title` vs `specialties_title`.  
+3. **Introduce automatic key validation** on every commit:  
+   - Use either a TypeScript enum **or** a JSON Schema + npm script (`npm run i18n:check`).  
+4. *(Nice-to-have)* Add a **README** section explaining how to add new keys and run the validator.
 
-Key Features:
-1. GraphQL data layer to fetch images grouped by relativeDirectory
-2. Filter UI with buttons/chips using Kotra design system components
-3. i18n support for Polish and English
-4. Consistent styling and responsive layout
-5. Unit and E2E testing
+## Technical Requirements
+- Continue using **gatsby-plugin-react-i18next** with `localeJsonSourceName: "locale"`.  
+- Project targets **Node 20** (consistent with other tasks).  
+- No external services are required – everything runs locally.
+
+## Priority
+**High** – this blocks further work on translations and UI polish.
+
+## Acceptance Criteria
+- `gatsby develop` and `gatsby build` finish with **no warnings** about duplicated locale files.  
+- The validator exits with code 0 when both languages have complete key coverage; non-zero otherwise.  
+- README contains a clearly labelled **"i18n Workflow"** section.

@@ -59,6 +59,12 @@ typings/
 .cache/
 public
 
+# i18n generated files
+scripts/i18n/schemas/*.schema.json
+
+# Aider cache
+.aider.tags.cache.v4/
+
 # Mac files
 .DS_Store
 
