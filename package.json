@@ -12,7 +12,18 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "i18n:generate": "node scripts/i18n/generate-key-mapping.js",
+    "i18n:audit": "node scripts/i18n/audit-keys.js",
+    "i18n:validate": "node scripts/i18n/validate-translations.js",
+    "i18n:check": "node scripts/i18n/validate-i18n.js",
+    "i18n:check:generate": "node scripts/i18n/validate-i18n.js --generate-types",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "locales/**/*.json": [
+      "node scripts/i18n/pre-commit-check.js"
+    ]
   },
   "dependencies": {
     "@emotion/core": "^11.0.0",
@@ -23,6 +34,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-google-maps/api": "^2.20.6",
+    "ajv": "^8.17.1",
+    "chalk": "^4.1.2",
     "emotion-theming": "^11.0.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -65,6 +78,9 @@
     "eslint-config-airbnb": "^19.0.4",
     "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-root-import": "^2.0.9",
+    "gatsby-plugin-stylelint": "^3.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.2.5"
   },
   "repository": {
