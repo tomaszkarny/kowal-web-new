@@ -58,8 +58,6 @@ export const Layout = ({ children, title, description, image, article }) => {
         <link rel="prefetch" href="/about/" as="document" />
         <link rel="prefetch" href="/gallery/" as="document" />
         <link rel="prefetch" href="/contact/" as="document" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </SEO>
 
       <MainNav />

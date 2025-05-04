@@ -62,6 +62,10 @@ public
 # i18n generated files
 scripts/i18n/schemas/*.schema.json
 
+# PRD files
+scripts/prd*.txt
+scripts/prd*.txt.save
+
 # Aider cache
 .aider.tags.cache.v4/
 
