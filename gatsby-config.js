@@ -111,8 +111,40 @@ module.exports = {
         path: path.join(__dirname, `locales`),
       },
     },
-    // SEO plugins - Use the simplest sitemap configuration to avoid build errors
-    `gatsby-plugin-sitemap`,
+    // SEO plugins with sitemap including lastmod dates
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap`,
+        excludes: ['/**/404', '/**/404.html'],
+        createLinkInHead: true,
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          return allPages.map(page => {
+            return { ...page }
+          })
+        },
+        serialize: ({ path }) => {
+          return {
+            url: path,
+            lastmod: new Date().toISOString(),
+          }
+        }
+      }
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
