@@ -5,11 +5,12 @@
 # DOMAIN REDIRECTS - Keep at the top (these run first)
 # ==========================================
 
-# Force non-www (HTTP → HTTPS non-www) - Use exact pattern, not wildcard
-http://kowalstwo-karny.pl/:path https://kowalstwo-karny.pl/:path 301!
+# Force HTTPS (with www) - Use exact pattern with path placeholder
+http://kowalstwo-karny.pl/:path https://www.kowalstwo-karny.pl/:path 301!
+http://www.kowalstwo-karny.pl/:path https://www.kowalstwo-karny.pl/:path 301!
 
-# Force www → non-www (HTTPS)
-https://www.kowalstwo-karny.pl/:path https://kowalstwo-karny.pl/:path 301!
+# Redirect non-www to www (HTTPS)
+https://kowalstwo-karny.pl/:path https://www.kowalstwo-karny.pl/:path 301!
 
 # ==========================================
 # HANDLING FOR GATSBY SPA - Keep at the bottom (these run last)
