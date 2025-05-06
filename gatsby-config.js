@@ -126,29 +126,22 @@ module.exports = {
             allSitePage {
               nodes {
                 path
-                context {
-                  lastModified
-                }
               }
             }
           }
         `,
-        resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
-        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
-          return allPages.map(page => {
-            return { ...page }
-          })
+        resolveSiteUrl: ({site}) => {
+          return site.siteMetadata.siteUrl
         },
-        serialize: ({ path, context }) => {
-          // Use the current date as lastmod if not explicitly set
-          const lastmod = (context && context.lastModified) 
-            ? context.lastModified 
-            : new Date().toISOString();
-          
-          return {
-            url: path,
-            lastmod: lastmod,
-          }
+        serialize: ({site, allSitePage}) => {
+          return allSitePage.nodes.map(node => {
+            return {
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+              lastmod: new Date().toISOString()
+            }
+          })
         }
       }
     },
