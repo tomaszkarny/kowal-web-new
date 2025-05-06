@@ -1,7 +1,20 @@
-# TEMPORARY MINIMAL REDIRECTS FILE TO FIX REDIRECT LOOP
-# Only keeping one essential rule
+# Netlify redirects for kowalstwo-karny.pl
+# Properly structured to avoid redirect loops
 
-# Redirect www to non-www (HTTPS only)
-https://www.kowalstwo-karny.pl/* https://kowalstwo-karny.pl/:splat 301!
+# ==========================================
+# DOMAIN REDIRECTS - Keep at the top (these run first)
+# ==========================================
 
-# All other redirects have been temporarily removed until redirect loop is fixed
+# Force non-www (HTTP → HTTPS non-www) - Use exact pattern, not wildcard
+http://kowalstwo-karny.pl/:path https://kowalstwo-karny.pl/:path 301!
+
+# Force www → non-www (HTTPS)
+https://www.kowalstwo-karny.pl/:path https://kowalstwo-karny.pl/:path 301!
+
+# ==========================================
+# HANDLING FOR GATSBY SPA - Keep at the bottom (these run last)
+# ==========================================
+
+# For client-side routing in single page applications (SPA)
+# This ensures all routes are handled by Gatsby's client-side router
+/*    /index.html   200
