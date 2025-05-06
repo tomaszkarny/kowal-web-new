@@ -106,9 +106,15 @@ dev-debug.log
 *.sw?
 # OS specific
 # Task files
-tasks.json
-tasks/ 
 .cursor
+
+# Added by Claude Task Master
+tasks.json
+tasks/ .env.lighthouse
+# Task Master and planning files
+/tasks/
+*.prd.txt
+seo-prd.txt
+*-prd.txt
 README-task-master.md
 scripts/example_prd.txt
-
