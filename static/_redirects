@@ -1,15 +1,17 @@
 # Netlify redirects file for kowalstwo-karny.pl
 # This file handles canonical domain, HTTPS redirects, and trailing slashes
 
-# Force HTTPS for all requests
+# Force HTTPS - specify exact domain without wildcards to avoid loops
 http://kowalstwo-karny.pl/* https://kowalstwo-karny.pl/:splat 301!
+
+# Redirect www to non-www - only for HTTP to avoid potential loops with HTTPS redirects
 http://www.kowalstwo-karny.pl/* https://kowalstwo-karny.pl/:splat 301!
 
-# Redirect www to non-www
+# Redirect www to non-www for HTTPS
 https://www.kowalstwo-karny.pl/* https://kowalstwo-karny.pl/:splat 301!
 
-# Remove trailing slashes
-https://kowalstwo-karny.pl/*/ https://kowalstwo-karny.pl/:splat 301!
+# IMPORTANT: Disable trailing slash removal for now to fix redirect loops
+# https://kowalstwo-karny.pl/*/ https://kowalstwo-karny.pl/:splat 301!
 
 # Language-specific redirects (if needed)
 # /pl/* /pl/:splat 200
