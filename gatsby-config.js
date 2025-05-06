@@ -126,10 +126,30 @@ module.exports = {
             allSitePage {
               nodes {
                 path
+                context {
+                  lastModified
+                }
               }
             }
           }
-        `
+        `,
+        resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          return allPages.map(page => {
+            return { ...page }
+          })
+        },
+        serialize: ({ path, context }) => {
+          // Use the current date as lastmod if not explicitly set
+          const lastmod = (context && context.lastModified) 
+            ? context.lastModified 
+            : new Date().toISOString();
+          
+          return {
+            url: path,
+            lastmod: lastmod,
+          }
+        }
       }
     },
     {
@@ -137,7 +157,19 @@ module.exports = {
       options: {
         host: 'https://www.kowalstwo-karny.pl',
         sitemap: 'https://www.kowalstwo-karny.pl/sitemap-index.xml',
-        policy: [{ userAgent: '*', allow: '/' }]
+        resolveEnv: () => process.env.GATSBY_ENV || process.env.NODE_ENV || 'development',
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+            sitemap: 'https://www.kowalstwo-karny.pl/sitemap-index.xml',
+            host: 'https://www.kowalstwo-karny.pl'
+          }
+        }
       }
     },
   ],
