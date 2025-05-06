@@ -111,40 +111,8 @@ module.exports = {
         path: path.join(__dirname, `locales`),
       },
     },
-    // SEO plugins
-    {
-      resolve: `gatsby-plugin-sitemap`,
-      options: {
-        excludes: ['/**/404', '/**/404.html'],
-        query: `
-          {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
-            allSitePage {
-              nodes {
-                path
-              }
-            }
-          }
-        `,
-        resolveSiteUrl: ({site}) => {
-          return site.siteMetadata.siteUrl
-        },
-        serialize: ({site, allSitePage}) => {
-          return allSitePage.nodes.map(node => {
-            return {
-              url: `${site.siteMetadata.siteUrl}${node.path}`,
-              changefreq: `daily`,
-              priority: 0.7,
-              lastmod: new Date().toISOString()
-            }
-          })
-        }
-      }
-    },
+    // SEO plugins - Use the simplest sitemap configuration to avoid build errors
+    `gatsby-plugin-sitemap`,
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
