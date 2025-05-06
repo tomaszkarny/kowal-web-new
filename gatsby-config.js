@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Tadeusz Karny Kowalstwo Artystyczne',
     description: 'Kowalstwo Artystyczne - oferujemy bogate wzornictwo bram, balustrad, ogrodzeń, krat oraz innych elementów ozdobnych',
-    siteUrl: 'https://kowalstwo-karny.pl',
+    siteUrl: 'https://www.kowalstwo-karny.pl',
     image: '/images/logo.jpg',
     author: 'Tadeusz Karny',
     twitterUsername: '',
@@ -25,7 +25,7 @@ module.exports = {
         localeJsonSourceName: `locale`,
         languages: [`pl`, `en`],
         defaultLanguage: `pl`,
-        siteUrl: `https://kowalstwo-karny.pl`,
+        siteUrl: `https://www.kowalstwo-karny.pl`,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
         // Set this to false to prevent doubled language codes
@@ -135,8 +135,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://kowalstwo-karny.pl',
-        sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
+        host: 'https://www.kowalstwo-karny.pl',
+        sitemap: 'https://www.kowalstwo-karny.pl/sitemap-index.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
