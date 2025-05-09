@@ -4,6 +4,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
+import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
 
 /**
  * Enhanced SEO component that provides comprehensive SEO optimization
@@ -95,19 +96,23 @@ export const EnhancedSEO = ({
     keywords: keywords ? keywords.join(', ') : ''
   }
 
-  // Make sure the url and canonical are correct for language versions
-  const localePrefix = language === 'pl' ? '' : `/${language}`
-  // Create absolute canonical URL with no trailing slash (except homepage)
-  const canonicalUrl = `${siteUrl}${localePrefix}${cleanPath || '/'}`
+  // Get the current path adjusted for proper canonical URL (no trailing slash except homepage)
+  const adjustedPath = path.endsWith('/') || path === '' ? path : `${path}/`
   
-  // Create hreflang URLs for all supported languages
-  const hreflangUrls = languages.map(lang => {
-    const langPrefix = lang === 'pl' ? '' : `/${lang}`
-    return {
-      lang: lang === 'pl' ? 'pl-PL' : 'en-US',
-      url: `${siteUrl}${langPrefix}${originalPath || cleanPath || '/'}`
-    }
-  })
+  // Get language-specific URLs using our configuration
+  const languageUrls = getLanguageUrls(adjustedPath)
+  
+  // Current language from path
+  const currentLanguage = getLanguageFromPath(adjustedPath)
+  
+  // Create absolute canonical URL for the current language version
+  const canonicalUrl = currentLanguage === 'pl' ? languageUrls.pl : languageUrls.en
+  
+  // Create hreflang URLs for all supported languages with proper language codes
+  const hreflangUrls = [
+    { lang: 'pl-PL', url: languageUrls.pl },
+    { lang: 'en-US', url: languageUrls.en }
+  ]
 
   // Create structured data for different types
   const generateStructuredData = () => {
@@ -176,7 +181,10 @@ export const EnhancedSEO = ({
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
       {/* Add x-default hreflang for search engines to select default language */}
-      <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${originalPath || cleanPath || '/'}`} />
+      <link rel="alternate" hrefLang="x-default" href={languageUrls.default} />
+      
+      {/* Self-referential hreflang tag for current language (recommended for completeness) */}
+      <link rel="alternate" hrefLang={currentLanguage === 'pl' ? 'pl-PL' : 'en-US'} href={canonicalUrl} />
 
       {/* Google Fonts - match original implementation exactly */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
