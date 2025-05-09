@@ -4,6 +4,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { ContactDetails } from 'components/Contact/ContactDetails/ContactDetails'
 import { ContactForm } from 'components/Contact/ContactForm/ContactForm'
 import { WrappedGoogleMap } from 'components/Contact/GoogleMap/GoogleMap'
+import { GoogleMapsProvider } from 'components/Contact/GoogleMap/GoogleMapsProvider'
 import { FormSuccessMessage } from 'components/Contact/SuccessMessage/SuccessMessage'
 
 import { ContainerWrapper } from 'components/Contact/GoogleMap/GoogleMap.styles'
@@ -44,7 +45,9 @@ export const Contact = () => {
         )}
       </ContactWrapper>
       <ContainerWrapper>
-        <WrappedGoogleMap isMarkerShown />
+        <GoogleMapsProvider>
+          <WrappedGoogleMap isMarkerShown />
+        </GoogleMapsProvider>
       </ContainerWrapper>
     </>
   )

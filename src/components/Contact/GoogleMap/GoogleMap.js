@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api'
 
 import { WORKSHOP_LOCATION, GOOGLE_MAP_MARKER } from 'consts/consts'
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
@@ -34,16 +34,12 @@ export const WrappedGoogleMap = ({ isMarkerShown }) => {
 
   return (
     <MapContainer>
-      <LoadScript
-        googleMapsApiKey={process.env.GATSBY_GOOGLE_API_KEY || ''}
-        loadingElement={<MapLoadingElement />}
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={15}
+        center={WORKSHOP_LOCATION}
+        onLoad={onMapLoad}
       >
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={15}
-          center={WORKSHOP_LOCATION}
-          onLoad={onMapLoad}
-        >
           {isMarkerShown && (
             <Marker
               position={WORKSHOP_LOCATION}
@@ -76,7 +72,6 @@ export const WrappedGoogleMap = ({ isMarkerShown }) => {
             </InfoWindow>
           )}
         </GoogleMap>
-      </LoadScript>
     </MapContainer>
   )
 }
