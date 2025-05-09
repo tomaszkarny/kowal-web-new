@@ -10,7 +10,7 @@ import { Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
 import { GlobalStyles } from 'components/common/GlobalStyles'
 
-import { SEO } from 'components/SEO/SEO'
+import { EnhancedSEO } from 'components/SEO/EnhancedSEO.js'
 
 import { MainNav } from 'components/Layout/MainNav/MainNav'
 import { Footer } from 'components/Layout/Footer/Footer'
@@ -18,7 +18,7 @@ import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
 import { LayoutContent } from 'components/Layout/Layout.styles'
 
-export const Layout = ({ children, title, description, image, article }) => {
+export const Layout = ({ children, title, description, image, article, pageType = 'other', structuredData = 'website', keywords = [], breadcrumbs = [], faq = [] }) => {
   const { t } = useTranslation('common')
   const location = useLocation()
   const mountedRef = useRef(false)
@@ -47,18 +47,23 @@ export const Layout = ({ children, title, description, image, article }) => {
       <TranslationPreloader namespaces={['common', 'about', 'gallery', 'contact']} />
       <Global styles={GlobalStyles} />
 
-      <SEO
+      <EnhancedSEO
         title={title}
         description={description}
         pathname={location.pathname}
         image={image}
         article={article}
+        pageType={pageType}
+        structuredData={structuredData}
+        keywords={keywords}
+        breadcrumbs={breadcrumbs}
+        faq={faq}
       >
         {/* Add preload hints for faster navigation with proper 'as' attributes */}
         <link rel="prefetch" href="/about/" as="document" />
         <link rel="prefetch" href="/gallery/" as="document" />
         <link rel="prefetch" href="/contact/" as="document" />
-      </SEO>
+      </EnhancedSEO>
 
       <MainNav />
 
