@@ -118,3 +118,11 @@ seo-prd.txt
 *-prd.txt
 README-task-master.md
 scripts/example_prd.txt
+.lighthouseci/assertion-results.json
+.lighthouseci/lhr-1746653876608.html
+.lighthouseci/lhr-1746653876608.json
+.lighthouseci/lhr-1746653888946.html
+.lighthouseci/lhr-1746653888946.json
+.lighthouseci/lhr-1746653900286.html
+.lighthouseci/lhr-1746653900286.json
+.lighthouseci/links.json
