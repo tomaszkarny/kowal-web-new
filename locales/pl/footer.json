@@ -7,5 +7,11 @@
   "about": "O nas",
   "gallery": "Galeria",
   "englishVersion": "English Version",
-  "polishVersion": "Polish Version"
+  "polishVersion": "Polish Version",
+  
+  "emailUs": "Napisz do nas",
+  "callUs": "Zadzwoń do nas",
+  "findUs": "Znajdź nas na Google Maps",
+  "followFacebook": "Odwiedź nas na Facebooku",
+  "followInstagram": "Odwiedź nas na Instagramie"
 }

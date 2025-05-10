@@ -19,7 +19,14 @@ export const ContactDetails = () => {
         {t('workshopName')}
       </SectionTitle>
       <SectionDescription isBolded main isUnderLined>
-        {CONTACT_DETAILS.ADDRESS}
+        <StyledAnchor
+          href={CONTACT_DETAILS.GOOGLE_MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          isBolded
+        >
+          {CONTACT_DETAILS.ADDRESS}
+        </StyledAnchor>
       </SectionDescription>
       <SectionDescription isBolded main isUnderLined>
         {t('email')}:{' '}
@@ -38,9 +45,22 @@ export const ContactDetails = () => {
         <StyledAnchor
           href={`https://${CONTACT_DETAILS.FACEBOOK_URL}`}
           target="_blank"
+          rel="noopener noreferrer"
           isBolded
         >
           {CONTACT_DETAILS.FACEBOOK_URL}
+        </StyledAnchor>
+      </SectionDescription>
+      
+      <SectionDescription main isBolded isUnderLined>
+        Instagram:{' '}
+        <StyledAnchor
+          href={`https://${CONTACT_DETAILS.INSTAGRAM_URL}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          isBolded
+        >
+          {CONTACT_DETAILS.INSTAGRAM_URL}
         </StyledAnchor>
       </SectionDescription>
     </StyledSection>
