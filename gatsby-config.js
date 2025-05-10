@@ -111,20 +111,17 @@ module.exports = {
         path: path.join(__dirname, `locales`),
       },
     },
-    // SEO plugins with sitemap including lastmod dates
+    // Enhanced sitemap configuration for multilingual support and better SEO
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap`,
-        excludes: ['/**/404', '/**/404.html'],
+        excludes: ['/**/404', '/**/404.html', '/**/dev-404-page'],
         createLinkInHead: true,
+        // Define a custom function to resolve the site URL
+        resolveSiteUrl: () => 'https://www.kowalstwo-karny.pl',
         query: `
           {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
             allSitePage {
               nodes {
                 path
@@ -132,16 +129,59 @@ module.exports = {
             }
           }
         `,
-        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
-          return allPages.map(page => {
-            return { ...page }
-          })
-        },
         serialize: ({ path }) => {
+          // Get current date in ISO format for lastmod
+          const lastmod = new Date().toISOString();
+          
+          // Is this an English page?
+          const isEnglish = path.startsWith('/en');
+          
+          // Generate alternate URLs for language versions
+          let plPath = isEnglish ? path.replace('/en', '') : path;
+          if (plPath === '') plPath = '/';
+          
+          let enPath = !isEnglish && path !== '/' ? `/en${path}` : isEnglish ? path : '/en';
+          
+          // Determine page type and set priority accordingly
+          let priority = 0.5; // Default priority
+          let changefreq = 'monthly'; // Default change frequency
+          
+          if (path === '/' || path === '/en/') {
+            // Homepage gets highest priority
+            priority = 1.0;
+            changefreq = 'weekly';
+          } else if (path.includes('/gallery')) {
+            // Gallery pages get high priority
+            priority = 0.8;
+            changefreq = 'weekly';
+          } else if (path.includes('/about')) {
+            // About page gets medium-high priority
+            priority = 0.7;
+            changefreq = 'monthly';
+          } else if (path.includes('/contact')) {
+            // Contact page gets medium priority
+            priority = 0.6;
+            changefreq = 'monthly';
+          }
+          
           return {
             url: path,
-            lastmod: new Date().toISOString(),
-          }
+            lastmod: lastmod,
+            changefreq: changefreq,
+            priority: priority,
+            links: [
+              {
+                lang: 'pl',
+                url: plPath,
+                rel: 'alternate'
+              },
+              {
+                lang: 'en',
+                url: enPath,
+                rel: 'alternate'
+              },
+            ],
+          };
         }
       }
     },

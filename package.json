@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:validate": "gatsby build && npm run validate:sitemap",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
@@ -21,7 +22,8 @@
     "prepare": "husky install",
     "lighthouse": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun",
     "lighthouse:desktop": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=desktop",
-    "lighthouse:mobile": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=mobile"
+    "lighthouse:mobile": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=mobile",
+    "validate:sitemap": "node scripts/validate-sitemap.js"
   },
   "lint-staged": {
     "locales/**/*.json": [
@@ -37,7 +39,6 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-google-maps/api": "^2.20.6",
     "ajv": "^8.17.1",
-    "chalk": "^4.1.2",
     "dotenv": "^16.0.3",
     "encoding": "^0.1.13",
     "eslint": "8.57.0",
@@ -76,13 +77,16 @@
     "@babel/eslint-parser": "^7.26.8",
     "@babel/preset-react": "^7.26.3",
     "@lhci/cli": "^0.14.0",
+    "chalk": "^5.4.1",
     "eslint-config-airbnb": "^19.0.4",
     "gatsby-plugin-eslint": "^4.0.4",
     "gatsby-plugin-root-import": "^2.0.9",
     "gatsby-plugin-stylelint": "^3.2.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.5.1",
-    "prettier": "^3.2.5"
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.2.5",
+    "xmldom": "^0.6.0"
   },
   "repository": {
     "type": "git",
