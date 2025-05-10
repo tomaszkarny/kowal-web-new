@@ -18,5 +18,11 @@
   "contact": {
     "title": "Contact - Artistic Blacksmithing Workshop Tadeusz Karny",
     "description": "Contact Artistic Blacksmithing Workshop Tadeusz Karny for custom blacksmith work. We provide professional consultations and high-quality metalwork."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "about": "About Us",
+    "gallery": "Gallery",
+    "contact": "Contact"
   }
 }

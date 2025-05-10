@@ -18,5 +18,11 @@
   "contact": {
     "title": "Kontakt - Pracownia Kowalstwa Artystycznego Tadeusz Karny",
     "description": "Skontaktuj się z Pracownią Kowalstwa Artystycznego Tadeusz Karny w sprawie wykonania elementów kowalskich. Zapewniamy profesjonalne konsultacje i wysokiej jakości wyroby metalowe."
+  },
+  "breadcrumbs": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "gallery": "Galeria",
+    "contact": "Kontakt"
   }
 }

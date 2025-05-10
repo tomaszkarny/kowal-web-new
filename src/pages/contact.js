@@ -5,6 +5,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { Contact } from 'components/Contact/Contact'
 import { Layout } from 'components/Layout/Layout'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
+import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
 import { BUSINESS_NAME, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails'
@@ -41,6 +42,10 @@ export const Head = ({ data, location }) => {
         title={title}
         description={description}
         pathname={location.pathname}
+      />
+      <BreadcrumbSchema 
+        pathname={location.pathname}
+        url={`${WEBSITE_URL}${location.pathname}`}
       />
     </>
   )

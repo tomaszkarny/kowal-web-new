@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
 import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
+import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
 import { SECTION_IDS } from 'consts/sectionID'
@@ -43,6 +44,10 @@ export const Head = ({ data, location }) => {
         title={title}
         description={description}
         pathname={location.pathname}
+      />
+      <BreadcrumbSchema 
+        pathname={location.pathname}
+        url={WEBSITE_URL}
       />
     </>
   )
