@@ -78,3 +78,34 @@ export const FooterLink = styled(Link)`
     transition: all 0.3s ease-in-out;
   }
 `
+
+/**
+ * Styled container for NAP display component in footer
+ */
+export const NapContainer = styled.div`
+  /* Footer-specific NAP styling */
+  font-size: 16px;
+  opacity: 0.8;
+  
+  h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  a {
+    color: ${({ theme }) => theme.color.white};
+    text-decoration: none;
+    display: block;
+    margin: 4px 0;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  }
+  
+
+`

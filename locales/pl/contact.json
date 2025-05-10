@@ -14,5 +14,19 @@
   "form_success_title": "Wiadomość wysłana!",
   "form_success_message": "Dziękujemy za Twoją wiadomość. Odpowiemy najszybciej jak to możliwe.",
   "form_send_another": "Wyślij kolejną wiadomość",
-  "form_error": "Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie."
+  "form_error": "Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.",
+  
+  "address": "Adres",
+  "opening_hours": "Godziny otwarcia",
+  "social_media": "Media społecznościowe",
+  "facebook": "Facebook",
+  "instagram": "Instagram",
+  "visit_facebook": "Odwiedź nasz profil na Facebooku",
+  "visit_instagram": "Odwiedź nasz profil na Instagramie",
+  "map_directions": "Wskaż trasę w Google Maps",
+  "call_us": "Zadzwoń do nas",
+  "email_us": "Wyślij email",
+  "closed": "Zamknięte",
+  "contact_info": "Informacje kontaktowe",
+  "visit_us": "Odwiedź nas"
 }

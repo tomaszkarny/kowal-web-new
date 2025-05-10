@@ -2,9 +2,11 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import {
   BUSINESS_NAME,
+  BUSINESS_NAME_ML,
   EMAIL_ADDRESS,
   PHONE_NUMBER,
   ADDRESS,
+  ADDRESS_ML,
   ADDRESS_STREET,
   ADDRESS_CITY,
   ADDRESS_POSTAL_CODE,
@@ -17,13 +19,15 @@ import {
   GOOGLE_MAP_DIRECTIONS,
   BUSINESS_TYPE,
   BUSINESS_DESCRIPTION,
+  BUSINESS_DESCRIPTION_ML,
   PRICE_RANGE,
   YEAR_ESTABLISHED,
   CURRENCIES_ACCEPTED,
   PAYMENT_ACCEPTED,
   AREA_SERVED,
   OPENING_HOURS,
-  BUSINESS_IMAGES
+  BUSINESS_IMAGES,
+  getNapInfo
 } from 'consts/contactDetails'
 
 /**
@@ -47,8 +51,11 @@ export const SchemaOrg = ({
   dateModified,
   structuredDataType = 'website',
   breadcrumbs = [],
-  faq = []
+  faq = [],
+  language = 'pl'
 }) => {
+  // Get language-appropriate NAP information
+  const napInfo = getNapInfo(language)
   // Initialize schema array
   const schema = []
   
@@ -82,7 +89,7 @@ export const SchemaOrg = ({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       '@id': `${organization.url}#organization`,
-      name: organization.name,
+      name: napInfo.businessName,
       url: organization.url,
       logo: {
         '@type': 'ImageObject',
@@ -92,21 +99,21 @@ export const SchemaOrg = ({
       },
       address: {
         '@type': 'PostalAddress',
-        streetAddress: ADDRESS_STREET,
-        addressLocality: ADDRESS_CITY,
-        postalCode: ADDRESS_POSTAL_CODE,
-        addressRegion: ADDRESS_REGION,
-        addressCountry: ADDRESS_COUNTRY_CODE
+        streetAddress: napInfo.address.street,
+        addressLocality: napInfo.address.city,
+        postalCode: napInfo.address.postalCode,
+        addressRegion: napInfo.address.region,
+        addressCountry: napInfo.address.countryCode
       },
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        telephone: organization.phone,
-        email: organization.email
+        telephone: napInfo.phone,
+        email: napInfo.email
       },
       sameAs: [
-        FACEBOOK_URL ? `https://${FACEBOOK_URL}` : null, 
-        INSTAGRAM_URL ? `https://${INSTAGRAM_URL}` : null
+        napInfo.socialMedia.facebook ? `https://${napInfo.socialMedia.facebook}` : null, 
+        napInfo.socialMedia.instagram ? `https://${napInfo.socialMedia.instagram}` : null
       ].filter(Boolean)
     })
   }
@@ -117,20 +124,20 @@ export const SchemaOrg = ({
       '@context': 'https://schema.org',
       '@type': BUSINESS_TYPE,
       '@id': `${url}#localbusiness`,
-      name: BUSINESS_NAME,
+      name: napInfo.businessName,
       image: BUSINESS_IMAGES.map(img => img.startsWith('http') ? img : `${WEBSITE_URL}${img}`),
       url: url || WEBSITE_URL,
-      telephone: PHONE_NUMBER,
-      email: EMAIL_ADDRESS,
+      telephone: napInfo.phone,
+      email: napInfo.email,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: ADDRESS_STREET,
-        addressLocality: ADDRESS_CITY,
-        postalCode: ADDRESS_POSTAL_CODE,
-        addressRegion: ADDRESS_REGION,
-        addressCountry: ADDRESS_COUNTRY_CODE
+        streetAddress: napInfo.address.street,
+        addressLocality: napInfo.address.city,
+        postalCode: napInfo.address.postalCode,
+        addressRegion: napInfo.address.region,
+        addressCountry: napInfo.address.countryCode
       },
-      description: description || BUSINESS_DESCRIPTION,
+      description: description || napInfo.description,
       geo: {
         '@type': 'GeoCoordinates',
         latitude: GOOGLE_MAP_DIRECTIONS.lat.toString(),
@@ -151,8 +158,8 @@ export const SchemaOrg = ({
       })),
       foundingDate: YEAR_ESTABLISHED,
       sameAs: [
-        FACEBOOK_URL ? `https://${FACEBOOK_URL}` : null, 
-        INSTAGRAM_URL ? `https://${INSTAGRAM_URL}` : null
+        napInfo.socialMedia.facebook ? `https://${napInfo.socialMedia.facebook}` : null, 
+        napInfo.socialMedia.instagram ? `https://${napInfo.socialMedia.instagram}` : null
       ].filter(Boolean)
     })
   }
