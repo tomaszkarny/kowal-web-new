@@ -1,6 +1,30 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { ADDRESS, PHONE_NUMBER, EMAIL_ADDRESS, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
+import {
+  BUSINESS_NAME,
+  EMAIL_ADDRESS,
+  PHONE_NUMBER,
+  ADDRESS,
+  ADDRESS_STREET,
+  ADDRESS_CITY,
+  ADDRESS_POSTAL_CODE,
+  ADDRESS_REGION,
+  ADDRESS_COUNTRY_CODE,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  WEBSITE_URL,
+  LOGO_PATH,
+  GOOGLE_MAP_DIRECTIONS,
+  BUSINESS_TYPE,
+  BUSINESS_DESCRIPTION,
+  PRICE_RANGE,
+  YEAR_ESTABLISHED,
+  CURRENCIES_ACCEPTED,
+  PAYMENT_ACCEPTED,
+  AREA_SERVED,
+  OPENING_HOURS,
+  BUSINESS_IMAGES
+} from 'consts/contactDetails'
 
 /**
  * Component for adding structured data (JSON-LD) to pages
@@ -12,9 +36,9 @@ export const SchemaOrg = ({
   description,
   image,
   organization = {
-    name: 'Pracownia Kowalstwa Artystycznego Tadeusz Karny',
-    url: 'https://kowalstwo-karny.pl',
-    logo: '/logo.png',
+    name: BUSINESS_NAME,
+    url: WEBSITE_URL,
+    logo: LOGO_PATH,
     address: ADDRESS,
     phone: PHONE_NUMBER,
     email: EMAIL_ADDRESS
@@ -68,10 +92,11 @@ export const SchemaOrg = ({
       },
       address: {
         '@type': 'PostalAddress',
-        streetAddress: organization.address.split(',')[0]?.trim(),
-        addressLocality: organization.address.split(',')[1]?.trim(),
-        postalCode: organization.address.match(/\d{2}-\d{3}/)?.[0] || '',
-        addressCountry: 'PL'
+        streetAddress: ADDRESS_STREET,
+        addressLocality: ADDRESS_CITY,
+        postalCode: ADDRESS_POSTAL_CODE,
+        addressRegion: ADDRESS_REGION,
+        addressCountry: ADDRESS_COUNTRY_CODE
       },
       contactPoint: {
         '@type': 'ContactPoint',
@@ -90,35 +115,45 @@ export const SchemaOrg = ({
   if (structuredDataType === 'local-business' || structuredDataType === 'all') {
     schema.push({
       '@context': 'https://schema.org',
-      '@type': 'BlacksmithShop',
+      '@type': BUSINESS_TYPE,
       '@id': `${url}#localbusiness`,
-      name: organization.name,
-      image: image ? (image.startsWith('http') ? image : `${organization.url}${image}`) : null,
-      url,
-      telephone: organization.phone,
-      email: organization.email,
+      name: BUSINESS_NAME,
+      image: BUSINESS_IMAGES.map(img => img.startsWith('http') ? img : `${WEBSITE_URL}${img}`),
+      url: url || WEBSITE_URL,
+      telephone: PHONE_NUMBER,
+      email: EMAIL_ADDRESS,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: organization.address.split(',')[0]?.trim(),
-        addressLocality: organization.address.split(',')[1]?.trim(),
-        postalCode: organization.address.match(/\d{2}-\d{3}/)?.[0] || '',
-        addressCountry: 'PL'
+        streetAddress: ADDRESS_STREET,
+        addressLocality: ADDRESS_CITY,
+        postalCode: ADDRESS_POSTAL_CODE,
+        addressRegion: ADDRESS_REGION,
+        addressCountry: ADDRESS_COUNTRY_CODE
       },
-      description,
+      description: description || BUSINESS_DESCRIPTION,
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: '53.1324', 
-        longitude: '18.0019'
+        latitude: GOOGLE_MAP_DIRECTIONS.lat.toString(),
+        longitude: GOOGLE_MAP_DIRECTIONS.lng.toString()
       },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '08:00',
-          closes: '16:00'
-        }
-      ],
-      priceRange: '$$'
+      openingHoursSpecification: OPENING_HOURS.map(hours => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: hours.days,
+        opens: hours.opens,
+        closes: hours.closes
+      })),
+      priceRange: PRICE_RANGE,
+      currenciesAccepted: CURRENCIES_ACCEPTED,
+      paymentAccepted: PAYMENT_ACCEPTED.join(', '),
+      areaServed: AREA_SERVED.map(area => ({
+        '@type': 'AdministrativeArea',
+        name: area
+      })),
+      foundingDate: YEAR_ESTABLISHED,
+      sameAs: [
+        FACEBOOK_URL ? `https://${FACEBOOK_URL}` : null, 
+        INSTAGRAM_URL ? `https://${INSTAGRAM_URL}` : null
+      ].filter(Boolean)
     })
   }
 
