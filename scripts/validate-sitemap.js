@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
-const { DOMParser } = require('xmldom');
+const { XMLParser } = require('fast-xml-parser');
 
 // Define simple color functions instead of using chalk
 const colors = {
@@ -10,6 +10,15 @@ const colors = {
   blue: (text) => `\x1b[34m${text}\x1b[0m`,
   yellow: (text) => `\x1b[33m${text}\x1b[0m`
 };
+
+// Configure XML parser options
+const parserOptions = {
+  ignoreAttributes: false,
+  attributeNamePrefix: '@_',
+  isArray: (name) => ['sitemap', 'url', 'link'].includes(name)
+};
+
+const parser = new XMLParser(parserOptions);
 
 // Configuration
 const PUBLIC_DIR = path.join(__dirname, '../public');
@@ -33,10 +42,12 @@ async function validateSitemap() {
   
   // Parse sitemap index to find individual sitemaps
   const sitemapIndexContent = fs.readFileSync(sitemapIndexPath, 'utf8');
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(sitemapIndexContent, 'text/xml');
+  const indexData = parser.parse(sitemapIndexContent);
   
-  const sitemapNodes = xmlDoc.getElementsByTagName('sitemap');
+  // Navigate through the parsed structure to find sitemaps
+  const sitemapIndex = indexData.sitemapindex || {};
+  const sitemapNodes = sitemapIndex.sitemap || [];
+  
   if (sitemapNodes.length === 0) {
     console.error(colors.red('❌ No sitemaps found in sitemap index'));
     process.exit(1);
@@ -45,8 +56,8 @@ async function validateSitemap() {
   console.log(colors.blue(`Found ${sitemapNodes.length} sitemap(s) in index`));
   
   // Check each sitemap
-  for (let i = 0; i < sitemapNodes.length; i++) {
-    const sitemapLoc = sitemapNodes[i].getElementsByTagName('loc')[0].textContent;
+  for (const sitemapNode of sitemapNodes) {
+    const sitemapLoc = sitemapNode.loc;
     const sitemapFileName = sitemapLoc.replace(`${SITE_URL}/sitemap/`, '');
     const sitemapPath = path.join(SITEMAP_DIR, sitemapFileName);
     
@@ -57,8 +68,11 @@ async function validateSitemap() {
     
     // Parse individual sitemap
     const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
-    const sitemapDoc = parser.parseFromString(sitemapContent, 'text/xml');
-    const urlNodes = sitemapDoc.getElementsByTagName('url');
+    const sitemapData = parser.parse(sitemapContent);
+    
+    // Navigate through the parsed structure to find URLs
+    const urlset = sitemapData.urlset || {};
+    const urlNodes = urlset.url || [];
     
     console.log(colors.green(`✅ ${sitemapFileName} - Found ${urlNodes.length} URLs`));
     
@@ -70,12 +84,13 @@ async function validateSitemap() {
     // Check first 5 URLs for essential elements
     for (let j = 0; j < Math.min(5, urlNodes.length); j++) {
       const url = urlNodes[j];
-      if (url.getElementsByTagName('priority').length > 0) hasPriority = true;
-      if (url.getElementsByTagName('changefreq').length > 0) hasChangefreq = true;
+      if (url.priority) hasPriority = true;
+      if (url.changefreq) hasChangefreq = true;
       
       // Check for xhtml:link alternates
-      const links = url.getElementsByTagNameNS('http://www.w3.org/1999/xhtml', 'link');
-      if (links && links.length > 0) hasAlternates = true;
+      // The links might be in a format like 'link:link' in fast-xml-parser
+      const links = url['link'] || url['link:link'];
+      if (links && (Array.isArray(links) ? links.length > 0 : true)) hasAlternates = true;
     }
     
     console.log(`  ${hasPriority ? colors.green('✅') : colors.yellow('⚠️')} Priority values: ${hasPriority ? 'Present' : 'Missing'}`);
