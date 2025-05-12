@@ -24,9 +24,13 @@ export default AboutPage
  * This includes both standard SEO tags and BreadcrumbList schema
  */
 export const Head = ({ data, location }) => {
-  const { t } = useTranslation('seo')
-  const title = t('about.title', 'About Us - ' + BUSINESS_NAME)
-  const description = t('about.description', 'Learn about our artistic blacksmithing workshop specializing in high-quality custom metalwork with over 20 years of experience.')
+  // Explicitly use the seo namespace for titles and descriptions
+  const { t, ready, i18n } = useTranslation('seo')
+  // Log the current language to help with debugging
+  console.log('Current language in about.js Head:', i18n.language)
+  // Explicitly request the key using the full path
+  const title = t('about.title', 'O nas - ' + BUSINESS_NAME)
+  const description = t('about.description', 'Poznaj naszą pracownię kowalstwa artystycznego.')
   
   return (
     <>

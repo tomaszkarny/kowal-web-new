@@ -10,9 +10,37 @@
  * Usage: node audit-keys.js
  */
 
+// Fix for Chalk v5 (ESM-only)
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk'); // For colored console output
+
+// Simple color functions to replace chalk
+const colors = {
+  red: (text) => `\x1b[31m${text}\x1b[0m`,
+  green: (text) => `\x1b[32m${text}\x1b[0m`,
+  yellow: (text) => `\x1b[33m${text}\x1b[0m`,
+  blue: (text) => `\x1b[34m${text}\x1b[0m`,
+  magenta: (text) => `\x1b[35m${text}\x1b[0m`,
+  cyan: (text) => `\x1b[36m${text}\x1b[0m`,
+  white: (text) => `\x1b[37m${text}\x1b[0m`,
+  bold: (text) => `\x1b[1m${text}\x1b[0m`
+};
+
+// Create a chalk-like API
+const chalk = {
+  red: colors.red,
+  green: colors.green,
+  yellow: colors.yellow,
+  blue: colors.blue,
+  bold: colors.bold,
+  cyan: colors.cyan
+};
+
+// Add methods for combined styles
+chalk.red.bold = (text) => colors.red(colors.bold(text));
+chalk.green.bold = (text) => colors.green(colors.bold(text));
+chalk.yellow.bold = (text) => colors.yellow(colors.bold(text));
+chalk.blue.bold = (text) => colors.blue(colors.bold(text));
 
 // Configuration
 const LOCALES_DIR = path.join(process.cwd(), 'locales');

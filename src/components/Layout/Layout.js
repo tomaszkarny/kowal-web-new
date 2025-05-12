@@ -32,6 +32,14 @@ export const Layout = ({ children, title, description, image, article, pageType 
       // Add a global flag to track page initialization
       if (typeof window !== 'undefined') {
         window.__pageLoaded = true
+        
+        // Clear i18next cache in localStorage to fix navigation label issues
+        // This will force a fresh load of translations
+        const localStorageKeys = Object.keys(localStorage);
+        const i18nextKeys = localStorageKeys.filter(key => key.startsWith('i18next_'));
+        i18nextKeys.forEach(key => {
+          localStorage.removeItem(key);
+        });
       }
     }
 
@@ -44,7 +52,7 @@ export const Layout = ({ children, title, description, image, article, pageType 
   return (
     <ThemeProvider theme={THEME}>
       {/* Preload all translations at once */}
-      <TranslationPreloader namespaces={['common', 'about', 'gallery', 'contact']} />
+      <TranslationPreloader namespaces={['common', 'about', 'gallery', 'contact', 'seo']} />
       <Global styles={GlobalStyles} />
 
       <EnhancedSEO

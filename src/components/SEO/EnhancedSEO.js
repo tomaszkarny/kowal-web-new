@@ -26,7 +26,8 @@ export const EnhancedSEO = ({
   breadcrumbs = [],
   faq = []
 }) => {
-  const { t } = useTranslation('common')
+  const { t: tCommon } = useTranslation('common') // For site title and common elements
+  const { t: tSeo } = useTranslation('seo') // For page-specific titles and descriptions
   const { language, languages, originalPath } = useI18next()
   const location = useLocation()
   const { 
@@ -48,21 +49,31 @@ export const EnhancedSEO = ({
   // Determine default meta title based on page type
   let pageTitle = title || '';
   if (!pageTitle) {
-    switch(pageType) {
-      case 'home':
-        pageTitle = t('home.meta.title', 'Home');
-        break;
-      case 'about':
-        pageTitle = t('about.meta.title', 'About Us');
-        break;
-      case 'gallery':
-        pageTitle = t('gallery.meta.title', 'Our Work');
-        break;
-      case 'contact':
-        pageTitle = t('contact.meta.title', 'Contact Us');
-        break;
-      default:
-        pageTitle = '';
+    // Explicitly check both translations for debugging
+    const debugSeoKey = `${pageType}.title`;
+    const hasTitleInSeo = tSeo(debugSeoKey, { defaultValue: null }) !== null;
+    
+    // Log translation debugging info if in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[SEO Debug] Language: ${language}, PageType: ${pageType}`);
+      console.log(`[SEO Debug] Looking for key: "${debugSeoKey}" in seo namespace`);
+      console.log(`[SEO Debug] Found in seo namespace: ${hasTitleInSeo}`);
+    }
+    
+    // Always fall back to common namespace for page names if seo title is missing
+    if (hasTitleInSeo) {
+      // Use the seo namespace title if it exists
+      pageTitle = tSeo(`${pageType}.title`);
+    } else {
+      // Fall back construction with site title
+      const pageName = tCommon(pageType, '');
+      const siteName = tCommon('siteTitle', '');
+      
+      if (pageName && siteName) {
+        pageTitle = `${pageName} - ${siteName}`;
+      } else if (pageType === 'home') {
+        pageTitle = tCommon('siteTitle', 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny');
+      }
     }
   }
   
@@ -71,16 +82,16 @@ export const EnhancedSEO = ({
   if (!pageDescription) {
     switch(pageType) {
       case 'home':
-        pageDescription = t('home.meta.description', 'Artistic Blacksmithing Workshop specializing in custom metal work');
+        pageDescription = tSeo('home.description', 'Pracownia Kowalstwa Artystycznego');
         break;
       case 'about':
-        pageDescription = t('about.meta.description', 'Learn about our workshop, history, and craftsmanship');
+        pageDescription = tSeo('about.description', 'Poznaj naszą pracownię kowalstwa artystycznego.');
         break;
       case 'gallery':
-        pageDescription = t('gallery.meta.description', 'Browse our portfolio of custom metalwork projects');
+        pageDescription = tSeo('gallery.description', 'Zobacz nasze portfolio bram, balustrad, ogrodzeń.');
         break;
       case 'contact':
-        pageDescription = t('contact.meta.description', 'Contact us for custom metal work projects');
+        pageDescription = tSeo('contact.description', 'Skontaktuj się z nami.');
         break;
       default:
         pageDescription = '';
@@ -88,8 +99,8 @@ export const EnhancedSEO = ({
   }
   
   const seo = {
-    title: pageTitle ? `${pageTitle} | ${t('siteTitle', defaultTitle)}` : t('siteTitle', defaultTitle),
-    description: pageDescription || t('siteDescription', defaultDescription),
+    title: pageTitle ? `${pageTitle} | ${tCommon('siteTitle', defaultTitle)}` : tCommon('siteTitle', defaultTitle),
+    description: pageDescription || tCommon('siteDescription', defaultDescription),
     image: image || defaultImage,
     url: `${siteUrl}${cleanPath}`,
     lang: language,
@@ -121,7 +132,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       '@id': `${siteUrl}/#organization`,
-      name: t('siteTitle', defaultTitle),
+      name: tCommon('siteTitle', defaultTitle),
       url: siteUrl,
       logo: `${siteUrl}/logo.png`,
       description: seo.description
@@ -132,7 +143,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'BlacksmithShop',
       '@id': `${siteUrl}/#localbusiness`,
-      name: t('siteTitle', defaultTitle),
+      name: tCommon('siteTitle', defaultTitle),
       url: siteUrl,
       image: `${siteUrl}/images/workshop.jpg`,
       description: seo.description
@@ -160,7 +171,7 @@ export const EnhancedSEO = ({
   }
 
   return (
-    <Helmet title={seo.title}>
+    <Helmet title={seo.title} key={`helmet-${language}-${path}-${Date.now()}`}>
       <html lang={seo.lang} />
       <meta name="description" content={seo.description} />
       {seo.keywords && <meta name="keywords" content={seo.keywords} />}
@@ -199,7 +210,7 @@ export const EnhancedSEO = ({
       {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteUrl}${seo.image}`} />}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content={t('siteTitle', defaultTitle)} />
+      <meta property="og:site_name" content={tCommon('siteTitle', defaultTitle)} />
       <meta property="og:locale" content={seo.lang === 'pl' ? 'pl_PL' : 'en_US'} />
 
       {/* Article specific metadata */}

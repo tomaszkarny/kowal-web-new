@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 const Ajv = require('ajv');
-const chalk = require('chalk');
+const chalk = require('./chalk-compatibility');
 
 // Configuration
 const LOCALES_DIR = path.join(process.cwd(), 'locales');

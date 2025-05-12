@@ -59,7 +59,7 @@ module.exports = {
           nsSeparator: ":",
           // Preload all translations at startup
           partialBundledLanguages: true,
-          ns: ['common', 'about', 'gallery', 'contact'],
+          ns: ['common', 'about', 'gallery', 'contact', 'seo'],
           defaultNS: 'common',
           // More aggressive fallbacks for faster loads
           fallbackLng: 'pl',

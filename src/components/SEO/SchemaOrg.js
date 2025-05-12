@@ -112,8 +112,8 @@ export const SchemaOrg = ({
         email: napInfo.email
       },
       sameAs: [
-        napInfo.socialMedia.facebook ? `https://${napInfo.socialMedia.facebook}` : null, 
-        napInfo.socialMedia.instagram ? `https://${napInfo.socialMedia.instagram}` : null
+        napInfo.social.facebook ? `https://${napInfo.social.facebook}` : null, 
+        napInfo.social.instagram ? `https://${napInfo.social.instagram}` : null
       ].filter(Boolean)
     })
   }
@@ -158,8 +158,8 @@ export const SchemaOrg = ({
       })),
       foundingDate: YEAR_ESTABLISHED,
       sameAs: [
-        napInfo.socialMedia.facebook ? `https://${napInfo.socialMedia.facebook}` : null, 
-        napInfo.socialMedia.instagram ? `https://${napInfo.socialMedia.instagram}` : null
+        napInfo.social.facebook ? `https://${napInfo.social.facebook}` : null, 
+        napInfo.social.instagram ? `https://${napInfo.social.instagram}` : null
       ].filter(Boolean)
     })
   }

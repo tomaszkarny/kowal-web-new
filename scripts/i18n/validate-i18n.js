@@ -18,7 +18,7 @@
 
 const { execSync } = require('child_process');
 const path = require('path');
-const chalk = require('chalk');
+const chalk = require('./chalk-compatibility');
 
 // Configuration
 const SCRIPT_DIR = path.dirname(__filename);
