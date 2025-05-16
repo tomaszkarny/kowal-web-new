@@ -115,7 +115,8 @@ tasks/ .env.lighthouse
 /tasks/
 *.prd.txt
 seo-prd.txt
-*-prd.txt
+# Allow i18n refactor PRD
+i18n-refactor-prd.txt
 README-task-master.md
 scripts/example_prd.txt
 .lighthouseci/assertion-results.json
@@ -126,3 +127,6 @@ scripts/example_prd.txt
 .lighthouseci/lhr-1746653900286.html
 .lighthouseci/lhr-1746653900286.json
 .lighthouseci/links.json
+
+# Added by Claude Task Master
+tasks/ 
