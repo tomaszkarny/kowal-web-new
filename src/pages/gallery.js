@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { GalleryPage } from 'components/GalleryPage/GalleryPage'
 import { Layout } from 'components/Layout/Layout'
@@ -29,8 +30,15 @@ const GalleryPageTemplate = () => {
  */
 export const Head = ({ data, location }) => {
   const { t } = useTranslation('seo')
-  const title = t('gallery.title', 'Gallery - ' + BUSINESS_NAME)
-  const description = t('gallery.description', 'View our collection of custom metalwork projects including decorative and functional pieces made by our artistic blacksmithing workshop.')
+  const { language } = useI18next()
+  const titleFallback = language === 'en'
+    ? 'Gallery - ' + BUSINESS_NAME
+    : 'Galeria - ' + BUSINESS_NAME
+  const descriptionFallback = language === 'en'
+    ? 'View our collection of custom metalwork projects including decorative and functional pieces made by our artistic blacksmithing workshop.'
+    : 'Zobacz nasze portfolio bram, balustrad, ogrodzeń oraz elementów dekoracyjnych wykonanych przez naszą pracownię.'
+  const title = t('gallery.title', titleFallback)
+  const description = t('gallery.description', descriptionFallback)
   
   return (
     <>

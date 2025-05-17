@@ -1,25 +1,30 @@
-import React from 'react'
-import { useI18next } from 'gatsby-plugin-react-i18next'
-import { navigate } from 'gatsby'
+import React, { useEffect } from 'react';
+import { useI18next } from 'gatsby-plugin-react-i18next';
+import { navigate } from 'gatsby';
 
-// This component is used by gatsby-plugin-react-i18next to handle redirects
+/**
+ * Client-side language redirect.
+ * - Reads preferences from localStorage ('language') or uses defaultLanguage.
+ * - Doesn't add prefix for default language (in our case 'pl').
+ * - Preserves query string and hash in the new URL.
+ */
 const Redirect = () => {
-  const { languages, originalPath, defaultLanguage } = useI18next()
+  const { originalPath, defaultLanguage } = useI18next();
 
-  React.useEffect(() => {
-    const detected =
-      typeof window !== 'undefined' && window.localStorage.getItem('language')
-        ? window.localStorage.getItem('language')
-        : defaultLanguage
+  useEffect(() => {
+    const stored = typeof window !== 'undefined' && window.localStorage.getItem('language');
+    const detected = stored || defaultLanguage;
 
     if (typeof window !== 'undefined') {
-      // Handle language detection and redirect
-      const path = `/${detected}${originalPath}`
-      navigate(path, { replace: true })
+      const needsPrefix = detected && detected !== defaultLanguage;
+      const basePath = needsPrefix ? `/${detected}${originalPath}` : originalPath;
+
+      const { search = '', hash = '' } = window.location;
+      navigate(`${basePath}${search}${hash}`, { replace: true });
     }
-  }, [])
+  }, [originalPath, defaultLanguage]);
 
-  return null
-}
+  return null;
+};
 
-export default Redirect
+export default Redirect;

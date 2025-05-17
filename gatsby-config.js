@@ -36,10 +36,10 @@ module.exports = {
         pathDefaultsToDefaultLanguage: true,
         i18nextOptions: {
           // Configure proper path to translation files to fix the backend warning
-          backend: {
-            // This tells i18next where to find the translation files
-            loadPath: '/locales/{{lng}}/{{ns}}.json',
-          },
+          // The backend configuration is handled by gatsby-plugin-react-i18next internally
+          // We don't need to specify it manually as it's injected at build time
+          ns: ['common', 'seo'],  // Specify namespaces explicitly
+          defaultNS: 'common',     // Set the default namespace
           interpolation: {
             escapeValue: false
           },
@@ -52,6 +52,12 @@ module.exports = {
             enabled: true,
             expirationTime: 7 * 24 * 60 * 60 * 1000, // 7 days
             cleanupInterval: 60 * 60 * 1000 // 1 hour
+          },
+          // 🔽 NEW SECTION - Configure detection order and disable navigator/localStorage
+          detection: {
+            order: ['htmlTag', 'path', 'cookie'],
+            caches: ['cookie'],   // store language preference only in cookie
+            lookupCookie: 'i18next',    // default cookie name used by the plugin
           },
           // Performance optimizations
           load: 'languageOnly',

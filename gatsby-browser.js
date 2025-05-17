@@ -1,14 +1,9 @@
-const React = require('react');
-const I18NextWrapper = require('./src/components/i18n/I18NextWrapper').default;
-
 /**
- * Wrap the entire application with our I18NextWrapper component
- * This ensures i18next is properly initialized with the backend
- * before any translation functions are called
+ * Gatsby browser APIs
+ * We simply return the element unchanged; all i18n context is provided
+ * by gatsby-plugin-react-i18next, avoiding duplicate providers.
  */
-exports.wrapRootElement = ({ element }) => {
-  return React.createElement(I18NextWrapper, null, element);
-};
+exports.wrapRootElement = ({ element }) => element;
 
 /**
  * This function runs when the site is first loaded in the browser
@@ -16,6 +11,13 @@ exports.wrapRootElement = ({ element }) => {
  */
 exports.onClientEntry = () => {
   console.log('Website initialized with i18next backend support');
+  
+  // Log navigation events (useful for debugging)  
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    window.addEventListener('popstate', () => {
+      console.log('Navigation via popstate event');
+    });
+  }
   
   // Suppress the defaultProps warning in memo components
   // This is particularly an issue with react-photo-gallery

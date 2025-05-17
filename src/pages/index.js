@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
@@ -29,8 +30,15 @@ export default IndexPage
  */
 export const Head = ({ data, location }) => {
   const { t } = useTranslation('seo')
-  const title = t('home.title', BUSINESS_NAME)
-  const description = t('home.description', BUSINESS_DESCRIPTION)
+  const { language } = useI18next()
+  const titleFallback = language === 'en'
+    ? 'Tadeusz Karny Artistic Blacksmith'
+    : 'Tadeusz Karny Kowalstwo Artystyczne'
+  const descriptionFallback = language === 'en'
+    ? 'Custom-made metal gates, railings, fences, and decorative elements with over 20 years of experience.'
+    : 'Wykonane na zamówienie bramy, balustrady, ogrodzenia i elementy dekoracyjne z ponad 20-letnim doświadczeniem.'
+  const title = t('home.title', titleFallback)
+  const description = t('home.description', descriptionFallback)
   
   return (
     <>

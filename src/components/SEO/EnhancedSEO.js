@@ -20,15 +20,18 @@ export const EnhancedSEO = ({
   dateModified,
   pageType = 'other',
   children,
+  /* ⬇ NEW FLAGS */
+  appendSiteTitle = true,
+  injectBaseSchemas = true,
   structuredData = 'website',
-  keywords = [],
+  /* keywords removed - deprecated */
   noindex = false,
   breadcrumbs = [],
   faq = []
 }) => {
   const { t: tCommon } = useTranslation('common') // For site title and common elements
   const { t: tSeo } = useTranslation('seo') // For page-specific titles and descriptions
-  const { language, languages, originalPath } = useI18next()
+  const { language, languages, originalPath, i18n } = useI18next()
   const location = useLocation()
   const { 
     title: defaultTitle, 
@@ -51,7 +54,16 @@ export const EnhancedSEO = ({
   if (!pageTitle) {
     // Explicitly check both translations for debugging
     const debugSeoKey = `${pageType}.title`;
-    const hasTitleInSeo = tSeo(debugSeoKey, { defaultValue: null }) !== null;
+    // Use a safer approach to check for translation existence
+    // We'll try-catch in case i18n.exists is problematic
+    let hasTitleInSeo = false;
+    try {
+      // First check if the key exists using the translation function
+      const translatedValue = tSeo(`${pageType}.title`, null);
+      hasTitleInSeo = translatedValue !== null && translatedValue !== `${pageType}.title`;
+    } catch (e) {
+      console.warn(`Error checking translation existence: ${e.message}`);
+    }
     
     // Log translation debugging info if in development
     if (process.env.NODE_ENV === 'development') {
@@ -62,10 +74,10 @@ export const EnhancedSEO = ({
     
     // Always fall back to common namespace for page names if seo title is missing
     if (hasTitleInSeo) {
-      // Use the seo namespace title if it exists
+      // Use the seo namespace title if it exists - using tSeo hook
       pageTitle = tSeo(`${pageType}.title`);
     } else {
-      // Fall back construction with site title
+      // Fall back construction with site title - using tCommon hook
       const pageName = tCommon(pageType, '');
       const siteName = tCommon('siteTitle', '');
       
@@ -98,13 +110,23 @@ export const EnhancedSEO = ({
     }
   }
   
+  // Use the translation hooks properly to ensure consistency
+  // Using tCommon instead of i18n.t as a safer approach
+  const siteTitle = tCommon('siteTitle', defaultTitle);
+  
+  // Implement smart title handling with appendSiteTitle flag
+  const baseTitle = pageTitle || siteTitle;
+  const formattedTitle = appendSiteTitle && !baseTitle.includes(siteTitle)
+    ? `${baseTitle} | ${siteTitle}`
+    : baseTitle;
+
   const seo = {
-    title: pageTitle ? `${pageTitle} | ${tCommon('siteTitle', defaultTitle)}` : tCommon('siteTitle', defaultTitle),
+    title: formattedTitle,
     description: pageDescription || tCommon('siteDescription', defaultDescription),
     image: image || defaultImage,
     url: `${siteUrl}${cleanPath}`,
-    lang: language,
-    keywords: keywords ? keywords.join(', ') : ''
+    lang: language
+    /* keywords removed - deprecated */
   }
 
   // Get the current path adjusted for proper canonical URL (no trailing slash except homepage)
@@ -159,22 +181,34 @@ export const EnhancedSEO = ({
       url: siteUrl
     }
     
-    switch(structuredData) {
+    const schema = [];
+
+    /* ⬇ Add base schemas if flag is active */
+    if (injectBaseSchemas) {
+      schema.push(websiteData, orgData);
+    }
+
+    /* Handle existing structuredData parameter (for backward compatibility) */
+    switch (structuredData) {
       case 'local-business':
-        return localBusinessData;
+        schema.push(localBusinessData);
+        break;
       case 'organization':
-        return orgData;
+        if (!injectBaseSchemas) schema.push(orgData);
+        break;
       case 'website':
       default:
-        return websiteData;
+        if (!injectBaseSchemas) schema.push(websiteData);
     }
+
+    return schema;
   }
 
   return (
-    <Helmet title={seo.title} key={`helmet-${language}-${path}-${Date.now()}`}>
+    <Helmet title={seo.title} key={`helmet-${language}-${cleanPath}`}>
       <html lang={seo.lang} />
       <meta name="description" content={seo.description} />
-      {seo.keywords && <meta name="keywords" content={seo.keywords} />}
+      {/* keywords meta tag removed - deprecated */}
       <meta name="image" content={seo.image} />
       
       {/* Robots control for search engines */}

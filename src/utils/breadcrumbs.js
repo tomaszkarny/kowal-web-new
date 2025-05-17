@@ -2,7 +2,6 @@
  * Breadcrumb utilities for generating hierarchical path data
  * Used for BreadcrumbList schema.org structured data
  */
-import { LANGUAGE_PATHS } from 'consts/languageConfig'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { WEBSITE_URL } from 'consts/contactDetails'
 

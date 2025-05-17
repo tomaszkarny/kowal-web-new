@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { Contact } from 'components/Contact/Contact'
 import { Layout } from 'components/Layout/Layout'
@@ -27,8 +28,15 @@ export default ContactPage
  */
 export const Head = ({ data, location }) => {
   const { t } = useTranslation('seo')
-  const title = t('contact.title', 'Contact - ' + BUSINESS_NAME)
-  const description = t('contact.description', 'Contact ' + BUSINESS_NAME + ' for custom blacksmith work. ' + BUSINESS_DESCRIPTION)
+  const { language } = useI18next()
+  const titleFallback = language === 'en'
+    ? 'Contact - ' + BUSINESS_NAME
+    : 'Kontakt - ' + BUSINESS_NAME
+  const descriptionFallback = language === 'en'
+    ? 'Contact ' + BUSINESS_NAME + ' for custom blacksmith work. ' + BUSINESS_DESCRIPTION
+    : 'Skontaktuj się z ' + BUSINESS_NAME + ' w sprawie indywidualnych wyrobów kowalskich. ' + BUSINESS_DESCRIPTION
+  const title = t('contact.title', titleFallback)
+  const description = t('contact.description', descriptionFallback)
   
   return (
     <>

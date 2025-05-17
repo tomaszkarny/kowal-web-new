@@ -1,107 +1,66 @@
 /**
- * Language configuration for hreflang tags
- * Maps pathnames to their corresponding language variants
- * 
- * Structure:
- * {
- *   [pathname]: {
- *     pl: pathInPolish,
- *     en: pathInEnglish,
- *     default: defaultPath (typically Polish version)
- *   }
- * }
+ * Language helpers - dynamic, single-source implementation
+ * --------------------------------------------------------
+ * • getLanguageFromPath(pathname)  -> 'pl' | 'en'
+ * • getLanguageUrls(pathname)      -> { pl, en, default }
+ *
+ * Features:
+ *  ◦ Always returns paths with trailing slash (except for root '/')
+ *  ◦ Removes '/en' prefix from base path before building variants
+ *  ◦ No static maps - works for any static or dynamic page
  */
 
-// Site URL from gatsby-config
 const SITE_URL = 'https://www.kowalstwo-karny.pl';
 
-// Main page paths - map each page to its language variants
-export const LANGUAGE_PATHS = {
-  // Homepage
-  '/': {
-    pl: '/',
-    en: '/en/',
-    default: '/'
-  },
-  '/en/': {
-    pl: '/',
-    en: '/en/',
-    default: '/'
-  },
-  
-  // About page
-  '/about/': {
-    pl: '/about/',
-    en: '/en/about/',
-    default: '/about/'
-  },
-  '/en/about/': {
-    pl: '/about/',
-    en: '/en/about/',
-    default: '/about/'
-  },
-  
-  // Gallery page
-  '/gallery/': {
-    pl: '/gallery/',
-    en: '/en/gallery/',
-    default: '/gallery/'
-  },
-  '/en/gallery/': {
-    pl: '/gallery/',
-    en: '/en/gallery/',
-    default: '/gallery/'
-  },
-  
-  // Contact page
-  '/contact/': {
-    pl: '/contact/',
-    en: '/en/contact/',
-    default: '/contact/'
-  },
-  '/en/contact/': {
-    pl: '/contact/',
-    en: '/en/contact/',
-    default: '/contact/'
-  },
-  
-  // 404 page
-  '/404/': {
-    pl: '/404/',
-    en: '/en/404/',
-    default: '/404/'
-  },
-  '/en/404/': {
-    pl: '/404/',
-    en: '/en/404/',
-    default: '/404/'
-  }
+/**
+ * Normalize pathname:
+ * 1. Enforce leading '/'
+ * 2. Remove query & hash
+ * 3. Reduce multiple slashes
+ * 4. Add trailing slash (except for root '/')
+ */
+const normalizePath = (pathname = '/') => {
+  let path = pathname.trim();
+
+  if (!path.startsWith('/')) path = `/${path}`;
+
+  // strip query / fragment
+  path = path.split('?')[0].split('#')[0];
+
+  // collapse multiple slashes
+  path = path.replace(/\/{2,}/g, '/');
+
+  if (path !== '/' && !path.endsWith('/')) path += '/';
+
+  return path;
 };
 
 /**
- * Helper function to get full URLs with the site domain
- * @param {string} pathname - The current pathname
- * @returns {Object} Object with full URLs for each language variant
+ * Determine language based on path.
+ * @param {string} pathname
+ * @returns {'pl' | 'en'}
  */
-export const getLanguageUrls = (pathname) => {
-  const paths = LANGUAGE_PATHS[pathname] || {
-    pl: pathname,
-    en: pathname.startsWith('/en/') ? pathname : `/en${pathname}`,
-    default: pathname
-  };
-  
+export const getLanguageFromPath = (pathname = '/') => {
+  const path = normalizePath(pathname);
+  return path === '/en/' || path.startsWith('/en/') ? 'en' : 'pl';
+};
+
+/**
+ * Return full URLs for both languages.
+ * @param {string} pathname
+ */
+export const getLanguageUrls = (pathname = '/') => {
+  const path = normalizePath(pathname);
+
+  // base path without '/en' prefix
+  const basePath = path === '/en/' ? '/' : path.replace(/^\/en\//, '/');
+
+  const plPath = basePath;
+  const enPath = basePath === '/' ? '/en/' : `/en${basePath}`;
+
   return {
-    pl: `${SITE_URL}${paths.pl}`,
-    en: `${SITE_URL}${paths.en}`,
-    default: `${SITE_URL}${paths.default}`
+    pl: `${SITE_URL}${plPath}`,
+    en: `${SITE_URL}${enPath}`,
+    default: `${SITE_URL}${plPath}`,
   };
-};
-
-/**
- * Get the language code from the current pathname
- * @param {string} pathname - The current pathname
- * @returns {string} Language code ('pl' or 'en')
- */
-export const getLanguageFromPath = (pathname) => {
-  return pathname.startsWith('/en/') ? 'en' : 'pl';
 };

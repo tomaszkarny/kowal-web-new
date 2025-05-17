@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { About } from 'components/About/About'
 import { Layout } from 'components/Layout/Layout'
@@ -24,13 +25,21 @@ export default AboutPage
  * This includes both standard SEO tags and BreadcrumbList schema
  */
 export const Head = ({ data, location }) => {
-  // Explicitly use the seo namespace for titles and descriptions
-  const { t, ready, i18n } = useTranslation('seo')
-  // Log the current language to help with debugging
-  console.log('Current language in about.js Head:', i18n.language)
-  // Explicitly request the key using the full path
-  const title = t('about.title', 'O nas - ' + BUSINESS_NAME)
-  const description = t('about.description', 'Poznaj naszą pracownię kowalstwa artystycznego.')
+  // Use the seo namespace for titles and descriptions
+  const { t } = useTranslation('seo')
+  const { language } = useI18next()
+  
+  // Create language-specific fallbacks
+  const titleFallback = language === 'en'
+    ? 'About Us - Tadeusz Karny Artistic Blacksmith'
+    : 'O nas - Tadeusz Karny Kowalstwo Artystyczne'
+  const descriptionFallback = language === 'en'
+    ? 'Learn about our artistic blacksmithing workshop specializing in high-quality custom metalwork.'
+    : 'Poznaj naszą pracownię kowalstwa artystycznego specjalizującą się w wysokiej jakości wyrobach metalowych.'
+    
+  // Use translation with appropriate fallbacks
+  const title = t('about.title', titleFallback)
+  const description = t('about.description', descriptionFallback)
   
   return (
     <>

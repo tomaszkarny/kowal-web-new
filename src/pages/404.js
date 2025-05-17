@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
 
 // Import common components
@@ -25,17 +26,25 @@ const NotFoundWrapper = styled.div`
  */
 const NotFoundPage = () => {
   const { t } = useTranslation()
+  const { language } = useI18next()
+  
+  // Create language-dependent fallbacks
+  const titleFallback = language === 'en' ? 'Page Not Found' : 'Strona nie znaleziona'
+  const messageFallback = language === 'en'
+    ? "Sorry, the page you're looking for doesn't exist."
+    : 'Przepraszamy, strona której szukasz nie istnieje.'
+  const homeLinkFallback = language === 'en' ? 'Return to Homepage' : 'Wróć do strony głównej'
 
   return (
     <StyledSection>
       <NotFoundWrapper>
         <SectionTitle main>
-          {t('notFoundTitle', 'Strona nie znaleziona')}
+          {t('notFoundTitle', titleFallback)}
         </SectionTitle>
         <SectionDescription>
-          {t('notFoundMessage', 'Przepraszamy, strona której szukasz nie istnieje.')}
+          {t('notFoundMessage', messageFallback)}
         </SectionDescription>
-        <Link to="/" primary text={t('goHome', 'Wróć do strony głównej')} />
+        <Link to="/" primary text={t('goHome', homeLinkFallback)} />
       </NotFoundWrapper>
     </StyledSection>
   )
