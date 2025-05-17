@@ -1,11 +1,4 @@
 /**
- * Gatsby browser APIs
- * We simply return the element unchanged; all i18n context is provided
- * by gatsby-plugin-react-i18next, avoiding duplicate providers.
- */
-exports.wrapRootElement = ({ element }) => element;
-
-/**
  * This function runs when the site is first loaded in the browser
  * We use this to customize behavior and suppress specific console warnings
  */

@@ -1,13 +1,6 @@
 const React = require('react');
 
 /**
- * ⬇ Identity wrapper – relying solely on gatsby-plugin-react-i18next.
- *    Keeping this export avoids breaking Gatsby's API chain, but
- *    no longer injects a second i18n instance.
- */
-exports.wrapRootElement = ({ element }) => element;
-
-/**
  * Add analytics and verification scripts/tags to the document head
  */
 exports.onRenderBody = ({ setHeadComponents }) => {
