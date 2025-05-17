@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
+import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
 // Import common components
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
@@ -50,7 +51,27 @@ const NotFoundPage = () => {
   )
 }
 
-export default NotFoundPage
+export default NotFoundPage;
+
+// SEO Metadata for the 404 page
+export const Head = () => {
+  const { t } = useTranslation('common');
+  const { language } = useI18next();
+  
+  // Create language-dependent fallbacks
+  const titleFallback = language === 'en' ? 'Page Not Found' : 'Strona nie znaleziona';
+  const descriptionFallback = language === 'en'
+    ? "Sorry, the page you're looking for doesn't exist."
+    : 'Przepraszamy, strona której szukasz nie istnieje.';
+
+  return (
+    <EnhancedSEO
+      title={t('notFoundTitle', titleFallback)}
+      description={t('notFoundMessage', descriptionFallback)}
+      pageType="error"
+    />
+  );
+};
 
 // Required for i18n support
 export const query = graphql`

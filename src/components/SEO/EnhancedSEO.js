@@ -62,14 +62,7 @@ export const EnhancedSEO = ({
       const translatedValue = tSeo(`${pageType}.title`, null);
       hasTitleInSeo = translatedValue !== null && translatedValue !== `${pageType}.title`;
     } catch (e) {
-      console.warn(`Error checking translation existence: ${e.message}`);
-    }
-    
-    // Log translation debugging info if in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`[SEO Debug] Language: ${language}, PageType: ${pageType}`);
-      console.log(`[SEO Debug] Looking for key: "${debugSeoKey}" in seo namespace`);
-      console.log(`[SEO Debug] Found in seo namespace: ${hasTitleInSeo}`);
+      // console.warn(`Error checking translation existence: ${e.message}`); // Removed warning
     }
     
     // Always fall back to common namespace for page names if seo title is missing
@@ -112,16 +105,45 @@ export const EnhancedSEO = ({
   
   // Use the translation hooks properly to ensure consistency
   // Using tCommon instead of i18n.t as a safer approach
-  const siteTitle = tCommon('siteTitle', defaultTitle);
+  const translatedSiteTitle = tCommon('siteTitle');
+  // Fallback to defaultTitle if translation is missing, empty, or returns the key itself
+  const baseSiteTitle = (translatedSiteTitle && translatedSiteTitle !== 'siteTitle' && translatedSiteTitle !== 'common:siteTitle') 
+    ? translatedSiteTitle 
+    : defaultTitle;
   
   // Implement smart title handling with appendSiteTitle flag
-  const baseTitle = pageTitle || siteTitle;
-  const formattedTitle = appendSiteTitle && !baseTitle.includes(siteTitle)
-    ? `${baseTitle} | ${siteTitle}`
-    : baseTitle;
+  const baseTitle = pageTitle || ''; // pageTitle is the 'title' prop from page
+  const siteNameString = baseSiteTitle; // baseSiteTitle is already defined as: tCommon('siteTitle') || defaultTitle;
+  let finalTitle;
+
+  if (pageType === 'home') {
+    // For the home page, use the title passed in (baseTitle).
+    // If baseTitle is empty, fall back to the siteNameString.
+    finalTitle = baseTitle || siteNameString;
+  } else {
+    // For other pages, apply append logic if appendSiteTitle is true.
+    if (appendSiteTitle && baseTitle && siteNameString) {
+      // Only append if baseTitle is not the same as siteNameString and does not already include it.
+      if (baseTitle.trim().toLowerCase() !== siteNameString.trim().toLowerCase() && 
+          !baseTitle.toLowerCase().includes(siteNameString.toLowerCase())) {
+        finalTitle = `${baseTitle} | ${siteNameString}`;
+      } else {
+        // baseTitle is already the site name or includes it.
+        finalTitle = baseTitle;
+      }
+    } else {
+      // If not appending, or baseTitle/siteNameString is missing, use baseTitle or fallback to siteNameString.
+      finalTitle = baseTitle || siteNameString;
+    }
+  }
+
+  // Final fallback if somehow finalTitle is still empty (e.g., baseTitle and siteNameString were both empty)
+  if (!finalTitle) {
+    finalTitle = siteNameString; // Default to site name if all else fails
+  }
 
   const seo = {
-    title: formattedTitle,
+    title: finalTitle,
     description: pageDescription || tCommon('siteDescription', defaultDescription),
     image: image || defaultImage,
     url: `${siteUrl}${cleanPath}`,

@@ -26,6 +26,29 @@ exports.onRenderBody = ({ setHeadComponents }) => {
       content: 'JKUnr_75ce6PD0-NuNVM1t-CWuSLqi_vBwMky594zTM'
     })
   );
+
+  // Add preload hints for faster navigation
+  headComponents.push(
+    // Preload main pages for faster navigation
+    React.createElement('link', {
+      key: 'preload-about',
+      rel: 'prefetch',
+      href: '/about/',
+      as: 'document'
+    }),
+    React.createElement('link', {
+      key: 'preload-gallery',
+      rel: 'prefetch',
+      href: '/gallery/',
+      as: 'document'
+    }),
+    React.createElement('link', {
+      key: 'preload-contact',
+      rel: 'prefetch',
+      href: '/contact/',
+      as: 'document'
+    })
+  );
   
   // Set all head components if we have any
   if (headComponents.length > 0) {

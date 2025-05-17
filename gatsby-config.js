@@ -35,50 +35,45 @@ module.exports = {
         // Force default language as the first loaded
         pathDefaultsToDefaultLanguage: true,
         i18nextOptions: {
-          // Configure proper path to translation files to fix the backend warning
-          // The backend configuration is handled by gatsby-plugin-react-i18next internally
-          // We don't need to specify it manually as it's injected at build time
-          ns: ['common', 'seo'],  // Specify namespaces explicitly
-          defaultNS: 'common',     // Set the default namespace
+          // ===== NAMESPACES =====
+          // Single source of truth for all translation namespaces
+          ns: ['common', 'about', 'gallery', 'contact', 'seo'],
+          defaultNS: 'common',
+          
+          // ===== LANGUAGE DETECTION =====
+          // Language detection: first look at the URL path, then fall back to the <html lang> attr
+          // Disable ALL client-side caches to avoid sticky language issues
+          detection: {
+            order: ['path', 'htmlTag'],
+            caches: [],
+          },
+          
+          // ===== CORE I18NEXT CONFIGURATION =====
           interpolation: {
             escapeValue: false
           },
-          // Disable suspense to prevent the loading spinner
-          react: {
-            useSuspense: false
-          },
-          // Enhanced caching for translations
-          cache: {
-            enabled: true,
-            expirationTime: 7 * 24 * 60 * 60 * 1000, // 7 days
-            cleanupInterval: 60 * 60 * 1000 // 1 hour
-          },
-          // 🔽 NEW SECTION - Configure detection order and disable navigator/localStorage
-          detection: {
-            order: ['path', 'cookie', 'htmlTag'],
-            caches: ['cookie'],   // store language preference only in cookie
-            lookupCookie: 'i18next',    // default cookie name used by the plugin
-          },
-          // Performance optimizations
           load: 'languageOnly',
           keySeparator: ".",
           nsSeparator: ":",
-          // Preload all translations at startup
-          partialBundledLanguages: true,
-          ns: ['common', 'about', 'gallery', 'contact', 'seo'],
-          defaultNS: 'common',
-          // More aggressive fallbacks for faster loads
           fallbackLng: 'pl',
-          // Debug only in development to avoid console spam in production
+          
+          // ===== REACT INTEGRATION =====
+          react: {
+            useSuspense: false
+          },
+          
+          // ===== DEBUGGING & ERROR HANDLING =====
+          // Debug only in development
           debug: process.env.NODE_ENV === 'development',
-
-          // Disable warnings for gallery images
+          
+          // Disable missing key warnings for gallery images
           saveMissing: false,
           missingKeyHandler: (lng, ns, key) => {
             // Ignore warnings for gallery image keys
             if (key.includes('gallery images')) {
               return;
             }
+
 
             // For other keys, log warnings in development mode only
             if (process.env.NODE_ENV === 'development') {

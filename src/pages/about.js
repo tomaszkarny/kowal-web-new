@@ -1,14 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'; // Will be removed from Head, language from pageContext
 
 import { About } from 'components/About/About'
 import { Layout } from 'components/Layout/Layout'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
-import { BUSINESS_NAME, WEBSITE_URL } from 'consts/contactDetails'
+import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML
 
 const AboutPage = () => {
   return (
@@ -24,21 +24,24 @@ export default AboutPage
  * Implement Gatsby Head API for the about page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location }) => {
+export const Head = ({ data, location, pageContext }) => { // Added pageContext
   // Use the seo namespace for titles and descriptions
   const { t } = useTranslation('seo')
-  const { language } = useI18next()
+  const { language } = pageContext; // Language from pageContext
   
-  // Create language-specific fallbacks
-  const titleFallback = language === 'en'
-    ? 'About Us - Tadeusz Karny Artistic Blacksmith'
-    : 'O nas - Tadeusz Karny Kowalstwo Artystyczne'
+  const pageNameKey = 'about.title';
+  const translatedPageName = t(pageNameKey);
+
+  // Fallback for the page name itself, if translation is missing for 'about.title'
+  const pageNameFallback = language === 'en' ? 'About Us' : 'O nas';
+  const pageName = translatedPageName && translatedPageName !== pageNameKey ? translatedPageName : pageNameFallback;
+
+  const siteName = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl; // This line is no longer directly used for title construction here
+  const title = pageName; // Pass only the specific page name to EnhancedSEO
+
   const descriptionFallback = language === 'en'
     ? 'Learn about our artistic blacksmithing workshop specializing in high-quality custom metalwork.'
-    : 'Poznaj naszą pracownię kowalstwa artystycznego specjalizującą się w wysokiej jakości wyrobach metalowych.'
-    
-  // Use translation with appropriate fallbacks
-  const title = t('about.title', titleFallback)
+    : 'Poznaj naszą pracownię kowalstwa artystycznego specjalizującą się w wysokiej jakości wyrobach metalowych.';
   const description = t('about.description', descriptionFallback)
   
   return (
@@ -47,6 +50,7 @@ export const Head = ({ data, location }) => {
         title={title}
         description={description}
         pathname={location.pathname}
+        pageType="about" // Added pageType
       />
       <BreadcrumbSchema 
         pathname={location.pathname}

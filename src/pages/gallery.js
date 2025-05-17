@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next' // Re-add useI18next
 
 import { GalleryPage } from 'components/GalleryPage/GalleryPage'
 import { Layout } from 'components/Layout/Layout'
@@ -10,9 +9,9 @@ import { StyledSection } from 'components/common/StyledSection/StyledSection'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
-import { BUSINESS_NAME, WEBSITE_URL } from 'consts/contactDetails'
+import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails' // Import BUSINESS_NAME_ML
 
-const GalleryPageTemplate = () => {
+const GalleryPageTemplate = ({ pageContext }) => { // Destructure pageContext
   const { t } = useTranslation('common')
   return (
     <Layout>
@@ -28,26 +27,33 @@ const GalleryPageTemplate = () => {
  * Implement Gatsby Head API for the gallery page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location }) => {
-  const { t } = useTranslation('seo')
-  const { language } = useI18next()
-  const titleFallback = language === 'en'
-    ? 'Gallery - ' + BUSINESS_NAME
-    : 'Galeria - ' + BUSINESS_NAME
+export const Head = ({ data, location, pageContext }) => { // Receive pageContext
+  const { language } = pageContext; // Use language from pageContext
+  const { t } = useTranslation('seo');
+
+  const titleFallback = language === 'en' ? 'Gallery' : 'Galeria'; // Simplified to just the page name
+
   const descriptionFallback = language === 'en'
     ? 'View our collection of custom metalwork projects including decorative and functional pieces made by our artistic blacksmithing workshop.'
-    : 'Zobacz nasze portfolio bram, balustrad, ogrodzeń oraz elementów dekoracyjnych wykonanych przez naszą pracownię.'
-  const title = t('gallery.title', titleFallback)
-  const description = t('gallery.description', descriptionFallback)
-  
+    : 'Zobacz nasze portfolio bram, balustrad, ogrodzeń oraz elementów dekoracyjnych wykonanych przez naszą pracownię.';
+
+  // t() should now work correctly with the language from useI18next
+  const translatedTitleFromSeo = t('gallery.title'); 
+
+  const finalTitleToPass = translatedTitleFromSeo && translatedTitleFromSeo !== 'gallery.title' ? translatedTitleFromSeo : titleFallback;
+
+
+  const description = t('gallery.description', descriptionFallback);
+
   return (
     <>
       <EnhancedSEO
-        title={title}
+        title={finalTitleToPass}
         description={description}
         pathname={location.pathname}
+        pageType="gallery" // Added pageType
       />
-      <BreadcrumbSchema 
+      <BreadcrumbSchema
         pathname={location.pathname}
         url={`${WEBSITE_URL}${location.pathname}`}
       />

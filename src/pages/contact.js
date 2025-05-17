@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next'; // Will be removed from Head, language from pageContext
 
 import { Contact } from 'components/Contact/Contact'
 import { Layout } from 'components/Layout/Layout'
@@ -9,7 +9,7 @@ import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
-import { BUSINESS_NAME, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails'
+import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML and BUSINESS_DESCRIPTION_ML
 
 const ContactPage = () => {
   return (
@@ -26,16 +26,23 @@ export default ContactPage
  * This includes both standard SEO tags and LocalBusiness schema
  * The contact page is especially important for local business schema
  */
-export const Head = ({ data, location }) => {
+export const Head = ({ data, location, pageContext }) => { // Added pageContext
   const { t } = useTranslation('seo')
-  const { language } = useI18next()
-  const titleFallback = language === 'en'
-    ? 'Contact - ' + BUSINESS_NAME
-    : 'Kontakt - ' + BUSINESS_NAME
+  const { language } = pageContext; // Language from pageContext
+  const pageNameKey = 'contact.title';
+  const translatedPageName = t(pageNameKey);
+
+  const pageNameFallback = language === 'en' ? 'Contact' : 'Kontakt';
+  const pageName = translatedPageName && translatedPageName !== pageNameKey ? translatedPageName : pageNameFallback;
+
+  const siteName = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl; // This line is no longer directly used for title construction here
+  const title = pageName; // Pass only the specific page name to EnhancedSEO
+
+  // Use BUSINESS_DESCRIPTION_ML for multilingual description fallback components
+  const businessDesc = language === 'en' ? BUSINESS_DESCRIPTION_ML.en : BUSINESS_DESCRIPTION_ML.pl;
   const descriptionFallback = language === 'en'
-    ? 'Contact ' + BUSINESS_NAME + ' for custom blacksmith work. ' + BUSINESS_DESCRIPTION
-    : 'Skontaktuj się z ' + BUSINESS_NAME + ' w sprawie indywidualnych wyrobów kowalskich. ' + BUSINESS_DESCRIPTION
-  const title = t('contact.title', titleFallback)
+    ? `Contact ${siteName} for custom blacksmith work. ${businessDesc}`
+    : `Skontaktuj się z ${siteName} w sprawie indywidualnych wyrobów kowalskich. ${businessDesc}`;
   const description = t('contact.description', descriptionFallback)
   
   return (
@@ -44,6 +51,7 @@ export const Head = ({ data, location }) => {
         title={title}
         description={description}
         pathname={location.pathname}
+        pageType="contact" // Added pageType
       />
       <LocalBusinessSchema 
         url={`${WEBSITE_URL}${location.pathname}`}

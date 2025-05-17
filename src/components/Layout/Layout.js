@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useLocation } from '@reach/router'
 
 // Import the translation preloader
 import TranslationPreloader from 'components/common/TranslationPreloader/TranslationPreloader'
@@ -10,7 +9,7 @@ import { Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
 import { GlobalStyles } from 'components/common/GlobalStyles'
 
-import { EnhancedSEO } from 'components/SEO/EnhancedSEO.js'
+// Import moved to individual page components
 
 import { MainNav } from 'components/Layout/MainNav/MainNav'
 import { Footer } from 'components/Layout/Footer/Footer'
@@ -18,9 +17,8 @@ import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
 import { LayoutContent } from 'components/Layout/Layout.styles'
 
-export const Layout = ({ children, title, description, image, article, pageType = 'other', structuredData = 'website', keywords = [], breadcrumbs = [], faq = [] }) => {
+export const Layout = ({ children }) => {
   const { t } = useTranslation('common')
-  const location = useLocation()
   const mountedRef = useRef(false)
 
   // Track initial mount
@@ -55,23 +53,8 @@ export const Layout = ({ children, title, description, image, article, pageType 
       <TranslationPreloader namespaces={['common', 'about', 'gallery', 'contact', 'seo']} />
       <Global styles={GlobalStyles} />
 
-      <EnhancedSEO
-        title={title}
-        description={description}
-        pathname={location.pathname}
-        image={image}
-        article={article}
-        pageType={pageType}
-        structuredData={structuredData}
-        keywords={keywords}
-        breadcrumbs={breadcrumbs}
-        faq={faq}
-      >
-        {/* Add preload hints for faster navigation with proper 'as' attributes */}
-        <link rel="prefetch" href="/about/" as="document" />
-        <link rel="prefetch" href="/gallery/" as="document" />
-        <link rel="prefetch" href="/contact/" as="document" />
-      </EnhancedSEO>
+      {/* SEO is now handled by individual page components */}
+      {/* Preload hints have been moved to gatsby-ssr.js */}
 
       <MainNav />
 

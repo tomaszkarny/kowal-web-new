@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
+import { useI18next } from 'gatsby-plugin-react-i18next' // Note: useI18next will be removed from Head, language sourced from pageContext
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
@@ -11,7 +11,7 @@ import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
 import { SECTION_IDS } from 'consts/sectionID'
-import { BUSINESS_NAME, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails'
+import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails' // Switched to BUSINESS_NAME_ML for title
 
 const IndexPage = () => {
   return (
@@ -28,16 +28,14 @@ export default IndexPage
  * Implement Gatsby Head API for the homepage
  * This includes both standard SEO tags and LocalBusiness schema
  */
-export const Head = ({ data, location }) => {
+export const Head = ({ data, location, pageContext }) => { // Added pageContext
   const { t } = useTranslation('seo')
-  const { language } = useI18next()
-  const titleFallback = language === 'en'
-    ? 'Tadeusz Karny Artistic Blacksmith'
-    : 'Tadeusz Karny Kowalstwo Artystyczne'
+  const { language } = pageContext; // Changed to use language from pageContext
+  const homePageTitle = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl;
   const descriptionFallback = language === 'en'
     ? 'Custom-made metal gates, railings, fences, and decorative elements with over 20 years of experience.'
     : 'Wykonane na zamówienie bramy, balustrady, ogrodzenia i elementy dekoracyjne z ponad 20-letnim doświadczeniem.'
-  const title = t('home.title', titleFallback)
+  const title = homePageTitle;
   const description = t('home.description', descriptionFallback)
   
   return (
@@ -46,6 +44,7 @@ export const Head = ({ data, location }) => {
         title={title}
         description={description}
         pathname={location.pathname}
+        pageType="home" // Added pageType for correct home page title handling
       />
       <LocalBusinessSchema 
         url={WEBSITE_URL}
