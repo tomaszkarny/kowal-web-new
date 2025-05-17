@@ -55,7 +55,7 @@ module.exports = {
           },
           // 🔽 NEW SECTION - Configure detection order and disable navigator/localStorage
           detection: {
-            order: ['htmlTag', 'path', 'cookie'],
+            order: ['path', 'cookie', 'htmlTag'],
             caches: ['cookie'],   // store language preference only in cookie
             lookupCookie: 'i18next',    // default cookie name used by the plugin
           },
