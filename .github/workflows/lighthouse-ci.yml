@@ -1,0 +1,29 @@
+name: lighthouse-ci
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.js'
+      - '**/*.json'
+      - gatsby-config.js
+      - lighthouserc.js
+  pull_request:
+    branches: [main]
+
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install deps
+        run: npm ci
+      - name: Build Gatsby site
+        run: npm run build
+      - name: Serve built site
+        run: npx serve -s public &>/dev/null &
+      - name: Run Lighthouse CI
+        run: npx lhci autorun

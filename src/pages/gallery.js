@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next' // Re-add useI18next
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { GalleryPage } from 'components/GalleryPage/GalleryPage'
 import { Layout } from 'components/Layout/Layout'

@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "postbuild": "node scripts/seo/check-images-alt.js",
     "build:validate": "gatsby build && npm run validate:sitemap",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -23,7 +24,9 @@
     "lighthouse": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun",
     "lighthouse:desktop": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=desktop",
     "lighthouse:mobile": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=mobile",
-    "validate:sitemap": "node scripts/validate-sitemap.js"
+    "validate:sitemap": "node scripts/validate-sitemap.js",
+    "seo:lint": "node scripts/seo/lint-meta.js",
+    "lh:ci": "lhci autorun"
   },
   "lint-staged": {
     "locales/**/*.json": [
@@ -87,6 +90,7 @@
     "gatsby-plugin-root-import": "^2.0.9",
     "gatsby-plugin-stylelint": "^3.2.0",
     "husky": "^8.0.0",
+    "lighthouse-ci": "^0.13.0",
     "lint-staged": "^15.5.1",
     "node-fetch": "^3.3.2",
     "prettier": "^3.2.5"

@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next' // Note: useI18next will be removed from Head, language sourced from pageContext
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'

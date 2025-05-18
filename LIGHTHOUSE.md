@@ -150,4 +150,12 @@ Common issues and solutions:
 
 ---
 
-*Last updated: May 6, 2025*
+## Automatic Lighthouse CI
+
+Every push & PR runs `lhci autorun`.  
+The build will fail if any metric scores below **90**.  
+Thresholds can be tweaked in `lighthouserc.js`.
+
+---
+
+*Last updated: May 18, 2025*

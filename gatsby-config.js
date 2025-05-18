@@ -2,8 +2,9 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: 'Tadeusz Karny Kowalstwo Artystyczne',
-    description: 'Kowalstwo Artystyczne - oferujemy bogate wzornictwo bram, balustrad, ogrodzeń, krat oraz innych elementów ozdobnych',
+    // English values act as a universal fallback when translation is missing
+    title: 'Tadeusz Karny Artistic Blacksmith',
+    description: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
     siteUrl: 'https://www.kowalstwo-karny.pl',
     image: '/images/logo.jpg',
     author: 'Tadeusz Karny',

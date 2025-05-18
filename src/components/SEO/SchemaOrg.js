@@ -235,3 +235,15 @@ export const SchemaOrg = ({
     </Helmet>
   )
 }
+
+/**
+ * Utility function to build FAQ schema entities from question/answer pairs
+ * @param {Array} faqs - Array of {question, answer} objects
+ * @returns {Array} - Array of schema.org Question objects
+ */
+export const buildFAQ = faqs =>
+  faqs.map(q => ({
+    '@type': 'Question',
+    name: q.question,
+    acceptedAnswer: { '@type': 'Answer', text: q.answer }
+  }));

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
@@ -15,6 +14,7 @@ export const EnhancedSEO = ({
   description,
   pathname,
   image,
+  socialCard,
   article = false,
   datePublished,
   dateModified,
@@ -31,7 +31,6 @@ export const EnhancedSEO = ({
 }) => {
   const { t: tCommon } = useTranslation('common') // For site title and common elements
   const { t: tSeo } = useTranslation('seo') // For page-specific titles and descriptions
-  const { language, languages, originalPath, i18n } = useI18next()
   const location = useLocation()
   const { 
     title: defaultTitle, 
@@ -45,9 +44,12 @@ export const EnhancedSEO = ({
 
   // Use the provided pathname or get it from the location
   const path = pathname || location.pathname || ''
-  
+
   // Handle trailing slashes for canonical URLs
   const cleanPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path
+
+  // Detect language once
+  const currentLanguage = getLanguageFromPath(path);
   
   // Determine default meta title based on page type
   let pageTitle = title || '';
@@ -105,11 +107,18 @@ export const EnhancedSEO = ({
   
   // Use the translation hooks properly to ensure consistency
   // Using tCommon instead of i18n.t as a safer approach
-  const translatedSiteTitle = tCommon('siteTitle');
-  // Fallback to defaultTitle if translation is missing, empty, or returns the key itself
-  const baseSiteTitle = (translatedSiteTitle && translatedSiteTitle !== 'siteTitle' && translatedSiteTitle !== 'common:siteTitle') 
-    ? translatedSiteTitle 
-    : defaultTitle;
+  // Force translation in the detected language
+  const translatedSiteTitle = tCommon('siteTitle', { lng: currentLanguage });
+
+  // Fallback to language-specific defaults if translation is missing, empty, or returns the key itself
+  const baseSiteTitle =
+    translatedSiteTitle &&
+    translatedSiteTitle !== 'siteTitle' &&
+    translatedSiteTitle !== 'common:siteTitle'
+      ? translatedSiteTitle
+      : currentLanguage === 'pl'
+        ? 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny'
+        : defaultTitle;
   
   // Implement smart title handling with appendSiteTitle flag
   const baseTitle = pageTitle || ''; // pageTitle is the 'title' prop from page
@@ -145,9 +154,9 @@ export const EnhancedSEO = ({
   const seo = {
     title: finalTitle,
     description: pageDescription || tCommon('siteDescription', defaultDescription),
-    image: image || defaultImage,
+    image: socialCard || image || defaultImage,
     url: `${siteUrl}${cleanPath}`,
-    lang: language
+    lang: currentLanguage
     /* keywords removed - deprecated */
   }
 
@@ -157,8 +166,8 @@ export const EnhancedSEO = ({
   // Get language-specific URLs using our configuration
   const languageUrls = getLanguageUrls(adjustedPath)
   
-  // Current language from path
-  const currentLanguage = getLanguageFromPath(adjustedPath)
+  // Current language from path already detected earlier
+  // const currentLanguage = getLanguageFromPath(adjustedPath)
   
   // Create absolute canonical URL for the current language version
   const canonicalUrl = currentLanguage === 'pl' ? languageUrls.pl : languageUrls.en
@@ -227,7 +236,7 @@ export const EnhancedSEO = ({
   }
 
   return (
-    <Helmet title={seo.title} key={`helmet-${language}-${cleanPath}`}>
+    <Helmet title={seo.title} key={`helmet-${currentLanguage}-${cleanPath}`}>
       <html lang={seo.lang} />
       <meta name="description" content={seo.description} />
       {/* keywords meta tag removed - deprecated */}
@@ -268,6 +277,11 @@ export const EnhancedSEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={tCommon('siteTitle', defaultTitle)} />
       <meta property="og:locale" content={seo.lang === 'pl' ? 'pl_PL' : 'en_US'} />
+      {seo.lang === 'pl' ? (
+        <meta property="og:locale:alternate" content="en_US" />
+      ) : (
+        <meta property="og:locale:alternate" content="pl_PL" />
+      )}
 
       {/* Article specific metadata */}
       {article && datePublished && (

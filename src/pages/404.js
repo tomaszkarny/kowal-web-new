@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { useI18next } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 
@@ -25,9 +24,10 @@ const NotFoundWrapper = styled.div`
  * NotFoundPage component - Custom 404 page
  * Automatically used by Gatsby for 404 errors
  */
-const NotFoundPage = () => {
+const NotFoundPage = ({ pageContext }) => {
   const { t } = useTranslation()
-  const { language } = useI18next()
+  // Get language from pageContext instead of useI18next
+  const language = pageContext?.language || 'pl'
   
   // Create language-dependent fallbacks
   const titleFallback = language === 'en' ? 'Page Not Found' : 'Strona nie znaleziona'
@@ -54,9 +54,10 @@ const NotFoundPage = () => {
 export default NotFoundPage;
 
 // SEO Metadata for the 404 page
-export const Head = () => {
+export const Head = ({ pageContext }) => {
   const { t } = useTranslation('common');
-  const { language } = useI18next();
+  // Get language from pageContext instead of useI18next
+  const language = pageContext?.language || 'pl';
   
   // Create language-dependent fallbacks
   const titleFallback = language === 'en' ? 'Page Not Found' : 'Strona nie znaleziona';

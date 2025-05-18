@@ -1,11 +1,12 @@
 {
   "business": {
     "name": "Artistic Blacksmithing Workshop Tadeusz Karny",
-    "description": "Artistic Blacksmithing Workshop Tadeusz Karny offers traditional artistic blacksmithing, gates, railings, and decorative elements crafted from high-quality metal."
+    "title": "Artistic Blacksmithing – Services",
+    "description": "Custom artistic blacksmithing: gates, railings and fences made to order. Craftsmanship and tradition since 1985."
   },
   "home": {
     "title": "Artistic Blacksmithing Workshop",
-    "description": "Artistic Blacksmithing Workshop Tadeusz Karny offers custom-made metal gates, railings, fences, and decorative elements with over 20 years of experience."
+    "description": "Artistic Blacksmithing creates custom gates, railings and fences by combining traditional craftsmanship with modern design."
   },
   "about": {
     "title": "About Us",
@@ -17,12 +18,14 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Contact Artistic Blacksmithing Workshop Tadeusz Karny for custom blacksmith work. We provide professional consultations and high-quality metalwork."
+    "description": "Contact us to discuss your custom gate, fence or railing – by phone, email or an on-site visit to our workshop."
   },
   "breadcrumbs": {
     "home": "Home",
     "about": "About Us",
     "gallery": "Gallery",
-    "contact": "Contact"
+    "contact": "Contact",
+    "title": "Breadcrumbs",
+    "description": "Navigation breadcrumb trail for the Artistic Blacksmithing website."
   }
 }

@@ -1,11 +1,12 @@
 {
   "business": {
     "name": "Pracownia Kowalstwa Artystycznego Tadeusz Karny",
-    "description": "Pracownia Kowalstwa Artystycznego Tadeusz Karny oferuje tradycyjne kowalstwo artystyczne, bramy, balustrady oraz elementy dekoracyjne wykonane z wysokiej jakości metalu."
+    "title": "Kowalstwo Artystyczne – Usługi",
+    "description": "Specjalistyczne kowalstwo artystyczne: bramy, balustrady i ogrodzenia wykonywane na miarę od 1985 roku."
   },
   "home": {
     "title": "Pracownia Kowalstwa Artystycznego",
-    "description": "Pracownia Kowalstwa Artystycznego Tadeusz Karny oferuje wykonane na zamówienie bramy, balustrady, ogrodzenia i elementy dekoracyjne z ponad 20-letnim doświadczeniem."
+    "description": "Pracownia Kowalstwa Artystycznego – tworzymy bramy, balustrady i ogrodzenia na zamówienie, łącząc tradycyjne rzemiosło z nowoczesnym designem."
   },
   "about": {
     "title": "O nas",
@@ -17,12 +18,14 @@
   },
   "contact": {
     "title": "Kontakt",
-    "description": "Skontaktuj się z Pracownią Kowalstwa Artystycznego Tadeusz Karny w sprawie wykonania elementów kowalskich. Zapewniamy profesjonalne konsultacje i wysokiej jakości wyroby metalowe."
+    "description": "Skontaktuj się z nami, aby omówić projekt bramy, ogrodzenia lub balustrady – odpowiadamy telefonicznie, mailowo i w pracowni."
   },
   "breadcrumbs": {
     "home": "Strona główna",
     "about": "O nas",
     "gallery": "Galeria",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "title": "Ścieżka nawigacji",
+    "description": "Breadcrumbs strony Pracowni Kowalstwa Artystycznego."
   }
 }

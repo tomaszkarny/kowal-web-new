@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { ImageWrapper, StyledImg } from 'components/common/Image/Image.styles'
 
@@ -16,11 +17,19 @@ export const Image = ({ alt, style, small, image, isHero }) => {
     <ImageWrapper isHero={isHero}>
       <StyledImg
         image={image}
-        alt={alt || ""}
+        alt={alt || "Decorative image"}
         style={style}
         small={small}
         isHero={isHero}
       />
     </ImageWrapper>
   )
+}
+
+Image.propTypes = {
+  image: PropTypes.object.isRequired,
+  alt: PropTypes.string, // encourage callers to provide contextual alt text
+  style: PropTypes.object,
+  small: PropTypes.bool,
+  isHero: PropTypes.bool
 }

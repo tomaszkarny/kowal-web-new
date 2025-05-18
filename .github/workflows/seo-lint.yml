@@ -1,0 +1,25 @@
+name: SEO meta lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "locales/**"
+      - "scripts/seo/**"
+      - "src/components/SEO/**"
+  pull_request:
+    paths:
+      - "locales/**"
+      - "scripts/seo/**"
+      - "src/components/SEO/**"
+
+jobs:
+  seo-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run seo:lint
