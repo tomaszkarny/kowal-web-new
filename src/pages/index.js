@@ -30,11 +30,14 @@ export default IndexPage
 export const Head = ({ data, location, pageContext }) => { // Added pageContext
   const { t } = useTranslation('seo')
   const { language } = pageContext; // Changed to use language from pageContext
-  const homePageTitle = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl;
+  const titleFallback = language === 'en'
+    ? 'Artistic Blacksmith Białystok | Custom gates, railings & fences – Tadeusz Karny'
+    : 'Kowalstwo artystyczne Białystok – bramy, balustrady, ogrodzenia | Tadeusz Karny';
+  const title = t('home.title', titleFallback);
+
   const descriptionFallback = language === 'en'
-    ? 'Custom-made metal gates, railings, fences, and decorative elements with over 20 years of experience.'
-    : 'Wykonane na zamówienie bramy, balustrady, ogrodzenia i elementy dekoracyjne z ponad 20-letnim doświadczeniem.'
-  const title = homePageTitle;
+    ? 'Looking for a blacksmith in Białystok, Poland? Tadeusz Karny crafts bespoke gates, railings and fences – traditional artistic blacksmithing for 30+ years.'
+    : 'Kowal Tadeusz Karny oferuje bramy na zamówienie, balustrady i ogrodzenia. Najlepsze kowalstwo artystyczne w Białymstoku i w całej Polsce – 30 lat doświadczenia.';
   const description = t('home.description', descriptionFallback)
   
   return (
