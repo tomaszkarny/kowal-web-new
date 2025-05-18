@@ -243,24 +243,25 @@ export const EnhancedSEO = ({
       <meta name="image" content={seo.image} />
       
       {/* Robots control for search engines */}
+      {/* Remove canonical URL for noindex pages */}
       {noindex ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       )}
       
-      {/* Canonical URL - essential for SEO */}
-      <link rel="canonical" href={canonicalUrl} />
+      {/* Canonical URL - essential for SEO - only for indexable pages */}
+      {!noindex && <link rel="canonical" href={canonicalUrl} />}
       
-      {/* Hreflang tags for language variants - important for multilingual SEO */}
-      {hreflangUrls.map(({ lang, url }) => (
+      {/* Hreflang tags for language variants - important for multilingual SEO - only for indexable pages */}
+      {!noindex && hreflangUrls.map(({ lang, url }) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
-      {/* Add x-default hreflang for search engines to select default language */}
-      <link rel="alternate" hrefLang="x-default" href={languageUrls.default} />
+      {/* Add x-default hreflang for search engines to select default language - only for indexable pages */}
+      {!noindex && <link rel="alternate" hrefLang="x-default" href={languageUrls.default} />}
       
-      {/* Self-referential hreflang tag for current language (recommended for completeness) */}
-      <link rel="alternate" hrefLang={currentLanguage === 'pl' ? 'pl-PL' : 'en-US'} href={canonicalUrl} />
+      {/* Self-referential hreflang tag for current language (recommended for completeness) - only for indexable pages */}
+      {!noindex && <link rel="alternate" hrefLang={currentLanguage === 'pl' ? 'pl-PL' : 'en-US'} href={canonicalUrl} />}
 
       {/* Google Fonts - match original implementation exactly */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -269,7 +270,7 @@ export const EnhancedSEO = ({
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={article ? 'article' : 'website'} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={noindex ? siteUrl : canonicalUrl} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
       {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteUrl}${seo.image}`} />}
