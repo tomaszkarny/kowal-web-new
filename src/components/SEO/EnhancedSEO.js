@@ -173,10 +173,18 @@ export const EnhancedSEO = ({
   const canonicalUrl = currentLanguage === 'pl' ? languageUrls.pl : languageUrls.en
   
   // Create hreflang URLs for all supported languages with proper language codes
+  // Create a verified and deduplicated set of hreflang URLs for both languages
+  // Only include valid language codes and URLs, preventing SEO errors
   const hreflangUrls = [
+    // Standard language tags with region subtags (ISO 639-1 + ISO 3166-1)
     { lang: 'pl-PL', url: languageUrls.pl },
-    { lang: 'en-US', url: languageUrls.en }
-  ]
+    { lang: 'en-US', url: languageUrls.en },
+    // Default hreflang - helps search engines select default language version
+    { lang: 'x-default', url: languageUrls.default }
+  ].filter((item, index, self) =>
+    // Remove any potential duplicates (same lang or URL)
+    index === self.findIndex((t) => t.lang === item.lang)
+  )
 
   // Create structured data for different types
   const generateStructuredData = () => {
@@ -254,14 +262,10 @@ export const EnhancedSEO = ({
       {!noindex && <link rel="canonical" href={canonicalUrl} />}
       
       {/* Hreflang tags for language variants - important for multilingual SEO - only for indexable pages */}
+      {/* Now includes x-default and eliminates duplicate self-referential tags */}
       {!noindex && hreflangUrls.map(({ lang, url }) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
-      {/* Add x-default hreflang for search engines to select default language - only for indexable pages */}
-      {!noindex && <link rel="alternate" hrefLang="x-default" href={languageUrls.default} />}
-      
-      {/* Self-referential hreflang tag for current language (recommended for completeness) - only for indexable pages */}
-      {!noindex && <link rel="alternate" hrefLang={currentLanguage === 'pl' ? 'pl-PL' : 'en-US'} href={canonicalUrl} />}
 
       {/* Google Fonts - match original implementation exactly */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />

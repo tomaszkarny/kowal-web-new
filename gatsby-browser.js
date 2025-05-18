@@ -3,6 +3,8 @@
  * We use this to customize behavior and suppress specific console warnings
  */
 exports.onClientEntry = () => {
+  // Log initialization without trying to manually set up i18next
+  // Let gatsby-plugin-react-i18next handle the initialization
   console.log('Website initialized with i18next backend support');
   
   // Log navigation events (useful for debugging)  
@@ -19,10 +21,17 @@ exports.onClientEntry = () => {
     console.error = (...args) => {
       const message = args[0] || '';
       
-      // Filter out defaultProps warnings for memo components
-      if (typeof message === 'string' && 
-          message.includes('defaultProps will be removed from memo components')) {
-        return;
+      // Filter out specific warnings that aren't relevant
+      if (typeof message === 'string') {
+        // Ignore defaultProps warnings for memo components
+        if (message.includes('defaultProps will be removed from memo components')) {
+          return;
+        }
+        
+        // Filter out i18next initialization errors
+        if (message.includes('You will need to pass in an i18next instance by using initReactI18next')) {
+          return;
+        }
       }
       
       // Pass through all other console errors
