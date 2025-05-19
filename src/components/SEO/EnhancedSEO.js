@@ -172,14 +172,7 @@ export const EnhancedSEO = ({
   // Always self-referential: siteUrl + cleanPath (root → '/')
   const canonicalUrl = `${siteUrl}${cleanPath || '/'}`
   
-  // Create hreflang URLs for all supported languages with proper language codes
-  // Create a verified and deduplicated set of hreflang URLs for both languages
-  // Only include valid language codes and URLs, preventing SEO errors
-  const hreflangUrls = [
-    { lang: 'pl', url: languageUrls.pl },
-    { lang: 'en', url: languageUrls.en },
-    { lang: 'x-default', url: languageUrls.default }
-  ]
+  // hreflang tags are now handled by gatsby-plugin-react-i18next
 
   // Create structured data for different types
   const generateStructuredData = () => {
@@ -255,12 +248,6 @@ export const EnhancedSEO = ({
       
       {/* Canonical URL - essential for SEO - only for indexable pages */}
       {!noindex && <link rel="canonical" href={canonicalUrl} />}
-      
-      {/* Hreflang tags for language variants - important for multilingual SEO - only for indexable pages */}
-      {/* Now includes x-default and eliminates duplicate self-referential tags */}
-      {!noindex && hreflangUrls.map(({ lang, url }) => (
-        <link key={lang} rel="alternate" hrefLang={lang} href={url} />
-      ))}
 
       {/* Google Fonts - match original implementation exactly */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
