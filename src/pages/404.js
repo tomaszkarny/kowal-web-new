@@ -54,7 +54,7 @@ const NotFoundPage = ({ pageContext }) => {
 export default NotFoundPage;
 
 // SEO Metadata for the 404 page
-export const Head = ({ pageContext }) => {
+export const Head = ({ location, pageContext }) => {
   const { t } = useTranslation('common');
   // Get language from pageContext instead of useI18next
   const language = pageContext?.language || 'pl';
@@ -69,6 +69,7 @@ export const Head = ({ pageContext }) => {
     <EnhancedSEO
       title={t('notFoundTitle', titleFallback)}
       description={t('notFoundMessage', descriptionFallback)}
+      pathname={location.pathname}
       pageType="error"
       noindex // prevent indexing of 404 page
     />
