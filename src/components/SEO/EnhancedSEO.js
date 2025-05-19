@@ -169,8 +169,8 @@ export const EnhancedSEO = ({
   // Current language from path already detected earlier
   // const currentLanguage = getLanguageFromPath(adjustedPath)
   
-  // Always self-referential: siteUrl + cleanPath (root → '/')
-  const canonicalUrl = `${siteUrl}${cleanPath || '/'}`
+  // Canonical URL = dokładny URL bieżącej strony (z trailing slash jeśli trzeba)
+  const canonicalUrl = `${siteUrl}${adjustedPath}`
   
   // hreflang tags are now handled by gatsby-plugin-react-i18next
 
