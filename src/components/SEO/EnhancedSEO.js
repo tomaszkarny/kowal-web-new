@@ -4,6 +4,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
+import { WEBSITE_URL } from 'consts/contactDetails'
 
 /**
  * Enhanced SEO component that provides comprehensive SEO optimization
@@ -41,6 +42,7 @@ export const EnhancedSEO = ({
     twitterUsername,
     organization
   } = useSiteMetadata()
+  const siteDomain = siteUrl || WEBSITE_URL;
 
   // Use the provided pathname or get it from the location
   const path = pathname || location.pathname || ''
@@ -155,7 +157,7 @@ export const EnhancedSEO = ({
     title: finalTitle,
     description: pageDescription || tCommon('siteDescription', defaultDescription),
     image: socialCard || image || defaultImage,
-    url: `${siteUrl}${cleanPath}`,
+    url: `${siteDomain}${cleanPath}`,
     lang: currentLanguage
     /* keywords removed - deprecated */
   }
@@ -170,7 +172,7 @@ export const EnhancedSEO = ({
   // const currentLanguage = getLanguageFromPath(adjustedPath)
   
   // Canonical URL = dokładny URL bieżącej strony (z trailing slash jeśli trzeba)
-  const canonicalUrl = `${siteUrl}${adjustedPath}`
+  const canonicalUrl = `${siteDomain}${adjustedPath}`;
   
   // hreflang tags are now handled by gatsby-plugin-react-i18next
 
@@ -180,10 +182,10 @@ export const EnhancedSEO = ({
     const orgData = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      '@id': `${siteUrl}/#organization`,
+      '@id': `${siteDomain}/#organization`,
       name: tCommon('siteTitle', defaultTitle),
-      url: siteUrl,
-      logo: `${siteUrl}/logo.png`,
+      url: siteDomain,
+      logo: `${siteDomain}/logo.png`,
       description: seo.description
     }
     
@@ -191,10 +193,10 @@ export const EnhancedSEO = ({
     const localBusinessData = {
       '@context': 'https://schema.org',
       '@type': 'BlacksmithShop',
-      '@id': `${siteUrl}/#localbusiness`,
+      '@id': `${siteDomain}/#localbusiness`,
       name: tCommon('siteTitle', defaultTitle),
-      url: siteUrl,
-      image: `${siteUrl}/images/workshop.jpg`,
+      url: siteDomain,
+      image: `${siteDomain}${defaultImage}`,
       description: seo.description
     }
     
@@ -202,10 +204,10 @@ export const EnhancedSEO = ({
     const websiteData = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      '@id': `${siteUrl}/#website`,
+      '@id': `${siteDomain}/#website`,
       name: seo.title,
       description: seo.description,
-      url: siteUrl
+      url: siteDomain
     }
     
     const schema = [];
@@ -259,7 +261,7 @@ export const EnhancedSEO = ({
       <meta property="og:url" content={noindex ? siteUrl : canonicalUrl} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
-      {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteUrl}${seo.image}`} />}
+      {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={tCommon('siteTitle', defaultTitle)} />
@@ -284,7 +286,7 @@ export const EnhancedSEO = ({
       {twitterUsername && <meta name="twitter:site" content={twitterUsername} />}
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
-      {seo.image && <meta name="twitter:image" content={seo.image.startsWith('http') ? seo.image : `${siteUrl}${seo.image}`} />}
+      {seo.image && <meta name="twitter:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
       <meta name="twitter:image:alt" content={seo.title} />
       
       {/* Schema.org structured data */}
