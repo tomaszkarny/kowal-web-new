@@ -10,7 +10,7 @@
  *  ◦ No static maps - works for any static or dynamic page
  */
 
-const SITE_URL = 'https://www.kowalstwo-karny.pl';
+import { WEBSITE_URL } from './contactDetails'
 
 /**
  * Normalize pathname:
@@ -55,40 +55,29 @@ const normalizePath = (pathname = '/') => {
 };
 
 /**
- * Determine language based on path.
- * @param {string} pathname
- * @returns {'pl' | 'en'}
+ * Simplified language detection from path
+ * @param {string} path - The path to analyze
+ * @returns {'pl'|'en'} Language code
  */
-export const getLanguageFromPath = (pathname = '/') => {
-  const path = normalizePath(pathname);
-  return path === '/en/' || path.startsWith('/en/') ? 'en' : 'pl';
-};
+export const getLanguageFromPath = (path = '') => path.startsWith('/en') ? 'en' : 'pl'
 
 /**
- * Return full URLs for both languages.
- * @param {string} pathname
+ * Zwraca bezwzględne URL-e dla obu wersji językowych + x-default.
+ * Przykład:
+ *   /en/about/   →  { pl: https://…/about/, en: https://…/en/about/, default: https://…/about/ }
+ *   /gallery/    →  { pl: https://…/gallery/, en: https://…/en/gallery/, default: https://…/gallery/ }
  */
-/**
- * Return full URLs for both languages.
- * Enhanced to ensure valid URLs and proper encoding.
- * @param {string} pathname
- */
-export const getLanguageUrls = (pathname = '/') => {
-  const path = normalizePath(pathname);
+export const getLanguageUrls = (inputPath = '/') => {
+  const raw = inputPath.startsWith('/') ? inputPath : `/${inputPath}`
+  const clean = raw.endsWith('/') ? raw : `${raw}/`
 
-  // base path without '/en' prefix
-  const basePath = path === '/en/' ? '/' : path.replace(/^\/en\//, '/');
-
-  // Ensure paths are properly formatted
-  const plPath = encodeURI(basePath).replace(/%5B/g, '[').replace(/%5D/g, ']');
-  const enPath = basePath === '/' ? '/en/' : `/en${encodeURI(basePath).replace(/%5B/g, '[').replace(/%5D/g, ']')}`;
-
-  // Add trailing slash consistency
-  const ensureTrailingSlash = (url) => url.endsWith('/') ? url : `${url}/`;
+  const isEn = clean.startsWith('/en/')
+  const plPath = isEn ? clean.replace(/^\/en/, '') : clean
+  const enPath = isEn ? clean : clean === '/' ? '/en/' : `/en${clean}`
 
   return {
-    pl: ensureTrailingSlash(`${SITE_URL}${plPath}`),
-    en: ensureTrailingSlash(`${SITE_URL}${enPath}`),
-    default: ensureTrailingSlash(`${SITE_URL}${plPath}`),
-  };
-};
+    pl: `${WEBSITE_URL}${plPath}`,
+    en: `${WEBSITE_URL}${enPath}`,
+    default: `${WEBSITE_URL}${plPath}`
+  }
+}

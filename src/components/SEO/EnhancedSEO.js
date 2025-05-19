@@ -176,15 +176,10 @@ export const EnhancedSEO = ({
   // Create a verified and deduplicated set of hreflang URLs for both languages
   // Only include valid language codes and URLs, preventing SEO errors
   const hreflangUrls = [
-    // Standard language tags with region subtags (ISO 639-1 + ISO 3166-1)
-    { lang: 'pl-PL', url: languageUrls.pl },
-    { lang: 'en-US', url: languageUrls.en },
-    // Default hreflang - helps search engines select default language version
+    { lang: 'pl', url: languageUrls.pl },
+    { lang: 'en', url: languageUrls.en },
     { lang: 'x-default', url: languageUrls.default }
-  ].filter((item, index, self) =>
-    // Remove any potential duplicates (same lang or URL)
-    index === self.findIndex((t) => t.lang === item.lang)
-  )
+  ]
 
   // Create structured data for different types
   const generateStructuredData = () => {
