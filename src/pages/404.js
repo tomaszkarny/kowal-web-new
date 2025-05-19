@@ -70,6 +70,7 @@ export const Head = ({ pageContext }) => {
       title={t('notFoundTitle', titleFallback)}
       description={t('notFoundMessage', descriptionFallback)}
       pageType="error"
+      noindex // prevent indexing of 404 page
     />
   );
 };

@@ -169,8 +169,8 @@ export const EnhancedSEO = ({
   // Current language from path already detected earlier
   // const currentLanguage = getLanguageFromPath(adjustedPath)
   
-  // Create absolute canonical URL for the current language version
-  const canonicalUrl = currentLanguage === 'pl' ? languageUrls.pl : languageUrls.en
+  // Always self-referential: siteUrl + cleanPath (root → '/')
+  const canonicalUrl = `${siteUrl}${cleanPath || '/'}`
   
   // Create hreflang URLs for all supported languages with proper language codes
   // Create a verified and deduplicated set of hreflang URLs for both languages

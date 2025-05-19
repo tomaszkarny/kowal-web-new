@@ -7,3 +7,12 @@
   NPM_FLAGS = "--legacy-peer-deps --include=optional"
   GATSBY_TELEMETRY_DISABLED = "1"
   GATSBY_EXPERIMENTAL_LMDB_STORE = "1"
+
+# — SECURITY HEADERS —
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
