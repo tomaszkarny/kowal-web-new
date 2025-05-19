@@ -249,7 +249,7 @@ export const EnhancedSEO = ({
       )}
       
       {/* Canonical URL - essential for SEO - only for indexable pages */}
-      {!noindex && <link rel="canonical" href={canonicalUrl} />}
+      {!noindex && <link rel="canonical" href={canonicalUrl} key="canonical" />}
 
       {/* Google Fonts - match original implementation exactly */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
