@@ -1,21 +1,19 @@
 import React from 'react'
+import { Link } from 'gatsby-plugin-react-i18next'
 import { StyledNavLink } from 'components/Layout/NavLink/NavLink.styles'
-import { useI18next } from 'gatsby-plugin-react-i18next'
 
 /**
  * Navigation link component
  * Using Gatsby's built-in prefetching system for performance
+ * IMPORTANT: We're directly using gatsby-plugin-react-i18next Link to maintain language context
  */
 export const NavLink = ({ text, onClick, to, activeClassName }) => {
-  // Get the current language from i18next
-  const { language } = useI18next();
-  
   return (
     <StyledNavLink 
       to={to} 
       onClick={onClick} 
       activeClassName={activeClassName}
-      language={language} // Pass the current language to maintain it during navigation
+      as={Link} // Key change - using the Link component from gatsby-plugin-react-i18next
     >
       {text}
     </StyledNavLink>

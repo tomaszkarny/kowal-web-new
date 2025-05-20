@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
+import { navigate } from 'gatsby'
 
 import { FORM_INPUTS } from 'components/Contact/ContactForm/ContactFormUtils'
 
@@ -17,8 +18,12 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
 export const ContactForm = () => {
   const { t } = useTranslation('contact')
+  const { language } = useI18next() // Get current language
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState(null)
+
+  // Generate language-aware success page URL
+  const successPageUrl = language === 'en' ? '/en/contact/?success=true' : '/contact/?success=true'
 
   const handleSubmit = async (event) => {
     // We want to show a submitting state
@@ -43,10 +48,8 @@ export const ContactForm = () => {
       // Simulate a successful submission after a delay
       setTimeout(() => {
         setIsSubmitting(false)
-        // Redirect to success page
-        if (typeof window !== 'undefined') {
-          window.location.href = '/contact/?success=true'
-        }
+        // Use gatsby navigate instead of window.location for proper language handling
+        navigate(successPageUrl)
       }, 1500)
       return
     }
@@ -54,29 +57,45 @@ export const ContactForm = () => {
     // In production, let Netlify handle the form submission naturally
     // This function just handles the UI feedback during submission
     try {
-      // We set a timeout to reset the submitting state in case the form navigation takes too long
-      // This ensures the UI doesn't get stuck in a submitting state if something goes wrong
-      setTimeout(() => {
+      // Modified for explicit form submission with language-aware redirect
+      event.preventDefault()
+      const form = event.target
+      const formData = new FormData(form)
+      
+      // Use fetch to submit the form data to Netlify
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        // Success! Use navigate for language-aware redirect
         setIsSubmitting(false)
-      }, 5000)
+        navigate(successPageUrl)
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Form submission error:', error)
+        setIsSubmitting(false)
+        setFormError(error.message || 'There was an error submitting the form')
+      })
     } catch (error) {
       console.error('Form submission error:', error)
       setIsSubmitting(false)
       setFormError(error.message)
-      // Prevent the form from submitting if there's an error
-      event.preventDefault()
     }
   }
 
   return (
     <FormWrapper>
       <SectionTitle>{t('writeToUs')}</SectionTitle>
+      {/* Using language-aware URL in the form action */}
       <StyledForm
         name="contact"
         method="POST"
         data-netlify-honeypot="bot-field"
         data-netlify="true"
-        action="/contact/?success=true"
+        action={successPageUrl}
         onSubmit={handleSubmit}
       >
         {/* This hidden input is required for Netlify forms */}

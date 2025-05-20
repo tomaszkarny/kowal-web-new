@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import isPropValid from '@emotion/is-prop-valid'
-import { Link } from 'gatsby'
 
 import { mq } from 'utils/mediaQueries'
 
@@ -19,7 +18,9 @@ const getColor = (theme, colorKey, fallback) => {
   return theme.color[colorKey]
 }
 
-export const StyledLink = styled(Link, {
+// Now using styled.a instead of styled(Link)
+// The 'as' prop allows applying these styles to any component
+export const StyledLink = styled('a', {
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'main' && prop !== 'primary' && prop !== 'customStyles'
 })`
   /* Add data attribute to help with navigation handling */
