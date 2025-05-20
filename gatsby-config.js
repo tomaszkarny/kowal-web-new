@@ -29,12 +29,9 @@ module.exports = {
         siteUrl: `https://www.kowalstwo-karny.pl`,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
-        // Set this to false to prevent doubled language codes
-        addRedirectPage: true,
-        // Create redirects for the root path to the default language
+        pathDefaultsToDefaultLanguage: true,
+        addRedirectPage: false,
         redirect: true,
-        // Force default language as the first loaded
-        pathDefaultsToDefaultLanguage: false,
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
