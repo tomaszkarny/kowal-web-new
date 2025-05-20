@@ -28,9 +28,9 @@ export const Footer = () => {
 
       <FooterSection>
         <FooterTitle>{t('informacje')}</FooterTitle>
-        <FooterLink to="/contact">{t('contact')}</FooterLink>
-        <FooterLink to="/about">{t('about')}</FooterLink>
-        <FooterLink to="/gallery">{t('gallery')}</FooterLink>
+        <FooterLink to="/contact/" language={language}>{t('contact')}</FooterLink>
+        <FooterLink to="/about/" language={language}>{t('about')}</FooterLink>
+        <FooterLink to="/gallery/" language={language}>{t('gallery')}</FooterLink>
       </FooterSection>
 
       <FooterSection>

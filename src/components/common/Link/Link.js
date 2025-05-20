@@ -1,4 +1,5 @@
 import React from 'react'
+import { useI18next } from 'gatsby-plugin-react-i18next'
 
 import { StyledLink } from 'components/common/Link/Link.styles'
 
@@ -14,6 +15,9 @@ import { StyledLink } from 'components/common/Link/Link.styles'
  * @param {string} customStyles - Optional custom CSS styles as template literal
  */
 export const Link = ({ text, primary, to, main, onClick, name, customStyles }) => {
+  // Get the current language from i18next context
+  const { language } = useI18next();
+  
   // Custom click handler
   const handleClick = (e) => {
     // If there's a custom onClick handler, call it
@@ -36,6 +40,7 @@ export const Link = ({ text, primary, to, main, onClick, name, customStyles }) =
       data-gatsby-link="true"
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
+      language={language} // Pass the current language to maintain it during navigation
     >
       {text}
     </StyledLink>

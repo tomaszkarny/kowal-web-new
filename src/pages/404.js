@@ -53,25 +53,29 @@ const NotFoundPage = ({ pageContext }) => {
 
 export default NotFoundPage;
 
-// SEO Metadata for the 404 page
+// SEO Metadata for the 404 page - z SEO-przyjaznym tytułem
 export const Head = ({ location, pageContext }) => {
   const { t } = useTranslation('common');
   // Get language from pageContext instead of useI18next
   const language = pageContext?.language || 'pl';
   
-  // Create language-dependent fallbacks
-  const titleFallback = language === 'en' ? 'Page Not Found' : 'Strona nie znaleziona';
+  // Użyj SEO-przyjaznego tytułu zamiast "Page Not Found"
+  // To zapobiegnie problemom z indeksacją Google i migotaniem tytułu 404
+  const seoTitle = language === 'en' 
+    ? 'Kowalstwo Artystyczne - Tadeusz Karny' 
+    : 'Kowalstwo Artystyczne - Tadeusz Karny';
+    
   const descriptionFallback = language === 'en'
-    ? "Sorry, the page you're looking for doesn't exist."
-    : 'Przepraszamy, strona której szukasz nie istnieje.';
+    ? "The page you're looking for is currently unavailable. Please use navigation menu."
+    : 'Strona której szukasz jest aktualnie niedostępna. Skorzystaj z menu nawigacyjnego.';
 
   return (
     <EnhancedSEO
-      title={t('notFoundTitle', titleFallback)}
-      description={t('notFoundMessage', descriptionFallback)}
+      title={seoTitle}
+      description={descriptionFallback}
       pathname={location.pathname}
-      pageType="error"
-      noindex // prevent indexing of 404 page
+      pageType="other" // zmiana z "error" na "other" dla lepszej indeksacji
+      noindex={true} // prevent indexing of 404 page
     />
   );
 };

@@ -8,6 +8,68 @@
   GATSBY_TELEMETRY_DISABLED = "1"
   GATSBY_EXPERIMENTAL_LMDB_STORE = "1"
 
+# — REDIRECTS FOR IMPROVED SEO & INDEXING —
+# Enforce trailing slashes consistently for SEO best practices
+[[redirects]]
+  from = "/en"
+  to = "/en/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/about"
+  to = "/en/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gallery"
+  to = "/gallery/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/gallery"
+  to = "/en/gallery/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/contact"
+  to = "/en/contact/"
+  status = 301
+  force = true
+
+# Remove www subdomain to consolidate URLs for better SEO
+[[redirects]]
+  from = "https://www.kowalstwo-karny.pl/*"
+  to = "https://kowalstwo-karny.pl/:splat"
+  status = 301
+  force = true
+
+# Handle client-side routing - after the redirects to ensure proper URLs are crawled
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/*"
+  to = "/en/index.html"
+  status = 200
+
 # — SECURITY HEADERS —
 [[headers]]
   for = "/*"

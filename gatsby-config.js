@@ -1,11 +1,14 @@
 const path = require('path')
 
 module.exports = {
+  // Always use trailing slashes for consistent URLs and better SEO
+  trailingSlash: 'always',
+  
   siteMetadata: {
     // English values act as a universal fallback when translation is missing
     title: 'Tadeusz Karny Artistic Blacksmith',
     description: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
-    siteUrl: 'https://www.kowalstwo-karny.pl',
+    siteUrl: 'https://kowalstwo-karny.pl', // Removed www for SEO consistency
     image: '/images/logo.jpg',
     author: 'Tadeusz Karny',
     twitterUsername: '',
@@ -26,7 +29,7 @@ module.exports = {
         localeJsonSourceName: `locale`,
         languages: [`pl`, `en`],
         defaultLanguage: `pl`,
-        siteUrl: `https://www.kowalstwo-karny.pl`,
+        siteUrl: `https://kowalstwo-karny.pl`,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
         generateDefaultLanguagePage: true,
@@ -119,7 +122,7 @@ module.exports = {
         excludes: ['/**/404', '/**/404.html', '/**/dev-404-page'],
         createLinkInHead: true,
         // Define a custom function to resolve the site URL
-        resolveSiteUrl: () => 'https://www.kowalstwo-karny.pl',
+        resolveSiteUrl: () => 'https://kowalstwo-karny.pl',
         query: `
           {
             allSitePage {
@@ -136,11 +139,20 @@ module.exports = {
           // Is this an English page?
           const isEnglish = path.startsWith('/en');
           
-          // Generate alternate URLs for language versions
-          let plPath = isEnglish ? path.replace('/en', '') : path;
+          // Ensure all paths have trailing slashes for consistency
+          const ensureTrailingSlash = (urlPath) => {
+            if (urlPath === '/') return urlPath;
+            return urlPath.endsWith('/') ? urlPath : `${urlPath}/`;
+          };
+          
+          // Apply trailing slash to the current path
+          const pathWithSlash = ensureTrailingSlash(path);
+          
+          // Generate alternate URLs for language versions with consistent trailing slashes
+          let plPath = isEnglish ? ensureTrailingSlash(pathWithSlash.replace('/en', '')) : pathWithSlash;
           if (plPath === '') plPath = '/';
           
-          let enPath = !isEnglish && path !== '/' ? `/en${path}` : isEnglish ? path : '/en';
+          let enPath = !isEnglish && pathWithSlash !== '/' ? ensureTrailingSlash(`/en${pathWithSlash}`) : isEnglish ? pathWithSlash : '/en/';
           
           // Determine page type and set priority accordingly
           let priority = 0.5; // Default priority
@@ -165,7 +177,7 @@ module.exports = {
           }
           
           return {
-            url: path,
+            url: pathWithSlash,
             lastmod: lastmod,
             changefreq: changefreq,
             priority: priority,
@@ -188,8 +200,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://www.kowalstwo-karny.pl',
-        sitemap: 'https://www.kowalstwo-karny.pl/sitemap-index.xml',
+        host: 'https://kowalstwo-karny.pl',
+        sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
         resolveEnv: () => process.env.GATSBY_ENV || process.env.NODE_ENV || 'development',
         env: {
           development: {
@@ -199,8 +211,8 @@ module.exports = {
           },
           production: {
             policy: [{ userAgent: '*', allow: '/' }],
-            sitemap: 'https://www.kowalstwo-karny.pl/sitemap-index.xml',
-            host: 'https://www.kowalstwo-karny.pl'
+            sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
+            host: 'https://kowalstwo-karny.pl'
           }
         }
       }

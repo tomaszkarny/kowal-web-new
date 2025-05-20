@@ -6,6 +6,9 @@ import { useLocation } from '@reach/router'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
 import { WEBSITE_URL } from 'consts/contactDetails'
 
+// Define canonical domain for the website - used for all SEO elements
+const CANONICAL_DOMAIN = 'https://kowalstwo-karny.pl'
+
 /**
  * Enhanced SEO component that provides comprehensive SEO optimization
  * Based on the original SEO component but with expanded functionality
@@ -42,13 +45,21 @@ export const EnhancedSEO = ({
     twitterUsername,
     organization
   } = useSiteMetadata()
-  const siteDomain = siteUrl || WEBSITE_URL;
+  
+  // Always use the canonical domain for all SEO elements to ensure consistent indexing
+  const siteDomain = CANONICAL_DOMAIN;
 
   // Use the provided pathname or get it from the location
   const path = pathname || location.pathname || ''
 
-  // Handle trailing slashes for canonical URLs
-  const cleanPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path
+  // Helper function to ensure consistent trailing slashes for all URLs
+  const ensureTrailingSlash = (urlPath) => {
+    if (urlPath === '/') return urlPath;
+    return urlPath.endsWith('/') ? urlPath : `${urlPath}/`;
+  };
+  
+  // Clean the path and ensure it has a trailing slash for consistency
+  const cleanPath = ensureTrailingSlash(path)
 
   // Detect language once
   const currentLanguage = getLanguageFromPath(path);

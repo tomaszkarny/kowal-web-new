@@ -3,6 +3,52 @@
  * We use this to customize behavior and suppress specific console warnings
  */
 exports.onClientEntry = () => {
+  // Najważniejsza część - natychmiast naprawiamy tytuł 404 na klienckie
+  if (typeof window !== 'undefined') {
+    // Funkcja do naprawy tytułu 404
+    const fix404Title = () => {
+      const titleElement = document.querySelector('title');
+      if (titleElement && (
+        titleElement.textContent.includes('404') ||
+        titleElement.textContent.toLowerCase().includes('not found') ||
+        titleElement.textContent.toLowerCase().includes('nie znaleziono') ||
+        titleElement.textContent.toLowerCase().includes('strona nie istnieje')
+      )) {
+        // Tylko jeśli nie jesteśmy na rzeczywistej stronie 404
+        if (!window.location.pathname.includes('/404')) {
+          console.log('Fixing 404 title flash:', titleElement.textContent);
+          titleElement.textContent = 'Kowalstwo Artystyczne - Tadeusz Karny';
+        }
+      }
+    };
+
+    // Natychmiast napraw tytuł
+    fix404Title();
+
+    // Napraw również po małym opóźnieniu, aby złapać tytuł, jeśli zmienia się po hydratacji
+    setTimeout(fix404Title, 0);
+    setTimeout(fix404Title, 50);
+    setTimeout(fix404Title, 100);
+    
+    // Obserwuj zmiany w tytule strony przez MutationObserver
+    const titleObserver = new MutationObserver((mutations) => {
+      mutations.forEach(() => {
+        fix404Title();
+      });
+    });
+    
+    // Rozpocznij obserwowanie zmian tytułu gdy DOM jest gotowy
+    if (document.querySelector('title')) {
+      titleObserver.observe(document.querySelector('title'), { childList: true, subtree: true, characterData: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.querySelector('title')) {
+          titleObserver.observe(document.querySelector('title'), { childList: true, subtree: true, characterData: true });
+        }
+      });
+    }
+  }
+  
   // Log initialization without trying to manually set up i18next
   // Let gatsby-plugin-react-i18next handle the initialization
   console.log('Website initialized with i18next backend support');
