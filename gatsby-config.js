@@ -29,6 +29,7 @@ module.exports = {
         siteUrl: `https://www.kowalstwo-karny.pl`,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
+        generateDefaultLanguagePage: true,
         pathDefaultsToDefaultLanguage: true,
         addRedirectPage: false,
         redirect: true,
