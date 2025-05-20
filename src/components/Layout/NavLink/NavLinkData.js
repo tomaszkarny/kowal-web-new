@@ -3,14 +3,14 @@ export const NavLinkData = [
     text: 'Start',
     translationKey: 'home',
     id: 1,
-    to: '/',
+    to: '/', // Home path is already correct with trailing slash
   },
 
   {
     text: 'O Nas',
     translationKey: 'about',
     id: 2,
-    to: '/about/',
+    to: '/about/', // Already has trailing slash
   },
 
   // {
@@ -22,12 +22,12 @@ export const NavLinkData = [
     text: 'Galeria',
     translationKey: 'gallery',
     id: 4,
-    to: '/gallery/',
+    to: '/gallery/', // Already has trailing slash
   },
   {
     text: 'Kontakt',
     translationKey: 'contact',
     id: 5,
-    to: '/contact/',
+    to: '/contact/', // Already has trailing slash
   },
 ]
