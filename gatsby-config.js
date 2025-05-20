@@ -32,7 +32,7 @@ module.exports = {
         generateDefaultLanguagePage: true,
         pathDefaultsToDefaultLanguage: true,
         addRedirectPage: false,
-        redirect: true,
+        redirect: false,          // ← zmiana
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
