@@ -33,7 +33,6 @@ export const MainNav = () => {
                 to={data.to}
                 onClick={handleItemClick}
                 activeClassName="current-page"
-                language={language}
               />
             </NavItem>
           ))}

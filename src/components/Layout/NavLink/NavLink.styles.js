@@ -7,20 +7,24 @@ import styled from '@emotion/styled'
  */
 export const StyledNavLink = styled.a`
   color: ${({ theme }) => theme.color.dark};
-  text-decoration: none;
+  font-size: 13px;
   font-weight: 700;
-  font-size: 22px;
-  cursor: pointer;
-  position: relative;
-  margin-bottom: 15px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  font-family: 'PT Sans', sans-serif;
-  
-  &:hover {
-    color: ${({ theme }) => theme.color.primary};
-  }
-  
+  line-height: 1;
+  margin: 0 0.5rem 0 0;
+  padding: 20px 15px;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+
+  &.current-page,
   &.active {
     color: ${({ theme }) => theme.color.primary};
+    /* border-bottom: 2px solid #222; */
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.color.primary};
+    transition: all 0.3s ease-in-out;
   }
 `

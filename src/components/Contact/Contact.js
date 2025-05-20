@@ -15,16 +15,32 @@ export const Contact = () => {
   const [showSuccess, setShowSuccess] = useState(false)
   const [showForm, setShowForm] = useState(true)
 
+  // Handler for direct success callback (used in development mode)
+  const handleSubmitSuccess = () => {
+    console.log('Contact form submission successful, showing success message')
+    setShowSuccess(true)
+    setShowForm(false)
+  }
+
   useEffect(() => {
-    // Check for success parameter in URL
+    // Check for success parameter in URL (used in production mode)
     if (typeof window !== 'undefined') {
+      console.log('Checking URL for success parameter')
       const urlParams = new URLSearchParams(window.location.search)
-      if (urlParams.get('success') === 'true') {
-        setShowSuccess(true)
-        setShowForm(false)
-        // Remove the success parameter from URL without reloading the page
-        const newUrl = window.location.pathname
-        window.history.replaceState({}, document.title, newUrl)
+      const isSuccess = urlParams.get('success') === 'true'
+      
+      if (isSuccess) {
+        console.log('Success parameter found, showing success message')
+        // Set a slight delay to prevent flickering
+        setTimeout(() => {
+          setShowSuccess(true)
+          setShowForm(false)
+          // Remove the success parameter from URL without reloading the page
+          const newUrl = window.location.pathname
+          window.history.replaceState({}, document.title, newUrl)
+        }, 150)
+      } else {
+        console.log('No success parameter found, showing form')
       }
     }
   }, [])
@@ -41,7 +57,7 @@ export const Contact = () => {
         {showSuccess ? (
           <FormSuccessMessage onSendAnother={handleSendAnother} />
         ) : (
-          <ContactForm />
+          <ContactForm onSubmitSuccess={handleSubmitSuccess} />
         )}
       </ContactWrapper>
       <ContainerWrapper>
