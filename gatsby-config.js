@@ -2,8 +2,6 @@ const path = require('path')
 const { SITE_DOMAIN, SITEMAP_URL } = require('./gatsby-config-utils')
 
 module.exports = {
-  // Always use trailing slashes for consistent URLs and better SEO
-  trailingSlash: 'always',
   
   siteMetadata: {
     // English values act as a universal fallback when translation is missing
@@ -17,8 +15,8 @@ module.exports = {
 
   plugins: [
     'gatsby-plugin-emotion',
-    // Temporarily disabled ESLint to allow development with updated packages
-    // 'gatsby-plugin-eslint',
+    // Re-enabled ESLint for code quality
+    'gatsby-plugin-eslint',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
