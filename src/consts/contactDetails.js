@@ -7,6 +7,9 @@
  * to ensure consistency across the entire site and proper structured data for SEO
  */
 
+// Import centralized site constants
+import { SITE_DOMAIN } from './site'
+
 /**
  * Multi-language business name
  * @type {{pl: string, en: string}}
@@ -70,7 +73,7 @@ export const FACEBOOK_URL = 'www.facebook.com/kowalstwo.karny'
 export const INSTAGRAM_URL = 'www.instagram.com/kowalstwokarny'
 
 // Website information
-export const WEBSITE_URL = 'https://kowalstwo-karny.pl'
+export const WEBSITE_URL = SITE_DOMAIN
 export const LOGO_PATH = '/logo.png'
 
 // Google Maps information
@@ -124,7 +127,7 @@ export const OPENING_HOURS_ML = {
     },
     {
       days: 'Sobota',
-      hours: '9:00 - 13:00'
+      hours: '9:00 - 15:00'
     },
     {
       days: 'Niedziela',
@@ -138,7 +141,7 @@ export const OPENING_HOURS_ML = {
     },
     {
       days: 'Saturday',
-      hours: '9:00 AM - 1:00 PM'
+      hours: '9:00 AM - 15:00 PM'
     },
     {
       days: 'Sunday',
@@ -181,7 +184,7 @@ export const SERVICES_OFFERED = {
  */
 export const getNapInfo = (language = 'pl') => {
   const lang = language === 'en' ? 'en' : 'pl';
-  
+
   return {
     businessName: BUSINESS_NAME_ML[lang],
     description: BUSINESS_DESCRIPTION_ML[lang],

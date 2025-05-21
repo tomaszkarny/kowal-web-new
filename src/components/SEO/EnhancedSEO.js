@@ -5,9 +5,10 @@ import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
 import { WEBSITE_URL } from 'consts/contactDetails'
+import { SITE_DOMAIN } from 'consts/site'
 
-// Define canonical domain for the website - used for all SEO elements
-const CANONICAL_DOMAIN = 'https://kowalstwo-karny.pl'
+// Use the centralized domain constant for all SEO elements
+const CANONICAL_DOMAIN = SITE_DOMAIN
 
 /**
  * Enhanced SEO component that provides comprehensive SEO optimization

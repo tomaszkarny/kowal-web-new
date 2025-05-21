@@ -1,4 +1,5 @@
 const path = require('path')
+const { SITE_DOMAIN, SITEMAP_URL } = require('./gatsby-config-utils')
 
 module.exports = {
   // Always use trailing slashes for consistent URLs and better SEO
@@ -8,7 +9,7 @@ module.exports = {
     // English values act as a universal fallback when translation is missing
     title: 'Tadeusz Karny Artistic Blacksmith',
     description: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
-    siteUrl: 'https://kowalstwo-karny.pl', // Removed www for SEO consistency
+    siteUrl: SITE_DOMAIN, // Using centralized domain constant
     image: '/images/logo.jpg',
     author: 'Tadeusz Karny',
     twitterUsername: '',
@@ -29,7 +30,7 @@ module.exports = {
         localeJsonSourceName: `locale`,
         languages: [`pl`, `en`],
         defaultLanguage: `pl`,
-        siteUrl: `https://kowalstwo-karny.pl`,
+        siteUrl: SITE_DOMAIN,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
         generateDefaultLanguagePage: true,
@@ -122,7 +123,7 @@ module.exports = {
         excludes: ['/**/404', '/**/404.html', '/**/dev-404-page'],
         createLinkInHead: true,
         // Define a custom function to resolve the site URL
-        resolveSiteUrl: () => 'https://kowalstwo-karny.pl',
+        resolveSiteUrl: () => SITE_DOMAIN,
         query: `
           {
             allSitePage {
@@ -200,8 +201,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://kowalstwo-karny.pl',
-        sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
+        host: SITE_DOMAIN,
+        sitemap: SITEMAP_URL,
         resolveEnv: () => process.env.GATSBY_ENV || process.env.NODE_ENV || 'development',
         env: {
           development: {
@@ -211,8 +212,8 @@ module.exports = {
           },
           production: {
             policy: [{ userAgent: '*', allow: '/' }],
-            sitemap: 'https://kowalstwo-karny.pl/sitemap-index.xml',
-            host: 'https://kowalstwo-karny.pl'
+            sitemap: SITEMAP_URL,
+            host: SITE_DOMAIN
           }
         }
       }

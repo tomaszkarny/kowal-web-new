@@ -9,55 +9,28 @@
   GATSBY_EXPERIMENTAL_LMDB_STORE = "1"
 
 # — REDIRECTS FOR IMPROVED SEO & INDEXING —
-# Enforce trailing slashes consistently for SEO best practices
-[[redirects]]
-  from = "/en"
-  to = "/en/"
-  status = 301
-  force = true
+# Single-hop redirects that handle both domain canonicalization and trailing slashes
 
+# HTTP apex domain to HTTPS www with trailing slash (one hop)
 [[redirects]]
-  from = "/about"
-  to = "/about/"
+  from = "http://kowalstwo-karny.pl/:path"
+  to   = "https://www.kowalstwo-karny.pl/:path/"
   status = 301
-  force = true
+  force  = true
 
+# HTTP www to HTTPS www with trailing slash (one hop)
 [[redirects]]
-  from = "/en/about"
-  to = "/en/about/"
+  from = "http://www.kowalstwo-karny.pl/:path"
+  to   = "https://www.kowalstwo-karny.pl/:path/"
   status = 301
-  force = true
+  force  = true
 
+# HTTPS apex to HTTPS www with trailing slash (one hop)
 [[redirects]]
-  from = "/gallery"
-  to = "/gallery/"
+  from = "https://kowalstwo-karny.pl/:path"
+  to   = "https://www.kowalstwo-karny.pl/:path/"
   status = 301
-  force = true
-
-[[redirects]]
-  from = "/en/gallery"
-  to = "/en/gallery/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/en/contact"
-  to = "/en/contact/"
-  status = 301
-  force = true
-
-# Remove www subdomain to consolidate URLs for better SEO
-[[redirects]]
-  from = "https://www.kowalstwo-karny.pl/*"
-  to = "https://kowalstwo-karny.pl/:splat"
-  status = 301
-  force = true
+  force  = true
 
 # Handle client-side routing - after the redirects to ensure proper URLs are crawled
 [[redirects]]
