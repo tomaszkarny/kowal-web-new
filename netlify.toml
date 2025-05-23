@@ -11,7 +11,7 @@
 # — REDIRECTS FOR IMPROVED SEO & INDEXING —
 # Single-hop redirects that handle both domain canonicalization and trailing slashes
 
-# Root domain redirects - direct to Polish homepage to prevent white screen
+# Root domain redirects - only redirect root path to Polish homepage
 [[redirects]]
   from = "http://kowalstwo-karny.pl"
   to   = "https://www.kowalstwo-karny.pl/pl/"
@@ -36,6 +36,7 @@
   status = 301
   force  = true
 
+# IMPORTANT: Only redirect exact root path, not all paths
 [[redirects]]
   from = "https://www.kowalstwo-karny.pl"
   to   = "https://www.kowalstwo-karny.pl/pl/"
@@ -73,11 +74,6 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/*"
-  to = "/en/index.html"
   status = 200
 
 # — SECURITY HEADERS —
