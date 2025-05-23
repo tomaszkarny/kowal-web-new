@@ -70,53 +70,64 @@
   status = 301
   force  = true
 
-# Language redirects for pages without language prefix
+# — PAGE-SPECIFIC REDIRECTS (CRITICAL FIX) —
+# These must come BEFORE any catch-all rules
+
+# English pages - serve the actual files
 [[redirects]]
-  from = "/contact"
+  from = "/en/contact/"
+  to = "/en/contact/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/about/"
+  to = "/en/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/gallery/"
+  to = "/en/gallery/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+
+# Polish pages - serve the actual files
+[[redirects]]
+  from = "/pl/contact/"
+  to = "/pl/contact/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/about/"
+  to = "/pl/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/gallery/"
+  to = "/pl/gallery/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/"
+  to = "/pl/index.html"
+  status = 200
+
+# Handle legacy URLs without language prefix
+[[redirects]]
+  from = "/contact/"
   to = "/pl/contact/"
   status = 301
-  force = true
 
 [[redirects]]
-  from = "/about"
-  to = "/pl/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/gallery"
-  to = "/pl/gallery/"
-  status = 301
-  force = true
-
-# Handle trailing slashes for language-prefixed routes
-[[redirects]]
-  from = "/en/contact"
-  to = "/en/contact/"
-  status = 301
-
-[[redirects]]
-  from = "/en/about"
-  to = "/en/about/"
-  status = 301
-
-[[redirects]]
-  from = "/en/gallery"
-  to = "/en/gallery/"
-  status = 301
-
-[[redirects]]
-  from = "/pl/contact"
-  to = "/pl/contact/"
-  status = 301
-
-[[redirects]]
-  from = "/pl/about"
+  from = "/about/"
   to = "/pl/about/"
   status = 301
 
 [[redirects]]
-  from = "/pl/gallery"
+  from = "/gallery/"
   to = "/pl/gallery/"
   status = 301
 
