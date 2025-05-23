@@ -70,7 +70,12 @@
   status = 301
   force  = true
 
-# Handle client-side routing - after the redirects to ensure proper URLs are crawled
+# Handle client-side routing - CRITICAL: English routes must come first!
+[[redirects]]
+  from = "/en/*"
+  to = "/en/index.html"
+  status = 200
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

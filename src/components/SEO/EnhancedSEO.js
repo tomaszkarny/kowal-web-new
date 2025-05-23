@@ -24,6 +24,7 @@ export const EnhancedSEO = ({
   datePublished,
   dateModified,
   pageType = 'other',
+  language, // Accept language prop
   children,
   /* ⬇ NEW FLAGS */
   appendSiteTitle = true,
@@ -62,8 +63,8 @@ export const EnhancedSEO = ({
   // Clean the path and ensure it has a trailing slash for consistency
   const cleanPath = ensureTrailingSlash(path)
 
-  // Detect language once
-  const currentLanguage = getLanguageFromPath(path);
+  // Use passed language prop or detect from path as fallback
+  const currentLanguage = language || getLanguageFromPath(path);
   
   // Determine default meta title based on page type
   let pageTitle = title || '';
@@ -101,18 +102,32 @@ export const EnhancedSEO = ({
   // Determine default meta description based on page type
   let pageDescription = description || '';
   if (!pageDescription) {
+    const fallbackEn = {
+      home: 'Artistic Blacksmithing Workshop',
+      about: 'Learn about our artistic blacksmithing workshop.',
+      gallery: 'Browse our portfolio of gates, railings and fences.',
+      contact: 'Contact us to discuss your project.'
+    };
+    const fallbackPl = {
+      home: 'Pracownia Kowalstwa Artystycznego',
+      about: 'Poznaj naszą pracownię kowalstwa artystycznego.',
+      gallery: 'Zobacz nasze portfolio bram, balustrad, ogrodzeń.',
+      contact: 'Skontaktuj się z nami.'
+    };
+    const fallback = currentLanguage === 'en' ? fallbackEn[pageType] : fallbackPl[pageType];
+    
     switch(pageType) {
       case 'home':
-        pageDescription = tSeo('home.description', 'Pracownia Kowalstwa Artystycznego');
+        pageDescription = tSeo('home.description', fallback);
         break;
       case 'about':
-        pageDescription = tSeo('about.description', 'Poznaj naszą pracownię kowalstwa artystycznego.');
+        pageDescription = tSeo('about.description', fallback);
         break;
       case 'gallery':
-        pageDescription = tSeo('gallery.description', 'Zobacz nasze portfolio bram, balustrad, ogrodzeń.');
+        pageDescription = tSeo('gallery.description', fallback);
         break;
       case 'contact':
-        pageDescription = tSeo('contact.description', 'Skontaktuj się z nami.');
+        pageDescription = tSeo('contact.description', fallback);
         break;
       default:
         pageDescription = '';
@@ -121,8 +136,10 @@ export const EnhancedSEO = ({
   
   // Use the translation hooks properly to ensure consistency
   // Using tCommon instead of i18n.t as a safer approach
-  // Force translation in the detected language
-  const translatedSiteTitle = tCommon('siteTitle', { lng: currentLanguage });
+  const siteTitleFallback = currentLanguage === 'en' 
+    ? 'Tadeusz Karny Artistic Blacksmith'
+    : 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny';
+  const translatedSiteTitle = tCommon('siteTitle', siteTitleFallback);
 
   // Fallback to language-specific defaults if translation is missing, empty, or returns the key itself
   const baseSiteTitle =
@@ -165,9 +182,13 @@ export const EnhancedSEO = ({
     finalTitle = siteNameString; // Default to site name if all else fails
   }
 
+  const siteDescriptionFallback = currentLanguage === 'en'
+    ? 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.'
+    : 'Kowalstwo artystyczne – bramy, balustrady i ogrodzenia na zamówienie.';
+
   const seo = {
     title: finalTitle,
-    description: pageDescription || tCommon('siteDescription', defaultDescription),
+    description: pageDescription || tCommon('siteDescription', siteDescriptionFallback) || defaultDescription,
     image: socialCard || image || defaultImage,
     url: `${siteDomain}${cleanPath}`,
     lang: currentLanguage
@@ -195,7 +216,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       '@id': `${siteDomain}/#organization`,
-      name: tCommon('siteTitle', defaultTitle),
+      name: tCommon('siteTitle', siteTitleFallback) || defaultTitle,
       url: siteDomain,
       logo: `${siteDomain}/logo.png`,
       description: seo.description
@@ -206,7 +227,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'BlacksmithShop',
       '@id': `${siteDomain}/#localbusiness`,
-      name: tCommon('siteTitle', defaultTitle),
+      name: tCommon('siteTitle', siteTitleFallback) || defaultTitle,
       url: siteDomain,
       image: `${siteDomain}${defaultImage}`,
       description: seo.description
@@ -276,7 +297,7 @@ export const EnhancedSEO = ({
       {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content={tCommon('siteTitle', defaultTitle)} />
+      <meta property="og:site_name" content={tCommon('siteTitle', siteTitleFallback) || defaultTitle} />
       <meta property="og:locale" content={seo.lang === 'pl' ? 'pl_PL' : 'en_US'} />
       {seo.lang === 'pl' ? (
         <meta property="og:locale:alternate" content="en_US" />
