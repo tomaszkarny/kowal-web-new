@@ -130,3 +130,4 @@ scripts/example_prd.txt
 
 # Added by Claude Task Master
 tasks/ 
+.claude/settings.local.json

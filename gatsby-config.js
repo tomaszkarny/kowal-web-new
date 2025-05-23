@@ -34,7 +34,7 @@ module.exports = {
         generateDefaultLanguagePage: true, // Generate Polish homepage  
         pathDefaultsToDefaultLanguage: false, // Polish homepage at /pl/ not /
         addRedirectPage: false,
-        redirect: false,          // ← zmiana
+        redirect: true,          // Enable redirects for proper routing
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
