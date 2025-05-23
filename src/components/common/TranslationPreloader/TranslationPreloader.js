@@ -11,45 +11,59 @@ import { useI18next } from 'gatsby-plugin-react-i18next'
 const TranslationPreloader = ({ namespaces = ['common', 'about', 'gallery', 'contact'] }) => {
   const { i18n, language } = useI18next()
   const loadedRef = useRef({})
+  const loadingRef = useRef({})
 
   useEffect(() => {
-    // Only load namespaces once per language to prevent redundant loading during navigation
+    // Skip if no i18n instance or already loaded/loading
+    if (!i18n || !language) return
+    
     const cacheKey = `${language}_namespaces_loaded`
-    const alreadyLoaded = loadedRef.current[language] ||
-                         sessionStorage.getItem(cacheKey)
+    const isAlreadyLoaded = loadedRef.current[language] || sessionStorage.getItem(cacheKey)
+    const isCurrentlyLoading = loadingRef.current[language]
+    
+    if (isAlreadyLoaded || isCurrentlyLoading) return
 
-    if (i18n && !alreadyLoaded) {
-      // Set loading flag immediately to prevent race conditions
+    // Set loading flag immediately to prevent race conditions
+    loadingRef.current[language] = true
+
+    // Check which namespaces actually need loading
+    const namespacesToLoad = namespaces.filter(ns => !i18n.hasResourceBundle(language, ns))
+    
+    if (namespacesToLoad.length === 0) {
+      // All namespaces already loaded
       loadedRef.current[language] = true
-
-      // Use a Promise.all to load all namespaces in parallel
-      Promise.all(namespaces.map(ns => {
-        // Check if namespace is already loaded
-        return i18n.hasResourceBundle(language, ns) ?
-          Promise.resolve() :
-          i18n.loadNamespaces(ns)
-      }))
-        .then(() => {
-          // Mark as loaded to prevent redundant loading
-          try {
-            sessionStorage.setItem(cacheKey, 'true')
-          } catch (e) {
-            // Ignore storage errors
-          }
-        })
-        .catch(err => {
-          // On error, reset flags to allow retry
-          console.warn('Failed to load translations:', err)
-          loadedRef.current[language] = false
-        })
+      loadingRef.current[language] = false
+      try {
+        sessionStorage.setItem(cacheKey, 'true')
+      } catch (e) {
+        // Ignore storage errors
+      }
+      return
     }
+
+    // Load only the missing namespaces
+    Promise.all(namespacesToLoad.map(ns => i18n.loadNamespaces(ns)))
+      .then(() => {
+        // Mark as loaded
+        loadedRef.current[language] = true
+        loadingRef.current[language] = false
+        try {
+          sessionStorage.setItem(cacheKey, 'true')
+        } catch (e) {
+          // Ignore storage errors
+        }
+      })
+      .catch(err => {
+        // On error, reset flags to allow retry
+        console.warn('Failed to load translations:', err)
+        loadedRef.current[language] = false
+        loadingRef.current[language] = false
+      })
 
     // Cleanup function
     return () => {
-      // Clean up the ref when component unmounts
-      if (!document.hidden) {
-        loadedRef.current = {}
-      }
+      // Reset loading flag on unmount
+      loadingRef.current[language] = false
     }
   }, [i18n, language, namespaces])
 

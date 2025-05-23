@@ -11,21 +11,58 @@
 # — REDIRECTS FOR IMPROVED SEO & INDEXING —
 # Single-hop redirects that handle both domain canonicalization and trailing slashes
 
-# HTTP apex domain to HTTPS www with trailing slash (one hop)
+# Root domain redirects - direct to Polish homepage to prevent white screen
+[[redirects]]
+  from = "http://kowalstwo-karny.pl"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://kowalstwo-karny.pl/"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://www.kowalstwo-karny.pl"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://www.kowalstwo-karny.pl/"
+  to   = "https://www.kowalstwo-karny.pl/pl/"
+  status = 301
+  force  = true
+
+# HTTP apex domain to HTTPS www with trailing slash (for subpages)
 [[redirects]]
   from = "http://kowalstwo-karny.pl/:path"
   to   = "https://www.kowalstwo-karny.pl/:path/"
   status = 301
   force  = true
 
-# HTTP www to HTTPS www with trailing slash (one hop)
+# HTTP www to HTTPS www with trailing slash (for subpages)
 [[redirects]]
   from = "http://www.kowalstwo-karny.pl/:path"
   to   = "https://www.kowalstwo-karny.pl/:path/"
   status = 301
   force  = true
 
-# HTTPS apex to HTTPS www with trailing slash (one hop)
+# HTTPS apex to HTTPS www with trailing slash (for subpages)
 [[redirects]]
   from = "https://kowalstwo-karny.pl/:path"
   to   = "https://www.kowalstwo-karny.pl/:path/"

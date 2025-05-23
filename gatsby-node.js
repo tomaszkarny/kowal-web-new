@@ -11,18 +11,18 @@ exports.onPreInit = () => {
   console.log('Gatsby Node APIs are working!');
 };
 
-// Create redirect from root to Polish homepage
-exports.createPages = ({ actions }) => {
-  const { createRedirect } = actions;
-  
-  // Redirect root page to Polish version
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/pl/`,
-    redirectInBrowser: true,
-    isPermanent: false, // Use 302 redirect for flexibility
-  });
-};
+// Removed conflicting redirect - now handled by netlify.toml
+// exports.createPages = ({ actions }) => {
+//   const { createRedirect } = actions;
+//   
+//   // Redirect root page to Polish version - MOVED TO NETLIFY.TOML
+//   createRedirect({
+//     fromPath: `/`,
+//     toPath: `/pl/`,
+//     redirectInBrowser: true,
+//     isPermanent: false, // Use 302 redirect for flexibility
+//   });
+// };
 
 // We can re-implement lastModified dates for pages in the future
 // using a more compatible approach with gatsby-plugin-sitemap
