@@ -73,7 +73,38 @@
 # — PAGE-SPECIFIC REDIRECTS (CRITICAL FIX) —
 # These must come BEFORE any catch-all rules
 
-# English pages - serve the actual files
+# Handle URLs without trailing slashes first (redirect to with trailing slash)
+[[redirects]]
+  from = "/en/contact"
+  to = "/en/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/en/about"
+  to = "/en/about/"
+  status = 301
+
+[[redirects]]
+  from = "/en/gallery"
+  to = "/en/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/contact"
+  to = "/pl/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/about"
+  to = "/pl/about/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/gallery"
+  to = "/pl/gallery/"
+  status = 301
+
+# English pages - serve the actual files (with trailing slashes)
 [[redirects]]
   from = "/en/contact/"
   to = "/en/contact/index.html"
@@ -94,7 +125,7 @@
   to = "/en/index.html"
   status = 200
 
-# Polish pages - serve the actual files
+# Polish pages - serve the actual files (with trailing slashes)
 [[redirects]]
   from = "/pl/contact/"
   to = "/pl/contact/index.html"
@@ -122,12 +153,27 @@
   status = 301
 
 [[redirects]]
+  from = "/contact"
+  to = "/pl/contact/"
+  status = 301
+
+[[redirects]]
   from = "/about/"
   to = "/pl/about/"
   status = 301
 
 [[redirects]]
+  from = "/about"
+  to = "/pl/about/"
+  status = 301
+
+[[redirects]]
   from = "/gallery/"
+  to = "/pl/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/gallery"
   to = "/pl/gallery/"
   status = 301
 
