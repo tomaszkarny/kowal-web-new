@@ -70,16 +70,55 @@
   status = 301
   force  = true
 
-# Handle client-side routing - CRITICAL: English routes must come first!
+# Language redirects for pages without language prefix
 [[redirects]]
-  from = "/en/*"
-  to = "/en/index.html"
-  status = 200
+  from = "/contact"
+  to = "/pl/contact/"
+  status = 301
+  force = true
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/about"
+  to = "/pl/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gallery"
+  to = "/pl/gallery/"
+  status = 301
+  force = true
+
+# Handle trailing slashes for language-prefixed routes
+[[redirects]]
+  from = "/en/contact"
+  to = "/en/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/en/about"
+  to = "/en/about/"
+  status = 301
+
+[[redirects]]
+  from = "/en/gallery"
+  to = "/en/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/contact"
+  to = "/pl/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/about"
+  to = "/pl/about/"
+  status = 301
+
+[[redirects]]
+  from = "/pl/gallery"
+  to = "/pl/gallery/"
+  status = 301
 
 # — SECURITY HEADERS —
 [[headers]]
