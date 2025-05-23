@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
@@ -29,7 +29,11 @@ export default IndexPage
  */
 export const Head = ({ data, location, pageContext }) => { // Added pageContext
   const { t } = useTranslation('seo')
-  const { language } = pageContext; // Changed to use language from pageContext
+  
+  // Determine language from URL path - more reliable than pageContext
+  const isEnglishPage = location.pathname.startsWith('/en');
+  const language = isEnglishPage ? 'en' : 'pl';
+  
   const titleFallback = language === 'en'
     ? 'Artistic Blacksmith Białystok | Custom gates, railings & fences – Tadeusz Karny'
     : 'Kowalstwo artystyczne Białystok – bramy, balustrady, ogrodzenia | Tadeusz Karny';
@@ -47,6 +51,7 @@ export const Head = ({ data, location, pageContext }) => { // Added pageContext
         description={description}
         pathname={location.pathname}
         pageType="home" // Added pageType for correct home page title handling
+        noindex={false} // Explicitly set noindex to false for homepage
       />
       <LocalBusinessSchema 
         url={WEBSITE_URL}

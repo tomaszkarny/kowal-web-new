@@ -31,8 +31,8 @@ module.exports = {
         siteUrl: SITE_DOMAIN,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
-        generateDefaultLanguagePage: true,
-        pathDefaultsToDefaultLanguage: true,
+        generateDefaultLanguagePage: true, // Generate Polish homepage  
+        pathDefaultsToDefaultLanguage: false, // Polish homepage at /pl/ not /
         addRedirectPage: false,
         redirect: false,          // ← zmiana
         i18nextOptions: {
@@ -201,7 +201,19 @@ module.exports = {
       options: {
         host: SITE_DOMAIN,
         sitemap: SITEMAP_URL,
-        resolveEnv: () => process.env.GATSBY_ENV || process.env.NODE_ENV || 'development',
+        // Fix environment detection - prioritize GATSBY_ENV for production builds
+        resolveEnv: () => {
+          // If GATSBY_ENV is explicitly set, use it
+          if (process.env.GATSBY_ENV) {
+            return process.env.GATSBY_ENV;
+          }
+          // For Netlify and other production builds, check for common production indicators
+          if (process.env.NETLIFY || process.env.CONTEXT === 'production' || process.env.NODE_ENV === 'production') {
+            return 'production';
+          }
+          // Default to development
+          return 'development';
+        },
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }],

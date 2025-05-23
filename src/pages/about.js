@@ -50,6 +50,7 @@ export const Head = ({ data, location, pageContext }) => { // Added pageContext
         description={description}
         pathname={location.pathname}
         pageType="about" // Added pageType
+        noindex={false} // Explicitly set noindex to false
       />
       <BreadcrumbSchema 
         pathname={location.pathname}

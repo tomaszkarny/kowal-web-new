@@ -51,6 +51,7 @@ export const Head = ({ data, location, pageContext }) => { // Added pageContext
         description={description}
         pathname={location.pathname}
         pageType="contact" // Added pageType
+        noindex={false}
       />
       <LocalBusinessSchema 
         url={`${WEBSITE_URL}${location.pathname}`}

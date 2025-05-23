@@ -52,6 +52,7 @@ export const Head = ({ data, location, pageContext }) => { // Receive pageContex
         description={description}
         pathname={location.pathname}
         pageType="gallery" // Added pageType
+        noindex={false}
       />
       <BreadcrumbSchema
         pathname={location.pathname}

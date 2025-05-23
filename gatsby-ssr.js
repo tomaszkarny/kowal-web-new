@@ -163,14 +163,7 @@ exports.onRenderBody = ({ setHeadComponents }) => {
     );
   }
 
-  // Add meta tag to help with indexing
-  allHeadComponents.push(
-    React.createElement('meta', {
-      key: 'indexable-content',
-      name: 'robots',
-      content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
-    })
-  );
+  // Removed duplicate robots meta tag - handled by EnhancedSEO component instead
   
   // Set all head components
   setHeadComponents(allHeadComponents);
