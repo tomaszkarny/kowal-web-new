@@ -33,8 +33,11 @@ exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents, pathname 
           // Save the original title in a data attribute for debugging
           component.props['data-original'] = component.props.children;
           
-          // Replace with a generic site title
-          component.props.children = 'Kowalstwo Artystyczne - Tadeusz Karny';
+          // Replace with language-appropriate title
+          const isEnglish = pathname && pathname.startsWith('/en')
+          component.props.children = isEnglish 
+            ? 'Tadeusz Karny Artistic Blacksmith'
+            : 'Kowalstwo Artystyczne - Tadeusz Karny';
         }
       }
     }
@@ -101,12 +104,18 @@ exports.onRenderBody = ({ setHeadComponents }) => {
                 titleEl.textContent.toLowerCase().includes('nie znaleziono') ||
                 titleEl.textContent.toLowerCase().includes('strona nie istnieje')
               )) {
-                titleEl.textContent = 'Kowalstwo Artystyczne - Tadeusz Karny';
+                const isEn = window.location.pathname.startsWith('/en')
+                titleEl.textContent = isEn 
+                  ? 'Tadeusz Karny Artistic Blacksmith'
+                  : 'Kowalstwo Artystyczne - Tadeusz Karny';
                 
                 // Also set it again after a short delay to handle race conditions
                 setTimeout(function() {
                   if (document.querySelector('title').textContent.includes('404')) {
-                    document.querySelector('title').textContent = 'Kowalstwo Artystyczne - Tadeusz Karny';
+                    const isEn = window.location.pathname.startsWith('/en')
+                    document.querySelector('title').textContent = isEn 
+                      ? 'Tadeusz Karny Artistic Blacksmith'
+                      : 'Kowalstwo Artystyczne - Tadeusz Karny'
                   }
                 }, 50);
               }

@@ -1,10 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-// Niestandardowy komponent HTML z całkowicie hardkodowanym tytułem
+// Language-aware HTML component with dynamic title based on path language
 export default function HTML(props) {
-  // ZAWSZE używamy bezpiecznego, hardkodowanego tytułu - nigdy nie pozwalamy na tytuł 404
-  const SITE_TITLE = "Kowalstwo Artystyczne - Tadeusz Karny";
+  // Get language from htmlAttributes.lang if available, otherwise detect from path
+  const htmlLang = props.htmlAttributes?.lang
+  const pathname = props.pathname || ''
+  const isEnglish = htmlLang === 'en' || (!htmlLang && pathname.startsWith('/en'))
+  
+  // Language-specific site titles
+  const SITE_TITLE = isEnglish 
+    ? "Tadeusz Karny Artistic Blacksmith" 
+    : "Kowalstwo Artystyczne - Tadeusz Karny";
   
   // Usuwamy wszystkie tagi <title> z props.headComponents
   const filteredHeadComponents = Array.isArray(props.headComponents) 
@@ -33,13 +40,18 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                // Ustaw tytuł natychmiast
-                document.title = "${SITE_TITLE}";
+                // Set language-appropriate title immediately
+                const pathname = window.location.pathname || ''
+                const isEn = pathname.startsWith('/en')
+                const title = isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
+                document.title = title;
                 
                 // Całkowicie zastąp domyślną implementację właściwości document.title
                 Object.defineProperty(document, 'title', {
                   get: function() { 
-                    return "${SITE_TITLE}"; 
+                    const pathname = window.location.pathname || ''
+                    const isEn = pathname.startsWith('/en')
+                    return isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
                   },
                   set: function(newValue) {
                     // Jeśli nowa wartość zawiera 404, ignoruj zmianę
@@ -48,8 +60,10 @@ export default function HTML(props) {
                         newValue.toLowerCase().includes('not found') ||
                         newValue.toLowerCase().includes('strona nie istnieje')
                        ) {
-                      console.log('Zablokowano zmianę tytułu na:', newValue);
-                      return "${SITE_TITLE}";
+                      console.log('Blocked title change to:', newValue);
+                      const pathname = window.location.pathname || ''
+                      const isEn = pathname.startsWith('/en')
+                      return isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
                     }
                     
                     // W przeciwnym razie pozwól na zmianę
@@ -58,10 +72,12 @@ export default function HTML(props) {
                     if (actualTitle) {
                       actualTitle.textContent = newValue;
                       
-                      // Weryfikacja po zmianie
+                      // Verification after change
                       setTimeout(function() {
                         if (actualTitle.textContent.includes('404')) {
-                          actualTitle.textContent = "${SITE_TITLE}";
+                          const pathname = window.location.pathname || ''
+                          const isEn = pathname.startsWith('/en')
+                          actualTitle.textContent = isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
                         }
                       }, 0);
                     }
@@ -86,7 +102,9 @@ export default function HTML(props) {
                             value.toLowerCase().includes('not found') ||
                             value.toLowerCase().includes('strona nie istnieje')
                            ) {
-                          element.innerText = "${SITE_TITLE}";
+                          const pathname = window.location.pathname || ''
+                          const isEn = pathname.startsWith('/en')
+                          element.innerText = isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
                           return;
                         }
                         element.innerText = value;
@@ -110,7 +128,9 @@ export default function HTML(props) {
                         currentTitle.toLowerCase().includes('not found') ||
                         currentTitle.toLowerCase().includes('strona nie istnieje')
                        ) {
-                      title.textContent = "${SITE_TITLE}";
+                      const pathname = window.location.pathname || ''
+                      const isEn = pathname.startsWith('/en')
+                      title.textContent = isEn ? 'Tadeusz Karny Artistic Blacksmith' : 'Kowalstwo Artystyczne - Tadeusz Karny'
                     }
                   }
                 }, 50);
