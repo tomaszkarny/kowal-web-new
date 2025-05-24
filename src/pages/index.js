@@ -7,6 +7,7 @@ import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
+import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
 import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails' // Switched to BUSINESS_NAME_ML for title
@@ -27,36 +28,27 @@ export default IndexPage
  * This includes both standard SEO tags and LocalBusiness schema
  */
 export const Head = ({ data, location, pageContext }) => {
-  // Use pageContext from Gatsby i18n plugin 
-  const currentLanguage = pageContext?.i18n?.language || pageContext?.language || 
-    (location?.pathname?.startsWith('/en') ? 'en' : 'pl');
+  // Detect language using our centralized utility
+  const language = detectLanguageForSEO(pageContext, location);
   
-  // Don't use useTranslation hook in Head - it might not have proper context
-  // Instead use direct language-specific titles
-  
-  // Use direct titles since useTranslation may not work properly in Head
-  const title = currentLanguage === 'en'
-    ? 'Artistic Blacksmith Białystok | Custom gates, railings & fences – Tadeusz Karny'
-    : 'Kowalstwo artystyczne Białystok – bramy, balustrady, ogrodzenia | Tadeusz Karny';
-
-  const description = currentLanguage === 'en'
-    ? 'Looking for a blacksmith in Białystok, Poland? Tadeusz Karny crafts bespoke gates, railings and fences – traditional artistic blacksmithing for 30+ years.'
-    : 'Kowal Tadeusz Karny oferuje bramy na zamówienie, balustrady i ogrodzenia. Najlepsze kowalstwo artystyczne w Białymstoku i w całej Polsce – 30 lat doświadczenia.';
+  // Get SEO translations directly (safer than using hooks in Head API)
+  const seoTranslations = getSEOTranslations(language, 'home');
   
   return (
     <>
       <EnhancedSEO
-        title={title}
-        description={description}
+        key={`seo-${language}-home`}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
         pageType="home"
-        language={currentLanguage} // Pass the detected language
+        language={language} // Explicitly pass language
         noindex={false}
       />
       <LocalBusinessSchema 
         url={WEBSITE_URL}
-        title={title}
-        description={description}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
       />
       <BreadcrumbSchema 

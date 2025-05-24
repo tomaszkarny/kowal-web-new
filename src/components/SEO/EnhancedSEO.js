@@ -1,9 +1,8 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
+import { getSEOTranslations } from '../../utils/seoLanguageDetection'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import { SITE_DOMAIN } from 'consts/site'
 
@@ -35,8 +34,8 @@ export const EnhancedSEO = ({
   breadcrumbs = [],
   faq = []
 }) => {
-  const { t: tCommon } = useTranslation('common') // For site title and common elements
-  const { t: tSeo } = useTranslation('seo') // For page-specific titles and descriptions
+  // IMPORTANT: Don't use useTranslation hooks in Head API - they're unreliable during build
+  // Instead, we'll use the language prop and hardcoded translations
   const location = useLocation()
   const { 
     title: defaultTitle, 
@@ -63,93 +62,45 @@ export const EnhancedSEO = ({
   // Clean the path and ensure it has a trailing slash for consistency
   const cleanPath = ensureTrailingSlash(path)
 
-  // Use passed language prop or detect from path as fallback
-  const currentLanguage = language || getLanguageFromPath(path);
+  // Improved language detection that works for both SSR and client-side
+  let currentLanguage;
+  
+  // First priority: explicit language prop (from pageContext during build)
+  if (language) {
+    currentLanguage = language;
+  } 
+  // Second priority: detect from pathname (works for both SSR and client)
+  else {
+    const currentPath = pathname || path || (typeof window !== 'undefined' ? window.location.pathname : '/');
+    currentLanguage = getLanguageFromPath(currentPath) || 'pl';
+  }
+  
+  // Force re-render on language change by using the language in the component key
+  const languageKey = `seo-${currentLanguage}-${pageType}`;
+  
+  // Debug logging for build issues
+  if (typeof window === 'undefined') {
+    console.log(`[EnhancedSEO SSR] Building page - language: ${currentLanguage}, pathname: ${pathname || path}, pageType: ${pageType}, title prop: ${title}, language prop: ${language}`);
+  }
+  
+  // Get translations from our hardcoded data (same as in seoLanguageDetection.js)
+  const translations = getSEOTranslations(currentLanguage, pageType);
   
   // Determine default meta title based on page type
-  let pageTitle = title || '';
-  if (!pageTitle) {
-    // Explicitly check both translations for debugging
-    const debugSeoKey = `${pageType}.title`;
-    // Use a safer approach to check for translation existence
-    // We'll try-catch in case i18n.exists is problematic
-    let hasTitleInSeo = false;
-    try {
-      // First check if the key exists using the translation function
-      const translatedValue = tSeo(`${pageType}.title`, null);
-      hasTitleInSeo = translatedValue !== null && translatedValue !== `${pageType}.title`;
-    } catch (e) {
-      // console.warn(`Error checking translation existence: ${e.message}`); // Removed warning
-    }
-    
-    // Always fall back to common namespace for page names if seo title is missing
-    if (hasTitleInSeo) {
-      // Use the seo namespace title if it exists - using tSeo hook
-      pageTitle = tSeo(`${pageType}.title`);
-    } else {
-      // Fall back construction with site title - using tCommon hook
-      const pageName = tCommon(pageType, '');
-      const siteName = tCommon('siteTitle', '');
-      
-      if (pageName && siteName) {
-        pageTitle = `${pageName} - ${siteName}`;
-      } else if (pageType === 'home') {
-        pageTitle = tCommon('siteTitle', 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny');
-      }
-    }
+  let pageTitle = title || translations.pageTitle || '';
+  
+  // Debug what we're getting
+  if (typeof window === 'undefined') {
+    console.log(`[EnhancedSEO SSR] pageTitle: ${pageTitle}, translations.pageTitle: ${translations.pageTitle}`);
   }
   
   // Determine default meta description based on page type
-  let pageDescription = description || '';
-  if (!pageDescription) {
-    const fallbackEn = {
-      home: 'Artistic Blacksmithing Workshop',
-      about: 'Learn about our artistic blacksmithing workshop.',
-      gallery: 'Browse our portfolio of gates, railings and fences.',
-      contact: 'Contact us to discuss your project.'
-    };
-    const fallbackPl = {
-      home: 'Pracownia Kowalstwa Artystycznego',
-      about: 'Poznaj naszą pracownię kowalstwa artystycznego.',
-      gallery: 'Zobacz nasze portfolio bram, balustrad, ogrodzeń.',
-      contact: 'Skontaktuj się z nami.'
-    };
-    const fallback = currentLanguage === 'en' ? fallbackEn[pageType] : fallbackPl[pageType];
-    
-    switch(pageType) {
-      case 'home':
-        pageDescription = tSeo('home.description', fallback);
-        break;
-      case 'about':
-        pageDescription = tSeo('about.description', fallback);
-        break;
-      case 'gallery':
-        pageDescription = tSeo('gallery.description', fallback);
-        break;
-      case 'contact':
-        pageDescription = tSeo('contact.description', fallback);
-        break;
-      default:
-        pageDescription = '';
-    }
-  }
+  let pageDescription = description || translations.pageDescription || '';
   
-  // Use the translation hooks properly to ensure consistency
-  // Using tCommon instead of i18n.t as a safer approach
-  const siteTitleFallback = currentLanguage === 'en' 
-    ? 'Tadeusz Karny Artistic Blacksmith'
-    : 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny';
-  const translatedSiteTitle = tCommon('siteTitle', siteTitleFallback);
-
-  // Fallback to language-specific defaults if translation is missing, empty, or returns the key itself
-  const baseSiteTitle =
-    translatedSiteTitle &&
-    translatedSiteTitle !== 'siteTitle' &&
-    translatedSiteTitle !== 'common:siteTitle'
-      ? translatedSiteTitle
-      : currentLanguage === 'pl'
-        ? 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny'
-        : defaultTitle;
+  // Use hardcoded site titles based on language
+  const baseSiteTitle = translations.siteTitle || (currentLanguage === 'pl'
+    ? 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny'
+    : 'Tadeusz Karny Artistic Blacksmith');
   
   // Implement smart title handling with appendSiteTitle flag
   const baseTitle = pageTitle || ''; // pageTitle is the 'title' prop from page
@@ -181,6 +132,11 @@ export const EnhancedSEO = ({
   if (!finalTitle) {
     finalTitle = siteNameString; // Default to site name if all else fails
   }
+  
+  // Debug final title
+  if (typeof window === 'undefined') {
+    console.log(`[EnhancedSEO SSR] Final title: ${finalTitle}`);
+  }
 
   const siteDescriptionFallback = currentLanguage === 'en'
     ? 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.'
@@ -188,7 +144,7 @@ export const EnhancedSEO = ({
 
   const seo = {
     title: finalTitle,
-    description: pageDescription || tCommon('siteDescription', siteDescriptionFallback) || defaultDescription,
+    description: pageDescription || translations.siteDescription || siteDescriptionFallback,
     image: socialCard || image || defaultImage,
     url: `${siteDomain}${cleanPath}`,
     lang: currentLanguage
@@ -196,7 +152,7 @@ export const EnhancedSEO = ({
   }
 
   // Get the current path adjusted for proper canonical URL (no trailing slash except homepage)
-  const adjustedPath = path.endsWith('/') || path === '' ? path : `${path}/`
+  const adjustedPath = cleanPath;
   
   // Get language-specific URLs using our configuration
   const languageUrls = getLanguageUrls(adjustedPath)
@@ -216,7 +172,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       '@id': `${siteDomain}/#organization`,
-      name: tCommon('siteTitle', siteTitleFallback) || defaultTitle,
+      name: baseSiteTitle,
       url: siteDomain,
       logo: `${siteDomain}/logo.png`,
       description: seo.description
@@ -227,7 +183,7 @@ export const EnhancedSEO = ({
       '@context': 'https://schema.org',
       '@type': 'BlacksmithShop',
       '@id': `${siteDomain}/#localbusiness`,
-      name: tCommon('siteTitle', siteTitleFallback) || defaultTitle,
+      name: baseSiteTitle,
       url: siteDomain,
       image: `${siteDomain}${defaultImage}`,
       description: seo.description
@@ -267,8 +223,9 @@ export const EnhancedSEO = ({
   }
 
   return (
-    <Helmet title={seo.title} key={`helmet-${currentLanguage}-${cleanPath}`}>
+    <>
       <html lang={seo.lang} />
+      <title key={languageKey}>{seo.title}</title>
       <meta name="description" content={seo.description} />
       {/* keywords meta tag removed - deprecated */}
       <meta name="image" content={seo.image} />
@@ -297,7 +254,7 @@ export const EnhancedSEO = ({
       {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content={tCommon('siteTitle', siteTitleFallback) || defaultTitle} />
+      <meta property="og:site_name" content={baseSiteTitle} />
       <meta property="og:locale" content={seo.lang === 'pl' ? 'pl_PL' : 'en_US'} />
       {seo.lang === 'pl' ? (
         <meta property="og:locale:alternate" content="en_US" />
@@ -329,7 +286,7 @@ export const EnhancedSEO = ({
 
       {/* Page specific SEO */}
       {children}
-    </Helmet>
+    </>
   )
 }
 

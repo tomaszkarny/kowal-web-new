@@ -8,40 +8,44 @@ exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents, pathname 
   // Get current head components
   const headComponents = getHeadComponents();
   
-  // Check if we're on a 404 page (actual 404, not just a flash)
-  const isActual404 = pathname && (pathname.includes('/404') || pathname === '/404.html');
+  // Only process if pathname is undefined, empty, or specifically a 404
+  const shouldProcess404 = !pathname || pathname === '' || pathname === '/' || pathname.includes('/404');
   
-  // More aggressive detection and replacement of 404 title
-  // Even if the pathname doesn't indicate it's a 404 page, we'll still fix any 404 title
-  headComponents.forEach(component => {
-    if (
-      component.type === 'title' && 
-      component.props && 
-      component.props.children
-    ) {
-      const titleStr = component.props.children.toString().toLowerCase();
-      
-      // Check for any indication this is a 404 title
+  if (shouldProcess404) {
+    // Check if we're on a 404 page (actual 404, not just a flash)
+    const isActual404 = pathname && (pathname.includes('/404') || pathname === '/404.html');
+    
+    // Only process titles that look like 404 errors when appropriate
+    headComponents.forEach(component => {
       if (
-        titleStr.includes('404') || 
-        titleStr.includes('not found') || 
-        titleStr.includes('nie znaleziono') ||
-        titleStr.includes('strona nie istnieje')
+        component.type === 'title' && 
+        component.props && 
+        component.props.children
       ) {
-        // Only replace if this isn't an actual 404 page
-        if (!isActual404) {
-          // Save the original title in a data attribute for debugging
-          component.props['data-original'] = component.props.children;
-          
-          // Replace with language-appropriate title
-          const isEnglish = pathname && pathname.startsWith('/en')
-          component.props.children = isEnglish 
-            ? 'Tadeusz Karny Artistic Blacksmith'
-            : 'Kowalstwo Artystyczne - Tadeusz Karny';
+        const titleStr = component.props.children.toString().toLowerCase();
+        
+        // Check for any indication this is a 404 title
+        if (
+          titleStr.includes('404') || 
+          titleStr.includes('not found') || 
+          titleStr.includes('nie znaleziono') ||
+          titleStr.includes('strona nie istnieje')
+        ) {
+          // Only replace if this isn't an actual 404 page
+          if (!isActual404) {
+            // Save the original title in a data attribute for debugging
+            component.props['data-original'] = component.props.children;
+            
+            // Replace with language-appropriate title
+            const isEnglish = pathname && pathname.startsWith('/en')
+            component.props.children = isEnglish 
+              ? 'Tadeusz Karny Artistic Blacksmith'
+              : 'Kowalstwo Artystyczne - Tadeusz Karny';
+          }
         }
       }
-    }
-  });
+    });
+  }
   
   // Enhance canonical URLs by ensuring they are properly defined for SEO
   // This is critical for proper indexing by search engines
@@ -95,8 +99,14 @@ exports.onRenderBody = ({ setHeadComponents }) => {
       dangerouslySetInnerHTML={{
         __html: `
           (function() {
-            // Immediately run to hide any 404 title
+            // Only fix 404 titles during initial load or on error pages
             function fix404Title() {
+              // Only run this fix if we detect a possible 404 scenario
+              var path = window.location.pathname;
+              var shouldCheck = !path || path === '/' || path.includes('/404') || document.readyState === 'loading';
+              
+              if (!shouldCheck) return;
+              
               var titleEl = document.querySelector('title');
               if (titleEl && (
                 titleEl.textContent.includes('404') || 

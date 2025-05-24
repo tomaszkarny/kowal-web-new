@@ -6,6 +6,7 @@ import { About } from 'components/About/About'
 import { Layout } from 'components/Layout/Layout'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
+import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML
 
@@ -23,34 +24,23 @@ export default AboutPage
  * Implement Gatsby Head API for the about page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location, pageContext }) => { // Added pageContext
-  // Use the seo namespace for titles and descriptions
-  const { t } = useTranslation('seo')
-  const { language } = pageContext; // Language from pageContext
+export const Head = ({ data, location, pageContext }) => {
+  // Detect language using our centralized utility
+  const language = detectLanguageForSEO(pageContext, location);
   
-  const pageNameKey = 'about.title';
-  const translatedPageName = t(pageNameKey);
-
-  // Fallback for the page name itself, if translation is missing for 'about.title'
-  const pageNameFallback = language === 'en' ? 'About Us' : 'O nas';
-  const pageName = translatedPageName && translatedPageName !== pageNameKey ? translatedPageName : pageNameFallback;
-
-  const siteName = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl; // This line is no longer directly used for title construction here
-  const title = pageName; // Pass only the specific page name to EnhancedSEO
-
-  const descriptionFallback = language === 'en'
-    ? 'Learn about our artistic blacksmithing workshop specializing in high-quality custom metalwork.'
-    : 'Poznaj naszą pracownię kowalstwa artystycznego specjalizującą się w wysokiej jakości wyrobach metalowych.';
-  const description = t('about.description', descriptionFallback)
+  // Get SEO translations directly (safer than using hooks in Head API)
+  const seoTranslations = getSEOTranslations(language, 'about');
   
   return (
     <>
       <EnhancedSEO
-        title={title}
-        description={description}
+        key={`seo-${language}-about`}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
-        pageType="about" // Added pageType
-        noindex={false} // Explicitly set noindex to false
+        pageType="about"
+        language={language} // Explicitly pass language
+        noindex={false}
       />
       <BreadcrumbSchema 
         pathname={location.pathname}

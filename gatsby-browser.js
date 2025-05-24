@@ -9,45 +9,19 @@ exports.onClientEntry = () => {
     console.log('Page load - detected language:', window.location.pathname.startsWith('/en') ? 'en' : 'pl');
   }
 
-  // Najważniejsza część - natychmiast naprawiamy tytuł 404 na klienckie
-  if (typeof window !== 'undefined') {
-    // Funkcja do naprawy tytułu 404
-    const fix404Title = () => {
-      const titleElement = document.querySelector('title');
-      if (titleElement && (
-        titleElement.textContent.includes('404') ||
-        titleElement.textContent.toLowerCase().includes('not found') ||
-        titleElement.textContent.toLowerCase().includes('nie znaleziono') ||
-        titleElement.textContent.toLowerCase().includes('strona nie istnieje')
-      )) {
-        // Tylko jeśli nie jesteśmy na rzeczywistej stronie 404
-        if (!window.location.pathname.includes('/404')) {
-          console.log('Fixing 404 title flash:', titleElement.textContent);
-          // Detect language from URL for proper title
-          const isEnglish = window.location.pathname.startsWith('/en');
-          titleElement.textContent = isEnglish 
-            ? 'Tadeusz Karny Artistic Blacksmith' 
-            : 'Kowalstwo Artystyczne - Tadeusz Karny';
-        }
-      }
-    };
-
-    // Natychmiast napraw tytuł
-    fix404Title();
-
-    // Napraw również po małym opóźnieniu, aby złapać tytuł, jeśli zmienia się po hydratacji
-    setTimeout(fix404Title, 0);
-    setTimeout(fix404Title, 50);
-    setTimeout(fix404Title, 100);
-    
-    // Obserwuj zmiany w tytule strony przez MutationObserver
+  // Debug title changes in development
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    // Monitor title changes for debugging
     const titleObserver = new MutationObserver((mutations) => {
       mutations.forEach(() => {
-        fix404Title();
+        const titleElement = document.querySelector('title');
+        if (titleElement) {
+          console.log('Title changed to:', titleElement.textContent);
+        }
       });
     });
     
-    // Rozpocznij obserwowanie zmian tytułu gdy DOM jest gotowy
+    // Start observing title changes when DOM is ready
     if (document.querySelector('title')) {
       titleObserver.observe(document.querySelector('title'), { childList: true, subtree: true, characterData: true });
     } else {
@@ -96,12 +70,20 @@ exports.onClientEntry = () => {
   }
 };
 
-// Add support for prefetching pages
-// Add support for prefetching pages
+// Handle route updates and ensure proper language switching
 exports.onRouteUpdate = ({ location, prevLocation }) => {
   // Debug: Log route changes in development
   if (process.env.NODE_ENV === 'development') {
     console.log(`Route change: ${prevLocation?.pathname || 'initial'} -> ${location.pathname}`);
+    
+    // Log language change
+    if (prevLocation) {
+      const prevLang = prevLocation.pathname.startsWith('/en') ? 'en' : 'pl';
+      const currentLang = location.pathname.startsWith('/en') ? 'en' : 'pl';
+      if (prevLang !== currentLang) {
+        console.log(`Language changed from ${prevLang} to ${currentLang}`);
+      }
+    }
   }
 
   // Prefetch pages that are linked to from the current page

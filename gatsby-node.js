@@ -15,14 +15,20 @@ exports.onPreInit = () => {
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
 
-  // Log page creation in development for debugging
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`Creating page: ${page.path}`);
+  // Log page creation and context for debugging
+  console.log(`[gatsby-node] Creating page: ${page.path}`);
+  console.log(`[gatsby-node] Page context:`, JSON.stringify(page.context, null, 2));
+  
+  // Check if language is in pageContext
+  if (page.context && page.context.language) {
+    console.log(`[gatsby-node] Language detected in pageContext: ${page.context.language}`);
+  } else {
+    console.log(`[gatsby-node] WARNING: No language in pageContext for ${page.path}`);
   }
 
   // Ensure EN pages are created properly
   if (page.path.startsWith('/en/')) {
-    console.log(`EN page created: ${page.path}`);
+    console.log(`[gatsby-node] EN page created: ${page.path}`);
   }
 };
 

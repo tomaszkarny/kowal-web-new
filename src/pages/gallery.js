@@ -8,6 +8,7 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
+import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails' // Import BUSINESS_NAME_ML
 
@@ -27,31 +28,22 @@ const GalleryPageTemplate = ({ pageContext }) => { // Destructure pageContext
  * Implement Gatsby Head API for the gallery page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location, pageContext }) => { // Receive pageContext
-  const { language } = pageContext; // Use language from pageContext
-  const { t } = useTranslation('seo');
-
-  const titleFallback = language === 'en' ? 'Gallery' : 'Galeria'; // Simplified to just the page name
-
-  const descriptionFallback = language === 'en'
-    ? 'View our collection of custom metalwork projects including decorative and functional pieces made by our artistic blacksmithing workshop.'
-    : 'Zobacz nasze portfolio bram, balustrad, ogrodzeń oraz elementów dekoracyjnych wykonanych przez naszą pracownię.';
-
-  // t() should now work correctly with the language from useI18next
-  const translatedTitleFromSeo = t('gallery.title'); 
-
-  const finalTitleToPass = translatedTitleFromSeo && translatedTitleFromSeo !== 'gallery.title' ? translatedTitleFromSeo : titleFallback;
-
-
-  const description = t('gallery.description', descriptionFallback);
+export const Head = ({ data, location, pageContext }) => {
+  // Detect language using our centralized utility
+  const language = detectLanguageForSEO(pageContext, location);
+  
+  // Get SEO translations directly (safer than using hooks in Head API)
+  const seoTranslations = getSEOTranslations(language, 'gallery');
 
   return (
     <>
       <EnhancedSEO
-        title={finalTitleToPass}
-        description={description}
+        key={`seo-${language}-gallery`}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
-        pageType="gallery" // Added pageType
+        pageType="gallery"
+        language={language} // Explicitly pass language
         noindex={false}
       />
       <BreadcrumbSchema

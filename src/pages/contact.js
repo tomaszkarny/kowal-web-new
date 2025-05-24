@@ -7,6 +7,7 @@ import { Layout } from 'components/Layout/Layout'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
+import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML and BUSINESS_DESCRIPTION_ML
 
@@ -25,38 +26,28 @@ export default ContactPage
  * This includes both standard SEO tags and LocalBusiness schema
  * The contact page is especially important for local business schema
  */
-export const Head = ({ data, location, pageContext }) => { // Added pageContext
-  const { t } = useTranslation('seo')
-  const { language } = pageContext; // Language from pageContext
-  const pageNameKey = 'contact.title';
-  const translatedPageName = t(pageNameKey);
-
-  const pageNameFallback = language === 'en' ? 'Contact' : 'Kontakt';
-  const pageName = translatedPageName && translatedPageName !== pageNameKey ? translatedPageName : pageNameFallback;
-
-  const siteName = language === 'en' ? BUSINESS_NAME_ML.en : BUSINESS_NAME_ML.pl; // This line is no longer directly used for title construction here
-  const title = pageName; // Pass only the specific page name to EnhancedSEO
-
-  // Use BUSINESS_DESCRIPTION_ML for multilingual description fallback components
-  const businessDesc = language === 'en' ? BUSINESS_DESCRIPTION_ML.en : BUSINESS_DESCRIPTION_ML.pl;
-  const descriptionFallback = language === 'en'
-    ? `Contact ${siteName} for custom blacksmith work. ${businessDesc}`
-    : `Skontaktuj się z ${siteName} w sprawie indywidualnych wyrobów kowalskich. ${businessDesc}`;
-  const description = t('contact.description', descriptionFallback)
+export const Head = ({ data, location, pageContext }) => {
+  // Detect language using our centralized utility
+  const language = detectLanguageForSEO(pageContext, location);
+  
+  // Get SEO translations directly (safer than using hooks in Head API)
+  const seoTranslations = getSEOTranslations(language, 'contact');
   
   return (
     <>
       <EnhancedSEO
-        title={title}
-        description={description}
+        key={`seo-${language}-contact`}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
-        pageType="contact" // Added pageType
+        pageType="contact"
+        language={language} // Explicitly pass language
         noindex={false}
       />
       <LocalBusinessSchema 
         url={`${WEBSITE_URL}${location.pathname}`}
-        title={title}
-        description={description}
+        title={seoTranslations.pageTitle}
+        description={seoTranslations.pageDescription}
         pathname={location.pathname}
       />
       <BreadcrumbSchema 
