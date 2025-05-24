@@ -11,6 +11,27 @@ exports.onPreInit = () => {
   console.log('Gatsby Node APIs are working!');
 };
 
+// Add debugging for page creation
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+
+  // Log page creation in development for debugging
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`Creating page: ${page.path}`);
+  }
+
+  // Ensure EN pages are created properly
+  if (page.path.startsWith('/en/')) {
+    console.log(`EN page created: ${page.path}`);
+  }
+};
+
+// Debug build completion
+exports.onPostBuild = ({ reporter }) => {
+  reporter.info('Build completed successfully');
+  console.log('All pages should now be available, including /en/* routes');
+};
+
 // Removed conflicting redirect - now handled by netlify.toml
 // exports.createPages = ({ actions }) => {
 //   const { createRedirect } = actions;

@@ -49,24 +49,62 @@
   status = 301
   force  = true
 
-# HTTP apex domain to HTTPS www with trailing slash (for subpages)
+# Domain canonicalization for subpages - but EXCLUDE /en/* paths
+# HTTP apex domain to HTTPS www with trailing slash (for NON-EN subpages only)
 [[redirects]]
-  from = "http://kowalstwo-karny.pl/:path"
-  to   = "https://www.kowalstwo-karny.pl/:path/"
+  from = "http://kowalstwo-karny.pl/pl/*"
+  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
   status = 301
   force  = true
 
-# HTTP www to HTTPS www with trailing slash (for subpages)
 [[redirects]]
-  from = "http://www.kowalstwo-karny.pl/:path"
-  to   = "https://www.kowalstwo-karny.pl/:path/"
+  from = "http://kowalstwo-karny.pl/contact"
+  to   = "https://www.kowalstwo-karny.pl/pl/contact/"
   status = 301
   force  = true
 
-# HTTPS apex to HTTPS www with trailing slash (for subpages)
 [[redirects]]
-  from = "https://kowalstwo-karny.pl/:path"
-  to   = "https://www.kowalstwo-karny.pl/:path/"
+  from = "http://kowalstwo-karny.pl/about"
+  to   = "https://www.kowalstwo-karny.pl/pl/about/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://kowalstwo-karny.pl/gallery"
+  to   = "https://www.kowalstwo-karny.pl/pl/gallery/"
+  status = 301
+  force  = true
+
+# HTTP www to HTTPS www (for NON-EN subpages only)
+[[redirects]]
+  from = "http://www.kowalstwo-karny.pl/pl/*"
+  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
+  status = 301
+  force  = true
+
+# HTTPS apex to HTTPS www (for NON-EN subpages only)
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/pl/*"
+  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
+  status = 301
+  force  = true
+
+# Separate redirects specifically for EN paths to ensure they work correctly
+[[redirects]]
+  from = "http://kowalstwo-karny.pl/en/*"
+  to   = "https://www.kowalstwo-karny.pl/en/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://www.kowalstwo-karny.pl/en/*"
+  to   = "https://www.kowalstwo-karny.pl/en/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/en/*"
+  to   = "https://www.kowalstwo-karny.pl/en/:splat"
   status = 301
   force  = true
 

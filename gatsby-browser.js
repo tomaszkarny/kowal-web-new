@@ -3,6 +3,12 @@
  * We use this to customize behavior and suppress specific console warnings
  */
 exports.onClientEntry = () => {
+  // Debug: Log current path and language detection
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    console.log('Page load - pathname:', window.location.pathname);
+    console.log('Page load - detected language:', window.location.pathname.startsWith('/en') ? 'en' : 'pl');
+  }
+
   // Najważniejsza część - natychmiast naprawiamy tytuł 404 na klienckie
   if (typeof window !== 'undefined') {
     // Funkcja do naprawy tytułu 404
@@ -17,7 +23,11 @@ exports.onClientEntry = () => {
         // Tylko jeśli nie jesteśmy na rzeczywistej stronie 404
         if (!window.location.pathname.includes('/404')) {
           console.log('Fixing 404 title flash:', titleElement.textContent);
-          titleElement.textContent = 'Kowalstwo Artystyczne - Tadeusz Karny';
+          // Detect language from URL for proper title
+          const isEnglish = window.location.pathname.startsWith('/en');
+          titleElement.textContent = isEnglish 
+            ? 'Tadeusz Karny Artistic Blacksmith' 
+            : 'Kowalstwo Artystyczne - Tadeusz Karny';
         }
       }
     };
@@ -87,7 +97,13 @@ exports.onClientEntry = () => {
 };
 
 // Add support for prefetching pages
+// Add support for prefetching pages
 exports.onRouteUpdate = ({ location, prevLocation }) => {
+  // Debug: Log route changes in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`Route change: ${prevLocation?.pathname || 'initial'} -> ${location.pathname}`);
+  }
+
   // Prefetch pages that are linked to from the current page
   if (prevLocation !== null) {
     // Log navigation for debugging
