@@ -1,0 +1,30 @@
+# Ensure EN pages are served as static HTML, not SPA routes
+/en/             /en/index.html           200
+/en/about/       /en/about/index.html     200
+/en/gallery/     /en/gallery/index.html   200
+/en/contact/     /en/contact/index.html   200
+
+# Add trailing slashes to EN URLs
+/en              /en/                     301
+/en/about        /en/about/               301
+/en/gallery      /en/gallery/             301
+/en/contact      /en/contact/             301
+
+# Ensure PL pages are served correctly
+/pl/             /pl/index.html           200
+/pl/about/       /pl/about/index.html     200
+/pl/gallery/     /pl/gallery/index.html   200
+/pl/contact/     /pl/contact/index.html   200
+
+# Domain canonicalization - HTTP to HTTPS with www
+http://kowalstwo-karny.pl/*         https://www.kowalstwo-karny.pl/:splat    301!
+http://www.kowalstwo-karny.pl/*     https://www.kowalstwo-karny.pl/:splat    301!
+https://kowalstwo-karny.pl/*        https://www.kowalstwo-karny.pl/:splat    301!
+
+# Root redirects to Polish homepage
+/                /pl/                     301
+
+# Redirect pages without language prefix to Polish
+/contact         /pl/contact/             301
+/about           /pl/about/               301
+/gallery         /pl/gallery/             301

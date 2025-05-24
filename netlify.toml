@@ -2,6 +2,10 @@
   command = "npm i --legacy-peer-deps --force && npm install encoding @parcel/watcher-linux-x64-glibc --force && gatsby clean && npm run build"
   publish = "public"
 
+# Disable Single Page App mode - serve HTML files directly
+[[plugins]]
+  package = "@netlify/plugin-gatsby"
+
 [build.environment]
   NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--legacy-peer-deps --include=optional"
@@ -123,6 +127,78 @@
   from = "/gallery"
   to = "/pl/gallery/"
   status = 301
+
+# CRITICAL: Ensure EN pages are served as static HTML files, not SPA routes
+# Serve EN pages directly (with trailing slash)
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/about/"
+  to = "/en/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/gallery/"
+  to = "/en/gallery/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/contact/"
+  to = "/en/contact/index.html"
+  status = 200
+
+# Handle EN pages without trailing slash
+[[redirects]]
+  from = "/en"
+  to = "/en/"
+  status = 301
+
+[[redirects]]
+  from = "/en/about"
+  to = "/en/about/"
+  status = 301
+
+[[redirects]]
+  from = "/en/gallery"
+  to = "/en/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/en/contact"
+  to = "/en/contact/"
+  status = 301
+
+# Ensure PL pages are also served correctly
+[[redirects]]
+  from = "/pl/"
+  to = "/pl/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/about/"
+  to = "/pl/about/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/gallery/"
+  to = "/pl/gallery/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/pl/contact/"
+  to = "/pl/contact/index.html"
+  status = 200
+
+# IMPORTANT: Catch-all rule to serve static files (must be LAST)
+# This prevents SPA fallback behavior for existing HTML files
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  status = 200
+  force = false
 
 # — SECURITY HEADERS —
 [[headers]]
