@@ -47,20 +47,20 @@ export const getSEOTranslations = (language, pageType) => {
       siteTitle: 'Tadeusz Karny Artistic Blacksmith',
       siteDescription: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
       home: {
-        title: 'Artistic Blacksmith Białystok | Custom gates, railings & fences – Tadeusz Karny',
-        description: 'Looking for a blacksmith in Białystok, Poland? Tadeusz Karny crafts bespoke gates, railings and fences – traditional artistic blacksmithing for 30+ years.'
+        title: 'Best Blacksmith Poland | Wrought Iron Gates, Railings, Fences - Tadeusz Karny',
+        description: 'Best artistic blacksmith in Poland ⭐ Custom wrought iron gates, railings, fences. Traditional blacksmithing Białystok. 30+ years experience ☎+48 604 253 145'
       },
       about: {
-        title: 'About Us',
-        description: 'Learn about our artistic blacksmithing workshop specializing in high-quality custom metalwork with over 20 years of experience.'
+        title: 'About Us - Artistic Blacksmithing Workshop',
+        description: 'Artistic blacksmithing workshop Białystok since 1995. Traditional forging: wrought iron gates, railings, fences. Best blacksmith in Podlaskie ✓ Custom designs'
       },
       gallery: {
-        title: 'Gallery',
-        description: 'Browse our portfolio of gates, railings and fences.'
+        title: 'Gallery - Wrought Iron Gates, Railings, Fences',
+        description: 'Gallery: 100+ wrought iron gates, railings, fences projects in Białystok & Poland. Artistic blacksmith portfolio. Get inspired ✓ Free quote ☎604 253 145'
       },
       contact: {
-        title: 'Contact',
-        description: 'Contact us to discuss your custom gate, fence or railing – by phone, email or an on-site visit to our workshop.'
+        title: 'Contact - Blacksmith Białystok',
+        description: 'Blacksmith Białystok contact ☎+48 604 253 145. Order custom wrought iron gate, railing, fence. Free quote ✓ Consultation ✓ Installation across Poland'
       }
     },
     pl: {
@@ -68,19 +68,19 @@ export const getSEOTranslations = (language, pageType) => {
       siteDescription: 'Kowalstwo artystyczne – bramy, balustrady i ogrodzenia na zamówienie.',
       home: {
         title: 'Kowalstwo artystyczne Białystok – bramy, balustrady, ogrodzenia | Tadeusz Karny',
-        description: 'Kowal Tadeusz Karny: bramy na zamówienie, balustrady i ogrodzenia. Najlepsze kowalstwo artystyczne w Białymstoku i w Polsce – 30 lat doświadczenia.'
+        description: 'Najlepszy kowal w Polsce ⭐ Bramy kute, balustrady, ogrodzenia na zamówienie. Kowalstwo artystyczne Białystok i cała Polska. 30 lat tradycji ☎604 253 145'
       },
       about: {
-        title: 'O nas',
-        description: 'Poznaj naszą pracownię kowalstwa artystycznego specjalizującą się w wysokiej jakości wyrobach metalowych z ponad 20-letnim doświadczeniem.'
+        title: 'O nas - Kowalstwo Artystyczne Tadeusz Karny',
+        description: 'Pracownia kowalstwa artystycznego Białystok od 1995. Tradycyjne kucie: bramy, balustrady, ogrodzenia kute. Najlepszy kowal podlaskie ✓ Projekty własne'
       },
       gallery: {
-        title: 'Galeria',
-        description: 'Zobacz nasze portfolio bram, balustrad, ogrodzeń i innych dekoracyjnych elementów metalowych wykonanych z precyzją i dbałością o szczegóły.'
+        title: 'Galeria - Bramy Kute, Balustrady, Ogrodzenia',
+        description: 'Galeria realizacji: bramy kute, balustrady, ogrodzenia Białystok. Zobacz 100+ projektów kowalstwa artystycznego. Inspiracje ✓ Pomysły ✓ Darmowa wycena'
       },
       contact: {
-        title: 'Kontakt',
-        description: 'Skontaktuj się z nami, aby omówić projekt bramy, ogrodzenia lub balustrady – odpowiadamy telefonicznie, mailowo i w pracowni.'
+        title: 'Kontakt - Kowal Białystok',
+        description: 'Kowal Białystok kontakt ☎604 253 145. Zamów bramę kutą, balustradę, ogrodzenie. Darmowa wycena ✓ Doradztwo ✓ Montaż w całej Polsce. Zadzwoń teraz!'
       }
     }
   };
