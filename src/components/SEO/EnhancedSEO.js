@@ -167,59 +167,10 @@ export const EnhancedSEO = ({
 
   // Create structured data for different types
   const generateStructuredData = () => {
-    // Basic organization data
-    const orgData = {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      '@id': `${siteDomain}/#organization`,
-      name: baseSiteTitle,
-      url: siteDomain,
-      logo: `${siteDomain}/logo.png`,
-      description: seo.description
-    }
-    
-    // Local business data
-    const localBusinessData = {
-      '@context': 'https://schema.org',
-      '@type': 'BlacksmithShop',
-      '@id': `${siteDomain}/#localbusiness`,
-      name: baseSiteTitle,
-      url: siteDomain,
-      image: `${siteDomain}${defaultImage}`,
-      description: seo.description
-    }
-    
-    // Website data
-    const websiteData = {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      '@id': `${siteDomain}/#website`,
-      name: seo.title,
-      description: seo.description,
-      url: siteDomain
-    }
-    
-    const schema = [];
-
-    /* ⬇ Add base schemas if flag is active */
-    if (injectBaseSchemas) {
-      schema.push(websiteData, orgData);
-    }
-
-    /* Handle existing structuredData parameter (for backward compatibility) */
-    switch (structuredData) {
-      case 'local-business':
-        schema.push(localBusinessData);
-        break;
-      case 'organization':
-        if (!injectBaseSchemas) schema.push(orgData);
-        break;
-      case 'website':
-      default:
-        if (!injectBaseSchemas) schema.push(websiteData);
-    }
-
-    return schema;
+    // We're removing the schema generation from here since
+    // language-aware schemas are now handled by dedicated components
+    // (LocalBusinessSchema, FAQSchema, etc.) on each page
+    return [];
   }
 
   return (

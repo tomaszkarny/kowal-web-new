@@ -27,5 +27,41 @@
     "contact": "Kontakt",
     "title": "Ścieżka nawigacji",
     "description": "Breadcrumbs strony Pracowni Kowalstwa Artystycznego."
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "Kim jest najlepszy kowal w Polsce?",
+        "answer": "Tadeusz Karny to uznany mistrz kowalstwa artystycznego z ponad 30-letnim doświadczeniem. Jego pracownia w Białymstoku specjalizuje się w tworzeniu unikalnych bram kutych, balustrad i ogrodzeń na zamówienie dla klientów z całej Polski."
+      },
+      {
+        "question": "Jakie usługi kowalstwa artystycznego oferujecie?",
+        "answer": "Oferujemy kompleksowe usługi kowalstwa artystycznego: projektowanie i wykonanie bram kutych (wjazdowych, ogrodowych), balustrad wewnętrznych i zewnętrznych, ogrodzeń kutych, elementów dekoracyjnych, mebli ogrodowych oraz renowację zabytkowych elementów kutych."
+      },
+      {
+        "question": "Ile kosztuje brama kuta na zamówienie?",
+        "answer": "Cena bramy kutej zależy od rozmiaru, złożoności wzoru i użytych materiałów. Podstawowe bramy wjazdowe zaczynają się od 3000 zł/m², podczas gdy bardziej ozdobne projekty mogą kosztować 5000-8000 zł/m². Oferujemy darmową wycenę na podstawie projektu."
+      },
+      {
+        "question": "Czy wykonujecie montaż bram kutych w całej Polsce?",
+        "answer": "Tak, wykonujemy profesjonalny montaż naszych wyrobów na terenie całej Polski. Dysponujemy własnym transportem i wykwalifikowaną ekipą montażową. Koszt montażu ustalany jest indywidualnie w zależności od lokalizacji i zakresu prac."
+      },
+      {
+        "question": "Jak długo trwa realizacja zamówienia na balustradę kutą?",
+        "answer": "Standardowy czas realizacji balustrady kutej to 4-6 tygodni od zatwierdzenia projektu i wpłaty zaliczki. W przypadku bardziej skomplikowanych projektów lub okresów zwiększonego popytu, czas może się wydłużyć do 8-10 tygodni."
+      },
+      {
+        "question": "Czy bramy kute wymagają specjalnej konserwacji?",
+        "answer": "Nasze bramy kute są zabezpieczone antykorozyjnie przez cynkowanie ogniowe i malowanie proszkowe. Zalecamy przegląd techniczny raz w roku oraz odświeżanie powłoki malarskiej co 5-7 lat, w zależności od warunków eksploatacji."
+      },
+      {
+        "question": "Jakie wzory ogrodzeń kutych są najpopularniejsze?",
+        "answer": "Najpopularniejsze są ogrodzenia kute w stylu klasycznym z elementami roślinnymi (liście, kwiaty), geometryczne wzory modernistyczne oraz ogrodzenia inspirowane secesją. Projektujemy również wzory indywidualne według życzeń klienta."
+      },
+      {
+        "question": "Czy można zamówić elementy kute według własnego projektu?",
+        "answer": "Oczywiście! Specjalizujemy się w realizacji indywidualnych projektów. Możesz dostarczyć własny projekt lub skorzystać z pomocy naszego projektanta. Wykonujemy nawet najbardziej nietypowe i wymagające zlecenia kowalstwa artystycznego."
+      }
+    ]
   }
 }

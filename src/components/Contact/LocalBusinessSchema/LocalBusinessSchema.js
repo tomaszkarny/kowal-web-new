@@ -1,7 +1,17 @@
 import React from 'react'
-import { SchemaOrg } from 'components/SEO/SchemaOrg'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { WEBSITE_URL, BUSINESS_NAME, BUSINESS_DESCRIPTION } from 'consts/contactDetails'
+import { 
+  BUSINESS_TYPE,
+  BUSINESS_IMAGES,
+  WEBSITE_URL,
+  GOOGLE_MAP_DIRECTIONS,
+  OPENING_HOURS,
+  PRICE_RANGE,
+  CURRENCIES_ACCEPTED,
+  PAYMENT_ACCEPTED,
+  AREA_SERVED,
+  YEAR_ESTABLISHED,
+  getNapInfo
+} from 'consts/contactDetails'
 import { getLanguageFromPath } from 'consts/languageConfig'
 
 /**
@@ -14,32 +24,70 @@ import { getLanguageFromPath } from 'consts/languageConfig'
  * @param {string} props.description - Page description (if different from default business description)
  * @param {string} props.image - Main image for the business (optional)
  * @param {string} props.pathname - Current page path for language detection
+ * @param {string} props.language - Language code (pl or en)
  */
 export const LocalBusinessSchema = ({
   url = WEBSITE_URL,
   title,
   description,
   image,
-  pathname
+  pathname,
+  language = 'pl'
 }) => {
-  const { t, i18n } = useTranslation('seo')
-  const currentLang = pathname ? getLanguageFromPath(pathname) : i18n.language
+  // During SSR, prefer the language prop over hooks
+  const currentLang = language || (pathname ? getLanguageFromPath(pathname) : 'pl')
   
-  // Use translations or fallback to provided values
-  const businessName = title || t('business.name', BUSINESS_NAME)
-  const businessDescription = description || t('business.description', BUSINESS_DESCRIPTION)
+  // Get language-specific NAP information
+  const napInfo = getNapInfo(currentLang)
   
-  // Set the appropriate language for schema
-  const inLanguage = currentLang === 'en' ? 'en-US' : 'pl-PL'
+  // Build the schema
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': BUSINESS_TYPE,
+    '@id': `${url || WEBSITE_URL}#localbusiness`,
+    name: napInfo.businessName,
+    image: BUSINESS_IMAGES.map(img => img.startsWith('http') ? img : `${WEBSITE_URL}${img}`),
+    url: url || WEBSITE_URL,
+    telephone: napInfo.phone,
+    email: napInfo.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: napInfo.address.street,
+      addressLocality: napInfo.address.city,
+      postalCode: napInfo.address.postalCode,
+      addressRegion: napInfo.address.region,
+      addressCountry: napInfo.address.countryCode
+    },
+    description: description || napInfo.description,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: GOOGLE_MAP_DIRECTIONS.lat.toString(),
+      longitude: GOOGLE_MAP_DIRECTIONS.lng.toString()
+    },
+    openingHoursSpecification: OPENING_HOURS.map(hours => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: hours.days,
+      opens: hours.opens,
+      closes: hours.closes
+    })),
+    priceRange: PRICE_RANGE,
+    currenciesAccepted: CURRENCIES_ACCEPTED,
+    paymentAccepted: PAYMENT_ACCEPTED.join(', '),
+    areaServed: AREA_SERVED.map(area => ({
+      '@type': 'AdministrativeArea',
+      name: area
+    })),
+    foundingDate: YEAR_ESTABLISHED,
+    sameAs: [
+      napInfo.social.facebook ? `https://${napInfo.social.facebook}` : null, 
+      napInfo.social.instagram ? `https://${napInfo.social.instagram}` : null
+    ].filter(Boolean)
+  }
   
   return (
-    <SchemaOrg
-      url={url}
-      title={businessName}
-      description={businessDescription}
-      image={image}
-      language={inLanguage}
-      structuredDataType="local-business"
+    <script 
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   )
 }

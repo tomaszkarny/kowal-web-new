@@ -69,7 +69,48 @@ function generateSchemaForNamespace(namespace, translationData) {
       // Add key to required list for this level
       required.push(key);
       
-      if (typeof value === 'object' && value !== null) {
+      if (Array.isArray(value)) {
+        // For arrays, create an array schema
+        // Determine the schema for array items based on the first item
+        if (value.length > 0) {
+          const firstItem = value[0];
+          if (typeof firstItem === 'object' && firstItem !== null) {
+            // It's an array of objects - infer schema from first object
+            const itemProperties = {};
+            const itemRequired = [];
+            
+            Object.keys(firstItem).forEach(itemKey => {
+              itemProperties[itemKey] = { type: 'string' };
+              itemRequired.push(itemKey);
+            });
+            
+            properties[key] = {
+              type: 'array',
+              description: `Array of translations for "${key}"`,
+              items: {
+                type: 'object',
+                properties: itemProperties,
+                required: itemRequired,
+                additionalProperties: false
+              }
+            };
+          } else {
+            // Array of primitives
+            properties[key] = {
+              type: 'array',
+              description: `Array of translations for "${key}"`,
+              items: { type: typeof firstItem }
+            };
+          }
+        } else {
+          // Empty array - default to string items
+          properties[key] = {
+            type: 'array',
+            description: `Array of translations for "${key}"`,
+            items: { type: 'string' }
+          };
+        }
+      } else if (typeof value === 'object' && value !== null) {
         // For nested objects, create a nested schema
         const nestedSchema = generatePropertiesSchema(value, path);
         properties[key] = {

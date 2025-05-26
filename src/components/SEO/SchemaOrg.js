@@ -56,6 +56,18 @@ export const SchemaOrg = ({
 }) => {
   // Get language-appropriate NAP information
   const napInfo = getNapInfo(language)
+  
+  // Debug logging for SSR
+  if (typeof window === 'undefined') {
+    console.log(`[SchemaOrg SSR] Language: ${language}, URL: ${url}, Type: ${structuredDataType}`)
+    if (faq && faq.length > 0) {
+      console.log(`[SchemaOrg SSR] FAQ sample: ${faq[0]?.question?.substring(0, 50)}...`)
+    }
+    if (description) {
+      console.log(`[SchemaOrg SSR] Description: ${description.substring(0, 50)}...`)
+    }
+  }
+  
   // Initialize schema array
   const schema = []
   
@@ -69,7 +81,7 @@ export const SchemaOrg = ({
       name: title,
       description,
       image,
-      inLanguage: 'pl-PL',
+      inLanguage: language === 'en' ? 'en-US' : 'pl-PL',
       potentialAction: [
         {
           '@type': 'SearchAction',

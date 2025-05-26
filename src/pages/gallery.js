@@ -7,10 +7,12 @@ import { Layout } from 'components/Layout/Layout'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails' // Import BUSINESS_NAME_ML
+import { getFAQData } from 'utils/faqData'
 
 const GalleryPageTemplate = ({ pageContext }) => { // Destructure pageContext
   const { t } = useTranslation('common')
@@ -49,6 +51,12 @@ export const Head = ({ data, location, pageContext }) => {
       <BreadcrumbSchema
         pathname={location.pathname}
         url={`${WEBSITE_URL}${location.pathname}`}
+        language={language}
+      />
+      <FAQSchema 
+        faqData={getFAQData(language, 'gallery')}
+        pathname={location.pathname}
+        language={language}
       />
     </>
   )

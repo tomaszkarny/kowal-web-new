@@ -5,10 +5,12 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { About } from 'components/About/About'
 import { Layout } from 'components/Layout/Layout'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML
+import { getFAQData } from 'utils/faqData'
 
 const AboutPage = () => {
   return (
@@ -45,6 +47,12 @@ export const Head = ({ data, location, pageContext }) => {
       <BreadcrumbSchema 
         pathname={location.pathname}
         url={`${WEBSITE_URL}${location.pathname}`}
+        language={language}
+      />
+      <FAQSchema 
+        faqData={getFAQData(language, 'about')}
+        pathname={location.pathname}
+        language={language}
       />
     </>
   )

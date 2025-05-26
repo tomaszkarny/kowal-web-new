@@ -27,5 +27,41 @@
     "contact": "Contact",
     "title": "Breadcrumbs",
     "description": "Navigation breadcrumb trail for the Artistic Blacksmithing website."
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "Who is the best blacksmith in Poland?",
+        "answer": "Tadeusz Karny is a recognized master of artistic blacksmithing with over 30 years of experience. His workshop in Białystok specializes in creating unique wrought iron gates, railings, and fences made to order for clients throughout Poland."
+      },
+      {
+        "question": "What artistic blacksmithing services do you offer?",
+        "answer": "We offer comprehensive artistic blacksmithing services: design and creation of wrought iron gates (driveway and garden), interior and exterior railings, wrought iron fences, decorative elements, garden furniture, and restoration of historic wrought iron pieces."
+      },
+      {
+        "question": "How much does a custom wrought iron gate cost?",
+        "answer": "The price of a wrought iron gate depends on size, pattern complexity, and materials used. Basic driveway gates start from 3000 PLN/m², while more ornate designs can cost 5000-8000 PLN/m². We offer free quotes based on your design."
+      },
+      {
+        "question": "Do you install wrought iron gates throughout Poland?",
+        "answer": "Yes, we provide professional installation of our products throughout Poland. We have our own transport and qualified installation team. Installation costs are determined individually based on location and scope of work."
+      },
+      {
+        "question": "How long does it take to complete a wrought iron railing order?",
+        "answer": "Standard completion time for wrought iron railings is 4-6 weeks from design approval and deposit payment. For more complex projects or during peak demand periods, the time may extend to 8-10 weeks."
+      },
+      {
+        "question": "Do wrought iron gates require special maintenance?",
+        "answer": "Our wrought iron gates are protected against corrosion through hot-dip galvanizing and powder coating. We recommend annual technical inspection and refreshing the paint coating every 5-7 years, depending on operating conditions."
+      },
+      {
+        "question": "What wrought iron fence patterns are most popular?",
+        "answer": "The most popular are classic-style wrought iron fences with plant elements (leaves, flowers), geometric modernist patterns, and Art Nouveau-inspired fences. We also design custom patterns according to client preferences."
+      },
+      {
+        "question": "Can I order wrought iron elements according to my own design?",
+        "answer": "Absolutely! We specialize in custom projects. You can provide your own design or work with our designer. We execute even the most unique and demanding artistic blacksmithing commissions."
+      }
+    ]
   }
 }

@@ -6,10 +6,12 @@ import { Contact } from 'components/Contact/Contact'
 import { Layout } from 'components/Layout/Layout'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML and BUSINESS_DESCRIPTION_ML
+import { getFAQData } from 'utils/faqData'
 
 const ContactPage = () => {
   return (
@@ -49,10 +51,17 @@ export const Head = ({ data, location, pageContext }) => {
         title={seoTranslations.pageTitle}
         description={seoTranslations.pageDescription}
         pathname={location.pathname}
+        language={language}
       />
       <BreadcrumbSchema 
         pathname={location.pathname}
         url={`${WEBSITE_URL}${location.pathname}`}
+        language={language}
+      />
+      <FAQSchema 
+        faqData={getFAQData(language, 'contact')}
+        pathname={location.pathname}
+        language={language}
       />
     </>
   )

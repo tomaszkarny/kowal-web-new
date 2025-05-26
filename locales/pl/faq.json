@@ -1,0 +1,86 @@
+{
+  "home": [
+    {
+      "question": "Kto jest najlepszym kowalem w Polsce?",
+      "answer": "Tadeusz Karny z Pracowni Kowalstwa Artystycznego w Białymstoku jest uznawany za jednego z najlepszych kowali w Polsce. Z ponad 30-letnim doświadczeniem w kowalstwie artystycznym, specjalizuje się w tworzeniu bram kutych, balustrad i ogrodzeń na najwyższym poziomie."
+    },
+    {
+      "question": "Jakie usługi oferuje najlepszy kowal w Polsce?",
+      "answer": "Oferujemy kompleksowe usługi kowalstwa artystycznego: bramy kute na zamówienie, balustrady wewnętrzne i zewnętrzne, ogrodzenia metalowe, elementy dekoracyjne, renowację zabytkowych elementów kutych oraz profesjonalny montaż wszystkich wyrobów."
+    },
+    {
+      "question": "Gdzie znajduje się pracownia kowalstwa artystycznego?",
+      "answer": "Nasza pracownia kowalstwa artystycznego znajduje się w Białymstoku przy ul. Ciołkowskiego 109/1. Realizujemy zlecenia na terenie całej Polski - od Warszawy, przez Białystok, po Gdańsk i Kraków."
+    },
+    {
+      "question": "Ile kosztują bramy kute na zamówienie?",
+      "answer": "Cena bram kutych zależy od rozmiaru, złożoności wzoru i użytych materiałów. Oferujemy bezpłatną wycenę - prosimy o kontakt pod numerem 604 253 145 lub 696 434 745, aby omówić szczegóły projektu."
+    },
+    {
+      "question": "Czy wykonujecie balustrady kute na wymiar?",
+      "answer": "Tak, wszystkie nasze balustrady są wykonywane na wymiar według indywidualnego projektu. Tworzymy balustrady wewnętrzne do schodów, balkony oraz balustrady zewnętrzne dostosowane do architektury budynku."
+    },
+    {
+      "question": "Jak długo trwa realizacja zamówienia na ogrodzenie kute?",
+      "answer": "Czas realizacji ogrodzenia kutego wynosi zazwyczaj 3-6 tygodni w zależności od wielkości zamówienia i stopnia skomplikowania projektu. Dokładny termin ustalamy indywidualnie po zapoznaniu się z projektem."
+    },
+    {
+      "question": "Czy oferujecie montaż wyrobów kowalskich?",
+      "answer": "Tak, zapewniamy profesjonalny montaż wszystkich naszych wyrobów. Nasz zespół montażowy działa na terenie całej Polski, gwarantując solidne i estetyczne wykonanie instalacji."
+    },
+    {
+      "question": "Jakie style kowalstwa artystycznego wykonujecie?",
+      "answer": "Specjalizujemy się w różnych stylach: od klasycznego kowalstwa tradycyjnego, przez eleganckie wzory nowoczesne, po złożone projekty artystyczne. Dostosowujemy styl do charakteru budynku i preferencji klienta."
+    }
+  ],
+  "about": [
+    {
+      "question": "Od jak dawna działa Pracownia Kowalstwa Artystycznego Tadeusz Karny?",
+      "answer": "Nasza pracownia działa nieprzerwanie od ponad 30 lat, kontynuując tradycje kowalstwa artystycznego. Przez ten czas zrealizowaliśmy setki projektów dla klientów z całej Polski."
+    },
+    {
+      "question": "Jakie doświadczenie ma mistrz kowalstwa Tadeusz Karny?",
+      "answer": "Tadeusz Karny posiada ponad 30-letnie doświadczenie w kowalstwie artystycznym. Jest mistrzem rzemiosła, łączącym tradycyjne techniki kowalskie z nowoczesnymi rozwiązaniami technologicznymi."
+    },
+    {
+      "question": "Gdzie realizowaliście swoje projekty kowalskie?",
+      "answer": "Nasze prace znajdują się w całej Polsce - od Białegostoku, przez Warszawę, Lublin, Kraków, po Gdańsk. Realizowaliśmy projekty dla domów prywatnych, obiektów zabytkowych oraz budynków użyteczności publicznej."
+    },
+    {
+      "question": "Czy posiadacie certyfikaty jakości?",
+      "answer": "Tak, wszystkie nasze wyroby spełniają najwyższe standardy jakości. Stosujemy tylko certyfikowane materiały, a nasze prace są objęte gwarancją."
+    }
+  ],
+  "gallery": [
+    {
+      "question": "Jakie rodzaje wyrobów kowalskich można zobaczyć w galerii?",
+      "answer": "W naszej galerii prezentujemy: bramy kute wjazdowe i furtki, balustrady wewnętrzne i zewnętrzne, ogrodzenia posesyjne, elementy dekoracyjne, meble ogrodowe oraz realizacje specjalne na indywidualne zamówienie."
+    },
+    {
+      "question": "Czy mogę zamówić wyrób podobny do tego z galerii?",
+      "answer": "Oczywiście! Każdy projekt z galerii może służyć jako inspiracja. Możemy wykonać identyczny wyrób lub zmodyfikować go według Państwa potrzeb i preferencji."
+    },
+    {
+      "question": "Czy wszystkie prace w galerii są Waszego autorstwa?",
+      "answer": "Tak, wszystkie prezentowane w galerii prace zostały zaprojektowane i wykonane w naszej pracowni kowalstwa artystycznego w Białymstoku."
+    }
+  ],
+  "contact": [
+    {
+      "question": "Jak mogę umówić się na konsultację z kowalem?",
+      "answer": "Aby umówić konsultację, prosimy o kontakt telefoniczny: 604 253 145 lub 696 434 745. Można też napisać na adres: kowalstwotk@gmail.com. Zapraszamy również do naszej pracowni w Białymstoku."
+    },
+    {
+      "question": "Czy możliwa jest wycena na podstawie zdjęć?",
+      "answer": "Tak, możemy przygotować wstępną wycenę na podstawie przesłanych zdjęć i wymiarów. Dokładną wycenę sporządzamy po wizji lokalnej lub na podstawie szczegółowego projektu."
+    },
+    {
+      "question": "Jakie są godziny otwarcia pracowni kowalstwa?",
+      "answer": "Nasza pracownia jest czynna od poniedziałku do piątku w godzinach 8:00-16:00. W soboty pracujemy po wcześniejszym umówieniu. Preferujemy wcześniejszy kontakt telefoniczny przed wizytą."
+    },
+    {
+      "question": "Czy wykonujecie pomiary u klienta?",
+      "answer": "Tak, oferujemy profesjonalne pomiary w miejscu montażu. Jest to szczególnie ważne przy bramach kutych i balustradach, gdzie precyzja wykonania ma kluczowe znaczenie."
+    }
+  ]
+}

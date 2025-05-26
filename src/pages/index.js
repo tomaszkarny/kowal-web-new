@@ -1,16 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
 import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
 import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails' // Switched to BUSINESS_NAME_ML for title
+import { getFAQData } from 'utils/faqData'
 
 const IndexPage = () => {
   return (
@@ -50,10 +53,17 @@ export const Head = ({ data, location, pageContext }) => {
         title={seoTranslations.pageTitle}
         description={seoTranslations.pageDescription}
         pathname={location.pathname}
+        language={language}
       />
       <BreadcrumbSchema 
         pathname={location.pathname}
         url={WEBSITE_URL}
+        language={language}
+      />
+      <FAQSchema 
+        faqData={getFAQData(language, 'home')}
+        pathname={location.pathname}
+        language={language}
       />
     </>
   )

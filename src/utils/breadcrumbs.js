@@ -45,19 +45,23 @@ const PAGE_HIERARCHY = {
  * Generate breadcrumb items for the current page path
  * 
  * @param {string} pathname - The current page path
- * @param {function} t - Translation function from useTranslation hook
+ * @param {string|function} langOrT - Language code ('pl' or 'en') or translation function
  * @returns {Array} - Array of breadcrumb items with name, url, and position
  */
-export const generateBreadcrumbs = (pathname, t) => {
+export const generateBreadcrumbs = (pathname, langOrT = 'pl') => {
   // Ensure path ends with trailing slash for consistency
   const currentPath = pathname.endsWith('/') ? pathname : `${pathname}/`
+  
+  // Determine if we have a translation function or language code
+  const isFunction = typeof langOrT === 'function'
+  const t = isFunction ? langOrT : (key) => getStaticTranslation(key, langOrT)
   
   // If path is not in the hierarchy, return a minimal breadcrumb with home + current
   if (!PAGE_HIERARCHY[currentPath]) {
     // Just home + current page
     const isEnglish = currentPath.startsWith('/en/')
     const homePath = isEnglish ? '/en/' : '/'
-    const homeLabel = t('common:home')
+    const homeLabel = t('home')
     
     const current = {
       name: getPageLabel(currentPath, t),
@@ -95,6 +99,31 @@ export const generateBreadcrumbs = (pathname, t) => {
   }
   
   return breadcrumbs
+}
+
+/**
+ * Get static translation for SSR
+ * @param {string} key - Translation key
+ * @param {string} lang - Language code
+ * @returns {string} - Translated text
+ */
+const getStaticTranslation = (key, lang) => {
+  const translations = {
+    pl: {
+      home: 'Strona główna',
+      about: 'O nas',
+      gallery: 'Galeria',
+      contact: 'Kontakt'
+    },
+    en: {
+      home: 'Home',
+      about: 'About',
+      gallery: 'Gallery',
+      contact: 'Contact'
+    }
+  }
+  
+  return translations[lang]?.[key] || key
 }
 
 /**
