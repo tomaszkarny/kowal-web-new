@@ -38,6 +38,71 @@ const PAGE_HIERARCHY = {
   '/en/contact/': {
     parent: '/en/',
     level: 1
+  },
+  '/faq/': {
+    parent: '/',
+    level: 1
+  },
+  '/en/faq/': {
+    parent: '/en/',
+    level: 1
+  }
+}
+
+/**
+ * Get static translation for SSR
+ * @param {string} key - Translation key
+ * @param {string} lang - Language code
+ * @returns {string} - Translated text
+ */
+const getStaticTranslation = (key, lang) => {
+  const translations = {
+    pl: {
+      home: 'Strona główna',
+      about: 'O nas',
+      gallery: 'Galeria',
+      contact: 'Kontakt',
+      faq: 'FAQ'
+    },
+    en: {
+      home: 'Home',
+      about: 'About',
+      gallery: 'Gallery',
+      contact: 'Contact',
+      faq: 'FAQ'
+    }
+  }
+  
+  return translations[lang]?.[key] || key
+}
+
+/**
+ * Get the translated label for a page path
+ * 
+ * @param {string} path - The page path
+ * @param {function} t - Translation function
+ * @returns {string} - Translated page label
+ */
+const getPageLabel = (path, t) => {
+  if (path === '/' || path === '/en/') {
+    return t('home')
+  }
+  
+  // Extract the page name from the path
+  const pageName = path.replace('/en/', '/').split('/')[1]
+  
+  switch (pageName) {
+    case 'about':
+      return t('about')
+    case 'gallery':
+      return t('gallery')
+    case 'contact':
+      return t('contact')
+    case 'faq':
+      return t('faq')
+    default:
+      // Fallback to capitalized page name if no translation exists
+      return pageName.charAt(0).toUpperCase() + pageName.slice(1)
   }
 }
 
@@ -59,8 +124,7 @@ export const generateBreadcrumbs = (pathname, langOrT = 'pl') => {
   // If path is not in the hierarchy, return a minimal breadcrumb with home + current
   if (!PAGE_HIERARCHY[currentPath]) {
     // Just home + current page
-    const isEnglish = currentPath.startsWith('/en/')
-    const homePath = isEnglish ? '/en/' : '/'
+    const homePath = currentPath.startsWith('/en/') ? '/en/' : '/'
     const homeLabel = t('home')
     
     const current = {
@@ -92,9 +156,10 @@ export const generateBreadcrumbs = (pathname, langOrT = 'pl') => {
     breadcrumbs.unshift({
       name: getPageLabel(path, t),
       url: `${WEBSITE_URL}${path}`,
-      position: position++
+      position
     })
     
+    position += 1
     path = pageInfo.parent
   }
   
@@ -102,82 +167,22 @@ export const generateBreadcrumbs = (pathname, langOrT = 'pl') => {
 }
 
 /**
- * Get static translation for SSR
- * @param {string} key - Translation key
- * @param {string} lang - Language code
- * @returns {string} - Translated text
- */
-const getStaticTranslation = (key, lang) => {
-  const translations = {
-    pl: {
-      home: 'Strona główna',
-      about: 'O nas',
-      gallery: 'Galeria',
-      contact: 'Kontakt'
-    },
-    en: {
-      home: 'Home',
-      about: 'About',
-      gallery: 'Gallery',
-      contact: 'Contact'
-    }
-  }
-  
-  return translations[lang]?.[key] || key
-}
-
-/**
- * Get the translated label for a page path
- * 
- * @param {string} path - The page path
- * @param {function} t - Translation function
- * @returns {string} - Translated page label
- */
-const getPageLabel = (path, t) => {
-  if (path === '/' || path === '/en/') {
-    return t('home')
-  }
-  
-  // Extract the page name from the path
-  const isEnglish = path.startsWith('/en/')
-  const pageName = path.replace('/en/', '/').split('/')[1]
-  
-  switch (pageName) {
-    case 'about':
-      return t('about')
-    case 'gallery':
-      return t('gallery')
-    case 'contact':
-      return t('contact')
-    default:
-      // Fallback to capitalized page name if no translation exists
-      return pageName.charAt(0).toUpperCase() + pageName.slice(1)
-  }
-}
-
-/**
  * React hook to get breadcrumbs for current page
+ * Uses the translation system
  * 
- * @param {string} pathname - Current page path
+ * @param {string} pathname - Current page pathname
  * @returns {Array} - Array of breadcrumb items
  */
 export const useBreadcrumbs = (pathname) => {
-  // Include both common and seo namespaces to get breadcrumb translations
-  const { t } = useTranslation(['common', 'seo'])
-  
-  // Custom translation function that checks seo.breadcrumbs first, then falls back to common
-  const getBreadcrumbLabel = (key) => {
-    // Try to get the translation from seo.breadcrumbs namespace first
-    const seoTranslation = t(`seo:breadcrumbs.${key}`, { ns: 'seo' })
-    
-    // If the key exists in seo:breadcrumbs, use it
-    if (seoTranslation !== `seo:breadcrumbs.${key}`) {
-      return seoTranslation
-    }
-    
-    // Otherwise fall back to common namespace
-    return t(key, { ns: 'common' })
-  }
-  
-  return generateBreadcrumbs(pathname, getBreadcrumbLabel)
+  const { t } = useTranslation('common')
+  return generateBreadcrumbs(pathname, t)
 }
+
+/**
+ * Helper to get breadcrumbs for specific language during build
+ * 
+ * @param {string} pathname - Current page pathname
+ * @param {string} language - Language code
+ * @returns {Array} - Array of breadcrumb items
+ */
+export const getBreadcrumbsForLanguage = (pathname, language) => generateBreadcrumbs(pathname, language)

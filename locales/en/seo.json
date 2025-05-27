@@ -5,7 +5,7 @@
     "description": "Custom artistic blacksmithing: gates, railings and fences made to order. Craftsmanship and tradition since 1985."
   },
   "home": {
-    "title": "Best Blacksmith Poland | Wrought Iron Gates, Railings, Fences - Tadeusz Karny",
+    "title": "Artistic Blacksmith Poland | Iron Gates - T. Karny",
     "description": "Best artistic blacksmith in Poland ⭐ Custom wrought iron gates, railings, fences. Traditional blacksmithing Białystok. 30+ years experience ☎+48 604 253 145"
   },
   "about": {
@@ -29,6 +29,8 @@
     "description": "Navigation breadcrumb trail for the Artistic Blacksmithing website."
   },
   "faq": {
+    "title": "FAQ - Artistic Blacksmithing Questions",
+    "description": "Frequently asked questions about artistic blacksmithing, wrought iron gates, railings and fences. Pricing, lead times, installation across Poland.",
     "items": [
       {
         "question": "Who is the best blacksmith in Poland?",

@@ -11,10 +11,10 @@ import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
-import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails' // Import BUSINESS_NAME_ML
+import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
-const GalleryPageTemplate = ({ pageContext }) => { // Destructure pageContext
+function GalleryPageTemplate() {
   const { t } = useTranslation('common')
   return (
     <Layout>
@@ -30,7 +30,7 @@ const GalleryPageTemplate = ({ pageContext }) => { // Destructure pageContext
  * Implement Gatsby Head API for the gallery page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location, pageContext }) => {
+export function Head({ location, pageContext }) {
   // Detect language using our centralized utility
   const language = detectLanguageForSEO(pageContext, location);
   

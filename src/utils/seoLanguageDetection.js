@@ -8,32 +8,27 @@ export const detectLanguageForSEO = (pageContext, location) => {
   
   // Priority 1: Use language from gatsby-plugin-react-i18next pageContext
   if (pageContext?.language) {
-    console.log(`[SEO] Language detected from pageContext.language: ${pageContext.language}`);
     return pageContext.language;
   }
   
   // Priority 2: Check i18n object in pageContext (alternative structure)
   if (pageContext?.i18n?.language) {
-    console.log(`[SEO] Language detected from pageContext.i18n.language: ${pageContext.i18n.language}`);
     return pageContext.i18n.language;
   }
   
   // Priority 3: Check originalPath in pageContext (gatsby-plugin-react-i18next specific)
   if (pageContext?.i18n?.originalPath) {
     const lang = pageContext.i18n.originalPath.startsWith('/en') ? 'en' : 'pl';
-    console.log(`[SEO] Language detected from pageContext.i18n.originalPath: ${lang}`);
     return lang;
   }
   
   // Priority 4: Detect from pathname
   const pathname = location?.pathname || '';
   if (pathname.startsWith('/en/') || pathname === '/en') {
-    console.log(`[SEO] Language detected from pathname: en`);
     return 'en';
   }
   
   // Default to Polish
-  console.log(`[SEO] Defaulting to Polish language`);
   return 'pl';
 };
 
@@ -47,7 +42,7 @@ export const getSEOTranslations = (language, pageType) => {
       siteTitle: 'Tadeusz Karny Artistic Blacksmith',
       siteDescription: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
       home: {
-        title: 'Best Blacksmith Poland | Wrought Iron Gates, Railings, Fences - Tadeusz Karny',
+        title: 'Artistic Blacksmith Poland | Iron Gates - T. Karny',
         description: 'Best artistic blacksmith in Poland ⭐ Custom wrought iron gates, railings, fences. Traditional blacksmithing Białystok. 30+ years experience ☎+48 604 253 145'
       },
       about: {
@@ -61,13 +56,17 @@ export const getSEOTranslations = (language, pageType) => {
       contact: {
         title: 'Contact - Blacksmith Białystok',
         description: 'Blacksmith Białystok contact ☎+48 604 253 145. Order custom wrought iron gate, railing, fence. Free quote ✓ Consultation ✓ Installation across Poland'
+      },
+      faq: {
+        title: 'FAQ - Artistic Blacksmithing Questions',
+        description: 'Frequently asked questions about artistic blacksmithing, wrought iron gates, railings and fences. Pricing, lead times, installation across Poland.'
       }
     },
     pl: {
       siteTitle: 'Pracownia Kowalstwa Artystycznego - Tadeusz Karny',
       siteDescription: 'Kowalstwo artystyczne – bramy, balustrady i ogrodzenia na zamówienie.',
       home: {
-        title: 'Kowalstwo artystyczne Białystok – bramy, balustrady, ogrodzenia | Tadeusz Karny',
+        title: 'Kowal Białystok - Bramy Kute | Tadeusz Karny',
         description: 'Najlepszy kowal w Polsce ⭐ Bramy kute, balustrady, ogrodzenia na zamówienie. Kowalstwo artystyczne Białystok i cała Polska. 30 lat tradycji ☎604 253 145'
       },
       about: {
@@ -81,6 +80,10 @@ export const getSEOTranslations = (language, pageType) => {
       contact: {
         title: 'Kontakt - Kowal Białystok',
         description: 'Kowal Białystok kontakt ☎604 253 145. Zamów bramę kutą, balustradę, ogrodzenie. Darmowa wycena ✓ Doradztwo ✓ Montaż w całej Polsce. Zadzwoń teraz!'
+      },
+      faq: {
+        title: 'FAQ - Pytania o Kowalstwo Artystyczne',
+        description: 'Najczęściej zadawane pytania o kowalstwo artystyczne, bramy kute, balustrady i ogrodzenia. Cennik, terminy realizacji, montaż w całej Polsce.'
       }
     }
   };

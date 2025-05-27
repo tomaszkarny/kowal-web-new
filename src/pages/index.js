@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { Hero } from 'components/Home/Hero/Hero'
@@ -12,15 +11,15 @@ import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
-import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION, WEBSITE_URL } from 'consts/contactDetails' // Switched to BUSINESS_NAME_ML for title
+import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
-const IndexPage = () => {
+function IndexPage() {
   return (
-    <Layout>
-      <Hero />
-      <SectionMain id={SECTION_IDS.MAIN} />
-    </Layout>
+  <Layout>
+    <Hero />
+    <SectionMain id={SECTION_IDS.MAIN} />
+  </Layout>
   )
 }
 
@@ -30,7 +29,7 @@ export default IndexPage
  * Implement Gatsby Head API for the homepage
  * This includes both standard SEO tags and LocalBusiness schema
  */
-export const Head = ({ data, location, pageContext }) => {
+export function Head({ location, pageContext }) {
   // Detect language using our centralized utility
   const language = detectLanguageForSEO(pageContext, location);
   
