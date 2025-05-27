@@ -33,8 +33,9 @@ export const SpecialtyImageDisplay = ({
     // If it's a significant swipe (more than 50px), change the item
     if (Math.abs(diff) > 50) {
       // Calculate the next item ID based on swipe direction
+      const maxItem = Math.max(...Object.keys(imageMap).map(Number));
       const nextItemId = diff < 0
-        ? Math.min(activeItem + 1, 5) // Swipe left, go to next (max 5)
+        ? Math.min(activeItem + 1, maxItem) // Swipe left, go to next
         : Math.max(activeItem - 1, 1); // Swipe right, go to previous (min 1)
 
       // Only change if it's different
@@ -43,7 +44,7 @@ export const SpecialtyImageDisplay = ({
       }
     } else if (Math.abs(diff) < 10) {
       // If it's a tap (minimal movement), open lightbox
-      openLightbox();
+      openLightbox(null, activeItem - 1);
     }
 
     // Reset touch start position
@@ -52,7 +53,7 @@ export const SpecialtyImageDisplay = ({
 
   // Handle click to open lightbox
   const handleClick = () => {
-    openLightbox();
+    openLightbox(null, activeItem - 1);
   };
   return (
     <ImageContainer>
@@ -73,6 +74,7 @@ export const SpecialtyImageDisplay = ({
             loading="eager"
             fadeIn={false}
             placeholder="none"
+            style={{ cursor: 'pointer' }}
           />
         ) : (
           <FallbackImage>

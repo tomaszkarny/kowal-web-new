@@ -1,29 +1,32 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHammer, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
+// Import modern lightbox library
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 // Import styles
 import { StyledIcon } from 'components/common/Icon/Icon.styles';
 import { SectionHeading, HelpText } from '../../SectionMain.styles';
 import { SpecialtyContainer, SpecialtyContent } from './InteractiveSpecialties.styles';
 
+// Import custom performance hooks
+import { usePageVisibility, useDebouncedResize } from './hooks/usePageVisibility';
+
 // Import data
 import { ListItemData } from './data/ListItemData';
 import { config } from './data/configData';
 
 // Import utility functions
-import { startAutoCycleTimer } from './utils/timerUtils.js';
+import { startAutoCycleTimer } from './utils/timerUtils';
 import {
   createImageAndLabelMaps,
   createLightboxPhotos
-} from './utils/lightboxUtils.js';
-import { handleKeyNavigation } from './utils/navigationUtils.js';
-
-// Import modern lightbox library
-import Lightbox from 'yet-another-react-lightbox';
-import 'yet-another-react-lightbox/styles.css';
+} from './utils/lightboxUtils';
+import { handleKeyNavigation } from './utils/navigationUtils';
 
 // Import desktop components
 import { SpecialtyItems } from './components/SpecialtyItems';
@@ -52,12 +55,22 @@ export const InteractiveSpecialties = () => {
   // Translation hook
   const { t } = useTranslation('common');
 
-  // Fetch images data with an inline query
+  // Performance hooks
+  const isPageVisible = usePageVisibility();
+
+  // Optimized images query with better performance settings
   const data = useStaticQuery(graphql`
-    query {
+    query OptimizedSpecialtyImages {
       gates: file(relativePath: { eq: "gallery/bramy3.jpg" }) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 350,
+            height: 280,
+            quality: 85,
+            placeholder: BLURRED,
+            formats: [AUTO, WEBP, AVIF],
+            breakpoints: [350, 700, 1050]
+          )
           original {
             src
             width
@@ -67,7 +80,14 @@ export const InteractiveSpecialties = () => {
       }
       railings: file(relativePath: { eq: "gallery/balu3.jpg" }) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 350,
+            height: 280,
+            quality: 85,
+            placeholder: BLURRED,
+            formats: [AUTO, WEBP, AVIF],
+            breakpoints: [350, 700, 1050]
+          )
           original {
             src
             width
@@ -77,7 +97,14 @@ export const InteractiveSpecialties = () => {
       }
       fences: file(relativePath: { eq: "gallery/ogrodz2.jpg" }) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 350,
+            height: 280,
+            quality: 85,
+            placeholder: BLURRED,
+            formats: [AUTO, WEBP, AVIF],
+            breakpoints: [350, 700, 1050]
+          )
           original {
             src
             width
@@ -87,7 +114,14 @@ export const InteractiveSpecialties = () => {
       }
       gratings: file(relativePath: { eq: "gallery/ogrodz6.jpg" }) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 350,
+            height: 280,
+            quality: 85,
+            placeholder: BLURRED,
+            formats: [AUTO, WEBP, AVIF],
+            breakpoints: [350, 700, 1050]
+          )
           original {
             src
             width
@@ -97,7 +131,14 @@ export const InteractiveSpecialties = () => {
       }
       decorative: file(relativePath: { eq: "gallery/elo3.jpg" }) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 400, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 350,
+            height: 280,
+            quality: 85,
+            placeholder: BLURRED,
+            formats: [AUTO, WEBP, AVIF],
+            breakpoints: [350, 700, 1050]
+          )
           original {
             src
             width
@@ -108,11 +149,17 @@ export const InteractiveSpecialties = () => {
     }
   `);
 
-  // Create image and label maps using utility function
-  const { imageMap, labelMap } = createImageAndLabelMaps(data, t);
+  // Memoized image and label maps for performance
+  const { imageMap, labelMap } = useMemo(() => 
+    createImageAndLabelMaps(data, t), 
+    [data, t]
+  );
 
-  // Create lightbox photos array
-  const lightboxPhotos = createLightboxPhotos(imageMap, labelMap);
+  // Memoized lightbox photos array
+  const lightboxPhotos = useMemo(() => 
+    createLightboxPhotos(imageMap, labelMap), 
+    [imageMap, labelMap]
+  );
 
   // Handle changing the active item
   const handleItemChange = useCallback((id) => {
@@ -139,8 +186,11 @@ export const InteractiveSpecialties = () => {
     handleKeyNavigation(e, id, activeItem, ListItemData, handleItemChange);
   }, [activeItem, handleItemChange]);
 
-  // Start progress bar and auto-cycle
+  // Optimized timer management with visibility API
   const startProgressAndAutoCycle = useCallback(() => {
+    // Only start timers if page is visible
+    if (!isPageVisible) return;
+
     const { cycleDuration, updateInterval, fadeDuration } = config;
     const totalSteps = cycleDuration / updateInterval;
     let currentStep = 0;
@@ -149,14 +199,16 @@ export const InteractiveSpecialties = () => {
     if (progressTimerRef.current) clearInterval(progressTimerRef.current);
     if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
 
-    // Progress bar timer
+    // Progress bar timer - reduced frequency for better performance
     progressTimerRef.current = setInterval(() => {
-      currentStep++;
-      setProgress((currentStep / totalSteps) * 100);
+      // Check visibility before updating
+      if (!document.hidden) {
+        currentStep += 1;
+        setProgress((currentStep / totalSteps) * 100);
 
-      if (currentStep >= totalSteps) {
-        // Time to cycle to next item
-        clearInterval(progressTimerRef.current);
+        if (currentStep >= totalSteps) {
+          clearInterval(progressTimerRef.current);
+        }
       }
     }, updateInterval);
 
@@ -171,20 +223,33 @@ export const InteractiveSpecialties = () => {
       setProgress,
       startProgressAndAutoCycle
     );
-  }, [activeItem]);
+  }, [activeItem, isPageVisible]);
+
+  // Clear timers when page becomes hidden
+  useEffect(() => {
+    if (!isPageVisible) {
+      if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+      if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
+    } else {
+      // Restart timers when page becomes visible again
+      startProgressAndAutoCycle();
+    }
+  }, [isPageVisible, startProgressAndAutoCycle]);
 
   // Open lightbox handler
   const openLightbox = useCallback((_, photoProps) => {
     // If no specific index is provided, use the activeItem as the index
     // This ensures the lightbox shows the currently active image
-    const index = photoProps !== undefined
-      ? (typeof photoProps === 'object' ? photoProps.index : photoProps)
-      : activeItem - 1; // Subtract 1 because activeItem is 1-indexed but lightbox is 0-indexed
+    let index = activeItem - 1; // Default: subtract 1 because activeItem is 1-indexed but lightbox is 0-indexed
+    
+    if (photoProps !== undefined) {
+      index = typeof photoProps === 'object' ? photoProps.index : photoProps;
+    }
 
     // Prevent scrolling to top when opening lightbox
     if (typeof window !== 'undefined') {
       // Save current scroll position
-      const scrollY = window.scrollY;
+      const { scrollY } = window;
 
       // Set timeout to restore scroll position after state updates
       setTimeout(() => {
@@ -209,23 +274,20 @@ export const InteractiveSpecialties = () => {
   // Add state for viewport detection
   const [isMobileView, setIsMobileView] = useState(null);
 
+  // Optimized viewport detection with debounced resize
+  const handleResize = useCallback(() => {
+    // Use 992px to match 'medium' breakpoint in mediaQueries.js
+    setIsMobileView(window.innerWidth < 992);
+  }, []);
+
   // Initialize viewport detection (safely for SSR)
   useEffect(() => {
-    // Handler to update viewport state
-    const handleResize = () => {
-      // Use 992px to match 'medium' breakpoint in mediaQueries.js
-      setIsMobileView(window.innerWidth < 992);
-    };
-
     // Set initial value
     handleResize();
+  }, [handleResize]);
 
-    // Add resize listener
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // Use debounced resize handler
+  useDebouncedResize(handleResize, 150);
 
   // Start auto-cycle when component mounts
   useEffect(() => {
@@ -330,7 +392,7 @@ export const InteractiveSpecialties = () => {
               setCurrentImage(index);
               // Maintain scroll position
               if (typeof window !== 'undefined') {
-                const scrollY = window.scrollY;
+                const { scrollY } = window;
                 setTimeout(() => window.scrollTo(0, scrollY), 10);
               }
             }

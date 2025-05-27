@@ -323,6 +323,7 @@ export const SpecialtyImage = styled.div`
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.07);
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: 2;
+  cursor: pointer;
 
   /* Removed the ::before pseudo-element so we don't cover the image with a white rectangle */
 
@@ -332,10 +333,10 @@ export const SpecialtyImage = styled.div`
     object-fit: cover;
     filter: brightness(1.02) contrast(1.05);
     position: relative;
-    z-index: 2;
-    /* Return to default fadeIn from GatsbyImage by removing fadeIn={false} */
+    z-index: 1;
     opacity: 1;
     transition: opacity 0.5s ease;
+    cursor: pointer;
   }
 
   &.fade-out .specialty-image {
@@ -374,6 +375,7 @@ export const SpecialtyImage = styled.div`
     text-align: center;
     letter-spacing: 0.5px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    pointer-events: none; /* Allow clicks to pass through */
   }
 
   /* Add subtle border highlight */

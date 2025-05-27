@@ -60,29 +60,13 @@ export const SwipeableArea = styled.div`
   scrollbar-width: none; /* Hide scrollbar on Firefox */
   position: relative;
   padding: 0.2rem 0;
+  touch-action: pan-y pinch-zoom; /* Allow vertical scroll and zoom, but handle horizontal swipes */
 
   /* Hide scrollbar on Chrome/Safari */
   &::-webkit-scrollbar {
     display: none;
   }
 
-  /* Add swipe hint animation on first load */
-  &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23525fc4' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: translateY(-50%);
-    opacity: 0.7;
-    animation: ${swipeHint} 1.5s infinite;
-    pointer-events: none;
-    z-index: 10;
-  }
   
   /* Responsive adjustments */
   @media (max-width: 480px) {
@@ -95,41 +79,51 @@ export const SwipeableArea = styled.div`
 // Horizontal list for mobile
 export const MobileSpecialtyList = styled.ul`
   list-style: none;
-  padding: 0.6rem 0.3rem;
+  padding: 1rem 0.5rem;
   margin: 0;
   display: flex;
   flex-direction: row;
   min-width: max-content;
-  gap: 0.4rem;
+  gap: 0.8rem;
   
-  /* Much tighter spacing on small mobile */
+  /* Adjusted spacing on small mobile */
   @media (max-width: 480px) {
-    padding: 0.4rem 0.2rem;
-    gap: 0.3rem;
+    padding: 0.8rem 0.4rem;
+    gap: 0.6rem;
   }
 `
 
-// Mobile specialty item
+// Mobile specialty item with performance optimizations
 export const MobileSpecialtyItem = styled.li`
-  padding: 0.4rem 0.6rem;
-  padding-bottom: 0.3rem;
+  padding: 0.8rem 0.6rem;
   display: flex;
-  flex-direction: column; /* Stack icon and text vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border-radius: 12px;
   cursor: pointer;
   position: relative;
-  background: ${({ isActive }) => isActive ? 'rgba(82, 95, 196, 0.1)' : 'rgba(245, 246, 250, 0.8)'};
-  border-bottom: ${({ isActive }) => isActive ? '2px solid #525fc4' : '2px solid transparent'};
-  box-shadow: ${({ isActive }) => isActive ? '0 2px 6px rgba(82, 95, 196, 0.1)' : '0 1px 2px rgba(0, 0, 0, 0.05)'};
-  white-space: normal; /* Allow text to wrap */
-  min-width: 75px;
-  max-width: 95px; /* Prevent overly wide items */
-  word-wrap: break-word; /* Enable word breaking */
-  text-align: center; /* Center-align for better text layout */
-  height: auto; /* Allow height to adjust to content */
+  background: ${({ isActive }) => isActive ? 'rgba(82, 95, 196, 0.15)' : 'rgba(255, 255, 255, 0.9)'};
+  border: ${({ isActive }) => isActive ? '2px solid #525fc4' : '2px solid rgba(0, 0, 0, 0.08)'};
+  box-shadow: ${({ isActive }) => isActive 
+    ? '0 4px 12px rgba(82, 95, 196, 0.25), 0 0 0 3px rgba(82, 95, 196, 0.1)' 
+    : '0 2px 4px rgba(0, 0, 0, 0.05)'};
+  white-space: normal;
+  min-width: 85px;
+  max-width: 110px;
+  word-wrap: break-word;
+  text-align: center;
+  height: auto;
+  min-height: 80px;
+  
+  /* Performance optimizations */
+  will-change: ${({ isActive }) => isActive ? 'transform, background' : 'auto'};
+  transform: translateZ(0); /* Force hardware acceleration */
+  -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+  touch-action: manipulation; /* Prevent double-tap zoom */
+  
+  /* CSS-only transitions for better performance */
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   
   /* Even smaller on mobile */
   @media (max-width: 480px) {
@@ -144,6 +138,7 @@ export const MobileSpecialtyItem = styled.li`
   /* Active state animation */
   ${({ isActive }) => isActive && css`
     animation: ${touchPulse} 2s infinite ease-in-out;
+    transform: translateY(-2px);
   `}
 
   /* Active indicator dot */
@@ -169,47 +164,48 @@ export const MobileSpecialtyItem = styled.li`
 
   /* Icon styling */
   svg {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     transition: all 0.15s ease;
-    color: ${({ isActive }) => isActive ? '#525fc4' : '#888'};
-    font-size: 0.9rem;
+    color: ${({ isActive }) => isActive ? '#525fc4' : '#666'};
+    font-size: 1.2rem;
     
     @media (max-width: 480px) {
-      font-size: 0.75rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
     }
   }
 
   span {
-    font-size: 0.8rem;
-    color: #333;
+    font-size: 0.85rem;
+    color: ${({ isActive }) => isActive ? '#1a1a1a' : '#444'};
     transition: all 0.15s ease;
-    font-weight: ${({ isActive }) => isActive ? '500' : '400'};
-    display: block; /* Make span a block element for better wrapping */
+    font-weight: ${({ isActive }) => isActive ? '600' : '500'};
+    display: block;
     padding: 0;
     margin: 0;
-    line-height: 1.1; /* Improve readability with better line height */
-    hyphens: auto; /* Enable hyphenation for long words */
+    line-height: 1.2;
+    hyphens: auto;
+    letter-spacing: -0.01em;
     
     @media (max-width: 480px) {
-      font-size: 0.65rem;
-      line-height: 1;
-      letter-spacing: -0.2px; /* Slightly tighter letter spacing */
+      font-size: 0.8rem;
+      line-height: 1.15;
     }
   }
 `
 
 // Mobile image container
 export const MobileImageContainer = styled.div`
-  padding: 1.5rem;
-  background: #f5f6fa;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fc, #f0f2f7);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  border-radius: 12px;
-  margin: 0.5rem 1rem 1.5rem;
+  border-radius: 16px;
+  margin: 1rem 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 
   /* Add subtle pattern for texture */
   &:before {
@@ -226,57 +222,28 @@ export const MobileImageContainer = styled.div`
   }
 `
 
-// Swipe indicator animation
-const swipeIndicator = keyframes`
-  0% { opacity: 0; transform: translateX(-20px); }
-  20% { opacity: 0.7; transform: translateX(0); }
-  80% { opacity: 0.7; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(20px); }
-`
 
-// Mobile specialty image
+// Mobile specialty image with performance optimizations
 export const MobileSpecialtyImage = styled.div`
   width: 100%;
-  height: 280px;
+  height: 300px;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
   z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  /* Performance optimizations */
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y pinch-zoom; /* Allow vertical scroll and zoom, but handle horizontal swipes */
+  backface-visibility: hidden; /* Prevent flickering */
+  
+  /* Smooth transitions */
+  transition: transform 0.2s ease;
 
-  /* Add swipe indicators on the sides */
-  &:before, &:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translateY(-50%);
-    opacity: 0;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  /* Left arrow */
-  &:before {
-    left: 10px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
-  }
-
-  /* Right arrow */
-  &:after {
-    right: 10px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E");
-  }
-
-  /* Show indicators on touch start */
-  &:active:before, &:active:after {
-    opacity: 0.8;
-    animation: ${swipeIndicator} 1s ease-in-out;
-  }
 
   .specialty-image {
     width: 100%;
@@ -331,16 +298,22 @@ export const MobileSpecialtyImage = styled.div`
 export const MobileProgressContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0.5rem 0 1rem;
-  gap: 12px;
+  margin: 1rem 0 1.5rem;
+  gap: 10px;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 // Mobile progress dot
 export const MobileProgressDot = styled.button`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: ${({ active }) => active ? '#525fc4' : '#dddddd'};
+  width: ${({ active }) => active ? '24px' : '10px'};
+  height: 10px;
+  border-radius: ${({ active }) => active ? '5px' : '50%'};
+  background-color: ${({ active }) => active ? '#525fc4' : '#c5c5c5'};
   border: none;
   padding: 0;
   cursor: pointer;
@@ -403,32 +376,53 @@ export const SwipeIndicator = styled.div`
 // Caption text styling (displayed below the image)
 export const SpecialtyCaption = styled.div`
   text-align: center;
-  color: #333;
-  font-size: 1rem;
+  color: #1a1a1a;
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 0.75rem 1rem;
-  margin: 0.5rem auto;
-  max-width: 90%;
-  line-height: 1.3;
-  background-color: rgba(245, 246, 250, 0.8);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.25rem;
+  margin: 1rem auto 0.5rem;
+  max-width: 85%;
+  line-height: 1.4;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 246, 250, 0.95));
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
+  
+  /* Add subtle accent line */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: #525fc4;
+    border-radius: 2px;
+  }
 `
 
 // Swipe instruction text
 export const SwipeInstruction = styled.div`
   text-align: center;
-  color: #888;
-  font-size: 0.85rem;
-  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  margin: 1rem 0 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(82, 95, 196, 0.05);
+  border-radius: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 
   svg {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #525fc4;
+    animation: ${swipeHint} 2s ease-in-out infinite;
   }
 
   ${mq('medium')} {
