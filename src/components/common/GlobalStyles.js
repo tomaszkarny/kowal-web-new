@@ -627,6 +627,27 @@ export const GlobalStyles = css`
     z-index: 9999 !important;
   }
 
+  /* Ensure navigation buttons are always visible in lightbox */
+  .yarl__navigation_prev,
+  .yarl__navigation_next {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  /* Style for disabled navigation buttons */
+  .yarl__navigation_prev[disabled],
+  .yarl__navigation_next[disabled] {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+  }
+
+  /* Hover effect for enabled buttons */
+  .yarl__navigation_prev:not([disabled]):hover,
+  .yarl__navigation_next:not([disabled]):hover {
+    opacity: 1 !important;
+  }
+
   /* Fix for overlapping components */
   section {
     position: relative;

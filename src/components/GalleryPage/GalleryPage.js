@@ -266,10 +266,11 @@ export const GalleryPage = () => {
     setViewerIsOpen(true)
   }, [])
 
-  const closeLightbox = () => {
-    setCurrentImage(0)
+  const closeLightbox = useCallback(() => {
     setViewerIsOpen(false)
-  }
+    // Delay resetting currentImage to prevent flickering
+    setTimeout(() => setCurrentImage(0), 300)
+  }, [])
 
   return (
     <ContentContainer>
@@ -383,9 +384,8 @@ export const GalleryPage = () => {
         index={currentImage}
         slides={lightboxPhotos}
         carousel={{ finite: true }}
-        render={{
-          buttonPrev: currentImage === 0 ? () => null : undefined,
-          buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
+        on={{
+          view: ({ index }) => setCurrentImage(index),
         }}
       />
     </ContentContainer>

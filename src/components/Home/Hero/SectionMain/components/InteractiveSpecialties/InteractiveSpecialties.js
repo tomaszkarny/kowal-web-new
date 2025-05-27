@@ -319,10 +319,6 @@ export const InteractiveSpecialties = () => {
             captionsTitle: { zIndex: 10000 },
             captionsDescription: { zIndex: 10000 }
           }}
-          render={{
-            buttonPrev: currentImage === 0 ? () => null : undefined,
-            buttonNext: currentImage === lightboxPhotos.length - 1 ? () => null : undefined,
-          }}
           animation={{ fade: 300 }}
           controller={{
             closeOnBackdropClick: true,
@@ -330,8 +326,8 @@ export const InteractiveSpecialties = () => {
             touchAction: 'none'
           }}
           on={{
-            // Prevent scrolling to top when lightbox opens
-            view: () => {
+            view: ({ index }) => {
+              setCurrentImage(index);
               // Maintain scroll position
               if (typeof window !== 'undefined') {
                 const scrollY = window.scrollY;
