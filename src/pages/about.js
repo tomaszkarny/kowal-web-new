@@ -12,7 +12,7 @@ import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetec
 import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML
 import { getFAQData } from 'utils/faqData'
 
-const AboutPage = () => {
+function AboutPage() {
   return (
     <Layout>
       <About />
@@ -26,7 +26,7 @@ export default AboutPage
  * Implement Gatsby Head API for the about page
  * This includes both standard SEO tags and BreadcrumbList schema
  */
-export const Head = ({ data, location, pageContext }) => {
+export function Head({ location, pageContext }) {
   // Detect language using our centralized utility
   const language = detectLanguageForSEO(pageContext, location);
   

@@ -27,6 +27,8 @@
     "lighthouse:mobile": "LHCI_GITHUB_APP_TOKEN=$(grep LHCI_GITHUB_APP_TOKEN .env.lighthouse | cut -d '=' -f2) lhci autorun --collect.preset=mobile",
     "validate:sitemap": "node scripts/validate-sitemap.js",
     "seo:lint": "node scripts/seo/lint-meta.js",
+    "optimize:images": "node scripts/optimize-images.js",
+    "fix:orientation": "node scripts/fix-image-orientation.js",
     "lh:ci": "lhci autorun"
   },
   "lint-staged": {
