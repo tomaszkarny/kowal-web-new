@@ -30,4 +30,10 @@ export const NavLinkData = [
     id: 5,
     to: '/contact/', // Already has trailing slash
   },
+  {
+    text: 'FAQ',
+    translationKey: 'faq',
+    id: 6,
+    to: '/faq/', // FAQ page
+  },
 ]

@@ -31,6 +31,7 @@ export const Footer = () => {
         <FooterLink to="/contact/" language={language}>{t('contact')}</FooterLink>
         <FooterLink to="/about/" language={language}>{t('about')}</FooterLink>
         <FooterLink to="/gallery/" language={language}>{t('gallery')}</FooterLink>
+        <FooterLink to="/faq/" language={language}>{t('faq')}</FooterLink>
       </FooterSection>
 
       <FooterSection>

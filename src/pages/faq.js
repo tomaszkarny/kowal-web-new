@@ -19,7 +19,7 @@ const FAQContainer = styled.div`
 
 const FAQItem = styled.div`
   margin-bottom: 2rem;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.color.lightGray};
   padding-bottom: 2rem;
 
   &:last-child {
@@ -31,10 +31,10 @@ const Question = styled.h2`
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.color.primary};
   line-height: 1.4;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     font-size: 1.25rem;
   }
 `
@@ -42,7 +42,7 @@ const Question = styled.h2`
 const Answer = styled.div`
   font-size: 1.1rem;
   line-height: 1.6;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.color.gray};
   
   p {
     margin-bottom: 1rem;
@@ -56,7 +56,7 @@ const Answer = styled.div`
 function FAQPage() {
   const { t } = useTranslation()
   
-  const faqItems = t('faq:items', { returnObjects: true, defaultValue: [] })
+  const faqItems = t('seo:faq.items', { returnObjects: true, defaultValue: [] })
 
   return (
     <Layout>

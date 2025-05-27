@@ -38,7 +38,7 @@ module.exports = {
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
-          ns: ['common', 'about', 'gallery', 'contact', 'seo'],
+          ns: ['common', 'about', 'gallery', 'contact', 'seo', 'footer', 'faq'],
           defaultNS: 'common',
           
           // ===== LANGUAGE DETECTION =====
