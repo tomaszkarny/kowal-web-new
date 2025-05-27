@@ -7,6 +7,7 @@ import { SectionMain } from 'components/Home/Hero/SectionMain/SectionMain'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
+import { ServiceSchema } from 'components/SEO/ServiceSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
@@ -63,6 +64,10 @@ export function Head({ location, pageContext }) {
         faqData={getFAQData(language, 'home')}
         pathname={location.pathname}
         language={language}
+      />
+      <ServiceSchema 
+        language={language}
+        pathname={location.pathname}
       />
     </>
   )

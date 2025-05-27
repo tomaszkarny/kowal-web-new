@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kowalstwo-karny.pl/sitemap-index.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow temporary or system files
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.cache/
+Disallow: /public/page-data/
+Disallow: /dev-404-page/
+
+# Allow search engines to access static assets
+Allow: /static/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
