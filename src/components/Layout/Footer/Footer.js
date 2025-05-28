@@ -19,6 +19,35 @@ export const Footer = () => {
   const { t } = useTranslation('footer')
   const { languages, originalPath, language } = useI18next()
   
+  // Hardcode popular cities for footer with proper slugs
+  const popularCities = [
+    { 
+      id: 'bialystok', 
+      slug: { pl: 'bialystok', en: 'bialystok' },
+      name: { pl: 'Białystok', en: 'Białystok' } 
+    },
+    { 
+      id: 'warszawa', 
+      slug: { pl: 'warszawa', en: 'warsaw' },
+      name: { pl: 'Warszawa', en: 'Warsaw' } 
+    },
+    { 
+      id: 'suwalki', 
+      slug: { pl: 'suwalki', en: 'suwalki' },
+      name: { pl: 'Suwałki', en: 'Suwałki' } 
+    },
+    { 
+      id: 'augustow', 
+      slug: { pl: 'augustow', en: 'augustow' },
+      name: { pl: 'Augustów', en: 'Augustów' } 
+    },
+    { 
+      id: 'lomza', 
+      slug: { pl: 'lomza', en: 'lomza' },
+      name: { pl: 'Łomża', en: 'Łomża' } 
+    },
+  ]
+  
   return (
     <StyledFooter>
       <FooterSection>
@@ -28,10 +57,10 @@ export const Footer = () => {
 
       <FooterSection>
         <FooterTitle>{t('informacje')}</FooterTitle>
-        <FooterLink to="/contact/" language={language}>{t('contact')}</FooterLink>
-        <FooterLink to="/about/" language={language}>{t('about')}</FooterLink>
-        <FooterLink to="/gallery/" language={language}>{t('gallery')}</FooterLink>
-        <FooterLink to="/faq/" language={language}>{t('faq')}</FooterLink>
+        <FooterLink to="/contact/">{t('contact')}</FooterLink>
+        <FooterLink to="/about/">{t('about')}</FooterLink>
+        <FooterLink to="/gallery/">{t('gallery')}</FooterLink>
+        <FooterLink to="/faq/">{t('faq')}</FooterLink>
       </FooterSection>
 
       <FooterSection>
@@ -78,6 +107,25 @@ export const Footer = () => {
         >
           {CONTACT_DETAILS.INSTAGRAM_URL}
         </StyledAnchor>
+      </FooterSection>
+
+      <FooterSection>
+        <FooterTitle>{t('popularCities')}</FooterTitle>
+        {popularCities.map(city => {
+          // Use consistent /cities/ path for both languages
+          const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
+          const cityPath = `/cities/${citySlug}/`
+          
+          return (
+            <FooterLink 
+              key={city.id} 
+              to={cityPath}
+            >
+              {city.name[language]}
+            </FooterLink>
+          )
+        })}
+        <FooterLink to="/cities/">{t('allCities')}</FooterLink>
       </FooterSection>
 
       <FooterSection>

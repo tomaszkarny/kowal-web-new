@@ -38,7 +38,7 @@ module.exports = {
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
-          ns: ['common', 'about', 'gallery', 'contact', 'seo', 'footer', 'faq'],
+          ns: ['common', 'about', 'gallery', 'contact', 'seo', 'footer', 'faq', 'cities'],
           defaultNS: 'common',
           
           // ===== LANGUAGE DETECTION =====
@@ -277,6 +277,10 @@ module.exports = {
           } else if (path.includes('/contact')) {
             // Contact page gets medium priority
             priority = 0.6;
+            changefreq = 'monthly';
+          } else if (path.includes('/miasta/') || path.includes('/cities/')) {
+            // City pages get good priority for local SEO
+            priority = 0.7;
             changefreq = 'monthly';
           }
           

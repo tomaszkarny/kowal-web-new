@@ -25,15 +25,21 @@ export const NavLinkData = [
     to: '/gallery/', // Already has trailing slash
   },
   {
+    text: 'Miasta',
+    translationKey: 'cities',
+    id: 5,
+    to: '/cities/', // Cities index page
+  },
+  {
     text: 'Kontakt',
     translationKey: 'contact',
-    id: 5,
+    id: 6,
     to: '/contact/', // Already has trailing slash
   },
   {
     text: 'FAQ',
     translationKey: 'faq',
-    id: 6,
+    id: 7,
     to: '/faq/', // FAQ page
   },
 ]

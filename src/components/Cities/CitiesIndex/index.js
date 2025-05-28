@@ -1,0 +1,1 @@
+export { CitiesIndex } from './CitiesIndex'

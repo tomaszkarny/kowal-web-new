@@ -1,0 +1,127 @@
+{
+  "page": {
+    "title": "Obszar działania - Miasta obsługiwane przez Kowalstwo Karny",
+    "description": "Obsługujemy miasta w województwie podlaskim i mazowieckim. Białystok, Warszawa, Suwałki, Augustów, Łomża - sprawdź obszar naszej działalności.",
+    "heading": "Miasta i regiony, które obsługujemy",
+    "subheading": "Profesjonalne kowalstwo artystyczne w Twoim mieście"
+  },
+  "cityPage": {
+    "titleTemplate": "Kowal {{city}} - Bramy Kute, Balustrady | Tadeusz Karny",
+    "descriptionTemplate": "Profesjonalne kowalstwo artystyczne w {{city}}. Wykonujemy bramy kute, balustrady i ogrodzenia. {{travelTime}} z naszego warsztatu w Białymstoku.",
+    "hero": {
+      "titleTemplate": "Kowalstwo Artystyczne {{city}}",
+      "subtitleTemplate": "Obsługujemy {{city}} i okolice w promieniu {{radius}} km",
+      "ctaButton": "Skontaktuj się z nami",
+      "distanceInfo": "Odległość z Białegostoku: {{distance}} km"
+    },
+    "services": {
+      "title": "Nasze usługi w {{city}}",
+      "subtitle": "Pełen zakres usług kowalskich dostępnych w Twoim mieście",
+      "delivery": {
+        "title": "Transport i montaż",
+        "free": "✅ Bezpłatny transport w promieniu {{radius}} km",
+        "paid": "🚛 Transport płatny - {{distance}} km od warsztatu",
+        "time": "⏱️ Czas dojazdu: {{travelTime}}"
+      },
+      "items": [
+        {
+          "title": "Bramy kute",
+          "description": "Projektowanie i wykonanie bram dwuskrzydłowych i jednoskrzydłowych dla domów w {{city}}"
+        },
+        {
+          "title": "Balustrady",
+          "description": "Balustrady wewnętrzne i zewnętrzne dopasowane do architektury {{city}}"
+        },
+        {
+          "title": "Ogrodzenia",
+          "description": "Kompleksowe wykonanie ogrodzeń kutych dla posesji w {{city}}"
+        },
+        {
+          "title": "Elementy dekoracyjne",
+          "description": "Ozdobne elementy kowalskie idealnie wpisujące się w krajobraz {{city}}"
+        }
+      ]
+    },
+    "serviceArea": {
+      "title": "Obszar obsługi w {{city}}",
+      "subtitle": "Docieramy do wszystkich dzielnic i okolic",
+      "neighborhoods": "Obsługiwane dzielnice:",
+      "radius": "Promień dojazdu: {{radius}} km od centrum {{city}}"
+    },
+    "about": {
+      "title": "Dlaczego warto wybrać nas w {{city}}?",
+      "experience": {
+        "title": "Doświadczenie",
+        "description": "Ponad 20 lat doświadczenia w kowalstwie artystycznym na terenie {{region}}"
+      },
+      "quality": {
+        "title": "Jakość",
+        "description": "Używamy tylko najlepszych materiałów i sprawdzonych technik kowalskich"
+      },
+      "local": {
+        "title": "Znajomość regionu",
+        "description": "Doskonale znamy specyfikę architektury i potrzeby mieszkańców {{city}}"
+      },
+      "warranty": {
+        "title": "Gwarancja",
+        "description": "5 lat gwarancji na wszystkie wykonane przez nas prace"
+      }
+    },
+    "gallery": {
+      "title": "Realizacje w {{city}}",
+      "subtitle": "Zobacz nasze najlepsze prace wykonane dla klientów z {{city}}",
+      "viewAll": "Zobacz wszystkie realizacje"
+    },
+    "contact": {
+      "title": "Kontakt - {{city}}",
+      "subtitle": "Skontaktuj się z nami, aby omówić Twój projekt",
+      "form": {
+        "cityField": "Miasto",
+        "projectType": "Rodzaj projektu",
+        "message": "Opis projektu (uwzględnij lokalizację w {{city}})"
+      },
+      "info": {
+        "workshop": "Nasza pracownia:",
+        "workshopAddress": "ul. Przykładowa 123, Białystok",
+        "serviceArea": "Obsługiwany obszar:",
+        "travelTime": "Czas dojazdu do {{city}}: {{travelTime}}",
+        "freeDelivery": "Bezpłatny transport w promieniu {{radius}} km"
+      }
+    },
+    "faq": {
+      "title": "Najczęściej zadawane pytania - {{city}}",
+      "items": [
+        {
+          "question": "Czy dojeżdżacie do {{city}}?",
+          "answer": "Tak, regularnie realizujemy zlecenia w {{city}}. Czas dojazdu z naszego warsztatu to {{travelTime}}."
+        },
+        {
+          "question": "Ile kosztuje transport do {{city}}?",
+          "answer": "{{#if isFreeDelivery}}Transport do {{city}} jest bezpłatny w ramach naszej standardowej obsługi.{{else}}Koszt transportu do {{city}} zależy od wielkości zlecenia. Szczegóły ustalimy podczas wyceny.{{/if}}"
+        },
+        {
+          "question": "Jak długo trwa realizacja w {{city}}?",
+          "answer": "Czas realizacji zależy od złożoności projektu. Standardowe bramy wykonujemy w 2-3 tygodnie + czas montażu w {{city}}."
+        },
+        {
+          "question": "Czy robicie wyceny w {{city}}?",
+          "answer": "Tak, oferujemy bezpłatne wyceny na miejscu w {{city}}. Umówimy się na dogodny termin."
+        }
+      ]
+    }
+  },
+  "citiesList": {
+    "featured": "Główne miasta",
+    "all": "Wszystkie obsługiwane miasta",
+    "distance": "{{distance}} km",
+    "population": "{{population}} mieszkańców",
+    "travelTime": "Dojazd: {{travelTime}}",
+    "serviceRadius": "Obsługa w promieniu {{radius}} km",
+    "viewCity": "Zobacz stronę miasta"
+  },
+  "navigation": {
+    "cities": "Miasta",
+    "backToCities": "← Powrót do listy miast",
+    "nearbyCity": "Najbliższe miasto: {{city}}"
+  }
+}
