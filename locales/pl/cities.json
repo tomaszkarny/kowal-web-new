@@ -12,7 +12,7 @@
       "titleTemplate": "Kowalstwo Artystyczne {{city}}",
       "subtitleTemplate": "Obsługujemy {{city}} i okolice w promieniu {{radius}} km",
       "ctaButton": "Skontaktuj się z nami",
-      "distanceInfo": "Odległość z Białegostoku: {{distance}} km"
+      "distanceInfo": "Odległość z naszego warsztatu: {{distance}} km"
     },
     "services": {
       "title": "Nasze usługi w {{city}}",
@@ -46,7 +46,7 @@
       "title": "Obszar obsługi w {{city}}",
       "subtitle": "Docieramy do wszystkich dzielnic i okolic",
       "neighborhoods": "Obsługiwane dzielnice:",
-      "radius": "Promień dojazdu: {{radius}} km od centrum {{city}}"
+      "radius": "Promień obsługi: {{radius}} km od centrum {{city}}"
     },
     "about": {
       "title": "Dlaczego warto wybrać nas w {{city}}?",

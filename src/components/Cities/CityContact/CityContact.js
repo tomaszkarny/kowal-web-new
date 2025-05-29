@@ -1,7 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
+import { getNapInfo } from 'consts/contactDetails'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -97,12 +99,20 @@ export function CityContact({ city, language, templateData }) {
   const title = t('cityPage.contact.title', templateData)
   const subtitle = t('cityPage.contact.subtitle')
   
+  // Get real contact information
+  const napInfo = getNapInfo(language)
+  
   const contactInfo = {
     workshop: t('cityPage.contact.info.workshop'),
-    workshopAddress: t('cityPage.contact.info.workshopAddress'),
+    workshopAddress: napInfo.address.full,
+    phone: napInfo.phoneFormatted,
     serviceArea: t('cityPage.contact.info.serviceArea'),
     travelTime: t('cityPage.contact.info.travelTime', templateData),
     freeDelivery: t('cityPage.contact.info.freeDelivery', templateData)
+  }
+  
+  const handleContactClick = () => {
+    navigate(language === 'pl' ? '/contact' : '/en/contact')
   }
 
   return (
@@ -115,7 +125,14 @@ export function CityContact({ city, language, templateData }) {
           <ContactInfo>
             <InfoTitle>{contactInfo.workshop}</InfoTitle>
             <InfoItem>
-              <strong>{contactInfo.workshopAddress}</strong>
+              <strong>{language === 'pl' ? 'Adres:' : 'Address:'}</strong><br/>
+              {contactInfo.workshopAddress}
+            </InfoItem>
+            <InfoItem>
+              <strong>{language === 'pl' ? 'Telefon:' : 'Phone:'}</strong><br/>
+              <a href={`tel:${napInfo.phone.replace(/\s/g, '')}`} style={{ color: COLORS.primary, textDecoration: 'none' }}>
+                {contactInfo.phone}
+              </a>
             </InfoItem>
             <InfoItem>
               <strong>{contactInfo.serviceArea}</strong><br/>
@@ -124,9 +141,9 @@ export function CityContact({ city, language, templateData }) {
             <InfoItem>
               {contactInfo.travelTime}
             </InfoItem>
-            {city.distance <= 30 && (
+            {city.freeDelivery && (
               <InfoItem style={{ color: COLORS.success, fontWeight: '600' }}>
-                {contactInfo.freeDelivery}
+                ✅ {language === 'pl' ? 'Bezpłatny transport' : 'Free delivery'}
               </InfoItem>
             )}
           </ContactInfo>
@@ -141,7 +158,7 @@ export function CityContact({ city, language, templateData }) {
                 : `Contact us to discuss your project in ${templateData.city}`
               }
             </p>
-            <Button>
+            <Button onClick={handleContactClick}>
               {language === 'pl' ? 'Przejdź do formularza' : 'Go to contact form'}
             </Button>
           </ContactForm>

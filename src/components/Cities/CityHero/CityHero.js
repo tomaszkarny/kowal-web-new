@@ -22,7 +22,7 @@ export function CityHero({ city, language, templateData }) {
     // Scroll to contact section
     const contactSection = document.getElementById('city-contact')
     if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 

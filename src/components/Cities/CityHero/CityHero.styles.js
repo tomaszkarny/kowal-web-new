@@ -20,6 +20,10 @@ export const HeroSection = styled.section`
     min-height: 50vh;
     padding: 2rem 1rem;
   }
+  
+  @media (max-width: 480px) {
+    min-height: 70vh;
+  }
 `
 
 export const HeroBackground = styled.div`
@@ -88,11 +92,16 @@ export const HeroInfo = styled.div`
   backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 0.8rem 1.5rem;
-  margin: 1.5rem auto;
+  margin: 1.5rem auto 2rem;
   display: inline-block;
   font-size: 1rem;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
 `
 
 export const HeroButton = styled.button`

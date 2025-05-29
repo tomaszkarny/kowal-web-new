@@ -25,7 +25,7 @@ export const CITIES = [
       lng: 23.1688
     },
     serviceArea: {
-      radius: 30, // km - obszar darmowego dojazdu
+      radius: 50, // km - promień obsługi dla Białegostoku
       neighborhoods: {
         pl: ['Centrum', 'Białostoczek', 'Wysoki Stoczek', 'Dziesięciny', 'Bacieczki'],
         en: ['City Center', 'Białostoczek', 'Wysoki Stoczek', 'Dziesięciny', 'Bacieczki']
@@ -58,7 +58,7 @@ export const CITIES = [
       lng: 21.0122
     },
     serviceArea: {
-      radius: 50,
+      radius: 150, // km - promień obsługi dla Warszawy
       neighborhoods: {
         pl: ['Śródmieście', 'Mokotów', 'Żoliborz', 'Wola', 'Ochota', 'Praga Północ', 'Praga Południe'],
         en: ['City Center', 'Mokotów', 'Żoliborz', 'Wola', 'Ochota', 'Praga North', 'Praga South']
@@ -91,7 +91,7 @@ export const CITIES = [
       lng: 22.9308
     },
     serviceArea: {
-      radius: 25,
+      radius: 100, // km - promień obsługi dla Suwałk
       neighborhoods: {
         pl: ['Centrum', 'Północ', 'Południe', 'Zachód'],
         en: ['Center', 'North', 'South', 'West']
@@ -124,7 +124,7 @@ export const CITIES = [
       lng: 23.0181
     },
     serviceArea: {
-      radius: 20,
+      radius: 80, // km - promień obsługi dla Augustowa
       neighborhoods: {
         pl: ['Centrum', 'Nadjeziorna', 'Sosnowa', 'Wojska Polskiego'],
         en: ['Center', 'Lakeside', 'Sosnowa', 'Wojska Polskiego']
@@ -157,7 +157,7 @@ export const CITIES = [
       lng: 22.0585
     },
     serviceArea: {
-      radius: 25,
+      radius: 100, // km - promień obsługi dla Łomży
       neighborhoods: {
         pl: ['Centrum', 'Tatary', 'Starosielce', 'Podgórze'],
         en: ['Center', 'Tatary', 'Starosielce', 'Podgórze']

@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
+import { getCityFAQ } from 'data/citiesSeoEnhanced'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -54,7 +55,15 @@ export function CityFAQ({ city, language, templateData }) {
   const { t } = useTranslation('cities')
   
   const title = t('cityPage.faq.title', templateData)
-  const faqItems = t('cityPage.faq.items', { returnObjects: true })
+  
+  // Get default FAQ items from translations
+  const defaultFaqItems = t('cityPage.faq.items', { returnObjects: true })
+  
+  // Get enhanced FAQ items for this specific city
+  const enhancedFaqItems = getCityFAQ(city.name[language], language)
+  
+  // Combine both FAQ sources
+  const faqItems = [...defaultFaqItems, ...enhancedFaqItems]
 
   // Function to process answer templates
   const processAnswer = (answer) => {

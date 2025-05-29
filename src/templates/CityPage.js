@@ -4,8 +4,10 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
-import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { CityProjects } from 'components/Cities/CityProjects'
+import { CityKeywords } from 'components/Cities/CityKeywords'
+import { getCityFAQ } from 'data/citiesSeoEnhanced'
 
 // City page specific components (będziemy tworzyć)
 import { CityHero } from 'components/Cities/CityHero'
@@ -15,13 +17,19 @@ import { CityAbout } from 'components/Cities/CityAbout'
 import { CityContact } from 'components/Cities/CityContact'
 import { CityFAQ } from 'components/Cities/CityFAQ'
 
-import { WEBSITE_URL } from 'consts/contactDetails'
+import { 
+  WEBSITE_URL, 
+  PHONE_NUMBER,
+  ADDRESS_ML,
+  GOOGLE_MAP_DIRECTIONS,
+  BUSINESS_NAME_ML
+} from 'consts/contactDetails'
 
 /**
  * Template dla stron miast
  * Tworzone dynamicznie w gatsby-node.js
  */
-function CityPageTemplate({ data, pageContext }) {
+function CityPageTemplate({ pageContext }) {
   const { city, language } = pageContext
   const { t } = useTranslation('cities')
   
@@ -35,22 +43,15 @@ function CityPageTemplate({ data, pageContext }) {
     isFreeDelivery: city.freeDelivery
   }
 
-  // Generowanie tytułu i opisu z szablonów
-  const pageTitle = t('cityPage.titleTemplate', templateData)
-  const pageDescription = t('cityPage.descriptionTemplate', templateData)
-  
-  // URL strony
-  const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
-  const pathname = language === 'pl' 
-    ? `/cities/${citySlug}/`
-    : `/en/cities/${citySlug}/`
 
   return (
     <Layout>
       <CityHero city={city} language={language} templateData={templateData} />
       <CityServices city={city} language={language} templateData={templateData} />
+      <CityProjects city={city} language={language} templateData={templateData} />
       <CityServiceArea city={city} language={language} templateData={templateData} />
       <CityAbout city={city} language={language} templateData={templateData} />
+      <CityKeywords city={city} language={language} />
       <CityContact city={city} language={language} templateData={templateData} />
       <CityFAQ city={city} language={language} templateData={templateData} />
     </Layout>
@@ -91,21 +92,21 @@ export function Head({ pageContext, location }) {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": `Kowalstwo Artystyczne Tadeusz Karny - ${city.name[language]}`,
+    "name": `${BUSINESS_NAME_ML[language]} - ${city.name[language]}`,
     "description": pageDescription,
     "url": `${WEBSITE_URL}${location.pathname}`,
-    "telephone": "+48123456789", // TODO: dodać prawdziwy numer
+    "telephone": PHONE_NUMBER,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "ul. Przykładowa 123",
-      "addressLocality": "Białystok",
-      "postalCode": "15-000",
-      "addressCountry": "PL"
+      "streetAddress": ADDRESS_ML[language].street,
+      "addressLocality": ADDRESS_ML[language].city,
+      "postalCode": ADDRESS_ML[language].postalCode,
+      "addressCountry": ADDRESS_ML[language].countryCode
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 53.1325,
-      "longitude": 23.1688
+      "latitude": GOOGLE_MAP_DIRECTIONS.lat,
+      "longitude": GOOGLE_MAP_DIRECTIONS.lng
     },
     "areaServed": [
       {
@@ -157,6 +158,21 @@ export function Head({ pageContext, location }) {
       "item": `${WEBSITE_URL}${location.pathname}`
     }
   ]
+  
+  // FAQ Schema for better SEO
+  const faqItems = getCityFAQ(city.name[language], language)
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  }
 
   return (
     <>
@@ -172,6 +188,11 @@ export function Head({ pageContext, location }) {
       {/* Local Business Schema dla miasta */}
       <script type="application/ld+json">
         {JSON.stringify(localBusinessSchema)}
+      </script>
+      
+      {/* FAQ Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
       </script>
       
       {/* Breadcrumb Schema */}
