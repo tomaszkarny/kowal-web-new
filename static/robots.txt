@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://kowalstwo-karny.pl/sitemap-index.xml
+Sitemap: https://www.kowalstwo-karny.pl/sitemap/sitemap-index.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
