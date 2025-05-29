@@ -105,13 +105,13 @@ export const AREA_SERVED = ['Białystok', 'Podlaskie', 'Poland']
 export const OPENING_HOURS = [
   {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
+    opens: '07:30',
     closes: '16:00'
   },
   {
     days: ['Saturday'],
     opens: '09:00',
-    closes: '13:00'
+    closes: '15:00'
   }
 ]
 
@@ -123,7 +123,7 @@ export const OPENING_HOURS_ML = {
   pl: [
     {
       days: 'Poniedziałek - Piątek',
-      hours: '8:00 - 16:00'
+      hours: '7:30 - 16:00'
     },
     {
       days: 'Sobota',
@@ -137,11 +137,11 @@ export const OPENING_HOURS_ML = {
   en: [
     {
       days: 'Monday - Friday',
-      hours: '8:00 AM - 4:00 PM'
+      hours: '7:30 AM - 4:00 PM'
     },
     {
       days: 'Saturday',
-      hours: '9:00 AM - 15:00 PM'
+      hours: '9:00 AM - 3:00 PM'
     },
     {
       days: 'Sunday',

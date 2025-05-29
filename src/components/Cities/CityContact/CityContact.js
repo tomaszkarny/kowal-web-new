@@ -239,7 +239,7 @@ export function CityContact({ city, language, templateData }) {
                 <strong>{language === 'pl' ? 'Pon-Pt:' : 'Mon-Fri:'}</strong>
                 <span>7:30 - 16:00</span>
                 <strong>{language === 'pl' ? 'Sobota:' : 'Saturday:'}</strong>
-                <span>9:00 - 13:00</span>
+                <span>9:00 - 15:00</span>
                 <strong>{language === 'pl' ? 'Niedziela:' : 'Sunday:'}</strong>
                 <span>{language === 'pl' ? 'Zamknięte' : 'Closed'}</span>
               </HoursGrid>

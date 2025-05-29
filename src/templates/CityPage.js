@@ -172,7 +172,7 @@ export function Head({ pageContext, location }) {
       language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences"
     ],
     "priceRange": "$$",
-    "openingHours": "Mo-Fr 07:30-16:00, Sa 09:00-13:00",
+    "openingHours": "Mo-Fr 07:30-16:00, Sa 09:00-15:00",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -184,7 +184,7 @@ export function Head({ pageContext, location }) {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Saturday",
         "opens": "09:00", 
-        "closes": "13:00"
+        "closes": "15:00"
       }
     ],
     "paymentAccepted": ["Cash", "Bank Transfer"],
