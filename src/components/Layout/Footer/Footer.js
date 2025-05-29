@@ -10,8 +10,7 @@ import {
   FooterSection,
   FooterTitle,
   FooterParagraph,
-  FooterLink,
-  LanguageLink
+  FooterLink
 } from 'components/Layout/Footer/Footer.styles'
 
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
@@ -47,9 +46,12 @@ export const Footer = () => {
     
     // For non-city pages, use the original path logic
     if (targetLanguage === 'pl') {
-      return currentPath.replace(/^\/en/, '')
+      // Remove /en prefix and /pl prefix to get base path
+      return currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
     } else {
-      return currentPath.startsWith('/en') ? currentPath : `/en${currentPath}`
+      // Remove any existing language prefix and add /en
+      const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
+      return basePath === '/' ? '/en/' : `/en${basePath}`
     }
   }
   
@@ -167,11 +169,24 @@ export const Footer = () => {
           const targetPath = getLanguagePath(lng, currentPath)
           
           return (
-            <LanguageLink 
-              key={lng} 
-              to={targetPath} 
-              language={lng}
-              active={lng === language}
+            <a
+              key={lng}
+              href={targetPath}
+              style={{
+                textDecoration: 'none',
+                marginBottom: '10px',
+                display: 'block',
+                color: lng === language ? '#ffcc00' : '#ffffff',
+                transition: 'all 0.3s ease-in-out'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.opacity = '1'
+                e.target.style.textDecoration = 'underline'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.opacity = '1'
+                e.target.style.textDecoration = 'none'
+              }}
               onClick={() => {
                 // Save language preference to localStorage when clicked
                 if (typeof window !== 'undefined') {
@@ -180,7 +195,7 @@ export const Footer = () => {
               }}
             >
               {lng === 'en' ? t('englishVersion') : t('polishVersion')}
-            </LanguageLink>
+            </a>
           )
         })}
       </FooterSection>
