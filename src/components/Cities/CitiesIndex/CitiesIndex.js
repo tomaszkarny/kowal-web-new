@@ -3,7 +3,8 @@ import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
 import citiesData from 'data/cities'
 const { CITIES, getFeaturedCities } = citiesData
-import { processAllCities } from 'utils/cityDistanceCalculator'
+import cityCalculatorUtils from 'utils/cityDistanceCalculator'
+const { processAllCities } = cityCalculatorUtils
 import { getCityPath } from 'utils/cityUtils'
 import {
   IndexSection,

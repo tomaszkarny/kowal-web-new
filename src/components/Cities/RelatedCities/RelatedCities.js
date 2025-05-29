@@ -2,7 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { getCityPath } from 'utils/cityUtils'
-import { calculateDistance } from 'utils/cityDistanceCalculator'
+import cityCalculatorUtils from 'utils/cityDistanceCalculator'
+const { calculateDistance } = cityCalculatorUtils
 import { THEME } from 'consts/theme'
 
 const Section = styled.section`

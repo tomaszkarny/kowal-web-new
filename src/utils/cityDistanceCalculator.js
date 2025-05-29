@@ -80,7 +80,7 @@ const calculateTravelTime = (distance) => {
  * @param {object} city - City data object
  * @returns {object} City with calculated distance and travel time
  */
-export const processCityData = (city) => {
+const processCityData = (city) => {
   const distance = calculateDistance(
     WORKSHOP_LOCATION.lat,
     WORKSHOP_LOCATION.lng,
@@ -104,7 +104,7 @@ export const processCityData = (city) => {
  * @param {array} cities - Array of city objects
  * @returns {array} Sorted cities with calculated data
  */
-export const getCitiesSortedByDistance = (cities) => {
+const getCitiesSortedByDistance = (cities) => {
   return cities
     .map(processCityData)
     .sort((a, b) => a.distance - b.distance)
@@ -115,7 +115,7 @@ export const getCitiesSortedByDistance = (cities) => {
  * @param {number} distance - Distance in kilometers
  * @returns {boolean} True if delivery is free
  */
-export const isDeliveryFree = (distance) => {
+const isDeliveryFree = (distance) => {
   return distance <= FREE_DELIVERY_RADIUS
 }
 
@@ -124,8 +124,16 @@ export const isDeliveryFree = (distance) => {
  * @param {array} cities - Array of city objects
  * @returns {array} Cities with calculated data
  */
-export const processAllCities = (cities) => {
+const processAllCities = (cities) => {
   return getCitiesSortedByDistance(cities)
 }
 
-export { WORKSHOP_LOCATION, FREE_DELIVERY_RADIUS, calculateDistance }
+module.exports = {
+  WORKSHOP_LOCATION,
+  FREE_DELIVERY_RADIUS,
+  calculateDistance,
+  processCityData,
+  getCitiesSortedByDistance,
+  isDeliveryFree,
+  processAllCities
+}
