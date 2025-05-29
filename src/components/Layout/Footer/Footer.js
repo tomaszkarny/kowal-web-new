@@ -20,6 +20,39 @@ export const Footer = () => {
   const { t } = useTranslation('footer')
   const { languages, originalPath, language } = useI18next()
   
+  // Import cities data for language switching logic
+  const citiesData = require('data/cities')
+  const cities = citiesData.CITIES || citiesData.default || citiesData
+  
+  // Function to generate correct language path for city pages
+  const getLanguagePath = (targetLanguage, currentPath) => {
+    // Check if this is a city page
+    const cityPageMatch = currentPath.match(/\/(pl\/)?cities\/([^\/]+)\/?/)
+    
+    if (cityPageMatch) {
+      const currentSlug = cityPageMatch[2]
+      
+      // Find the city by current slug (could be in either language)
+      const city = cities.find(city => 
+        city.slug.pl === currentSlug || city.slug.en === currentSlug
+      )
+      
+      if (city) {
+        // Generate correct path for target language
+        const targetSlug = city.slug[targetLanguage]
+        const basePath = targetLanguage === 'pl' ? '' : '/en'
+        return `${basePath}/cities/${targetSlug}/`
+      }
+    }
+    
+    // For non-city pages, use the original path logic
+    if (targetLanguage === 'pl') {
+      return currentPath.replace(/^\/en/, '')
+    } else {
+      return currentPath.startsWith('/en') ? currentPath : `/en${currentPath}`
+    }
+  }
+  
   // Hardcode popular cities for footer with proper slugs
   const popularCities = [
     { 
@@ -129,22 +162,27 @@ export const Footer = () => {
 
       <FooterSection>
         <FooterTitle>{t('international')}</FooterTitle>
-        {languages.map(lng => (
-          <LanguageLink 
-            key={lng} 
-            to={originalPath} 
-            language={lng}
-            active={lng === language}
-            onClick={() => {
-              // Save language preference to localStorage when clicked
-              if (typeof window !== 'undefined') {
-                window.localStorage.setItem('language', lng);
-              }
-            }}
-          >
-            {lng === 'en' ? t('englishVersion') : t('polishVersion')}
-          </LanguageLink>
-        ))}
+        {languages.map(lng => {
+          const currentPath = typeof window !== 'undefined' ? window.location.pathname : originalPath
+          const targetPath = getLanguagePath(lng, currentPath)
+          
+          return (
+            <LanguageLink 
+              key={lng} 
+              to={targetPath} 
+              language={lng}
+              active={lng === language}
+              onClick={() => {
+                // Save language preference to localStorage when clicked
+                if (typeof window !== 'undefined') {
+                  window.localStorage.setItem('language', lng);
+                }
+              }}
+            >
+              {lng === 'en' ? t('englishVersion') : t('polishVersion')}
+            </LanguageLink>
+          )
+        })}
       </FooterSection>
     </StyledFooter>
   )
