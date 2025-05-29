@@ -6,7 +6,8 @@ import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
-import cities from 'data/cities'
+import citiesData from 'data/cities'
+const cities = citiesData.CITIES || citiesData.default || citiesData
 
 // Above-the-fold components loaded immediately
 import { CityHero } from 'components/Cities/CityHero'

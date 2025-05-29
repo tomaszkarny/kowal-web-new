@@ -8,7 +8,8 @@ import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { CitiesIndex } from 'components/Cities/CitiesIndex'
 
 import { WEBSITE_URL } from 'consts/contactDetails'
-import cities from 'data/cities'
+import citiesData from 'data/cities'
+const cities = citiesData.CITIES || citiesData.default || citiesData
 import { getCityPath } from 'utils/cityUtils'
 
 function CitiesPage() {

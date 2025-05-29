@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
-import { CITIES, getFeaturedCities } from 'data/cities'
+import citiesData from 'data/cities'
+const { CITIES, getFeaturedCities } = citiesData
 import { processAllCities } from 'utils/cityDistanceCalculator'
 import { getCityPath } from 'utils/cityUtils'
 import {

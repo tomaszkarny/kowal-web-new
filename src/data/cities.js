@@ -3,7 +3,7 @@
  * Używane do generowania lokalnych stron SEO
  */
 
-export const CITIES = [
+const CITIES = [
   {
     id: 'bialystok',
     slug: {
@@ -176,27 +176,27 @@ export const CITIES = [
  */
 
 // Zwraca miasto po ID
-export const getCityById = (id) => {
+const getCityById = (id) => {
   return CITIES.find(city => city.id === id)
 }
 
 // Zwraca miasta według priorytetu
-export const getCitiesByPriority = () => {
+const getCitiesByPriority = () => {
   return [...CITIES].sort((a, b) => a.priority - b.priority)
 }
 
 // Zwraca tylko miasta wyróżnione
-export const getFeaturedCities = () => {
+const getFeaturedCities = () => {
   return CITIES.filter(city => city.featured)
 }
 
 // Zwraca miasto po slugu
-export const getCityBySlug = (slug, language = 'pl') => {
+const getCityBySlug = (slug, language = 'pl') => {
   return CITIES.find(city => city.slug[language] === slug)
 }
 
 // Zwraca wszystkie slugi dla sitemap
-export const getAllCitySlugs = () => {
+const getAllCitySlugs = () => {
   const slugs = []
   CITIES.forEach(city => {
     slugs.push({
@@ -210,7 +210,7 @@ export const getAllCitySlugs = () => {
 }
 
 // Zwraca miasta w promieniu od punktu
-export const getCitiesInRadius = (lat, lng, radiusKm) => {
+const getCitiesInRadius = (lat, lng, radiusKm) => {
   const toRad = (value) => (value * Math.PI) / 180
   
   return CITIES.filter(city => {
@@ -229,4 +229,14 @@ export const getCitiesInRadius = (lat, lng, radiusKm) => {
   })
 }
 
-export default CITIES
+// CommonJS exports for compatibility with gatsby-node.js
+module.exports = {
+  CITIES,
+  getCityById,
+  getCitiesByPriority,
+  getFeaturedCities,
+  getCityBySlug,
+  getAllCitySlugs,
+  getCitiesInRadius,
+  default: CITIES
+}
