@@ -128,4 +128,4 @@ export const processAllCities = (cities) => {
   return getCitiesSortedByDistance(cities)
 }
 
-export { WORKSHOP_LOCATION, FREE_DELIVERY_RADIUS }
+export { WORKSHOP_LOCATION, FREE_DELIVERY_RADIUS, calculateDistance }

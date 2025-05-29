@@ -3,7 +3,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
-import { getNapInfo } from 'consts/contactDetails'
+import { getNapInfo, GOOGLE_MAPS_URL } from 'consts/contactDetails'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -93,6 +93,81 @@ const Button = styled.button`
   }
 `
 
+const RatingSection = styled.div`
+  background: ${COLORS.success}10;
+  border: 1px solid ${COLORS.success}30;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+`
+
+const Stars = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  
+  span {
+    color: #FFD700;
+    font-size: 1.5rem;
+  }
+`
+
+const RatingText = styled.p`
+  color: ${COLORS.dark};
+  font-size: 0.9rem;
+  margin: 0;
+`
+
+const BusinessHours = styled.div`
+  background: #f0f4f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+`
+
+const HoursTitle = styled.h4`
+  color: ${COLORS.dark};
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+`
+
+const HoursGrid = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  font-size: 0.95rem;
+  
+  strong {
+    color: ${COLORS.dark};
+  }
+`
+
+const EmergencyInfo = styled.div`
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  svg {
+    fill: #f39c12;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: ${COLORS.dark};
+  }
+`
+
 export function CityContact({ city, language, templateData }) {
   const { t } = useTranslation('cities')
   
@@ -126,7 +201,18 @@ export function CityContact({ city, language, templateData }) {
             <InfoTitle>{contactInfo.workshop}</InfoTitle>
             <InfoItem>
               <strong>{language === 'pl' ? 'Adres:' : 'Address:'}</strong><br/>
-              {contactInfo.workshopAddress}
+              <a 
+                href={GOOGLE_MAPS_URL} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ 
+                  color: COLORS.primary, 
+                  textDecoration: 'none',
+                  borderBottom: `1px dotted ${COLORS.primary}`
+                }}
+              >
+                {contactInfo.workshopAddress}
+              </a>
             </InfoItem>
             <InfoItem>
               <strong>{language === 'pl' ? 'Telefon:' : 'Phone:'}</strong><br/>
@@ -146,6 +232,29 @@ export function CityContact({ city, language, templateData }) {
                 ✅ {language === 'pl' ? 'Bezpłatny transport' : 'Free delivery'}
               </InfoItem>
             )}
+            
+            <BusinessHours>
+              <HoursTitle>{language === 'pl' ? 'Godziny otwarcia:' : 'Business hours:'}</HoursTitle>
+              <HoursGrid>
+                <strong>{language === 'pl' ? 'Pon-Pt:' : 'Mon-Fri:'}</strong>
+                <span>7:30 - 16:00</span>
+                <strong>{language === 'pl' ? 'Sobota:' : 'Saturday:'}</strong>
+                <span>9:00 - 13:00</span>
+                <strong>{language === 'pl' ? 'Niedziela:' : 'Sunday:'}</strong>
+                <span>{language === 'pl' ? 'Zamknięte' : 'Closed'}</span>
+              </HoursGrid>
+            </BusinessHours>
+            
+            <EmergencyInfo>
+              <svg viewBox="0 0 24 24">
+                <path d="M10 3h4v2h-4V3m0 18h4v-2h-4v2m2-16c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2z"/>
+              </svg>
+              <p>
+                {language === 'pl' 
+                  ? 'Naprawy awaryjne 24/7 w promieniu 50km' 
+                  : '24/7 emergency repairs within 50km radius'}
+              </p>
+            </EmergencyInfo>
           </ContactInfo>
           
           <ContactForm>

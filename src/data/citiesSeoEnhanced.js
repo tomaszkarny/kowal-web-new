@@ -10,13 +10,17 @@ export const CITIES_SEO_DATA = {
         'Obsługujemy wszystkie dzielnice Białegostoku: Centrum, Białostoczek, Wysoki Stoczek, Dziesięciny, Bacieczki',
         'Współpracujemy z lokalnymi architektami i firmami budowlanymi',
         'Realizacje przy zabytkowych obiektach: Pałac Branickich, Rynek Kościuszki',
-        'Specjalizacja w bramach dla nowoczesnych osiedli mieszkaniowych'
+        'Specjalizacja w bramach dla nowoczesnych osiedli mieszkaniowych',
+        'Dojazd do klienta w ciągu 30 minut w obrębie miasta',
+        'Magazyn materiałów w Białymstoku - szybka realizacja zamówień'
       ],
       en: [
         'We serve all districts of Białystok: Center, Białostoczek, Wysoki Stoczek, Dziesięciny, Bacieczki',
         'We cooperate with local architects and construction companies',
         'Projects at historic sites: Branicki Palace, Kościuszko Market Square',
-        'Specialization in gates for modern residential estates'
+        'Specialization in gates for modern residential estates',
+        'Customer visits within 30 minutes in the city area',
+        'Material warehouse in Białystok - fast order fulfillment'
       ]
     },
     seoKeywords: {
@@ -43,21 +47,29 @@ export const CITIES_SEO_DATA = {
       pl: [
         {
           title: 'Brama dwuskrzydłowa - Osiedle Leśna Dolina',
-          description: 'Elegancka brama kuta z motywami roślinnymi dla prywatnej posesji'
+          description: 'Elegancka brama kuta z motywami roślinnymi dla prywatnej posesji. Wykonanie z automatyką i domofem.'
         },
         {
           title: 'Balustrady wewnętrzne - Hotel Branicki',
-          description: 'Stylowe balustrady nawiązujące do barokowego charakteru obiektu'
+          description: 'Stylowe balustrady nawiązujące do barokowego charakteru obiektu. Projekt na zamówienie z elementami złocenia.'
+        },
+        {
+          title: 'Ogrodzenie kute - ul. Lipowa',
+          description: 'Kompletne ogrodzenie posesji 120m z bramą wjazdową i furtką. Motyw geometryczny z elementami secesyjnymi.'
         }
       ],
       en: [
         {
           title: 'Double-leaf gate - Leśna Dolina Estate',
-          description: 'Elegant wrought iron gate with plant motifs for private property'
+          description: 'Elegant wrought iron gate with plant motifs for private property. Complete with automation and intercom.'
         },
         {
           title: 'Interior railings - Hotel Branicki',
-          description: 'Stylish railings matching the baroque character of the building'
+          description: 'Stylish railings matching the baroque character of the building. Custom design with gilded elements.'
+        },
+        {
+          title: 'Wrought iron fence - Lipowa Street',
+          description: 'Complete 120m property fence with entrance gate and wicket. Geometric pattern with Art Nouveau elements.'
         }
       ]
     },
@@ -134,6 +146,22 @@ export const CITIES_SEO_DATA = {
           description: 'Secure gates with advanced access control system'
         }
       ]
+    },
+    testimonials: {
+      pl: [
+        {
+          author: 'Architekt Maciej Nowak, Warszawa',
+          text: 'Współpraca przy projekcie rezydencji w Wilanowie była wzorowa. Najwyższa jakość wykonania.',
+          rating: 5
+        }
+      ],
+      en: [
+        {
+          author: 'Architect Maciej Nowak, Warsaw',
+          text: 'Cooperation on the Wilanów residence project was exemplary. Highest quality workmanship.',
+          rating: 5
+        }
+      ]
     }
   },
   
@@ -167,6 +195,44 @@ export const CITIES_SEO_DATA = {
         'farm fencing suwalki',
         'frost resistant gates suwalki'
       ]
+    },
+    localProjects: {
+      pl: [
+        {
+          title: 'Bramy farmowe - Jeleniewo',
+          description: 'Solidne bramy do gospodarstwa agroturystycznego. Konstrukcja odporna na śnieg i mróz z 5-letnią gwarancją.'
+        },
+        {
+          title: 'Balustrady pensjonatu - Centrum Suwałk',
+          description: 'Stylowe balustrady zewnętrzne i wewnętrzne dla obiektu turystycznego. Motyw regionalny z elementami suwalskimi.'
+        }
+      ],
+      en: [
+        {
+          title: 'Farm gates - Jeleniewo',
+          description: 'Solid gates for agritourism farm. Snow and frost resistant construction with 5-year warranty.'
+        },
+        {
+          title: 'Guesthouse railings - Suwałki Center',
+          description: 'Stylish exterior and interior railings for tourist facility. Regional motif with Suwałki elements.'
+        }
+      ]
+    },
+    testimonials: {
+      pl: [
+        {
+          author: 'Piotr Kamiński, właściciel gospodarstwa',
+          text: 'Bramy wytrzymały już dwie surowe zimy. Solidne wykonanie!',
+          rating: 5
+        }
+      ],
+      en: [
+        {
+          author: 'Piotr Kamiński, farm owner',
+          text: 'The gates have already survived two harsh winters. Solid workmanship!',
+          rating: 5
+        }
+      ]
     }
   },
   
@@ -199,6 +265,52 @@ export const CITIES_SEO_DATA = {
         'guesthouse gates augustow',
         'lakeside property fencing augustow'
       ]
+    },
+    localProjects: {
+      pl: [
+        {
+          title: 'Balustrady nabrzeżne - Port Necko',
+          description: 'Balustrady zabezpieczające przy przystani. Stal nierdzewna z elementami kutymi, odporne na warunki wodne.'
+        },
+        {
+          title: 'Brama do domku letniskowego - Studzieniczna',
+          description: 'Oryginalna brama z motywem leśnym. Automatyka solarna idealna dla domków sezonowych.'
+        },
+        {
+          title: 'Ogrodzenie hotelu nad jeziorem',
+          description: 'Kompletne ogrodzenie terenu hotelowego z dwoma bramami. Styl nawiązujący do architektury regionu.'
+        }
+      ],
+      en: [
+        {
+          title: 'Waterfront railings - Port Necko',
+          description: 'Safety railings at the marina. Stainless steel with wrought elements, water-resistant.'
+        },
+        {
+          title: 'Summer house gate - Studzieniczna',
+          description: 'Original gate with forest motif. Solar automation ideal for seasonal houses.'
+        },
+        {
+          title: 'Lakeside hotel fencing',
+          description: 'Complete hotel property fencing with two gates. Style matching regional architecture.'
+        }
+      ]
+    },
+    testimonials: {
+      pl: [
+        {
+          author: 'Hotel Netta, Augustów',
+          text: 'Balustrady nad jeziorem służą już 3 lata. Świetna jakość mimo trudnych warunków.',
+          rating: 5
+        }
+      ],
+      en: [
+        {
+          author: 'Hotel Netta, Augustów',
+          text: 'Lakeside railings have been serving for 3 years. Great quality despite difficult conditions.',
+          rating: 5
+        }
+      ]
     }
   },
   
@@ -230,6 +342,44 @@ export const CITIES_SEO_DATA = {
         'wrought iron gates lomza',
         'historic railings lomza',
         'fence restoration lomza poland'
+      ]
+    },
+    localProjects: {
+      pl: [
+        {
+          title: 'Renowacja bram zabytkowej kamienicy',
+          description: 'Pełna renowacja XIX-wiecznych bram. Zachowanie oryginalnego wzoru z wymianą zniszczonych elementów.'
+        },
+        {
+          title: 'Balustrady Rynek Stary',
+          description: 'Nowe balustrady dla kamienic przy Starym Rynku. Projekt zatwierdzony przez konserwatora zabytków.'
+        }
+      ],
+      en: [
+        {
+          title: 'Historic townhouse gate restoration',
+          description: 'Complete restoration of 19th century gates. Preserving original pattern with replacement of damaged elements.'
+        },
+        {
+          title: 'Old Market Square railings',
+          description: 'New railings for townhouses at the Old Market Square. Design approved by heritage conservator.'
+        }
+      ]
+    },
+    testimonials: {
+      pl: [
+        {
+          author: 'Wspólnota Mieszkaniowa, ul. Długa',
+          text: 'Profesjonalna renowacja zabytkowej bramy. Wygląda jak nowa, a zachowała historyczny charakter.',
+          rating: 5
+        }
+      ],
+      en: [
+        {
+          author: 'Housing Community, Długa Street',
+          text: 'Professional restoration of historic gate. Looks like new while preserving historical character.',
+          rating: 5
+        }
       ]
     }
   }

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useI18next } from 'gatsby-plugin-react-i18next'
 
 import * as CONTACT_DETAILS from 'consts/contactDetails'
+import { getCityPath } from 'utils/cityUtils'
 
 import {
   StyledFooter,
@@ -112,9 +113,7 @@ export const Footer = () => {
       <FooterSection>
         <FooterTitle>{t('popularCities')}</FooterTitle>
         {popularCities.map(city => {
-          // Use consistent /cities/ path for both languages
-          const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
-          const cityPath = `/cities/${citySlug}/`
+          const cityPath = getCityPath(city, language)
           
           return (
             <FooterLink 

@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
-import { CITIES, getFeaturedCities } from 'src/data/cities'
-import { processAllCities } from 'src/utils/cityDistanceCalculator'
+import { CITIES, getFeaturedCities } from 'data/cities'
+import { processAllCities } from 'utils/cityDistanceCalculator'
+import { getCityPath } from 'utils/cityUtils'
 import {
   IndexSection,
   IndexContainer,
@@ -33,10 +34,6 @@ export function CitiesIndex() {
     return new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-US').format(num)
   }
 
-  const getCityPath = (city) => {
-    const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
-    return `/cities/${citySlug}/`
-  }
 
   return (
     <IndexSection>
@@ -69,7 +66,7 @@ export function CitiesIndex() {
                     })}</div>
                   </CityStats>
                 </CityInfo>
-                <CityLink to={getCityPath(city)}>
+                <CityLink to={getCityPath(city, language)}>
                   {t('citiesList.viewCity')}
                 </CityLink>
               </CityCard>
@@ -97,7 +94,7 @@ export function CitiesIndex() {
                     })}</div>
                   </CityStats>
                 </CityInfo>
-                <CityLink to={getCityPath(city)}>
+                <CityLink to={getCityPath(city, language)}>
                   {t('citiesList.viewCity')}
                 </CityLink>
               </CityCard>

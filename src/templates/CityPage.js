@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
-import { CityProjects } from 'components/Cities/CityProjects'
-import { CityKeywords } from 'components/Cities/CityKeywords'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
+import cities from 'data/cities'
 
-// City page specific components (będziemy tworzyć)
+// Above-the-fold components loaded immediately
 import { CityHero } from 'components/Cities/CityHero'
 import { CityServices } from 'components/Cities/CityServices'
-import { CityServiceArea } from 'components/Cities/CityServiceArea'
-import { CityAbout } from 'components/Cities/CityAbout'
-import { CityContact } from 'components/Cities/CityContact'
-import { CityFAQ } from 'components/Cities/CityFAQ'
+
+// Below-the-fold components loaded lazily
+const CityValueProposition = lazy(() => import('components/Cities/CityValueProposition').then(module => ({ default: module.CityValueProposition })))
+const CityKeywords = lazy(() => import('components/Cities/CityKeywords').then(module => ({ default: module.CityKeywords })))
+const RelatedCities = lazy(() => import('components/Cities/RelatedCities').then(module => ({ default: module.RelatedCities })))
+const CityServiceArea = lazy(() => import('components/Cities/CityServiceArea').then(module => ({ default: module.CityServiceArea })))
+const CityAbout = lazy(() => import('components/Cities/CityAbout').then(module => ({ default: module.CityAbout })))
+const CityContact = lazy(() => import('components/Cities/CityContact').then(module => ({ default: module.CityContact })))
+const CityFAQ = lazy(() => import('components/Cities/CityFAQ').then(module => ({ default: module.CityFAQ })))
 
 import { 
   WEBSITE_URL, 
@@ -44,16 +48,45 @@ function CityPageTemplate({ pageContext }) {
   }
 
 
+  // Simple loading component
+  const LoadingComponent = () => (
+    <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <div style={{ color: '#6c757d' }}>...</div>
+    </div>
+  )
+
   return (
     <Layout>
       <CityHero city={city} language={language} templateData={templateData} />
       <CityServices city={city} language={language} templateData={templateData} />
-      <CityProjects city={city} language={language} templateData={templateData} />
-      <CityServiceArea city={city} language={language} templateData={templateData} />
-      <CityAbout city={city} language={language} templateData={templateData} />
-      <CityKeywords city={city} language={language} />
-      <CityContact city={city} language={language} templateData={templateData} />
-      <CityFAQ city={city} language={language} templateData={templateData} />
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityValueProposition city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityServiceArea city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityAbout city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityKeywords city={city} language={language} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityContact city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityFAQ city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <RelatedCities currentCity={city} allCities={cities} language={language} />
+      </Suspense>
     </Layout>
   )
 }
@@ -96,6 +129,10 @@ export function Head({ pageContext, location }) {
     "description": pageDescription,
     "url": `${WEBSITE_URL}${location.pathname}`,
     "telephone": PHONE_NUMBER,
+    "image": [
+      `${WEBSITE_URL}/icons/icon-512x512.png`,
+      `${WEBSITE_URL}/icons/icon-192x192.png`
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": ADDRESS_ML[language].street,
@@ -134,7 +171,117 @@ export function Head({ pageContext, location }) {
       language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences"
     ],
     "priceRange": "$$",
-    "openingHours": "Mo-Fr 08:00-16:00"
+    "openingHours": "Mo-Fr 07:30-16:00, Sa 09:00-13:00",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "07:30",
+        "closes": "16:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00", 
+        "closes": "13:00"
+      }
+    ],
+    "paymentAccepted": ["Cash", "Bank Transfer"],
+    "currenciesAccepted": "PLN",
+    "hasMap": `https://maps.google.com/?q=${GOOGLE_MAP_DIRECTIONS.lat},${GOOGLE_MAP_DIRECTIONS.lng}`,
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": language === 'pl' ? "Bramy kute na wymiar" : "Custom wrought iron gates"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": language === 'pl' ? "Balustrady wewnętrzne i zewnętrzne" : "Interior and exterior railings"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": language === 'pl' ? "Naprawy i konserwacja" : "Repairs and maintenance",
+          "description": language === 'pl' ? "Usługi awaryjne 24/7 w promieniu 50km" : "24/7 emergency service within 50km radius"
+        }
+      }
+    ],
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint", 
+        "urlTemplate": `${WEBSITE_URL}/${language === 'pl' ? '' : 'en/'}contact`,
+        "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+      }
+    }
+  }
+  
+  // Service schema dla lepszego SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": language === 'pl' ? "Kowalstwo artystyczne" : "Artistic blacksmithing",
+    "description": language === 'pl' 
+      ? `Profesjonalne usługi kowalskie w ${city.name[language]} i okolicach. Projektowanie i wykonanie bram kutych, balustrad i ogrodzeń.`
+      : `Professional blacksmithing services in ${city.name[language]} and surrounding areas. Design and creation of wrought iron gates, railings and fences.`,
+    "provider": {
+      "@id": `${WEBSITE_URL}${location.pathname}#localbusiness`
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": city.coordinates.lat,
+        "longitude": city.coordinates.lng
+      },
+      "geoRadius": `${city.serviceArea.radius}000`
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": language === 'pl' ? "Katalog usług" : "Service catalog",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": language === 'pl' ? "Bramy kute" : "Wrought iron gates",
+          "description": language === 'pl' 
+            ? "Projektowanie i wykonanie bram kutych na zamówienie"
+            : "Custom design and creation of wrought iron gates"
+        },
+        {
+          "@type": "Offer", 
+          "name": language === 'pl' ? "Balustrady" : "Railings",
+          "description": language === 'pl'
+            ? "Balustrady wewnętrzne i zewnętrzne"
+            : "Interior and exterior railings"
+        },
+        {
+          "@type": "Offer",
+          "name": language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences",
+          "description": language === 'pl'
+            ? "Ogrodzenia kute według indywidualnego projektu"
+            : "Custom wrought iron fences"
+        }
+      ]
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "PLN",
+      "priceRange": "$$"
+    }
   }
 
   // Breadcrumbs
@@ -185,9 +332,36 @@ export function Head({ pageContext, location }) {
         noindex={false}
       />
       
+      {/* Meta tags for local SEO */}
+      <meta property="place:location:latitude" content={city.coordinates.lat.toString()} />
+      <meta property="place:location:longitude" content={city.coordinates.lng.toString()} />
+      <meta property="business:contact_data:locality" content={city.name[language]} />
+      <meta property="business:contact_data:region" content={city.region[language]} />
+      <meta property="business:contact_data:country_name" content={language === 'pl' ? 'Polska' : 'Poland'} />
+      
+      {/* Additional geo meta tags for better local SEO */}
+      <meta name="geo.region" content="PL" />
+      <meta name="geo.placename" content={city.name[language]} />
+      <meta name="geo.position" content={`${city.coordinates.lat};${city.coordinates.lng}`} />
+      <meta name="ICBM" content={`${city.coordinates.lat}, ${city.coordinates.lng}`} />
+      
+      {/* Performance hints */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      
+      {/* Mobile optimization */}
+      <meta name="theme-color" content="#B8860B" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      
       {/* Local Business Schema dla miasta */}
       <script type="application/ld+json">
-        {JSON.stringify(localBusinessSchema)}
+        {JSON.stringify({...localBusinessSchema, "@id": `${WEBSITE_URL}${location.pathname}#localbusiness`})}
+      </script>
+      
+      {/* Service Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify(serviceSchema)}
       </script>
       
       {/* FAQ Schema */}

@@ -8,6 +8,8 @@ import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { CitiesIndex } from 'components/Cities/CitiesIndex'
 
 import { WEBSITE_URL } from 'consts/contactDetails'
+import cities from 'data/cities'
+import { getCityPath } from 'utils/cityUtils'
 
 function CitiesPage() {
   return (
@@ -17,22 +19,30 @@ function CitiesPage() {
   )
 }
 
-export function Head({ location }) {
-  // Hardcoded translations for Head component
-  const title = 'Service Area - Cities served by Karny Blacksmithing'
-  const description = 'We serve cities in Podlaskie and Masovian voivodeships. Białystok, Warsaw, Suwałki, Augustów, Łomża - check our service area.'
+export function Head({ location, pageContext }) {
+  // Detect language from path or pageContext
+  const language = pageContext?.language || (location.pathname.startsWith('/en/') ? 'en' : 'pl')
+  
+  // Dynamic translations for Head component
+  const title = language === 'pl' 
+    ? 'Obszar działania - Miasta obsługiwane przez Kowalstwo Karny'
+    : 'Service Area - Cities served by Karny Blacksmithing'
+    
+  const description = language === 'pl'
+    ? 'Obsługujemy miasta w województwach podlaskim i mazowieckim. Białystok, Warszawa, Suwałki, Augustów, Łomża - sprawdź nasz obszar działania.'
+    : 'We serve cities in Podlaskie and Masovian voivodeships. Białystok, Warsaw, Suwałki, Augustów, Łomża - check our service area.'
   
   const breadcrumbs = [
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Home",
-      "item": `${WEBSITE_URL}/en`
+      "name": language === 'pl' ? "Strona główna" : "Home",
+      "item": language === 'pl' ? WEBSITE_URL : `${WEBSITE_URL}/en`
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Cities",
+      "name": language === 'pl' ? "Miasta" : "Cities",
       "item": `${WEBSITE_URL}${location.pathname}`
     }
   ]
@@ -44,15 +54,56 @@ export function Head({ location }) {
         description={description}
         pathname={location.pathname}
         pageType="cities"
-        language="en"
+        language={language}
         noindex={false}
       />
       
       <BreadcrumbSchema 
         breadcrumbs={breadcrumbs}
         pathname={location.pathname}
-        language="en"
+        language={language}
       />
+      
+      {/* CollectionPage Schema for SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": language === 'pl' ? "Miasta obsługiwane przez Kowalstwo Karny" : "Cities served by Karny Blacksmithing",
+          "description": description,
+          "url": `${WEBSITE_URL}${location.pathname}`,
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": breadcrumbs
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": cities.length,
+            "itemListElement": cities.map((city, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "url": `${WEBSITE_URL}${getCityPath(city, language)}`,
+              "name": city.name[language],
+              "item": {
+                "@type": "City",
+                "name": city.name[language],
+                "description": language === 'pl' 
+                  ? `Profesjonalne usługi kowalskie w ${city.name[language]}, ${city.region[language]}. ${city.distance}km od naszego warsztatu.`
+                  : `Professional blacksmithing services in ${city.name[language]}, ${city.region[language]}. ${city.distance}km from our workshop.`,
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": city.coordinates.lat,
+                  "longitude": city.coordinates.lng
+                },
+                "containedInPlace": {
+                  "@type": "AdministrativeArea",
+                  "name": city.region[language]
+                }
+              }
+            }))
+          }
+        })}
+      </script>
     </>
   )
 }
