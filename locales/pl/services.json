@@ -1,0 +1,185 @@
+{
+  "fences": {
+    "hero": {
+      "title": "Ogrodzenia na Zamówienie",
+      "subtitle": "Projektujemy i wykonujemy ekskluzywne ogrodzenia kute",
+      "cta": "Zamów Darmową Wycenę"
+    },
+    "why": {
+      "title": "Dlaczego Nasze Ogrodzenia?",
+      "quality": {
+        "title": "Najwyższa Jakość",
+        "text": "Używamy tylko najlepszej stali i sprawdzonych technik kowalskich. Każde ogrodzenie jest starannie wykonane i zabezpieczone antykorozyjnie."
+      },
+      "design": {
+        "title": "Indywidualne Projekty",
+        "text": "Tworzymy ogrodzenia według Twoich potrzeb i gustu. Od klasycznych wzorów po nowoczesne, minimalistyczne formy."
+      },
+      "warranty": {
+        "title": "5 Lat Gwarancji",
+        "text": "Jesteśmy pewni jakości naszych ogrodzeń, dlatego udzielamy 5-letniej gwarancji na wszystkie wykonane prace."
+      }
+    },
+    "types": {
+      "title": "Rodzaje Ogrodzeń",
+      "classic": {
+        "title": "Ogrodzenia Klasyczne",
+        "text": "Eleganckie wzory inspirowane tradycyjnym kowalstwem. Idealne do zabytkowych budynków i klasycznych rezydencji."
+      },
+      "modern": {
+        "title": "Ogrodzenia Nowoczesne",
+        "text": "Minimalistyczne, geometryczne formy dla współczesnej architektury. Proste linie i funkcjonalność."
+      },
+      "decorative": {
+        "title": "Ogrodzenia Ozdobne",
+        "text": "Bogato zdobione ogrodzenia z motywami roślinnymi, zwierzęcymi lub abstrakcyjnymi wzorami."
+      }
+    },
+    "process": {
+      "title": "Jak Zamawiać Ogrodzenie?",
+      "step1": {
+        "title": "Kontakt i Konsultacja",
+        "text": "Skontaktuj się z nami telefonicznie lub przez formularz. Omówimy Twoje potrzeby i zaproponujemy rozwiązania."
+      },
+      "step2": {
+        "title": "Pomiary i Wycena",
+        "text": "Przyjedziemy na miejsce, wykonamy dokładne pomiary i przygotujemy szczegółową wycenę."
+      },
+      "step3": {
+        "title": "Projekt i Akceptacja",
+        "text": "Przygotujemy projekt ogrodzenia. Po Twojej akceptacji rozpoczynamy produkcję."
+      },
+      "step4": {
+        "title": "Produkcja",
+        "text": "W naszym warsztacie wykonujemy ogrodzenie zgodnie z zatwierdzonym projektem."
+      },
+      "step5": {
+        "title": "Montaż",
+        "text": "Nasza ekipa montażowa zainstaluje ogrodzenie na Twojej posesji."
+      }
+    },
+    "contact": {
+      "title": "Skontaktuj się z Nami",
+      "text1": "Zapraszamy do kontaktu w celu omówienia szczegółów Twojego projektu.",
+      "text2": "Przygotujemy indywidualną wycenę dostosowaną do Twoich potrzeb.",
+      "hours": "Pracujemy: Pon-Pt 7:30-16:00, Sob 9:00-15:00",
+      "cta": "Formularz Kontaktowy"
+    },
+    "faq": {
+      "q1": {
+        "question": "Ile kosztują ogrodzenia na zamówienie?",
+        "answer": "Cena ogrodzeń na zamówienie zależy od długości, wysokości i złożoności wzoru. Każde ogrodzenie jest indywidualnie wyceniane. Oferujemy darmową wycenę po konsultacji i pomiarach na miejscu."
+      },
+      "q2": {
+        "question": "Jak długo trwa wykonanie ogrodzenia na zamówienie?",
+        "answer": "Standardowy czas realizacji to 2-4 tygodnie od zatwierdzenia projektu. Dla większych zamówień (powyżej 50mb) czas może się wydłużyć do 6 tygodni."
+      },
+      "q3": {
+        "question": "Czy oferujecie montaż ogrodzeń?",
+        "answer": "Tak, zapewniamy profesjonalny montaż wszystkich naszych ogrodzeń. Nasza ekipa montażowa działa na terenie całej Polski."
+      },
+      "q4": {
+        "question": "Jakie wzory ogrodzeń są dostępne?",
+        "answer": "Oferujemy szeroki wybór wzorów: klasyczne, nowoczesne, secesyjne, geometryczne oraz projekty indywidualne według Państwa pomysłu."
+      },
+      "q5": {
+        "question": "Czy ogrodzenia są zabezpieczone przed korozją?",
+        "answer": "Wszystkie nasze ogrodzenia są cynkowane ogniowo i malowane proszkowo, co zapewnia ochronę przed korozją na wiele lat. Udzielamy 5-letniej gwarancji."
+      }
+    }
+  },
+  "gates": {
+    "hero": {
+      "title": "Bramy Kute na Zamówienie",
+      "subtitle": "Ekskluzywne bramy wjazdowe - projekt, wykonanie, montaż",
+      "cta": "Zapytaj o Wycenę"
+    },
+    "types": {
+      "title": "Rodzaje Bram Kutych",
+      "doubleLeaf": {
+        "title": "Bramy Dwuskrzydłowe",
+        "text": "Klasyczne rozwiązanie dla eleganckich posesji. Bramy dwuskrzydłowe łączą funkcjonalność z pięknem.",
+        "features": {
+          "width": "Szerokość do 6 metrów",
+          "automation": "Automatyka Nice lub FAAC",
+          "designs": "Różnorodne wzory",
+          "wicket": "Opcja dodania furtki"
+        }
+      },
+      "sliding": {
+        "title": "Bramy Przesuwne",
+        "text": "Idealne rozwiązanie dla wąskich podjazdów. Oszczędność miejsca i łatwość obsługi.",
+        "features": {
+          "width": "Szerokość do 8 metrów",
+          "quiet": "Cicha praca automatyki",
+          "construction": "Konstrukcja samonośna",
+          "safety": "Fotokomórki bezpieczeństwa"
+        }
+      }
+    },
+    "styles": {
+      "title": "Style i Wzornictwo",
+      "classic": {
+        "title": "Styl Klasyczny",
+        "text": "Ponadczasowa elegancja z elementami tradycyjnego kowalstwa. Idealne do zabytkowych i klasycznych budynków."
+      },
+      "modern": {
+        "title": "Styl Nowoczesny",
+        "text": "Minimalistyczne formy, geometryczne wzory. Doskonałe do współczesnej architektury."
+      },
+      "artNouveau": {
+        "title": "Styl Secesyjny",
+        "text": "Bogate zdobienia, motywy roślinne i organiczne kształty. Dla miłośników sztuki i niepowtarzalnego designu."
+      }
+    },
+    "advantages": {
+      "title": "Dlaczego Nasze Bramy?",
+      "design": {
+        "title": "Indywidualny Projekt",
+        "text": "Każda brama projektowana specjalnie dla Ciebie"
+      },
+      "installation": {
+        "title": "Profesjonalny Montaż",
+        "text": "Doświadczona ekipa montażowa na terenie całej Polski"
+      },
+      "warranty": {
+        "title": "5 Lat Gwarancji",
+        "text": "Pewność jakości potwierdzona długą gwarancją"
+      },
+      "experience": {
+        "title": "30 Lat Doświadczenia",
+        "text": "Setki zadowolonych klientów w całej Polsce"
+      }
+    },
+    "contact": {
+      "title": "Skontaktuj się z Nami",
+      "text1": "Zapraszamy do kontaktu w celu omówienia szczegółów Twojego projektu.",
+      "text2": "Każda brama jest indywidualnie wyceniana w zależności od rozmiaru, wzoru i wyposażenia.",
+      "hours": "Godziny pracy: Pon-Pt 7:30-16:00, Sob 9:00-15:00",
+      "text3": "Obsługujemy całą Polskę!",
+      "cta": "Wypełnij Formularz"
+    },
+    "faq": {
+      "q1": {
+        "question": "Ile kosztuje brama kuta na zamówienie?",
+        "answer": "Cena bramy kutej zależy od rozmiaru, złożoności projektu i wybranego wzornictwa. Każda brama jest indywidualnie wyceniana. Oferujemy darmową wycenę po konsultacji i pomiarach na miejscu."
+      },
+      "q2": {
+        "question": "Jak długo trwa wykonanie bramy kutej?",
+        "answer": "Standardowy czas realizacji bramy kutej to 3-4 tygodnie od zatwierdzenia projektu. W sezonie letnim czas może się wydłużyć do 5-6 tygodni ze względu na większą ilość zamówień."
+      },
+      "q3": {
+        "question": "Czy montujecie automatykę do bram?",
+        "answer": "Tak, oferujemy kompleksową usługę - od projektu przez wykonanie bramy po montaż wraz z automatyką. Współpracujemy z renomowanymi producentami: Nice, FAAC, BFT."
+      },
+      "q4": {
+        "question": "Jakie wzory bram kutych oferujecie?",
+        "answer": "Oferujemy szeroki wybór wzorów: klasyczne, nowoczesne, secesyjne oraz projekty indywidualne. Możemy wykonać bramę według Twojego projektu lub zaproponować własne rozwiązania."
+      },
+      "q5": {
+        "question": "Czy bramy kute wymagają konserwacji?",
+        "answer": "Nasze bramy są cynkowane ogniowo i malowane proszkowo, co minimalizuje potrzebę konserwacji. Zalecamy przegląd techniczny raz w roku oraz odświeżenie powłoki lakierniczej co 5-7 lat."
+      }
+    }
+  }
+}

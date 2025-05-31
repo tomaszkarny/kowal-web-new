@@ -6,7 +6,7 @@ import { StyledSection } from 'components/Layout/AsideFooter/AsideFooter.styles'
 export const AsideFooter = () => (
   <StyledSection>
     <p>
-      ©&nbsp;2020 · powered by{' '}
+      ©&nbsp;2025 · powered by{' '}
       kowalstwo-karny
       ·
     </p>

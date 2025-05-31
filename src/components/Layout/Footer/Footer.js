@@ -147,10 +147,10 @@ export const Footer = () => {
 
       <FooterSection>
         <FooterTitle>{t('services')}</FooterTitle>
-        <FooterLink to={language === 'pl' ? "/uslugi/ogrodzenia-na-zamowienie/" : "/en/services/custom-fences/"}>
+        <FooterLink to="/services/custom-fences/">
           {t('customFences')}
         </FooterLink>
-        <FooterLink to={language === 'pl' ? "/uslugi/bramy-kute-na-zamowienie/" : "/en/services/custom-wrought-iron-gates/"}>
+        <FooterLink to="/services/custom-gates/">
           {t('customGates')}
         </FooterLink>
         <FooterLink to="/gallery/">{t('gallery')}</FooterLink>

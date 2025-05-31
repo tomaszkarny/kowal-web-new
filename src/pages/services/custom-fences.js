@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled'
 import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
@@ -150,27 +151,30 @@ const StepDescription = styled.p`
   font-size: 0.95rem;
 `
 
-function OgrodzeniaNaZamowieniePage() {
+function OgrodzeniaNaZamowieniePage({ pageContext }) {
+  const { t, i18n } = useTranslation(['services', 'common'])
+  const language = pageContext?.i18n?.language || 'pl'
+  
   const faqData = [
     {
-      question: "Ile kosztują ogrodzenia na zamówienie?",
-      answer: "Cena ogrodzeń na zamówienie zależy od długości, wysokości i złożoności wzoru. Podstawowe ogrodzenia kute zaczynają się od 250 zł/mb, bardziej ozdobne od 400-800 zł/mb. Oferujemy darmową wycenę."
+      question: t('services:fences.faq.q1.question'),
+      answer: t('services:fences.faq.q1.answer')
     },
     {
-      question: "Jak długo trwa wykonanie ogrodzenia na zamówienie?",
-      answer: "Standardowy czas realizacji to 2-4 tygodnie od zatwierdzenia projektu. Dla większych zamówień (powyżej 50mb) czas może się wydłużyć do 6 tygodni."
+      question: t('services:fences.faq.q2.question'),
+      answer: t('services:fences.faq.q2.answer')
     },
     {
-      question: "Czy oferujecie montaż ogrodzeń?",
-      answer: "Tak, zapewniamy profesjonalny montaż wszystkich naszych ogrodzeń. Nasza ekipa montażowa działa na terenie całej Polski."
+      question: t('services:fences.faq.q3.question'),
+      answer: t('services:fences.faq.q3.answer')
     },
     {
-      question: "Jakie wzory ogrodzeń są dostępne?",
-      answer: "Oferujemy szeroki wybór wzorów: klasyczne, nowoczesne, secesyjne, geometryczne oraz projekty indywidualne według Państwa pomysłu."
+      question: t('services:fences.faq.q4.question'),
+      answer: t('services:fences.faq.q4.answer')
     },
     {
-      question: "Czy ogrodzenia są zabezpieczone przed korozją?",
-      answer: "Wszystkie nasze ogrodzenia są cynkowane ogniowo i malowane proszkowo, co zapewnia ochronę przed korozją na wiele lat. Udzielamy 5-letniej gwarancji."
+      question: t('services:fences.faq.q5.question'),
+      answer: t('services:fences.faq.q5.answer')
     }
   ]
 
@@ -178,63 +182,57 @@ function OgrodzeniaNaZamowieniePage() {
     <Layout>
       <HeroSection>
         <Container>
-          <HeroTitle>Ogrodzenia na Zamówienie</HeroTitle>
-          <HeroSubtitle>Projektujemy i wykonujemy ekskluzywne ogrodzenia kute</HeroSubtitle>
-          <CTAButton href="/contact">Zamów Darmową Wycenę</CTAButton>
+          <HeroTitle>{t('services:fences.hero.title')}</HeroTitle>
+          <HeroSubtitle>{t('services:fences.hero.subtitle')}</HeroSubtitle>
+          <CTAButton href="/contact">{t('services:fences.hero.cta')}</CTAButton>
         </Container>
       </HeroSection>
 
       <ContentSection>
         <Container>
-          <SectionTitle>Dlaczego Nasze Ogrodzenia?</SectionTitle>
+          <SectionTitle>{t('services:fences.why.title')}</SectionTitle>
           <FeaturesGrid>
             <FeatureCard>
               <FeatureIcon>🏆</FeatureIcon>
-              <FeatureTitle>Najwyższa Jakość</FeatureTitle>
+              <FeatureTitle>{t('services:fences.why.quality.title')}</FeatureTitle>
               <FeatureText>
-                Używamy tylko najlepszej stali i sprawdzonych technik kowalskich. 
-                Każde ogrodzenie jest starannie wykonane i zabezpieczone antykorozyjnie.
+                {t('services:fences.why.quality.text')}
               </FeatureText>
             </FeatureCard>
             <FeatureCard>
               <FeatureIcon>✏️</FeatureIcon>
-              <FeatureTitle>Indywidualne Projekty</FeatureTitle>
+              <FeatureTitle>{t('services:fences.why.design.title')}</FeatureTitle>
               <FeatureText>
-                Tworzymy ogrodzenia według Twoich potrzeb i gustu. 
-                Od klasycznych wzorów po nowoczesne, minimalistyczne formy.
+                {t('services:fences.why.design.text')}
               </FeatureText>
             </FeatureCard>
             <FeatureCard>
               <FeatureIcon>🛡️</FeatureIcon>
-              <FeatureTitle>5 Lat Gwarancji</FeatureTitle>
+              <FeatureTitle>{t('services:fences.why.warranty.title')}</FeatureTitle>
               <FeatureText>
-                Jesteśmy pewni jakości naszych ogrodzeń, dlatego udzielamy 
-                5-letniej gwarancji na wszystkie wykonane prace.
+                {t('services:fences.why.warranty.text')}
               </FeatureText>
             </FeatureCard>
           </FeaturesGrid>
 
-          <SectionTitle>Rodzaje Ogrodzeń</SectionTitle>
+          <SectionTitle>{t('services:fences.types.title')}</SectionTitle>
           <FeaturesGrid>
             <FeatureCard>
-              <FeatureTitle>Ogrodzenia Klasyczne</FeatureTitle>
+              <FeatureTitle>{t('services:fences.types.classic.title')}</FeatureTitle>
               <FeatureText>
-                Eleganckie wzory inspirowane tradycyjnym kowalstwem. 
-                Idealne do zabytkowych budynków i klasycznych rezydencji.
+                {t('services:fences.types.classic.text')}
               </FeatureText>
             </FeatureCard>
             <FeatureCard>
-              <FeatureTitle>Ogrodzenia Nowoczesne</FeatureTitle>
+              <FeatureTitle>{t('services:fences.types.modern.title')}</FeatureTitle>
               <FeatureText>
-                Minimalistyczne, geometryczne formy dla współczesnej architektury. 
-                Proste linie i funkcjonalność.
+                {t('services:fences.types.modern.text')}
               </FeatureText>
             </FeatureCard>
             <FeatureCard>
-              <FeatureTitle>Ogrodzenia Ozdobne</FeatureTitle>
+              <FeatureTitle>{t('services:fences.types.decorative.title')}</FeatureTitle>
               <FeatureText>
-                Bogato zdobione ogrodzenia z motywami roślinnymi, 
-                zwierzęcymi lub abstrakcyjnymi wzorami.
+                {t('services:fences.types.decorative.text')}
               </FeatureText>
             </FeatureCard>
           </FeaturesGrid>
@@ -243,46 +241,41 @@ function OgrodzeniaNaZamowieniePage() {
 
       <ProcessSection>
         <Container>
-          <SectionTitle>Jak Zamawiać Ogrodzenie?</SectionTitle>
+          <SectionTitle>{t('services:fences.process.title')}</SectionTitle>
           <ProcessSteps>
             <ProcessStep>
               <StepNumber>1</StepNumber>
-              <StepTitle>Kontakt i Konsultacja</StepTitle>
+              <StepTitle>{t('services:fences.process.step1.title')}</StepTitle>
               <StepDescription>
-                Skontaktuj się z nami telefonicznie lub przez formularz. 
-                Omówimy Twoje potrzeby i zaproponujemy rozwiązania.
+                {t('services:fences.process.step1.text')}
               </StepDescription>
             </ProcessStep>
             <ProcessStep>
               <StepNumber>2</StepNumber>
-              <StepTitle>Pomiary i Wycena</StepTitle>
+              <StepTitle>{t('services:fences.process.step2.title')}</StepTitle>
               <StepDescription>
-                Przyjedziemy na miejsce, wykonamy dokładne pomiary 
-                i przygotujemy szczegółową wycenę.
+                {t('services:fences.process.step2.text')}
               </StepDescription>
             </ProcessStep>
             <ProcessStep>
               <StepNumber>3</StepNumber>
-              <StepTitle>Projekt i Akceptacja</StepTitle>
+              <StepTitle>{t('services:fences.process.step3.title')}</StepTitle>
               <StepDescription>
-                Przygotujemy projekt ogrodzenia. Po Twojej akceptacji 
-                rozpoczynamy produkcję.
+                {t('services:fences.process.step3.text')}
               </StepDescription>
             </ProcessStep>
             <ProcessStep>
               <StepNumber>4</StepNumber>
-              <StepTitle>Produkcja</StepTitle>
+              <StepTitle>{t('services:fences.process.step4.title')}</StepTitle>
               <StepDescription>
-                W naszym warsztacie wykonujemy ogrodzenie zgodnie 
-                z zatwierdzonym projektem.
+                {t('services:fences.process.step4.text')}
               </StepDescription>
             </ProcessStep>
             <ProcessStep>
               <StepNumber>5</StepNumber>
-              <StepTitle>Montaż</StepTitle>
+              <StepTitle>{t('services:fences.process.step5.title')}</StepTitle>
               <StepDescription>
-                Nasza ekipa montażowa zainstaluje ogrodzenie 
-                na Twojej posesji.
+                {t('services:fences.process.step5.text')}
               </StepDescription>
             </ProcessStep>
           </ProcessSteps>
@@ -291,15 +284,15 @@ function OgrodzeniaNaZamowieniePage() {
 
       <ContentSection>
         <Container>
-          <SectionTitle>Skontaktuj się z Nami</SectionTitle>
+          <SectionTitle>{t('services:fences.contact.title')}</SectionTitle>
           <div style={{ textAlign: 'center', fontSize: '1.2rem', color: COLORS.textSecondary }}>
-            <p>Zapraszamy do kontaktu w celu omówienia szczegółów Twojego projektu.</p>
-            <p>Przygotujemy indywidualną wycenę dostosowaną do Twoich potrzeb.</p>
+            <p>{t('services:fences.contact.text1')}</p>
+            <p>{t('services:fences.contact.text2')}</p>
             <p style={{ fontSize: '2rem', color: COLORS.primary, fontWeight: 'bold', margin: '2rem 0' }}>
               📞 {PHONE_NUMBER}
             </p>
-            <p>Pracujemy: Pon-Pt 7:30-16:00, Sob 9:00-15:00</p>
-            <CTAButton href="/contact" style={{ marginTop: '2rem' }}>Formularz Kontaktowy</CTAButton>
+            <p>{t('services:fences.contact.hours')}</p>
+            <CTAButton href="/contact" style={{ marginTop: '2rem' }}>{t('services:fences.contact.cta')}</CTAButton>
           </div>
         </Container>
       </ContentSection>
@@ -309,14 +302,15 @@ function OgrodzeniaNaZamowieniePage() {
 
 export default OgrodzeniaNaZamowieniePage
 
-export function Head({ location }) {
-  const language = 'pl'
+export function Head({ location, pageContext }) {
+  const language = pageContext?.i18n?.language || 'pl'
+  const isEnglish = language === 'en'
   
   return (
     <>
       <EnhancedSEO
-        title="Ogrodzenia na Zamówienie - Kowal Białystok | Cała Polska"
-        description="Ogrodzenia na zamówienie ⭐ Projektowanie i wykonanie ogrodzeń kutych. Najlepszy kowal w Polsce. 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145"
+        title={isEnglish ? "Custom Wrought Iron Fences - Blacksmith Białystok | Poland" : "Ogrodzenia na Zamówienie - Kowal Białystok | Cała Polska"}
+        description={isEnglish ? "Custom wrought iron fences ⭐ Design and manufacturing of wrought iron fences. Best blacksmith in Poland. 5 year warranty ✓ Free quote ☎ +48 604 253 145" : "Ogrodzenia na zamówienie ⭐ Projektowanie i wykonanie ogrodzeń kutych. Najlepszy kowal w Polsce. 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145"}
         pathname={location.pathname}
         pageType="service"
         language={language}
@@ -333,19 +327,19 @@ export function Head({ location }) {
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Strona główna",
+            "name": isEnglish ? "Home" : "Strona główna",
             "item": WEBSITE_URL
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Usługi",
+            "name": isEnglish ? "Services" : "Usługi",
             "item": `${WEBSITE_URL}/uslugi`
           },
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Ogrodzenia na Zamówienie",
+            "name": isEnglish ? "Custom Fences" : "Ogrodzenia na Zamówienie",
             "item": `${WEBSITE_URL}${location.pathname}`
           }
         ]}
@@ -354,10 +348,31 @@ export function Head({ location }) {
       />
       
       <FAQSchema 
-        faqData={[
+        faqData={isEnglish ? [
+          {
+            question: "How much do custom fences cost?",
+            answer: "The price of custom fences depends on length, height and design complexity. Each fence is individually priced. We offer free quotes after consultation and on-site measurements."
+          },
+          {
+            question: "How long does it take to make a custom fence?",
+            answer: "Standard completion time is 2-4 weeks from design approval. For larger orders (over 50m) the time may extend to 6 weeks."
+          },
+          {
+            question: "Do you offer fence installation?",
+            answer: "Yes, we provide professional installation of all our fences. Our installation team operates throughout Poland."
+          },
+          {
+            question: "What fence designs are available?",
+            answer: "We offer a wide range of designs: classic, modern, Art Nouveau, geometric, and custom designs according to your ideas."
+          },
+          {
+            question: "Are the fences protected against corrosion?",
+            answer: "All our fences are hot-dip galvanized and powder coated, providing corrosion protection for many years. We provide a 5-year warranty."
+          }
+        ] : [
           {
             question: "Ile kosztują ogrodzenia na zamówienie?",
-            answer: "Cena ogrodzeń na zamówienie zależy od długości, wysokości i złożoności wzoru. Podstawowe ogrodzenia kute zaczynają się od 250 zł/mb, bardziej ozdobne od 400-800 zł/mb. Oferujemy darmową wycenę."
+            answer: "Cena ogrodzeń na zamówienie zależy od długości, wysokości i złożoności wzoru. Każde ogrodzenie jest indywidualnie wyceniane. Oferujemy darmową wycenę po konsultacji i pomiarach na miejscu."
           },
           {
             question: "Jak długo trwa wykonanie ogrodzenia na zamówienie?",

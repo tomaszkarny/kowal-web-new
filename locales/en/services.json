@@ -1,0 +1,185 @@
+{
+  "fences": {
+    "hero": {
+      "title": "Custom Wrought Iron Fences",
+      "subtitle": "We design and create exclusive wrought iron fences",
+      "cta": "Get Free Quote"
+    },
+    "why": {
+      "title": "Why Choose Our Fences?",
+      "quality": {
+        "title": "Highest Quality",
+        "text": "We use only the best steel and proven blacksmithing techniques. Each fence is carefully crafted and protected against corrosion."
+      },
+      "design": {
+        "title": "Individual Designs",
+        "text": "We create fences according to your needs and taste. From classic patterns to modern, minimalist forms."
+      },
+      "warranty": {
+        "title": "5 Year Warranty",
+        "text": "We are confident in the quality of our fences, which is why we provide a 5-year warranty on all completed work."
+      }
+    },
+    "types": {
+      "title": "Types of Fences",
+      "classic": {
+        "title": "Classic Fences",
+        "text": "Elegant patterns inspired by traditional blacksmithing. Perfect for historic buildings and classic residences."
+      },
+      "modern": {
+        "title": "Modern Fences",
+        "text": "Minimalist, geometric forms for contemporary architecture. Clean lines and functionality."
+      },
+      "decorative": {
+        "title": "Decorative Fences",
+        "text": "Richly decorated fences with plant, animal or abstract motifs."
+      }
+    },
+    "process": {
+      "title": "How to Order a Fence?",
+      "step1": {
+        "title": "Contact & Consultation",
+        "text": "Contact us by phone or form. We'll discuss your needs and propose solutions."
+      },
+      "step2": {
+        "title": "Measurements & Quote",
+        "text": "We'll visit the site, take precise measurements and prepare a detailed quote."
+      },
+      "step3": {
+        "title": "Design & Approval",
+        "text": "We'll prepare the fence design. After your approval we begin production."
+      },
+      "step4": {
+        "title": "Production",
+        "text": "In our workshop we create the fence according to the approved design."
+      },
+      "step5": {
+        "title": "Installation",
+        "text": "Our installation team will install the fence on your property."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text1": "We invite you to contact us to discuss your project details.",
+      "text2": "We'll prepare an individual quote tailored to your needs.",
+      "hours": "Working hours: Mon-Fri 7:30-16:00, Sat 9:00-15:00",
+      "cta": "Contact Form"
+    },
+    "faq": {
+      "q1": {
+        "question": "How much do custom fences cost?",
+        "answer": "The price of custom fences depends on length, height and design complexity. Each fence is individually priced. We offer free quotes after consultation and on-site measurements."
+      },
+      "q2": {
+        "question": "How long does it take to make a custom fence?",
+        "answer": "Standard completion time is 2-4 weeks from design approval. For larger orders (over 50m) the time may extend to 6 weeks."
+      },
+      "q3": {
+        "question": "Do you offer fence installation?",
+        "answer": "Yes, we provide professional installation of all our fences. Our installation team operates throughout Poland."
+      },
+      "q4": {
+        "question": "What fence designs are available?",
+        "answer": "We offer a wide range of designs: classic, modern, Art Nouveau, geometric, and custom designs according to your ideas."
+      },
+      "q5": {
+        "question": "Are the fences protected against corrosion?",
+        "answer": "All our fences are hot-dip galvanized and powder coated, providing corrosion protection for many years. We provide a 5-year warranty."
+      }
+    }
+  },
+  "gates": {
+    "hero": {
+      "title": "Custom Wrought Iron Gates",
+      "subtitle": "Exclusive driveway gates - design, manufacturing, installation",
+      "cta": "Request a Quote"
+    },
+    "types": {
+      "title": "Types of Wrought Iron Gates",
+      "doubleLeaf": {
+        "title": "Double-Leaf Gates",
+        "text": "Classic solution for elegant properties. Double-leaf gates combine functionality with beauty.",
+        "features": {
+          "width": "Width up to 6 meters",
+          "automation": "Nice or FAAC automation",
+          "designs": "Various designs",
+          "wicket": "Option to add wicket gate"
+        }
+      },
+      "sliding": {
+        "title": "Sliding Gates",
+        "text": "Ideal solution for narrow driveways. Space saving and ease of use.",
+        "features": {
+          "width": "Width up to 8 meters",
+          "quiet": "Quiet automation operation",
+          "construction": "Self-supporting construction",
+          "safety": "Safety photocells"
+        }
+      }
+    },
+    "styles": {
+      "title": "Styles and Designs",
+      "classic": {
+        "title": "Classic Style",
+        "text": "Timeless elegance with traditional blacksmithing elements. Perfect for historic and classic buildings."
+      },
+      "modern": {
+        "title": "Modern Style",
+        "text": "Minimalist forms, geometric patterns. Excellent for contemporary architecture."
+      },
+      "artNouveau": {
+        "title": "Art Nouveau Style",
+        "text": "Rich decorations, plant motifs and organic shapes. For lovers of art and unique design."
+      }
+    },
+    "advantages": {
+      "title": "Why Choose Our Gates?",
+      "design": {
+        "title": "Individual Design",
+        "text": "Each gate is designed specifically for you"
+      },
+      "installation": {
+        "title": "Professional Installation",
+        "text": "Experienced installation team throughout Poland"
+      },
+      "warranty": {
+        "title": "5 Year Warranty",
+        "text": "Quality assurance confirmed by long warranty"
+      },
+      "experience": {
+        "title": "30 Years of Experience",
+        "text": "Hundreds of satisfied customers throughout Poland"
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text1": "We invite you to contact us to discuss your project details.",
+      "text2": "Each gate is individually priced depending on size, design and equipment.",
+      "hours": "Working hours: Mon-Fri 7:30-16:00, Sat 9:00-15:00",
+      "text3": "We serve all of Poland!",
+      "cta": "Fill Out Form"
+    },
+    "faq": {
+      "q1": {
+        "question": "How much does a custom wrought iron gate cost?",
+        "answer": "The price of a wrought iron gate depends on size, project complexity and chosen design. Each gate is individually priced. We offer free quotes after consultation and on-site measurements."
+      },
+      "q2": {
+        "question": "How long does it take to make a wrought iron gate?",
+        "answer": "Standard completion time for a wrought iron gate is 3-4 weeks from design approval. During summer season the time may extend to 5-6 weeks due to higher order volume."
+      },
+      "q3": {
+        "question": "Do you install gate automation?",
+        "answer": "Yes, we offer complete service - from design through gate manufacturing to installation with automation. We work with renowned manufacturers: Nice, FAAC, BFT."
+      },
+      "q4": {
+        "question": "What wrought iron gate designs do you offer?",
+        "answer": "We offer a wide range of designs: classic, modern, Art Nouveau and custom designs. We can create a gate according to your design or propose our own solutions."
+      },
+      "q5": {
+        "question": "Do wrought iron gates require maintenance?",
+        "answer": "Our gates are hot-dip galvanized and powder coated, which minimizes the need for maintenance. We recommend technical inspection once a year and refreshing the paint coating every 5-7 years."
+      }
+    }
+  }
+}

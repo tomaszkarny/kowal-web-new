@@ -96,6 +96,80 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
   
   reporter.info(`Created ${CITIES.length * 3} city pages (${CITIES.length * 2} Polish + ${CITIES.length} English)`)
+  
+  // Create English service pages with English URLs
+  const servicePages = [
+    {
+      plPath: '/services/custom-fences/',
+      enPath: '/en/services/custom-fences/',
+      component: path.resolve('./src/pages/services/custom-fences.js')
+    },
+    {
+      plPath: '/services/custom-gates/',
+      enPath: '/en/services/custom-gates/',
+      component: path.resolve('./src/pages/services/custom-gates.js')
+    }
+  ]
+  
+  servicePages.forEach(({ plPath, enPath, component }) => {
+    // Create Polish version (without /pl/ prefix)
+    console.log(`[gatsby-node] Creating Polish service page: ${plPath}`)
+    createPage({
+      path: plPath,
+      component: component,
+      context: {
+        language: 'pl',
+        i18n: {
+          language: 'pl',
+          languages: ['pl', 'en'],
+          defaultLanguage: 'pl',
+          generateDefaultLanguagePage: true,
+          routed: false,
+          originalPath: plPath,
+          path: plPath
+        }
+      }
+    })
+    
+    // Create Polish version with /pl/ prefix
+    const plPathWithPrefix = `/pl${plPath}`
+    console.log(`[gatsby-node] Creating Polish service page with prefix: ${plPathWithPrefix}`)
+    createPage({
+      path: plPathWithPrefix,
+      component: component,
+      context: {
+        language: 'pl',
+        i18n: {
+          language: 'pl',
+          languages: ['pl', 'en'],
+          defaultLanguage: 'pl',
+          generateDefaultLanguagePage: true,
+          routed: true,
+          originalPath: plPath,
+          path: plPathWithPrefix
+        }
+      }
+    })
+    
+    // Create English version
+    console.log(`[gatsby-node] Creating English service page: ${enPath}`)
+    createPage({
+      path: enPath,
+      component: component,
+      context: {
+        language: 'en',
+        i18n: {
+          language: 'en',
+          languages: ['pl', 'en'],
+          defaultLanguage: 'pl',
+          generateDefaultLanguagePage: true,
+          routed: true,
+          originalPath: plPath,
+          path: enPath
+        }
+      }
+    })
+  })
 };
 
 // Add debugging for page creation
