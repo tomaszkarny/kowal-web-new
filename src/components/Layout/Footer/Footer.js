@@ -146,6 +146,17 @@ export const Footer = () => {
       </FooterSection>
 
       <FooterSection>
+        <FooterTitle>{t('services')}</FooterTitle>
+        <FooterLink to={language === 'pl' ? "/uslugi/ogrodzenia-na-zamowienie/" : "/en/services/custom-fences/"}>
+          {t('customFences')}
+        </FooterLink>
+        <FooterLink to={language === 'pl' ? "/uslugi/bramy-kute-na-zamowienie/" : "/en/services/custom-wrought-iron-gates/"}>
+          {t('customGates')}
+        </FooterLink>
+        <FooterLink to="/gallery/">{t('gallery')}</FooterLink>
+      </FooterSection>
+      
+      <FooterSection>
         <FooterTitle>{t('popularCities')}</FooterTitle>
         {popularCities.map(city => {
           const cityPath = getCityPath(city, language)

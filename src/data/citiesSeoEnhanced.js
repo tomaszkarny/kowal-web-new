@@ -27,20 +27,36 @@ export const CITIES_SEO_DATA = {
       pl: [
         'kowal białystok',
         'bramy kute białystok',
+        'ogrodzenia na zamówienie białystok',
+        'bramy na zamówienie białystok',
+        'balustrady na zamówienie białystok',
+        'kowalstwo artystyczne białystok',
+        'najlepszy kowal białystok',
+        'bramy kute na wymiar białystok',
+        'ogrodzenia kute białystok cena',
         'balustrady białystok centrum',
         'ogrodzenia białostoczek',
         'kowalstwo artystyczne podlaskie',
         'bramy przesuwne białystok',
         'balustrady schodowe białystok',
-        'ogrodzenia posesji białystok'
+        'ogrodzenia posesji białystok',
+        'bramy dwuskrzydłowe białystok',
+        'montaż bram kutych białystok',
+        'renowacja ogrodzeń białystok'
       ],
       en: [
         'blacksmith bialystok',
         'wrought iron gates bialystok',
+        'custom fences bialystok',
+        'custom gates bialystok poland',
+        'custom railings bialystok',
+        'best blacksmith bialystok',
+        'wrought iron fences bialystok',
         'railings bialystok poland',
         'artistic blacksmithing podlaskie',
         'sliding gates bialystok',
-        'stair railings bialystok'
+        'stair railings bialystok',
+        'gate installation bialystok'
       ]
     },
     localProjects: {
@@ -109,12 +125,22 @@ export const CITIES_SEO_DATA = {
     seoKeywords: {
       pl: [
         'kowal warszawa',
+        'bramy kute warszawa',
+        'ogrodzenia na zamówienie warszawa',
+        'bramy na zamówienie warszawa',
+        'balustrady na zamówienie warszawa',
+        'kowalstwo artystyczne warszawa',
+        'najlepszy kowal warszawa',
         'ekskluzywne bramy warszawa',
+        'ogrodzenia kute warszawa cena',
         'balustrady mokotów',
         'ogrodzenia wilanów',
         'kowalstwo artystyczne mazowieckie',
         'bramy automatyczne warszawa',
-        'balustrady tarasowe żoliborz'
+        'balustrady tarasowe żoliborz',
+        'bramy kute mokotów',
+        'ogrodzenia kute praga',
+        'montaż bram warszawa'
       ],
       en: [
         'blacksmith warsaw',
@@ -399,46 +425,54 @@ export const getCityFAQ = (cityName, language = 'pl') => {
   const faqs = {
     pl: [
       {
-        question: `Czy dojeżdżacie do ${cityName}?`,
-        answer: `Tak, regularnie realizujemy zlecenia w ${cityName} i okolicach. Nasz warsztat znajduje się w Hryniewiczach koło Białegostoku.`
+        question: `Gdzie zamówić ogrodzenia na zamówienie w ${cityName}?`,
+        answer: `Pracownia Kowalstwa Artystycznego Tadeusz Karny oferuje najwyższej jakości ogrodzenia na zamówienie w ${cityName}. Projektujemy i wykonujemy ogrodzenia kute dokładnie według Państwa wymagań. Zapraszamy do kontaktu: 604 253 145.`
       },
       {
-        question: `Ile kosztuje transport do ${cityName}?`,
-        answer: `Koszt transportu zależy od wielkości zamówienia i odległości. Dla ${cityName} wyceniamy transport indywidualnie podczas pierwszego kontaktu.`
+        question: `Ile kosztują bramy kute na zamówienie w ${cityName}?`,
+        answer: `Cena bram kutych na zamówienie w ${cityName} zależy od rozmiaru i złożoności projektu. Podstawowe bramy zaczynają się od 3000 zł/m², bardziej ozdobne od 5000 zł/m². Oferujemy darmową wycenę i pomiary w ${cityName}.`
       },
       {
-        question: `Jak długo trwa realizacja zamówienia w ${cityName}?`,
-        answer: `Standardowy czas realizacji to 2-4 tygodnie w zależności od złożoności projektu. Montaż w ${cityName} planujemy w dogodnym dla Państwa terminie.`
+        question: `Kto jest najlepszym kowalem w ${cityName}?`,
+        answer: `Tadeusz Karny to uznany mistrz kowalstwa artystycznego obsługujący ${cityName} od ponad 30 lat. Specjalizujemy się w bramach kutych, balustradach i ogrodzeniach na zamówienie. Setki zadowolonych klientów w ${cityName} i okolicach.`
       },
       {
-        question: `Czy oferujecie pomiary na miejscu w ${cityName}?`,
-        answer: `Tak, oferujemy bezpłatne pomiary i konsultacje na miejscu w ${cityName}. Umówimy się na dogodny termin.`
+        question: `Czy wykonujecie balustrady na zamówienie w ${cityName}?`,
+        answer: `Tak, wykonujemy balustrady na zamówienie w ${cityName} - zarówno wewnętrzne jak i zewnętrzne. Każda balustrada jest projektowana indywidualnie i dostosowana do architektury budynku. Gwarantujemy najwyższą jakość i terminowość.`
       },
       {
-        question: `Jakie są metody płatności dla klientów z ${cityName}?`,
-        answer: `Akceptujemy płatności gotówką, przelewem bankowym oraz kartą. Możliwa jest płatność w ratach dla większych projektów.`
+        question: `Jak długo trwa wykonanie ogrodzenia kutego w ${cityName}?`,
+        answer: `Standardowy czas realizacji ogrodzenia na zamówienie w ${cityName} to 2-4 tygodnie od zatwierdzenia projektu. Oferujemy również profesjonalny montaż. Dokładny termin ustalamy indywidualnie.`
+      },
+      {
+        question: `Czy oferujecie montaż bram kutych w ${cityName}?`,
+        answer: `Tak, zapewniamy kompleksową usługę - od projektu, przez wykonanie, aż po profesjonalny montaż bram kutych w ${cityName}. Nasza ekipa montażowa zadba o prawidłową instalację i uruchomienie automatyki.`
       }
     ],
     en: [
       {
-        question: `Do you provide services in ${cityName}?`,
-        answer: `Yes, we regularly complete orders in ${cityName} and surrounding areas. Our workshop is located in Hryniewicze near Białystok.`
+        question: `Where to order custom fences in ${cityName}?`,
+        answer: `Tadeusz Karny Artistic Blacksmith Workshop offers highest quality custom fences in ${cityName}. We design and create wrought iron fences exactly to your requirements. Contact us: +48 604 253 145.`
       },
       {
-        question: `How much does transport to ${cityName} cost?`,
-        answer: `Transport cost depends on order size and distance. For ${cityName} we quote transport individually during first contact.`
+        question: `How much do custom wrought iron gates cost in ${cityName}?`,
+        answer: `Custom wrought iron gates in ${cityName} prices depend on size and design complexity. Basic gates start from 3000 PLN/m², more ornate designs from 5000 PLN/m². We offer free quotes and measurements in ${cityName}.`
       },
       {
-        question: `How long does order completion take in ${cityName}?`,
-        answer: `Standard completion time is 2-4 weeks depending on project complexity. Installation in ${cityName} is scheduled at your convenience.`
+        question: `Who is the best blacksmith in ${cityName}?`,
+        answer: `Tadeusz Karny is a recognized master of artistic blacksmithing serving ${cityName} for over 30 years. We specialize in custom wrought iron gates, railings and fences. Hundreds of satisfied customers in ${cityName} and surrounding areas.`
       },
       {
-        question: `Do you offer on-site measurements in ${cityName}?`,
-        answer: `Yes, we offer free measurements and consultations on-site in ${cityName}. We'll arrange a convenient time.`
+        question: `Do you make custom railings in ${cityName}?`,
+        answer: `Yes, we create custom railings in ${cityName} - both interior and exterior. Each railing is individually designed and adapted to the building's architecture. We guarantee highest quality and timely completion.`
       },
       {
-        question: `What payment methods are available for clients from ${cityName}?`,
-        answer: `We accept cash, bank transfer, and card payments. Installment payment is possible for larger projects.`
+        question: `How long does it take to make a wrought iron fence in ${cityName}?`,
+        answer: `Standard completion time for custom fences in ${cityName} is 2-4 weeks from design approval. We also offer professional installation. Exact timeline is arranged individually.`
+      },
+      {
+        question: `Do you offer wrought iron gate installation in ${cityName}?`,
+        answer: `Yes, we provide complete service - from design, through manufacturing, to professional installation of wrought iron gates in ${cityName}. Our installation team ensures proper setup and automation configuration.`
       }
     ]
   }

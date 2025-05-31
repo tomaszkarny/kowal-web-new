@@ -5,6 +5,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
+import { ProductSchema } from 'components/SEO/ProductSchema'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
 const cities = citiesData.CITIES || citiesData.default || citiesData
@@ -15,6 +16,7 @@ import { CityServices } from 'components/Cities/CityServices'
 
 // Below-the-fold components loaded lazily
 const CityValueProposition = lazy(() => import('components/Cities/CityValueProposition').then(module => ({ default: module.CityValueProposition })))
+const CityServiceOfferings = lazy(() => import('components/Cities/CityServiceOfferings').then(module => ({ default: module.CityServiceOfferings })))
 const CityKeywords = lazy(() => import('components/Cities/CityKeywords').then(module => ({ default: module.CityKeywords })))
 const RelatedCities = lazy(() => import('components/Cities/RelatedCities').then(module => ({ default: module.RelatedCities })))
 const CityServiceArea = lazy(() => import('components/Cities/CityServiceArea').then(module => ({ default: module.CityServiceArea })))
@@ -63,6 +65,10 @@ function CityPageTemplate({ pageContext }) {
       
       <Suspense fallback={<LoadingComponent />}>
         <CityValueProposition city={city} language={language} templateData={templateData} />
+      </Suspense>
+      
+      <Suspense fallback={<LoadingComponent />}>
+        <CityServiceOfferings city={city} language={language} />
       </Suspense>
       
       <Suspense fallback={<LoadingComponent />}>
@@ -375,6 +381,12 @@ export function Head({ pageContext, location }) {
         breadcrumbs={breadcrumbs}
         pathname={location.pathname}
         language={language}
+      />
+      
+      {/* Product Schema for services */}
+      <ProductSchema 
+        language={language}
+        cityName={city.name[language]}
       />
     </>
   )
