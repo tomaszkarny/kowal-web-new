@@ -48,6 +48,8 @@ export function Head({ location, pageContext }) {
         language={language} // Explicitly pass language
         noindex={false}
       />
+      {/* Google Search Console verification meta tag */}
+      <meta name="google-site-verification" content="JKUnr_75ce6PD0-NuNVM1t-CWuSLqi_vBwMky594zTM" />
       <LocalBusinessSchema 
         url={WEBSITE_URL}
         title={seoTranslations.pageTitle}
