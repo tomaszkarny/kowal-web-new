@@ -14,6 +14,29 @@ exports.onPreInit = () => {
   console.log('Gatsby Node APIs are working!');
 };
 
+// Validation function for city data
+const validateCityData = (city, reporter) => {
+  const errors = []
+  
+  // Check required fields
+  if (!city.id) errors.push(`Missing id for city`)
+  if (!city.name || !city.name.pl || !city.name.en) errors.push(`Missing name translations for city ${city.id}`)
+  if (!city.slug || !city.slug.pl || !city.slug.en) errors.push(`Missing slug translations for city ${city.id}`)
+  if (!city.coordinates || typeof city.coordinates.lat !== 'number' || typeof city.coordinates.lng !== 'number') {
+    errors.push(`Invalid coordinates for city ${city.id}`)
+  }
+  if (!city.region || !city.region.pl || !city.region.en) errors.push(`Missing region translations for city ${city.id}`)
+  
+  // Log errors if any
+  if (errors.length > 0) {
+    reporter.error(`City validation failed for ${city.id || 'unknown'}:`)
+    errors.forEach(error => reporter.error(`  - ${error}`))
+    return false
+  }
+  
+  return true
+}
+
 // Create city pages programmatically
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -21,9 +44,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create pages for each city
   const cityTemplate = path.resolve('./src/templates/CityPage.js')
   
+  let validCities = 0
+  let skippedCities = 0
+  
   CITIES.forEach(city => {
-    // Process city data to calculate distances and travel times
-    const processedCity = processCityData(city)
+    try {
+      // Validate city data first
+      if (!validateCityData(city, reporter)) {
+        skippedCities++
+        return
+      }
+      
+      // Process city data to calculate distances and travel times
+      const processedCity = processCityData(city)
+      
+      // Validate processed city data
+      if (!processedCity || !processedCity.distance || !processedCity.travelTime) {
+        reporter.error(`Failed to process city data for ${city.id}`)
+        skippedCities++
+        return
+      }
     
     // Polish city page - create both with and without /pl/ prefix
     const plPathBase = `/cities/${city.slug.pl}/`
@@ -93,9 +133,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     })
+    
+    validCities++
+    
+    } catch (error) {
+      reporter.error(`Error creating pages for city ${city.id}: ${error.message}`)
+      skippedCities++
+    }
   })
   
-  reporter.info(`Created ${CITIES.length * 3} city pages (${CITIES.length * 2} Polish + ${CITIES.length} English)`)
+  reporter.info(`City page generation complete: ${validCities} cities processed, ${skippedCities} skipped`)
+  reporter.info(`Created ${validCities * 3} city pages (${validCities * 2} Polish + ${validCities} English)`)
   
   // Create English service pages with English URLs
   const servicePages = [

@@ -256,7 +256,19 @@ module.exports = {
           let plPath = isEnglish ? ensureTrailingSlash(pathWithSlash.replace('/en', '')) : pathWithSlash;
           if (plPath === '') plPath = '/';
           
-          let enPath = !isEnglish && pathWithSlash !== '/' ? ensureTrailingSlash(`/en${pathWithSlash}`) : isEnglish ? pathWithSlash : '/en/';
+          // Fix: Properly handle Polish to English URL conversion
+          let enPath;
+          if (isEnglish) {
+            enPath = pathWithSlash; // Already English path
+          } else if (pathWithSlash === '/') {
+            enPath = '/en/'; // Root page to English root
+          } else if (pathWithSlash.startsWith('/pl/')) {
+            // Replace /pl/ with /en/ for Polish pages
+            enPath = ensureTrailingSlash(pathWithSlash.replace('/pl/', '/en/'));
+          } else {
+            // For pages without language prefix, add /en/
+            enPath = ensureTrailingSlash(`/en${pathWithSlash}`);
+          }
           
           // Determine page type and set priority accordingly
           let priority = 0.5; // Default priority

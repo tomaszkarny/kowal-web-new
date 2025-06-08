@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { ProductSchema } from 'components/SEO/ProductSchema'
+import { ErrorBoundary } from 'components/common/ErrorBoundary'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
 const cities = citiesData.CITIES || citiesData.default || citiesData
@@ -63,37 +64,53 @@ function CityPageTemplate({ pageContext }) {
       <CityHero city={city} language={language} templateData={templateData} />
       <CityServices city={city} language={language} templateData={templateData} />
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityValueProposition city={city} language={language} templateData={templateData} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityValueProposition city={city} language={language} templateData={templateData} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityServiceOfferings city={city} language={language} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityServiceOfferings city={city} language={language} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityServiceArea city={city} language={language} templateData={templateData} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityServiceArea city={city} language={language} templateData={templateData} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityAbout city={city} language={language} templateData={templateData} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityAbout city={city} language={language} templateData={templateData} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityKeywords city={city} language={language} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityKeywords city={city} language={language} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityContact city={city} language={language} templateData={templateData} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityContact city={city} language={language} templateData={templateData} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <CityFAQ city={city} language={language} templateData={templateData} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <CityFAQ city={city} language={language} templateData={templateData} />
+        </Suspense>
+      </ErrorBoundary>
       
-      <Suspense fallback={<LoadingComponent />}>
-        <RelatedCities currentCity={city} allCities={cities} language={language} />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingComponent />}>
+          <RelatedCities currentCity={city} allCities={cities} language={language} />
+        </Suspense>
+      </ErrorBoundary>
     </Layout>
   )
 }

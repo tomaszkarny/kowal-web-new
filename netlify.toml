@@ -128,29 +128,8 @@
   to = "/pl/gallery/"
   status = 301
 
-# CRITICAL: Ensure EN pages are served as static HTML files, not SPA routes
-# Serve EN pages directly (with trailing slash)
-[[redirects]]
-  from = "/en/"
-  to = "/en/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/about/"
-  to = "/en/about/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/gallery/"
-  to = "/en/gallery/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/contact/"
-  to = "/en/contact/index.html"
-  status = 200
-
-# Handle EN pages without trailing slash
+# Simplified redirects - let Gatsby handle routing naturally
+# Handle pages without trailing slash (only essential ones)
 [[redirects]]
   from = "/en"
   to = "/en/"
@@ -171,34 +150,15 @@
   to = "/en/contact/"
   status = 301
 
-# Ensure PL pages are also served correctly
 [[redirects]]
-  from = "/pl/"
-  to = "/pl/index.html"
-  status = 200
+  from = "/en/faq"
+  to = "/en/faq/"
+  status = 301
 
 [[redirects]]
-  from = "/pl/about/"
-  to = "/pl/about/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/pl/gallery/"
-  to = "/pl/gallery/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/pl/contact/"
-  to = "/pl/contact/index.html"
-  status = 200
-
-# IMPORTANT: Catch-all rule to serve static files (must be LAST)
-# This prevents SPA fallback behavior for existing HTML files
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 200
-  force = false
+  from = "/en/cities"
+  to = "/en/cities/"
+  status = 301
 
 # — SECURITY HEADERS —
 [[headers]]
