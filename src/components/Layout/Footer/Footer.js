@@ -37,17 +37,18 @@ export const Footer = () => {
       )
       
       if (city) {
-        // Generate correct path for target language
+        // Generate correct path for target language with consistent /pl/ prefix
         const targetSlug = city.slug[targetLanguage]
-        const basePath = targetLanguage === 'pl' ? '' : '/en'
+        const basePath = targetLanguage === 'pl' ? '/pl' : '/en'
         return `${basePath}/cities/${targetSlug}/`
       }
     }
     
-    // For non-city pages, use the original path logic
+    // For non-city pages, use consistent /pl/ prefix logic
     if (targetLanguage === 'pl') {
-      // Remove /en prefix and /pl prefix to get base path
-      return currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
+      // Remove /en prefix and /pl prefix to get base path, then add /pl/
+      const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
+      return basePath === '/' ? '/pl/' : `/pl${basePath}`
     } else {
       // Remove any existing language prefix and add /en
       const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
