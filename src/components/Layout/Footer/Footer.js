@@ -49,12 +49,12 @@ export const Footer = () => {
     
     // For non-city pages
     if (targetLanguage === 'pl') {
-      // Remove any language prefix to get base path (Polish has no prefix)
-      const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
+      // Remove ALL language prefixes to get base path (Polish has no prefix)
+      const basePath = currentPath.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
       return basePath === '/' ? '/' : basePath
     } else {
-      // Remove any existing language prefix and add /en
-      const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
+      // Remove ALL existing language prefixes and add single /en/
+      const basePath = currentPath.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
       return basePath === '/' ? '/en/' : `/en${basePath}`
     }
   }

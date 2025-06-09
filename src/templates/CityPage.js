@@ -320,7 +320,7 @@ export function Head({ pageContext, location }) {
       "@type": "ListItem", 
       "position": 2,
       "name": language === 'pl' ? "Miasta" : "Cities",
-      "item": language === 'pl' ? `${WEBSITE_URL}/miasta` : `${WEBSITE_URL}/en/cities`
+      "item": language === 'pl' ? `${WEBSITE_URL}/cities/` : `${WEBSITE_URL}/en/cities/`
     },
     {
       "@type": "ListItem",

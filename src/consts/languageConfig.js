@@ -71,9 +71,14 @@ export const getLanguageUrls = (inputPath = '/') => {
   const raw = inputPath.startsWith('/') ? inputPath : `/${inputPath}`
   const clean = raw.endsWith('/') ? raw : `${raw}/`
 
-  const isEn = clean.startsWith('/en/')
-  const plPath = isEn ? clean.replace(/^\/en/, '') : clean
-  const enPath = isEn ? clean : clean === '/' ? '/en/' : `/en${clean}`
+  // Remove ALL language prefixes to get base path
+  const basePath = clean.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
+  
+  // Generate clean Polish path (no prefix)
+  const plPath = basePath
+  
+  // Generate clean English path (with single /en/ prefix)
+  const enPath = basePath === '/' ? '/en/' : `/en${basePath}`
 
   return {
     pl: `${WEBSITE_URL}${plPath}`,
