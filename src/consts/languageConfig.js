@@ -67,18 +67,41 @@ export const getLanguageFromPath = (path = '') => path.startsWith('/en') ? 'en' 
  *   /en/about/   →  { pl: https://…/about/, en: https://…/en/about/, default: https://…/about/ }
  *   /gallery/    →  { pl: https://…/gallery/, en: https://…/en/gallery/, default: https://…/gallery/ }
  */
+/**
+ * Robust path cleaning that handles malformed URLs with multiple language prefixes
+ * Handles cases like /en/en/cities/ or /pl/en/about/ by iteratively cleaning
+ */
+export const cleanLanguagePrefixes = (path) => {
+  let cleanPath = path
+  // Remove multiple consecutive language prefixes iteratively
+  while (cleanPath.match(/^\/(?:en|pl)\/+(?:en|pl)\//)) {
+    cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/')
+  }
+  // Final cleanup of any remaining single prefix
+  return cleanPath.replace(/^\/(?:en|pl)\/+/, '/') || '/'
+}
+
+/**
+ * Build a language-specific path from a clean base path
+ */
+export const buildLanguagePath = (basePath, targetLanguage) => {
+  return targetLanguage === 'pl'
+    ? basePath
+    : basePath === '/' ? '/en/' : `/en${basePath}`
+}
+
 export const getLanguageUrls = (inputPath = '/') => {
   const raw = inputPath.startsWith('/') ? inputPath : `/${inputPath}`
   const clean = raw.endsWith('/') ? raw : `${raw}/`
 
-  // Remove ALL language prefixes to get base path
-  const basePath = clean.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
+  // Use the robust cleaning function
+  const basePath = cleanLanguagePrefixes(clean)
   
   // Generate clean Polish path (no prefix)
   const plPath = basePath
   
   // Generate clean English path (with single /en/ prefix)
-  const enPath = basePath === '/' ? '/en/' : `/en${basePath}`
+  const enPath = buildLanguagePath(basePath, 'en')
 
   return {
     pl: `${WEBSITE_URL}${plPath}`,
