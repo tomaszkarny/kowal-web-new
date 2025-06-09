@@ -4,6 +4,7 @@ import { Link, useI18next } from 'gatsby-plugin-react-i18next'
 
 import * as CONTACT_DETAILS from 'consts/contactDetails'
 import { getCityPath } from 'utils/cityUtils'
+import { getLanguageFromPath } from 'consts/languageConfig'
 
 import {
   StyledFooter,
@@ -167,19 +168,39 @@ export const Footer = () => {
       
       <FooterSection>
         <FooterTitle>{t('popularCities')}</FooterTitle>
-        {popularCities.map(city => {
-          const cityPath = getCityPath(city, language)
+        {(() => {
+          // Use actual current language from URL instead of hook to avoid cache issues
+          const currentPath = originalPath || (typeof window !== 'undefined' ? window.location.pathname : '/')
+          const actualLanguage = getLanguageFromPath(currentPath)
+          
+          // Debug: Log language detection for popular cities
+          if (typeof window !== 'undefined') {
+            console.log(`[Footer] Popular cities: currentPath=${currentPath}, actualLanguage=${actualLanguage}`)
+          }
           
           return (
-            <FooterLink 
-              key={city.id} 
-              to={cityPath}
-            >
-              {city.name[language]}
-            </FooterLink>
+            <>
+              {popularCities.map(city => {
+                const cityPath = getCityPath(city, actualLanguage)
+                
+                return (
+                  <FooterLink 
+                    key={`${city.id}-${actualLanguage}`}
+                    to={cityPath}
+                  >
+                    {city.name[actualLanguage]}
+                  </FooterLink>
+                )
+              })}
+              <FooterLink 
+                to={actualLanguage === 'en' ? '/en/cities/' : '/cities/'}
+                key={`all-cities-${actualLanguage}`}
+              >
+                {t('allCities')}
+              </FooterLink>
+            </>
           )
-        })}
-        <FooterLink to="/cities/">{t('allCities')}</FooterLink>
+        })()}
       </FooterSection>
 
       <FooterSection>
