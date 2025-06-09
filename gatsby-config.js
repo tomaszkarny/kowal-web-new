@@ -223,7 +223,12 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap`,
-        excludes: ['/**/404', '/**/404.html', '/**/dev-404-page'],
+        excludes: [
+          '/**/404', 
+          '/**/404.html', 
+          '/**/dev-404-page',
+          '/**/offline-plugin-app-shell-fallback'
+        ],
         createLinkInHead: true,
         // Define a custom function to resolve the site URL
         resolveSiteUrl: () => SITE_DOMAIN,

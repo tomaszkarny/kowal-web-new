@@ -15,81 +15,91 @@
 # — REDIRECTS FOR IMPROVED SEO & INDEXING —
 # Single-hop redirects that handle both domain canonicalization and trailing slashes
 
-# Root domain redirects - only redirect root path to Polish homepage
+# Root domain redirects - redirect to Polish homepage WITHOUT /pl/ prefix
 [[redirects]]
   from = "http://kowalstwo-karny.pl"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
+  to   = "https://www.kowalstwo-karny.pl/"
   status = 301
   force  = true
 
 [[redirects]]
   from = "http://kowalstwo-karny.pl/"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
+  to   = "https://www.kowalstwo-karny.pl/"
   status = 301
   force  = true
 
 [[redirects]]
   from = "https://kowalstwo-karny.pl"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
+  to   = "https://www.kowalstwo-karny.pl/"
   status = 301
   force  = true
 
 [[redirects]]
   from = "https://kowalstwo-karny.pl/"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
+  to   = "https://www.kowalstwo-karny.pl/"
   status = 301
   force  = true
 
-# IMPORTANT: Only redirect exact root path, not all paths
-[[redirects]]
-  from = "https://www.kowalstwo-karny.pl"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
-  status = 301
-  force  = true
-
-[[redirects]]
-  from = "https://www.kowalstwo-karny.pl/"
-  to   = "https://www.kowalstwo-karny.pl/pl/"
-  status = 301
-  force  = true
-
-# Domain canonicalization for subpages - but EXCLUDE /en/* paths
-# HTTP apex domain to HTTPS www with trailing slash (for NON-EN subpages only)
-[[redirects]]
-  from = "http://kowalstwo-karny.pl/pl/*"
-  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
-  status = 301
-  force  = true
-
+# Domain canonicalization for subpages - redirect to Polish without /pl/ prefix
+# HTTP apex domain to HTTPS www for Polish subpages
 [[redirects]]
   from = "http://kowalstwo-karny.pl/contact"
-  to   = "https://www.kowalstwo-karny.pl/pl/contact/"
+  to   = "https://www.kowalstwo-karny.pl/contact/"
   status = 301
   force  = true
 
 [[redirects]]
   from = "http://kowalstwo-karny.pl/about"
-  to   = "https://www.kowalstwo-karny.pl/pl/about/"
+  to   = "https://www.kowalstwo-karny.pl/about/"
   status = 301
   force  = true
 
 [[redirects]]
   from = "http://kowalstwo-karny.pl/gallery"
-  to   = "https://www.kowalstwo-karny.pl/pl/gallery/"
+  to   = "https://www.kowalstwo-karny.pl/gallery/"
   status = 301
   force  = true
 
-# HTTP www to HTTPS www (for NON-EN subpages only)
 [[redirects]]
-  from = "http://www.kowalstwo-karny.pl/pl/*"
-  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
+  from = "http://kowalstwo-karny.pl/cities/*"
+  to   = "https://www.kowalstwo-karny.pl/cities/:splat"
   status = 301
   force  = true
 
-# HTTPS apex to HTTPS www (for NON-EN subpages only)
 [[redirects]]
-  from = "https://kowalstwo-karny.pl/pl/*"
-  to   = "https://www.kowalstwo-karny.pl/pl/:splat"
+  from = "http://kowalstwo-karny.pl/services/*"
+  to   = "https://www.kowalstwo-karny.pl/services/:splat"
+  status = 301
+  force  = true
+
+# HTTPS apex to HTTPS www for Polish subpages
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/contact"
+  to   = "https://www.kowalstwo-karny.pl/contact/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/about"
+  to   = "https://www.kowalstwo-karny.pl/about/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/gallery"
+  to   = "https://www.kowalstwo-karny.pl/gallery/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/cities/*"
+  to   = "https://www.kowalstwo-karny.pl/cities/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://kowalstwo-karny.pl/services/*"
+  to   = "https://www.kowalstwo-karny.pl/services/:splat"
   status = 301
   force  = true
 
@@ -112,21 +122,7 @@
   status = 301
   force  = true
 
-# Language redirects for pages without language prefix
-[[redirects]]
-  from = "/contact"
-  to = "/pl/contact/"
-  status = 301
-
-[[redirects]]
-  from = "/about"
-  to = "/pl/about/"
-  status = 301
-
-[[redirects]]
-  from = "/gallery"
-  to = "/pl/gallery/"
-  status = 301
+# Language redirects removed - Polish pages now use root URLs without /pl/ prefix
 
 # Simplified redirects - let Gatsby handle routing naturally
 # Handle pages without trailing slash (only essential ones)
