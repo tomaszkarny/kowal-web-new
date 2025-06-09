@@ -31,8 +31,8 @@ module.exports = {
         siteUrl: SITE_DOMAIN,
         // Fix for doubled language paths
         localeStructure: '{{lng}}/{{ns}}',
-        generateDefaultLanguagePage: true, // Generate Polish homepage  
-        pathDefaultsToDefaultLanguage: false, // Polish homepage at /pl/ not /
+        generateDefaultLanguagePage: false, // Don't generate duplicate Polish pages
+        pathDefaultsToDefaultLanguage: true, // Polish homepage at / not /pl/
         addRedirectPage: false,
         redirect: false,         // Disable client-side redirects that might interfere
         i18nextOptions: {

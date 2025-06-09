@@ -1,30 +1,39 @@
-# Ensure EN pages are served as static HTML, not SPA routes
-/en/             /en/index.html           200
-/en/about/       /en/about/index.html     200
-/en/gallery/     /en/gallery/index.html   200
-/en/contact/     /en/contact/index.html   200
+# Redirect all /pl/ prefixed URLs to root URLs (Polish without prefix)
+/pl/*            /:splat                      301!
 
-# Add trailing slashes to EN URLs
-/en              /en/                     301
-/en/about        /en/about/               301
-/en/gallery      /en/gallery/             301
-/en/contact      /en/contact/             301
+# Handle specific /en/pl/ mixed URLs that cause 5xx errors
+/en/pl/*         /en/:splat                   301!
 
-# Ensure PL pages are served correctly
-/pl/             /pl/index.html           200
-/pl/about/       /pl/about/index.html     200
-/pl/gallery/     /pl/gallery/index.html   200
-/pl/contact/     /pl/contact/index.html   200
+# Ensure EN pages are served as static HTML
+/en/             /en/index.html               200
+/en/about/       /en/about/index.html         200
+/en/gallery/     /en/gallery/index.html       200
+/en/contact/     /en/contact/index.html       200
+
+# Add trailing slashes to EN URLs (but don't redirect to /pl/)
+/en              /en/                         301
+/en/about        /en/about/                   301
+/en/gallery      /en/gallery/                 301
+/en/contact      /en/contact/                 301
+
+# City pages redirects - all /pl/cities/* go to /cities/*
+/pl/cities/*     /cities/:splat               301!
+
+# Service pages redirects
+/pl/services/*   /services/:splat             301!
+
+# FAQ and other pages
+/pl/faq/         /faq/                        301
+/pl/faq          /faq/                        301
 
 # Domain canonicalization - HTTP to HTTPS with www
 http://kowalstwo-karny.pl/*         https://www.kowalstwo-karny.pl/:splat    301!
 http://www.kowalstwo-karny.pl/*     https://www.kowalstwo-karny.pl/:splat    301!
 https://kowalstwo-karny.pl/*        https://www.kowalstwo-karny.pl/:splat    301!
 
-# Root redirects to Polish homepage
-/                /pl/                     301
+# Handle undefined URLs that might be generated
+/undefined/*     /                            301
+/*undefined*     /                            301
 
-# Redirect pages without language prefix to Polish
-/contact         /pl/contact/             301
-/about           /pl/about/               301
-/gallery         /pl/gallery/             301
+# Handle any remaining Polish-prefixed content
+/pl              /                            301

@@ -65,9 +65,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         return
       }
     
-    // Polish city page - create both with and without /pl/ prefix
+    // Polish city page - create only the base version (without /pl/ prefix)
     const plPathBase = `/cities/${city.slug.pl}/`
-    const plPathWithPrefix = `/pl/cities/${city.slug.pl}/`
     
     // Create base Polish page (without /pl/ prefix)
     console.log(`[gatsby-node] Creating Polish city page: ${plPathBase}`)
@@ -82,31 +81,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           language: 'pl',
           languages: ['pl', 'en'],
           defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
+          generateDefaultLanguagePage: false,
           routed: false,
           originalPath: plPathBase,
           path: plPathBase
-        }
-      }
-    })
-    
-    // Create Polish page with /pl/ prefix
-    console.log(`[gatsby-node] Creating Polish city page with prefix: ${plPathWithPrefix}`)
-    createPage({
-      path: plPathWithPrefix,
-      component: cityTemplate,
-      context: {
-        city: processedCity,
-        language: 'pl',
-        cityId: city.id,
-        i18n: {
-          language: 'pl',
-          languages: ['pl', 'en'],
-          defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
-          routed: true,
-          originalPath: plPathBase,
-          path: plPathWithPrefix
         }
       }
     })
@@ -126,7 +104,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           language: 'en',
           languages: ['pl', 'en'],
           defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
+          generateDefaultLanguagePage: false,
           routed: true,
           originalPath: `/cities/${city.slug.pl}/`,
           path: enPath
@@ -143,7 +121,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
   
   reporter.info(`City page generation complete: ${validCities} cities processed, ${skippedCities} skipped`)
-  reporter.info(`Created ${validCities * 3} city pages (${validCities * 2} Polish + ${validCities} English)`)
+  reporter.info(`Created ${validCities * 2} city pages (${validCities} Polish + ${validCities} English)`)
   
   // Create English service pages with English URLs
   const servicePages = [
@@ -171,7 +149,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           language: 'pl',
           languages: ['pl', 'en'],
           defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
+          generateDefaultLanguagePage: false,
           routed: false,
           originalPath: plPath,
           path: plPath
@@ -179,25 +157,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     })
     
-    // Create Polish version with /pl/ prefix
-    const plPathWithPrefix = `/pl${plPath}`
-    console.log(`[gatsby-node] Creating Polish service page with prefix: ${plPathWithPrefix}`)
-    createPage({
-      path: plPathWithPrefix,
-      component: component,
-      context: {
-        language: 'pl',
-        i18n: {
-          language: 'pl',
-          languages: ['pl', 'en'],
-          defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
-          routed: true,
-          originalPath: plPath,
-          path: plPathWithPrefix
-        }
-      }
-    })
     
     // Create English version
     console.log(`[gatsby-node] Creating English service page: ${enPath}`)
@@ -210,7 +169,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           language: 'en',
           languages: ['pl', 'en'],
           defaultLanguage: 'pl',
-          generateDefaultLanguagePage: true,
+          generateDefaultLanguagePage: false,
           routed: true,
           originalPath: plPath,
           path: enPath

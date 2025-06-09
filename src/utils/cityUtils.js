@@ -10,6 +10,12 @@
  */
 export function getCityPath(city, language) {
   const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
+  
+  // Polish pages have no prefix, English pages have /en/ prefix
+  if (language === 'en') {
+    return `/en/cities/${citySlug}/`
+  }
+  
   return `/cities/${citySlug}/`
 }
 

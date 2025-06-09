@@ -152,16 +152,19 @@ export const EnhancedSEO = ({
     /* keywords removed - deprecated */
   }
 
-  // Get the current path adjusted for proper canonical URL (no trailing slash except homepage)
-  const adjustedPath = cleanPath;
+  // Get the current path adjusted for proper canonical URL
+  let adjustedPath = cleanPath;
+  
+  // For Polish pages, ensure canonical URLs never have /pl/ prefix
+  if (currentLanguage === 'pl' && adjustedPath.startsWith('/pl/')) {
+    adjustedPath = adjustedPath.replace(/^\/pl/, '') || '/';
+    console.log(`[EnhancedSEO] Stripped /pl/ prefix from canonical: ${cleanPath} → ${adjustedPath}`);
+  }
   
   // Get language-specific URLs using our configuration
   const languageUrls = getLanguageUrls(adjustedPath)
   
-  // Current language from path already detected earlier
-  // const currentLanguage = getLanguageFromPath(adjustedPath)
-  
-  // Canonical URL = dokładny URL bieżącej strony (z trailing slash jeśli trzeba)
+  // Canonical URL = clean URL without /pl/ prefix for Polish, with /en/ for English
   const canonicalUrl = `${siteDomain}${adjustedPath}`;
   
   // hreflang tags are now handled by gatsby-plugin-react-i18next

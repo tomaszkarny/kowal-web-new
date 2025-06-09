@@ -23,10 +23,10 @@ export const Footer = () => {
   const citiesData = require('data/cities')
   const cities = citiesData.CITIES || citiesData.default || citiesData
   
-  // Function to generate correct language path for city pages
+  // Function to generate correct language path
   const getLanguagePath = (targetLanguage, currentPath) => {
     // Check if this is a city page
-    const cityPageMatch = currentPath.match(/\/(pl\/)?cities\/([^\/]+)\/?/)
+    const cityPageMatch = currentPath.match(/\/(en\/|pl\/)?cities\/([^\/]+)\/?/)
     
     if (cityPageMatch) {
       const currentSlug = cityPageMatch[2]
@@ -37,18 +37,21 @@ export const Footer = () => {
       )
       
       if (city) {
-        // Generate correct path for target language with consistent /pl/ prefix
+        // Generate correct path for target language
         const targetSlug = city.slug[targetLanguage]
-        const basePath = targetLanguage === 'pl' ? '/pl' : '/en'
-        return `${basePath}/cities/${targetSlug}/`
+        if (targetLanguage === 'pl') {
+          return `/cities/${targetSlug}/`  // Polish without prefix
+        } else {
+          return `/en/cities/${targetSlug}/`  // English with prefix
+        }
       }
     }
     
-    // For non-city pages, use consistent /pl/ prefix logic
+    // For non-city pages
     if (targetLanguage === 'pl') {
-      // Remove /en prefix and /pl prefix to get base path, then add /pl/
+      // Remove any language prefix to get base path (Polish has no prefix)
       const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
-      return basePath === '/' ? '/pl/' : `/pl${basePath}`
+      return basePath === '/' ? '/' : basePath
     } else {
       // Remove any existing language prefix and add /en
       const basePath = currentPath.replace(/^\/en/, '').replace(/^\/pl/, '') || '/'
