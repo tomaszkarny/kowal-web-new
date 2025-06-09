@@ -25,11 +25,20 @@ export const Footer = () => {
   
   // Function to generate correct language path
   const getLanguagePath = (targetLanguage, currentPath) => {
-    // Check if this is a city page
-    const cityPageMatch = currentPath.match(/\/(en\/|pl\/)?cities\/([^\/]+)\/?/)
+    // Clean up any malformed URLs with multiple prefixes first
+    let cleanPath = currentPath
+    // Remove all consecutive /en/ and /pl/ prefixes iteratively
+    while (cleanPath.match(/^\/(?:en|pl)\/+(?:en|pl)\//)) {
+      cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/')
+    }
+    // Final cleanup of any remaining single prefix
+    cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/') || '/'
+    
+    // Check if this is a city page using the cleaned path
+    const cityPageMatch = cleanPath.match(/^\/cities\/([^\/]+)\/?$/)
     
     if (cityPageMatch) {
-      const currentSlug = cityPageMatch[2]
+      const currentSlug = cityPageMatch[1]
       
       // Find the city by current slug (could be in either language)
       const city = cities.find(city => 
@@ -47,15 +56,11 @@ export const Footer = () => {
       }
     }
     
-    // For non-city pages
+    // For non-city pages, use the cleaned path
     if (targetLanguage === 'pl') {
-      // Remove ALL language prefixes to get base path (Polish has no prefix)
-      const basePath = currentPath.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
-      return basePath === '/' ? '/' : basePath
+      return cleanPath
     } else {
-      // Remove ALL existing language prefixes and add single /en/
-      const basePath = currentPath.replace(/^\/en\/+/, '/').replace(/^\/pl\/+/, '/') || '/'
-      return basePath === '/' ? '/en/' : `/en${basePath}`
+      return cleanPath === '/' ? '/en/' : `/en${cleanPath}`
     }
   }
   
@@ -180,7 +185,8 @@ export const Footer = () => {
       <FooterSection>
         <FooterTitle>{t('international')}</FooterTitle>
         {languages.map(lng => {
-          const currentPath = typeof window !== 'undefined' ? window.location.pathname : originalPath
+          // Use originalPath from Gatsby instead of window.location to avoid double prefixes
+          const currentPath = originalPath || (typeof window !== 'undefined' ? window.location.pathname : '/')
           const targetPath = getLanguagePath(lng, currentPath)
           
           return (
