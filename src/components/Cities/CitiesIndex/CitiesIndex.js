@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Link, useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 
 import citiesData from 'data/cities'
 const { CITIES, getFeaturedCities } = citiesData
 import cityCalculatorUtils from 'utils/cityDistanceCalculator'
 const { processAllCities } = cityCalculatorUtils
 import { getCityPath } from 'utils/cityUtils'
+import { getLanguageFromPath } from 'consts/languageConfig'
 import {
   IndexSection,
   IndexContainer,
@@ -24,8 +25,12 @@ import {
 } from './CitiesIndex.styles'
 
 export function CitiesIndex() {
-  const { t, i18n } = useTranslation('cities')
-  const language = i18n.language
+  const { t } = useTranslation('cities')
+  const { originalPath } = useI18next()
+  
+  // Use URL-based language detection instead of hook to avoid cache issues
+  const currentPath = originalPath || (typeof window !== 'undefined' ? window.location.pathname : '/')
+  const language = getLanguageFromPath(currentPath)
   
   // Process all cities with calculated distances
   const processedCities = useMemo(() => processAllCities(CITIES), [])

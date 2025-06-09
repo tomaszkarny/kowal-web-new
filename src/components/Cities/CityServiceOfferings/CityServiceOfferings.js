@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
+import { buildLanguagePath } from 'consts/languageConfig'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -231,7 +232,7 @@ export function CityServiceOfferings({ city, language }) {
         <CTASection>
           <CTATitle>{ctaTitle}</CTATitle>
           <CTAText>{ctaText}</CTAText>
-          <CTAButton href={`/${language === 'pl' ? '' : 'en/'}contact`}>
+          <CTAButton href={buildLanguagePath('/contact/', language)}>
             {ctaButtonText}
           </CTAButton>
         </CTASection>
