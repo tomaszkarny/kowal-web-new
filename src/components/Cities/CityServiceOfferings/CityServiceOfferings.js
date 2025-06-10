@@ -237,7 +237,7 @@ export function CityServiceOfferings({ city, language, pathname }) {
         <CTASection>
           <CTATitle>{ctaTitle}</CTATitle>
           <CTAText>{ctaText}</CTAText>
-          <CTAButton href="/contact/">
+          <CTAButton href={actualLanguage === 'en' ? '/en/contact/' : '/contact/'}>
             {ctaButtonText}
           </CTAButton>
         </CTASection>

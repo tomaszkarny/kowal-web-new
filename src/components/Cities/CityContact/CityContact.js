@@ -193,7 +193,8 @@ export function CityContact({ city, language, templateData, pathname }) {
   }
   
   const handleContactClick = () => {
-    navigate('/contact/')
+    const contactPath = actualLanguage === 'en' ? '/en/contact/' : '/contact/'
+    navigate(contactPath)
   }
 
   return (
