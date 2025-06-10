@@ -28,7 +28,18 @@ export const Hero = () => {
     query MyQuery {
       image: file(relativePath: { eq: "Hero_image.webp" }) {
         childImageSharp {
-          gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP])
+          gatsbyImageData(
+            width: 1920
+            height: 1080
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            quality: 95
+            transformOptions: { 
+              cropFocus: CENTER
+              fit: COVER 
+            }
+            breakpoints: [768, 1024, 1366, 1920]
+          )
         }
       }
     }

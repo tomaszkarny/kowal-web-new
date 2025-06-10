@@ -20,7 +20,18 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        // Global Sharp.js optimizations
+        defaults: {
+          quality: 90,
+          formats: [`auto`, `webp`, `avif`],
+          placeholder: `blurred`,
+          breakpoints: [576, 768, 992, 1200, 1400, 1920]
+        }
+      },
+    },
 
     {
       resolve: `gatsby-plugin-react-i18next`,

@@ -166,7 +166,18 @@ export const GalleryPage = () => {
             id
             relativeDirectory
             childImageSharp {
-              gatsbyImageData(width: 1200, formats: [AUTO, WEBP], placeholder: BLURRED)
+              gatsbyImageData(
+                width: 800
+                height: 600
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+                transformOptions: { 
+                  cropFocus: CENTER
+                  fit: COVER 
+                }
+                quality: 85
+                breakpoints: [400, 600, 800, 1200]
+              )
               original {
                 width
                 height

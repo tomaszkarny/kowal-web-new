@@ -13,6 +13,14 @@ import { ImageWrapper, StyledImg } from 'components/common/Image/Image.styles'
  * @param {boolean} props.isHero - Whether this image is used in the hero section
  */
 export const Image = ({ alt, style, small, image, isHero }) => {
+  // Optimize loading for hero images (above the fold)
+  const loadingProps = isHero ? {
+    loading: "eager",
+    fetchPriority: "high"
+  } : {
+    loading: "lazy"
+  }
+
   return (
     <ImageWrapper isHero={isHero}>
       <StyledImg
@@ -21,6 +29,7 @@ export const Image = ({ alt, style, small, image, isHero }) => {
         style={style}
         small={small}
         isHero={isHero}
+        {...loadingProps}
       />
     </ImageWrapper>
   )
