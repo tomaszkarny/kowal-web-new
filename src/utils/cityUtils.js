@@ -31,14 +31,8 @@ export function findCityBySlug(slug, cities) {
  * @returns {string} The localized path to the city page
  */
 export function getCityPath(city, language) {
-  const citySlug = language === 'pl' ? city.slug.pl : city.slug.en
-  
-  // Polish pages have no prefix, English pages have /en/ prefix
-  if (language === 'en') {
-    return `/en/cities/${citySlug}/`
-  }
-  
-  return `/cities/${citySlug}/`
+  // Always use English slug, let gatsby-plugin-react-i18next handle language prefix
+  return `/cities/${city.slug.en}/`
 }
 
 /**

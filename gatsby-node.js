@@ -66,7 +66,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     
     // Polish city page - create only the base version (without /pl/ prefix)
-    const plPathBase = `/cities/${city.slug.pl}/`
+    const plPathBase = `/cities/${city.slug.en}/`
     
     // Create base Polish page (without /pl/ prefix)
     console.log(`[gatsby-node] Creating Polish city page: ${plPathBase}`)
@@ -89,7 +89,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     })
     
-    // English city page
+    // English city page - use English slug for consistency
     const enPath = `/en/cities/${city.slug.en}/`
     console.log(`[gatsby-node] Creating English city page: ${enPath}`)
     
@@ -106,7 +106,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           defaultLanguage: 'pl',
           generateDefaultLanguagePage: false,
           routed: true,
-          originalPath: `/cities/${city.slug.pl}/`,
+          originalPath: `/cities/${city.slug.en}/`,
           path: enPath
         }
       }

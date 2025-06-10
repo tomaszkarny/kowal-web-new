@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
-import { buildLanguagePath } from 'consts/languageConfig'
+import { buildLanguagePath, getLanguageFromPath } from 'consts/languageConfig'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -125,11 +125,16 @@ const CTAButton = styled.a`
   }
 `
 
-export function CityServiceOfferings({ city, language }) {
-  const services = language === 'pl' ? [
+export function CityServiceOfferings({ city, language, pathname }) {
+  // Get current path for language detection - use pathname prop during SSR
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : (pathname || '/')
+  // Use URL-based language detection instead of prop
+  const actualLanguage = getLanguageFromPath(currentPath)
+  
+  const services = actualLanguage === 'pl' ? [
     {
-      title: `Ogrodzenia na Zamówienie ${city.name[language]}`,
-      description: `Projektujemy i wykonujemy ogrodzenia kute na zamówienie dla klientów z ${city.name[language]} i okolic. Każde ogrodzenie jest tworzone według indywidualnego projektu.`,
+      title: `Ogrodzenia na Zamówienie ${city.name[actualLanguage]}`,
+      description: `Projektujemy i wykonujemy ogrodzenia kute na zamówienie dla klientów z ${city.name[actualLanguage]} i okolic. Każde ogrodzenie jest tworzone według indywidualnego projektu.`,
       features: [
         'Indywidualne projekty ogrodzeń',
         'Różnorodne wzory i style',
@@ -139,8 +144,8 @@ export function CityServiceOfferings({ city, language }) {
       ]
     },
     {
-      title: `Bramy Kute na Zamówienie ${city.name[language]}`,
-      description: `Specjalizujemy się w bramach kutych na zamówienie. Oferujemy bramy wjazdowe, przesuwne i dwuskrzydłowe dla domów w ${city.name[language]}.`,
+      title: `Bramy Kute na Zamówienie ${city.name[actualLanguage]}`,
+      description: `Specjalizujemy się w bramach kutych na zamówienie. Oferujemy bramy wjazdowe, przesuwne i dwuskrzydłowe dla domów w ${city.name[actualLanguage]}.`,
       features: [
         'Bramy dwuskrzydłowe i przesuwne',
         'Automatyka bramowa',
@@ -150,8 +155,8 @@ export function CityServiceOfferings({ city, language }) {
       ]
     },
     {
-      title: `Balustrady na Zamówienie ${city.name[language]}`,
-      description: `Wykonujemy balustrady na zamówienie - wewnętrzne i zewnętrzne. Idealne dla domów i firm w ${city.name[language]}.`,
+      title: `Balustrady na Zamówienie ${city.name[actualLanguage]}`,
+      description: `Wykonujemy balustrady na zamówienie - wewnętrzne i zewnętrzne. Idealne dla domów i firm w ${city.name[actualLanguage]}.`,
       features: [
         'Balustrady schodowe',
         'Balustrady balkonowe',
@@ -162,8 +167,8 @@ export function CityServiceOfferings({ city, language }) {
     }
   ] : [
     {
-      title: `Custom Fences ${city.name[language]}`,
-      description: `We design and create custom wrought iron fences for clients from ${city.name[language]} and surrounding areas. Each fence is made according to individual design.`,
+      title: `Custom Fences ${city.name[actualLanguage]}`,
+      description: `We design and create custom wrought iron fences for clients from ${city.name[actualLanguage]} and surrounding areas. Each fence is made according to individual design.`,
       features: [
         'Individual fence designs',
         'Various patterns and styles',
@@ -173,8 +178,8 @@ export function CityServiceOfferings({ city, language }) {
       ]
     },
     {
-      title: `Custom Wrought Iron Gates ${city.name[language]}`,
-      description: `We specialize in custom wrought iron gates. We offer driveway, sliding and double-leaf gates for homes in ${city.name[language]}.`,
+      title: `Custom Wrought Iron Gates ${city.name[actualLanguage]}`,
+      description: `We specialize in custom wrought iron gates. We offer driveway, sliding and double-leaf gates for homes in ${city.name[actualLanguage]}.`,
       features: [
         'Double-leaf and sliding gates',
         'Gate automation',
@@ -184,8 +189,8 @@ export function CityServiceOfferings({ city, language }) {
       ]
     },
     {
-      title: `Custom Railings ${city.name[language]}`,
-      description: `We create custom railings - interior and exterior. Perfect for homes and businesses in ${city.name[language]}.`,
+      title: `Custom Railings ${city.name[actualLanguage]}`,
+      description: `We create custom railings - interior and exterior. Perfect for homes and businesses in ${city.name[actualLanguage]}.`,
       features: [
         'Stair railings',
         'Balcony railings',
@@ -196,19 +201,19 @@ export function CityServiceOfferings({ city, language }) {
     }
   ]
 
-  const mainTitle = language === 'pl' 
-    ? `Kowalstwo Artystyczne na Zamówienie w ${city.name[language]}`
-    : `Custom Artistic Blacksmithing in ${city.name[language]}`
+  const mainTitle = actualLanguage === 'pl' 
+    ? `Kowalstwo Artystyczne na Zamówienie w ${city.name[actualLanguage]}`
+    : `Custom Artistic Blacksmithing in ${city.name[actualLanguage]}`
 
-  const ctaTitle = language === 'pl'
-    ? `Szukasz Kowala w ${city.name[language]}?`
-    : `Looking for a Blacksmith in ${city.name[language]}?`
+  const ctaTitle = actualLanguage === 'pl'
+    ? `Szukasz Kowala w ${city.name[actualLanguage]}?`
+    : `Looking for a Blacksmith in ${city.name[actualLanguage]}?`
 
-  const ctaText = language === 'pl'
+  const ctaText = actualLanguage === 'pl'
     ? `Skontaktuj się z nami już dziś i otrzymaj darmową wycenę na ogrodzenia, bramy i balustrady na zamówienie.`
     : `Contact us today and get a free quote for custom fences, gates and railings.`
 
-  const ctaButtonText = language === 'pl' ? 'Zamów Darmową Wycenę' : 'Get Free Quote'
+  const ctaButtonText = actualLanguage === 'pl' ? 'Zamów Darmową Wycenę' : 'Get Free Quote'
 
   return (
     <OfferingsSection>
@@ -232,7 +237,7 @@ export function CityServiceOfferings({ city, language }) {
         <CTASection>
           <CTATitle>{ctaTitle}</CTATitle>
           <CTAText>{ctaText}</CTAText>
-          <CTAButton href={buildLanguagePath('/contact/', language)}>
+          <CTAButton href="/contact/">
             {ctaButtonText}
           </CTAButton>
         </CTASection>

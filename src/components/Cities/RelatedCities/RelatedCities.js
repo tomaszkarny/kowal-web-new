@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { getCityPath } from 'utils/cityUtils'
+import { getLanguageFromPath } from 'consts/languageConfig'
 import cityCalculatorUtils from 'utils/cityDistanceCalculator'
 const { calculateDistance } = cityCalculatorUtils
 import { THEME } from 'consts/theme'
@@ -82,8 +83,13 @@ const Badge = styled.span`
   align-self: flex-start;
 `
 
-export function RelatedCities({ currentCity, allCities, language }) {
+export function RelatedCities({ currentCity, allCities, language, pathname }) {
   const { t } = useTranslation('cities')
+  
+  // Get current path for language detection - use pathname prop during SSR
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : (pathname || '/')
+  // Use URL-based language detection instead of prop
+  const actualLanguage = getLanguageFromPath(currentPath)
   
   // Calculate distances and sort by proximity
   const nearbyCities = allCities
@@ -100,7 +106,7 @@ export function RelatedCities({ currentCity, allCities, language }) {
     .sort((a, b) => a.distanceFromCurrent - b.distanceFromCurrent)
     .slice(0, 3)
   
-  const title = language === 'pl' 
+  const title = actualLanguage === 'pl' 
     ? 'Obsługujemy również' 
     : 'We also serve'
   
@@ -112,18 +118,18 @@ export function RelatedCities({ currentCity, allCities, language }) {
           {nearbyCities.map(city => (
             <CityCard 
               key={city.id} 
-              to={getCityPath(city, language)}
+              to={`/cities/${city.slug.en}/`}
             >
-              <CityName>{city.name[language]}</CityName>
+              <CityName>{city.name[actualLanguage]}</CityName>
               <CityInfo>
-                {city.region[language]}
+                {city.region[actualLanguage]}
                 <Distance>
-                  {language === 'pl' ? 'Odległość' : 'Distance'}: {Math.round(city.distanceFromCurrent)} km
+                  {actualLanguage === 'pl' ? 'Odległość' : 'Distance'}: {Math.round(city.distanceFromCurrent)} km
                 </Distance>
               </CityInfo>
               {city.freeDelivery && (
                 <Badge>
-                  {language === 'pl' ? 'Darmowa dostawa' : 'Free delivery'}
+                  {actualLanguage === 'pl' ? 'Darmowa dostawa' : 'Free delivery'}
                 </Badge>
               )}
             </CityCard>

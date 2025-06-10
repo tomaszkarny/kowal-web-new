@@ -257,22 +257,30 @@ module.exports = {
           // Apply trailing slash to the current path
           const pathWithSlash = ensureTrailingSlash(path);
           
-          // Generate alternate URLs for language versions with consistent trailing slashes
-          let plPath = isEnglish ? ensureTrailingSlash(pathWithSlash.replace('/en', '')) : pathWithSlash;
-          if (plPath === '') plPath = '/';
+          // No need for complex slug mapping - use English slugs consistently
           
-          // Fix: Properly handle Polish to English URL conversion
-          let enPath;
+          // Generate alternate URLs for language versions with consistent trailing slashes
+          let plPath, enPath;
+          
           if (isEnglish) {
-            enPath = pathWithSlash; // Already English path
-          } else if (pathWithSlash === '/') {
-            enPath = '/en/'; // Root page to English root
-          } else if (pathWithSlash.startsWith('/pl/')) {
-            // Replace /pl/ with /en/ for Polish pages
-            enPath = ensureTrailingSlash(pathWithSlash.replace('/pl/', '/en/'));
+            // Current path is English
+            enPath = pathWithSlash;
+            // Convert to Polish by removing /en prefix
+            if (pathWithSlash === '/en/') {
+              plPath = '/';
+            } else {
+              plPath = ensureTrailingSlash(pathWithSlash.replace('/en', ''));
+              if (plPath === '') plPath = '/';
+            }
           } else {
-            // For pages without language prefix, add /en/
-            enPath = ensureTrailingSlash(`/en${pathWithSlash}`);
+            // Current path is Polish
+            plPath = pathWithSlash;
+            // Convert to English by adding /en prefix
+            if (pathWithSlash === '/') {
+              enPath = '/en/';
+            } else {
+              enPath = ensureTrailingSlash(`/en${pathWithSlash}`);
+            }
           }
           
           // Determine page type and set priority accordingly
@@ -318,6 +326,11 @@ module.exports = {
             changefreq: changefreq,
             priority: priority,
             links: [
+              {
+                lang: 'x-default',
+                url: plPath, // Polish as default since it's the main market
+                rel: 'alternate'
+              },
               {
                 lang: 'pl',
                 url: plPath,

@@ -4,6 +4,7 @@ import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
 import { getNapInfo, GOOGLE_MAPS_URL } from 'consts/contactDetails'
+import { getLanguageFromPath } from 'consts/languageConfig'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -168,14 +169,19 @@ const EmergencyInfo = styled.div`
   }
 `
 
-export function CityContact({ city, language, templateData }) {
+export function CityContact({ city, language, templateData, pathname }) {
   const { t } = useTranslation('cities')
+  
+  // Get current path for language detection - use pathname prop during SSR
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : (pathname || '/')
+  // Use URL-based language detection instead of prop
+  const actualLanguage = getLanguageFromPath(currentPath)
   
   const title = t('cityPage.contact.title', templateData)
   const subtitle = t('cityPage.contact.subtitle')
   
   // Get real contact information
-  const napInfo = getNapInfo(language)
+  const napInfo = getNapInfo(actualLanguage)
   
   const contactInfo = {
     workshop: t('cityPage.contact.info.workshop'),
@@ -187,7 +193,7 @@ export function CityContact({ city, language, templateData }) {
   }
   
   const handleContactClick = () => {
-    navigate(language === 'pl' ? '/contact' : '/en/contact')
+    navigate('/contact/')
   }
 
   return (
@@ -200,7 +206,7 @@ export function CityContact({ city, language, templateData }) {
           <ContactInfo>
             <InfoTitle>{contactInfo.workshop}</InfoTitle>
             <InfoItem>
-              <strong>{language === 'pl' ? 'Adres:' : 'Address:'}</strong><br/>
+              <strong>{actualLanguage === 'pl' ? 'Adres:' : 'Address:'}</strong><br/>
               <a 
                 href={GOOGLE_MAPS_URL} 
                 target="_blank" 
@@ -215,33 +221,33 @@ export function CityContact({ city, language, templateData }) {
               </a>
             </InfoItem>
             <InfoItem>
-              <strong>{language === 'pl' ? 'Telefon:' : 'Phone:'}</strong><br/>
+              <strong>{actualLanguage === 'pl' ? 'Telefon:' : 'Phone:'}</strong><br/>
               <a href={`tel:${napInfo.phone.replace(/\s/g, '')}`} style={{ color: COLORS.primary, textDecoration: 'none' }}>
                 {contactInfo.phone}
               </a>
             </InfoItem>
             <InfoItem>
               <strong>{contactInfo.serviceArea}</strong><br/>
-              {city.name[language]} {language === 'pl' ? 'i okolice' : 'and surroundings'}
+              {city.name[actualLanguage]} {actualLanguage === 'pl' ? 'i okolice' : 'and surroundings'}
             </InfoItem>
             <InfoItem>
               {contactInfo.travelTime}
             </InfoItem>
             {city.freeDelivery && (
               <InfoItem style={{ color: COLORS.success, fontWeight: '600' }}>
-                ✅ {language === 'pl' ? 'Bezpłatny transport' : 'Free delivery'}
+                ✅ {actualLanguage === 'pl' ? 'Bezpłatny transport' : 'Free delivery'}
               </InfoItem>
             )}
             
             <BusinessHours>
-              <HoursTitle>{language === 'pl' ? 'Godziny otwarcia:' : 'Business hours:'}</HoursTitle>
+              <HoursTitle>{actualLanguage === 'pl' ? 'Godziny otwarcia:' : 'Business hours:'}</HoursTitle>
               <HoursGrid>
-                <strong>{language === 'pl' ? 'Pon-Pt:' : 'Mon-Fri:'}</strong>
+                <strong>{actualLanguage === 'pl' ? 'Pon-Pt:' : 'Mon-Fri:'}</strong>
                 <span>7:30 - 16:00</span>
-                <strong>{language === 'pl' ? 'Sobota:' : 'Saturday:'}</strong>
+                <strong>{actualLanguage === 'pl' ? 'Sobota:' : 'Saturday:'}</strong>
                 <span>9:00 - 15:00</span>
-                <strong>{language === 'pl' ? 'Niedziela:' : 'Sunday:'}</strong>
-                <span>{language === 'pl' ? 'Zamknięte' : 'Closed'}</span>
+                <strong>{actualLanguage === 'pl' ? 'Niedziela:' : 'Sunday:'}</strong>
+                <span>{actualLanguage === 'pl' ? 'Zamknięte' : 'Closed'}</span>
               </HoursGrid>
             </BusinessHours>
             
@@ -250,7 +256,7 @@ export function CityContact({ city, language, templateData }) {
                 <path d="M10 3h4v2h-4V3m0 18h4v-2h-4v2m2-16c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2z"/>
               </svg>
               <p>
-                {language === 'pl' 
+                {actualLanguage === 'pl' 
                   ? 'Naprawy awaryjne 24/7 w promieniu 50km' 
                   : '24/7 emergency repairs within 50km radius'}
               </p>
@@ -259,16 +265,16 @@ export function CityContact({ city, language, templateData }) {
           
           <ContactForm>
             <InfoTitle>
-              {language === 'pl' ? 'Formularz kontaktowy' : 'Contact form'}
+              {actualLanguage === 'pl' ? 'Formularz kontaktowy' : 'Contact form'}
             </InfoTitle>
             <p style={{ color: COLORS.textSecondary, marginBottom: '1.5rem' }}>
-              {language === 'pl' 
+              {actualLanguage === 'pl' 
                 ? `Skontaktuj się z nami, aby omówić projekt w ${templateData.city}`
                 : `Contact us to discuss your project in ${templateData.city}`
               }
             </p>
             <Button onClick={handleContactClick}>
-              {language === 'pl' ? 'Przejdź do formularza' : 'Go to contact form'}
+              {actualLanguage === 'pl' ? 'Przejdź do formularza' : 'Go to contact form'}
             </Button>
           </ContactForm>
         </ContactGrid>

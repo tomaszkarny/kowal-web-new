@@ -165,7 +165,7 @@ export const Footer = () => {
                 )
               })}
               <FooterLink 
-                to={actualLanguage === 'en' ? '/en/cities/' : '/cities/'}
+                to="/cities/"
                 key={`all-cities-${actualLanguage}`}
               >
                 {t('allCities')}

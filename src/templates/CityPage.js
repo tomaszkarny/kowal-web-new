@@ -37,7 +37,7 @@ import {
  * Template dla stron miast
  * Tworzone dynamicznie w gatsby-node.js
  */
-function CityPageTemplate({ pageContext }) {
+function CityPageTemplate({ pageContext, location }) {
   const { city, language } = pageContext
   const { t } = useTranslation('cities')
   
@@ -72,7 +72,7 @@ function CityPageTemplate({ pageContext }) {
       
       <ErrorBoundary>
         <Suspense fallback={<LoadingComponent />}>
-          <CityServiceOfferings city={city} language={language} />
+          <CityServiceOfferings city={city} language={language} pathname={location.pathname} />
         </Suspense>
       </ErrorBoundary>
       
@@ -96,7 +96,7 @@ function CityPageTemplate({ pageContext }) {
       
       <ErrorBoundary>
         <Suspense fallback={<LoadingComponent />}>
-          <CityContact city={city} language={language} templateData={templateData} />
+          <CityContact city={city} language={language} templateData={templateData} pathname={location.pathname} />
         </Suspense>
       </ErrorBoundary>
       
@@ -108,7 +108,7 @@ function CityPageTemplate({ pageContext }) {
       
       <ErrorBoundary>
         <Suspense fallback={<LoadingComponent />}>
-          <RelatedCities currentCity={city} allCities={cities} language={language} />
+          <RelatedCities currentCity={city} allCities={cities} language={language} pathname={location.pathname} />
         </Suspense>
       </ErrorBoundary>
     </Layout>
