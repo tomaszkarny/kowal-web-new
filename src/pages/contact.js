@@ -7,6 +7,7 @@ import { Layout } from 'components/Layout/Layout'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
+import { HowToSchema } from 'components/SEO/HowToSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
@@ -57,6 +58,10 @@ export const Head = ({ data, location, pageContext }) => {
         pathname={location.pathname}
         url={`${WEBSITE_URL}${location.pathname}`}
         language={language}
+      />
+      <HowToSchema
+        language={language}
+        schemaType="ordering"
       />
       <FAQSchema 
         faqData={getFAQData(language, 'contact')}

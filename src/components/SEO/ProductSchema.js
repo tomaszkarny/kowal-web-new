@@ -15,19 +15,61 @@ export function ProductSchema({ language, cityName }) {
         "name": BUSINESS_NAME_ML[language]
       },
       "offers": {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
         "priceCurrency": "PLN",
-        "lowPrice": "250",
-        "highPrice": "800",
-        "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
-        "offerCount": "50",
+        "itemCondition": "https://schema.org/NewCondition",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "description": language === 'pl' 
+            ? "Bezpłatna wycena dostosowana do indywidualnego projektu"
+            : "Free quote tailored to individual project requirements"
+        },
+        "warranty": "P5Y",
+        "deliveryLeadTime": "P14D",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": language === 'pl' ? "Województwo Podlaskie" : "Podlaskie Voivodeship"
+        },
+        "acceptedPaymentMethod": [
+          "https://schema.org/Cash",
+          "https://schema.org/BankTransferInAdvance"
+        ],
         "seller": {
           "@type": "LocalBusiness",
           "name": BUSINESS_NAME_ML[language],
           "telephone": PHONE_NUMBER
         }
       },
+      "category": "Home & Garden > Outdoor Living > Fencing",
+      "material": language === 'pl' ? "Stal kutą S235, S355" : "Wrought Steel S235, S355",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Materiał" : "Material",
+          "value": language === 'pl' ? "Stal S235, S355 - najwyższa jakość" : "Steel S235, S355 - highest quality"
+        },
+        {
+          "@type": "PropertyValue", 
+          "name": language === 'pl' ? "Gwarancja" : "Warranty",
+          "value": language === 'pl' ? "5 lat na wykonanie i materiały" : "5 years on workmanship and materials"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Wycena" : "Quote",
+          "value": language === 'pl' ? "Bezpłatna wycena i projekt koncepcyjny" : "Free quote and conceptual design"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Montaż" : "Installation",
+          "value": language === 'pl' ? "Profesjonalny montaż w cenie" : "Professional installation included"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Doświadczenie" : "Experience", 
+          "value": language === 'pl' ? "30 lat w kowalstwie artystycznym" : "30 years in artistic blacksmithing"
+        }
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
@@ -48,19 +90,61 @@ export function ProductSchema({ language, cityName }) {
         "name": BUSINESS_NAME_ML[language]
       },
       "offers": {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
         "priceCurrency": "PLN",
-        "lowPrice": "3000",
-        "highPrice": "15000",
-        "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
-        "offerCount": "30",
+        "itemCondition": "https://schema.org/NewCondition",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "description": language === 'pl' 
+            ? "Bezpłatna wycena - cena zależy od typu bramy i automatyki"
+            : "Free quote - price depends on gate type and automation"
+        },
+        "warranty": "P5Y",
+        "deliveryLeadTime": "P21D",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": language === 'pl' ? "Województwo Podlaskie" : "Podlaskie Voivodeship"
+        },
+        "acceptedPaymentMethod": [
+          "https://schema.org/Cash",
+          "https://schema.org/BankTransferInAdvance"
+        ],
         "seller": {
           "@type": "LocalBusiness",
           "name": BUSINESS_NAME_ML[language],
           "telephone": PHONE_NUMBER
         }
       },
+      "category": "Home & Garden > Outdoor Living > Gates",
+      "material": language === 'pl' ? "Stal kuta S235, S355" : "Wrought Steel S235, S355",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Typ" : "Type",
+          "value": language === 'pl' ? "Dwuskrzydłowe, przesuwne, z automatyką" : "Double-leaf, sliding, with automation"
+        },
+        {
+          "@type": "PropertyValue", 
+          "name": language === 'pl' ? "Gwarancja" : "Warranty",
+          "value": language === 'pl' ? "5 lat na wykonanie i automatykę" : "5 years on workmanship and automation"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Automatyka" : "Automation",
+          "value": language === 'pl' ? "Montaż i konfiguracja w cenie" : "Installation and configuration included"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Projekt" : "Design",
+          "value": language === 'pl' ? "Indywidualny projekt 3D" : "Individual 3D design"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Serwis" : "Service", 
+          "value": language === 'pl' ? "Serwis pogwarancyjny" : "Post-warranty service"
+        }
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -81,19 +165,61 @@ export function ProductSchema({ language, cityName }) {
         "name": BUSINESS_NAME_ML[language]
       },
       "offers": {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
         "priceCurrency": "PLN",
-        "lowPrice": "300",
-        "highPrice": "1200", 
-        "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
-        "offerCount": "40",
+        "itemCondition": "https://schema.org/NewCondition",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "description": language === 'pl' 
+            ? "Bezpłatna wycena - cena zależy od typu i złożoności balustrady"
+            : "Free quote - price depends on type and complexity of railings"
+        },
+        "warranty": "P5Y",
+        "deliveryLeadTime": "P10D",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": language === 'pl' ? "Województwo Podlaskie" : "Podlaskie Voivodeship"
+        },
+        "acceptedPaymentMethod": [
+          "https://schema.org/Cash",
+          "https://schema.org/BankTransferInAdvance"
+        ],
         "seller": {
           "@type": "LocalBusiness",
           "name": BUSINESS_NAME_ML[language],
           "telephone": PHONE_NUMBER
         }
       },
+      "category": "Home & Garden > Indoor Living > Railings",
+      "material": language === 'pl' ? "Stal kuta, stal nierdzewna" : "Wrought steel, stainless steel",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Zastosowanie" : "Application",
+          "value": language === 'pl' ? "Wewnętrzne i zewnętrzne" : "Interior and exterior"
+        },
+        {
+          "@type": "PropertyValue", 
+          "name": language === 'pl' ? "Typy" : "Types",
+          "value": language === 'pl' ? "Schodowe, balkonowe, tarasowe" : "Stair, balcony, terrace railings"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Gwarancja" : "Warranty",
+          "value": language === 'pl' ? "5 lat na wykonanie" : "5 years on workmanship"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Montaż" : "Installation",
+          "value": language === 'pl' ? "Ekspresowy montaż w 24h" : "Express installation within 24h"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": language === 'pl' ? "Wykończenie" : "Finish", 
+          "value": language === 'pl' ? "Malowanie proszkowe, galwanizacja" : "Powder coating, galvanization"
+        }
+      ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",

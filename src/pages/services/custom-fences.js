@@ -7,6 +7,7 @@ import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { ProductSchema } from 'components/SEO/ProductSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
+import { HowToSchema } from 'components/SEO/HowToSchema'
 import { THEME } from 'consts/theme'
 import { WEBSITE_URL, PHONE_NUMBER } from 'consts/contactDetails'
 
@@ -320,6 +321,11 @@ export function Head({ location, pageContext }) {
       <ProductSchema 
         language={language}
         cityName="Białystok"
+      />
+      
+      <HowToSchema
+        language={language}
+        schemaType="ordering"
       />
       
       <BreadcrumbSchema 
