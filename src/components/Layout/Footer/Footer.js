@@ -213,24 +213,32 @@ export function Footer() {
               to={cleanPath}
               language={lng}
               style={{
-                textDecoration: 'none',
+                textDecoration: lng === language ? 'underline' : 'none',
                 marginBottom: '10px',
                 display: 'block',
                 color: lng === language ? '#ffcc00' : '#ffffff',
-                opacity: '0.5',
+                opacity: lng === language ? '1' : '0.5',
                 fontSize: '18px',
                 lineHeight: '27px',
                 textRendering: 'optimizeLegibility',
-                WebkitFontSmoothing: 'antialiased'
+                WebkitFontSmoothing: 'antialiased',
+                cursor: lng === language ? 'default' : 'pointer',
+                transition: 'all 0.3s ease-in-out',
+                fontWeight: lng === language ? 'bold' : 'normal'
               }}
               onMouseEnter={(e) => {
-                e.target.style.opacity = '1'
-                e.target.style.textDecoration = 'underline'
-                e.target.style.transition = 'all 0.3s ease-in-out'
+                // Only apply hover effect if not the current language
+                if (lng !== language) {
+                  e.target.style.opacity = '1'
+                  e.target.style.textDecoration = 'underline'
+                }
               }}
               onMouseLeave={(e) => {
-                e.target.style.opacity = '0.5'
-                e.target.style.textDecoration = 'none'
+                // Only remove hover effect if not the current language
+                if (lng !== language) {
+                  e.target.style.opacity = '0.5'
+                  e.target.style.textDecoration = 'none'
+                }
               }}
             >
               {lng === 'en' ? (typeof t === 'function' ? t('englishVersion') : 'English Version') : (typeof t === 'function' ? t('polishVersion') : 'Polish Version')}
