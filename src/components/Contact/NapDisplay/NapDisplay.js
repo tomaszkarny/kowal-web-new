@@ -4,6 +4,17 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 
 // Styles
+import { 
+  getNapInfo, 
+  BUSINESS_NAME_ML,
+  ADDRESS_ML,
+  PHONE_NUMBER,
+  PHONE_NUMBER_DISPLAY,
+  EMAIL_ADDRESS,
+  OPENING_HOURS_ML,
+  FACEBOOK_URL,
+  INSTAGRAM_URL
+} from 'consts/contactDetails'
 import {
   StyledNapDisplay,
   BusinessName,
@@ -19,17 +30,6 @@ import {
 } from './NapDisplay.styles'
 
 // Constants
-import { 
-  getNapInfo, 
-  BUSINESS_NAME_ML,
-  ADDRESS_ML,
-  PHONE_NUMBER,
-  PHONE_NUMBER_DISPLAY,
-  EMAIL_ADDRESS,
-  OPENING_HOURS_ML,
-  FACEBOOK_URL,
-  INSTAGRAM_URL
-} from 'consts/contactDetails'
 
 /**
  * Component for displaying consistent Name, Address, Phone (NAP) information
@@ -42,14 +42,14 @@ import {
  * @param {boolean} props.showMap - Whether to display a Google Map link
  * @param {Object} props.className - CSS class for styling
  */
-export const NapDisplay = ({
+export function NapDisplay({
   variant = 'full',
   showHours = true,
   showSocialLinks = true,
   showEmail = true,
   showMap = true,
   className
-}) => {
+}) {
   const { t, i18n } = useTranslation('common')
   const currentLang = i18n.language || 'pl'
   

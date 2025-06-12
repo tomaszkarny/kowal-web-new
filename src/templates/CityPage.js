@@ -9,11 +9,20 @@ import { ProductSchema } from 'components/SEO/ProductSchema'
 import { ErrorBoundary } from 'components/common/ErrorBoundary'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
-const cities = citiesData.CITIES || citiesData.default || citiesData
 
 // Above-the-fold components loaded immediately
 import { CityHero } from 'components/Cities/CityHero'
 import { CityServices } from 'components/Cities/CityServices'
+
+import { 
+  WEBSITE_URL, 
+  PHONE_NUMBER,
+  ADDRESS_ML,
+  GOOGLE_MAP_DIRECTIONS,
+  BUSINESS_NAME_ML
+} from 'consts/contactDetails'
+
+const cities = citiesData.CITIES || citiesData.default || citiesData
 
 // Below-the-fold components loaded lazily
 const CityValueProposition = lazy(() => import('components/Cities/CityValueProposition').then(module => ({ default: module.CityValueProposition })))
@@ -24,14 +33,6 @@ const CityServiceArea = lazy(() => import('components/Cities/CityServiceArea').t
 const CityAbout = lazy(() => import('components/Cities/CityAbout').then(module => ({ default: module.CityAbout })))
 const CityContact = lazy(() => import('components/Cities/CityContact').then(module => ({ default: module.CityContact })))
 const CityFAQ = lazy(() => import('components/Cities/CityFAQ').then(module => ({ default: module.CityFAQ })))
-
-import { 
-  WEBSITE_URL, 
-  PHONE_NUMBER,
-  ADDRESS_ML,
-  GOOGLE_MAP_DIRECTIONS,
-  BUSINESS_NAME_ML
-} from 'consts/contactDetails'
 
 /**
  * Template dla stron miast
@@ -53,11 +54,11 @@ function CityPageTemplate({ pageContext, location }) {
 
 
   // Simple loading component
-  const LoadingComponent = () => (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+  function LoadingComponent() {
+  return <div style={{ padding: '2rem', textAlign: 'center' }}>
       <div style={{ color: '#6c757d' }}>...</div>
     </div>
-  )
+}
 
   return (
     <Layout>
@@ -320,7 +321,7 @@ export function Head({ pageContext, location }) {
       "@type": "ListItem", 
       "position": 2,
       "name": language === 'pl' ? "Miasta" : "Cities",
-      "item": language === 'pl' ? `${WEBSITE_URL}/cities/` : `${WEBSITE_URL}/en/cities/`
+      "item": `${WEBSITE_URL}/cities/`
     },
     {
       "@type": "ListItem",

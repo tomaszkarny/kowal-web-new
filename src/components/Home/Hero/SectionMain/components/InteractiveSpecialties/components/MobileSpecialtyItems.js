@@ -7,12 +7,12 @@ import {
 } from '../styles/mobile.styles';
 import { useSimpleSwipe, useHapticFeedback } from '../hooks/useSimpleSwipe';
 
-export const MobileSpecialtyItems = ({ 
+export function MobileSpecialtyItems({ 
   items, 
   activeItem, 
   handleItemChange,
   t 
-}) => {
+}) {
   const listRef = useRef(null);
   const activeItemRef = useRef(null);
 
@@ -117,4 +117,4 @@ export const MobileSpecialtyItems = ({
       </MobileSpecialtyList>
     </SwipeableArea>
   );
-};
+}

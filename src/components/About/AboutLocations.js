@@ -1,15 +1,15 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { DataAbout } from './DataAbout'
 import { ListItem } from 'components/common/ListItem/ListItem'
 import { StyledUl } from 'components/common/ListItem/ListItem.styles'
-import { LocationsContainer, LocationsPanel, LocationsTitle } from './About.styles'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { css } from '@emotion/react'
 import { fadeIn } from 'components/common/animations/animations'
+import { LocationsContainer, LocationsPanel, LocationsTitle } from './About.styles'
+import { DataAbout } from './DataAbout'
 
-export const AboutLocations = () => {
+export function AboutLocations() {
     const { t } = useTranslation('about')
     return (
         <LocationsContainer>

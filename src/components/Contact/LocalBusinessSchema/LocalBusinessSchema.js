@@ -26,14 +26,14 @@ import { getLanguageFromPath } from 'consts/languageConfig'
  * @param {string} props.pathname - Current page path for language detection
  * @param {string} props.language - Language code (pl or en)
  */
-export const LocalBusinessSchema = ({
+export function LocalBusinessSchema({
   url = WEBSITE_URL,
   title,
   description,
   image,
   pathname,
   language = 'pl'
-}) => {
+}) {
   // During SSR, prefer the language prop over hooks
   const currentLang = language || (pathname ? getLanguageFromPath(pathname) : 'pl')
   

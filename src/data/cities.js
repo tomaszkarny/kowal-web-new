@@ -176,24 +176,16 @@ const CITIES = [
  */
 
 // Zwraca miasto po ID
-const getCityById = (id) => {
-  return CITIES.find(city => city.id === id)
-}
+const getCityById = (id) => CITIES.find(city => city.id === id)
 
 // Zwraca miasta według priorytetu
-const getCitiesByPriority = () => {
-  return [...CITIES].sort((a, b) => a.priority - b.priority)
-}
+const getCitiesByPriority = () => [...CITIES].sort((a, b) => a.priority - b.priority)
 
 // Zwraca tylko miasta wyróżnione
-const getFeaturedCities = () => {
-  return CITIES.filter(city => city.featured)
-}
+const getFeaturedCities = () => CITIES.filter(city => city.featured)
 
 // Zwraca miasto po slugu
-const getCityBySlug = (slug, language = 'pl') => {
-  return CITIES.find(city => city.slug[language] === slug)
-}
+const getCityBySlug = (slug, language = 'pl') => CITIES.find(city => city.slug[language] === slug)
 
 // Zwraca wszystkie slugi dla sitemap
 const getAllCitySlugs = () => {

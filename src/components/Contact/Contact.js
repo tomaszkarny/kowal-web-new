@@ -10,7 +10,7 @@ import { FormSuccessMessage } from 'components/Contact/SuccessMessage/SuccessMes
 import { ContainerWrapper } from 'components/Contact/GoogleMap/GoogleMap.styles'
 import { ContactWrapper } from 'components/Contact/Contact.styles'
 
-export const Contact = () => {
+export function Contact() {
   const { t } = useTranslation('contact')
   const [showSuccess, setShowSuccess] = useState(false)
   const [showForm, setShowForm] = useState(true)

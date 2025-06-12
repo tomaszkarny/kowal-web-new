@@ -8,7 +8,7 @@
  * @returns {string|null} The city slug or null if not a city page
  */
 export function extractCitySlug(path) {
-  const cityPageMatch = path.match(/^\/cities\/([^\/]+)\/?$/)
+  const cityPageMatch = path.match(/^\/cities\/([^/]+)\/?$/)
   return cityPageMatch ? cityPageMatch[1] : null
 }
 
@@ -32,6 +32,8 @@ export function findCityBySlug(slug, cities) {
  */
 export function getCityPath(city, language) {
   // Always use English slug, let gatsby-plugin-react-i18next handle language prefix
+  // eslint-disable-next-line no-console
+  console.log(`🔧 getCityPath called:`, { cityId: city?.id, slugEn: city?.slug?.en, language })
   return `/cities/${city.slug.en}/`
 }
 

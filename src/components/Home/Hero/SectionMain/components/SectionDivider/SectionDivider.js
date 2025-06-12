@@ -4,7 +4,7 @@ import { SectionDividerWrapper } from './SectionDivider.styles'
 /**
  * A simple divider component that creates space between sections
  */
-export const SectionDivider = () => {
+export function SectionDivider() {
   return (
     <SectionDividerWrapper />
   )

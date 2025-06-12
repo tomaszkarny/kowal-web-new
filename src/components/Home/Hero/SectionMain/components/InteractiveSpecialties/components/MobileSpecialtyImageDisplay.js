@@ -11,7 +11,7 @@ import {
 } from '../styles/mobile.styles';
 import { useSimpleSwipe, useHapticFeedback } from '../hooks/useSimpleSwipe';
 
-export const MobileSpecialtyImageDisplay = ({
+export function MobileSpecialtyImageDisplay({
   fadeOut,
   activeItem,
   imageMap,
@@ -19,7 +19,7 @@ export const MobileSpecialtyImageDisplay = ({
   openLightbox,
   handleItemChange,
   t
-}) => {
+}) {
   // Simplified touch handling
   const triggerHaptic = useHapticFeedback();
   
@@ -113,4 +113,4 @@ export const MobileSpecialtyImageDisplay = ({
       </SwipeInstruction>
     </>
   );
-};
+}

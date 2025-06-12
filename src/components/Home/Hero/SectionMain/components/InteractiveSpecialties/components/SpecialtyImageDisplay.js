@@ -7,7 +7,7 @@ import {
   FallbackImage
 } from '../styles/styles.js';
 
-export const SpecialtyImageDisplay = ({
+export function SpecialtyImageDisplay({
   progress,
   fadeOut,
   activeItem,
@@ -15,7 +15,7 @@ export const SpecialtyImageDisplay = ({
   labelMap,
   openLightbox,
   handleItemChange
-}) => {
+}) {
   const touchStartXRef = useRef(null);
 
   // Handle touch events for swiping between images
@@ -85,4 +85,4 @@ export const SpecialtyImageDisplay = ({
       </SpecialtyImage>
     </ImageContainer>
   );
-};
+}

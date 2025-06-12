@@ -7,7 +7,7 @@ import { createFAQList } from './FAQBuilder'
  * Example component showing how to use FAQSchema with translations
  * This can be used as a template for implementing FAQs on different pages
  */
-export const FAQExample = ({ pathname }) => {
+export function FAQExample({ pathname }) {
   const { t } = useTranslation('common')
   
   // Example 1: Simple FAQ data structure

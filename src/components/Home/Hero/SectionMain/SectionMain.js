@@ -18,7 +18,7 @@ import {
  * - SectionDivider: A simple spacing component
  * - SectionContent: The descriptive content section
  */
-export const SectionMain = ({ id }) => {
+export function SectionMain({ id }) {
   return (
     <SpecializationWrapper id={id}>
       {/* Header section */}

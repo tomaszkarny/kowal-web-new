@@ -2,14 +2,14 @@ import React from 'react';
 import { StyledIcon } from 'components/common/Icon/Icon.styles';
 import { SpecialtyList, SpecialtyItem } from '../styles/styles.js';
 
-export const SpecialtyItems = ({ 
+export function SpecialtyItems({ 
   items, 
   activeItem, 
   handleMouseEnter, 
   handleItemChange, 
   handleKeyDown,
   t 
-}) => {
+}) {
   return (
     <SpecialtyList>
       {items.map(item => (
@@ -32,4 +32,4 @@ export const SpecialtyItems = ({
       ))}
     </SpecialtyList>
   );
-};
+}

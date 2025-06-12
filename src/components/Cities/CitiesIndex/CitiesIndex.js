@@ -2,9 +2,7 @@ import React, { useMemo } from 'react'
 import { Link, useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 
 import citiesData from 'data/cities'
-const { CITIES, getFeaturedCities } = citiesData
 import cityCalculatorUtils from 'utils/cityDistanceCalculator'
-const { processAllCities } = cityCalculatorUtils
 import { getCityPath } from 'utils/cityUtils'
 import { getLanguageFromPath } from 'consts/languageConfig'
 import {
@@ -24,6 +22,9 @@ import {
   SectionTitle
 } from './CitiesIndex.styles'
 
+const { CITIES, getFeaturedCities } = citiesData
+const { processAllCities } = cityCalculatorUtils
+
 export function CitiesIndex() {
   const { t } = useTranslation('cities')
   const { originalPath } = useI18next()
@@ -37,9 +38,7 @@ export function CitiesIndex() {
   const featuredCities = processedCities.filter(city => city.featured)
   const allCities = processedCities
 
-  const formatNumber = (num) => {
-    return new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-US').format(num)
-  }
+  const formatNumber = (num) => new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-US').format(num)
 
 
   return (
@@ -73,7 +72,7 @@ export function CitiesIndex() {
                     })}</div>
                   </CityStats>
                 </CityInfo>
-                <CityLink to={getCityPath(city, language)}>
+                <CityLink to={getCityPath(city)}>
                   {t('citiesList.viewCity')}
                 </CityLink>
               </CityCard>
@@ -101,7 +100,7 @@ export function CitiesIndex() {
                     })}</div>
                   </CityStats>
                 </CityInfo>
-                <CityLink to={getCityPath(city, language)}>
+                <CityLink to={getCityPath(city)}>
                   {t('citiesList.viewCity')}
                 </CityLink>
               </CityCard>

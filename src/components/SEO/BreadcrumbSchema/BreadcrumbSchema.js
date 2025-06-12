@@ -11,7 +11,7 @@ import { WEBSITE_URL } from 'consts/contactDetails'
  * @param {string} props.url - The full URL of the current page
  * @param {string} props.language - Language code (pl or en)
  */
-export const BreadcrumbSchema = ({ pathname, url, language = 'pl' }) => {
+export function BreadcrumbSchema({ pathname, url, language = 'pl' }) {
   // Generate breadcrumbs for the current path
   const breadcrumbs = generateBreadcrumbs(pathname, language)
   

@@ -9,7 +9,7 @@ import { MapLoadingElement } from './GoogleMap.styles'
  * 
  * In development mode, it shows a placeholder if no API key is available
  */
-export const GoogleMapsProvider = ({ children }) => {
+export function GoogleMapsProvider({ children }) {
   const [hasError, setHasError] = useState(false);
   const apiKey = process.env.GATSBY_GOOGLE_API_KEY || '';
   

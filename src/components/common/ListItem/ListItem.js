@@ -4,10 +4,10 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { StyledListItem } from 'components/common/ListItem/ListItem.styles'
 import { StyledIcon } from 'components/common/Icon/Icon.styles'
 
-export const ListItem = ({ data }) => {
+export function ListItem({ data }) {
   // If translationKey starts with 'locations.', use the 'about' namespace and format key correctly
   let namespace = 'common';
-  let translationKey = data.translationKey;
+  let {translationKey} = data;
   
   if (data.translationKey && data.translationKey.startsWith('locations.')) {
     namespace = 'about';

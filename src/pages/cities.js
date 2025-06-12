@@ -9,8 +9,9 @@ import { CitiesIndex } from 'components/Cities/CitiesIndex'
 
 import { WEBSITE_URL } from 'consts/contactDetails'
 import citiesData from 'data/cities'
-const cities = citiesData.CITIES || citiesData.default || citiesData
 import { getCityPath } from 'utils/cityUtils'
+
+const cities = citiesData.CITIES || citiesData.default || citiesData
 
 function CitiesPage() {
   return (
@@ -83,7 +84,7 @@ export function Head({ location, pageContext }) {
             "itemListElement": cities.map((city, index) => ({
               "@type": "ListItem",
               "position": index + 1,
-              "url": `${WEBSITE_URL}${getCityPath(city, language)}`,
+              "url": `${WEBSITE_URL}${getCityPath(city)}`,
               "name": city.name[language],
               "item": {
                 "@type": "City",

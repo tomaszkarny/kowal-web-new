@@ -39,7 +39,7 @@ import { MobileSpecialtyContainer } from './components/MobileSpecialtyContainer'
 /**
  * Interactive specialties component with enhanced UI elements and animations
  */
-export const InteractiveSpecialties = () => {
+export function InteractiveSpecialties() {
   // State management
   const [activeItem, setActiveItem] = useState(1); // Default to first item
   const [progress, setProgress] = useState(0); // Progress for auto-cycling
@@ -401,4 +401,4 @@ export const InteractiveSpecialties = () => {
       )}
     </>
   );
-};
+}

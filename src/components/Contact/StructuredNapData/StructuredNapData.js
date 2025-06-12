@@ -18,10 +18,10 @@ import {
  * @param {string} props.pathname - Current page path
  * @param {string} props.url - Full URL of current page
  */
-export const StructuredNapData = ({
+export function StructuredNapData({
   pathname,
   url
-}) => {
+}) {
   const { t, i18n } = useTranslation('seo')
   const currentLang = pathname ? getLanguageFromPath(pathname) : i18n.language
   

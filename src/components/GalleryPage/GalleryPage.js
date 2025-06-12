@@ -156,7 +156,7 @@ const EmptyStateMessage = styled.div`
   font-size: 1.1rem;
 `
 
-export const GalleryPage = () => {
+export function GalleryPage() {
   const { t } = useTranslation('gallery')
   const { images } = useStaticQuery(graphql`
     query GalleryQuery {
@@ -209,8 +209,7 @@ export const GalleryPage = () => {
   const [activeSubcategory, setActiveSubcategory] = useState(null);
 
   // Process the gallery photos with category information
-  const allGalleryPhotos = useMemo(() => {
-    return images.edges.map(photo => {
+  const allGalleryPhotos = useMemo(() => images.edges.map(photo => {
       const imageData = getImage(photo.node.childImageSharp);
       // Try to find a translation key based on the image name, fall back to the name itself
       const translationKey = `images.${photo.node.name}`;
@@ -229,8 +228,7 @@ export const GalleryPage = () => {
         category,
         relativeDirectory: relDir, // Keep the full relative directory for subcategory filtering
       };
-    });
-  }, [images, t]);
+    }), [images, t]);
   
   // Filter photos based on the active category and subcategory
   const galleryPhotos = useMemo(() => {

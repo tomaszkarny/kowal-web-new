@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
  * @param {number} props.width - Optional width attribute
  * @param {number} props.height - Optional height attribute
  */
-export const SimpleImage = ({ src, alt = '', width, height, ...rest }) => {
+export function SimpleImage({ src, alt = '', width, height, ...rest }) {
   // If import statyczny zawiera wymiary (webpack), wykorzystaj je
   const meta = typeof src === 'object' && src !== null ? src : {}
 

@@ -3,15 +3,13 @@ import { getSrc } from 'gatsby-plugin-image';
 /**
  * Generates an array of slide objects for the lightbox from the imageMap and labelMap.
  */
-export const generateLightboxSlides = (imageMap, labelMap) => {
-  return Object.keys(imageMap)
+export const generateLightboxSlides = (imageMap, labelMap) => Object.keys(imageMap)
     .sort((a, b) => a - b)
     .map(key => ({
       src: getSrc(imageMap[key]),
       alt: '',
       title: labelMap[key]
     }));
-};
 
 /**
  * Creates the imageMap and labelMap from query data and translations
@@ -41,8 +39,7 @@ export const createImageAndLabelMaps = (data, t) => {
 /**
  * Creates lightbox photos array with original image dimensions
  */
-export const createLightboxPhotos = (imageMap, labelMap) => {
-  return Object.keys(imageMap)
+export const createLightboxPhotos = (imageMap, labelMap) => Object.keys(imageMap)
     .sort((a, b) => parseInt(a) - parseInt(b))
     .map(key => {
       const originalData = imageMap[key].original;
@@ -54,4 +51,3 @@ export const createLightboxPhotos = (imageMap, labelMap) => {
         alt: ''
       };
     });
-};

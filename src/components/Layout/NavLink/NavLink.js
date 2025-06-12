@@ -7,7 +7,7 @@ import { StyledNavLink } from 'components/Layout/NavLink/NavLink.styles'
  * Using Gatsby's built-in prefetching system for performance
  * Maintains original styling while preserving language context
  */
-export const NavLink = ({ text, onClick, to, activeClassName }) => {
+export function NavLink({ text, onClick, to, activeClassName }) {
   return (
     <StyledNavLink 
       to={to} 

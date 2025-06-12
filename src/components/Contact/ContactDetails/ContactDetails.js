@@ -8,7 +8,7 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
 
-export const ContactDetails = () => {
+export function ContactDetails() {
   const { t } = useTranslation('contact')
   return (
     <StyledSection isAligned>

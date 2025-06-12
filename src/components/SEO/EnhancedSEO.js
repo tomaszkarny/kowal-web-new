@@ -1,10 +1,10 @@
 import React from 'react'
-import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { useLocation } from '@reach/router'
-import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
-import { getSEOTranslations } from '../../utils/seoLanguageDetection'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import { SITE_DOMAIN } from 'consts/site'
+import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
+import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
+import { getSEOTranslations } from '../../utils/seoLanguageDetection'
 import { WebVitals } from './WebVitals'
 
 // Use the centralized domain constant for all SEO elements
@@ -14,7 +14,7 @@ const CANONICAL_DOMAIN = SITE_DOMAIN
  * Enhanced SEO component that provides comprehensive SEO optimization
  * Based on the original SEO component but with expanded functionality
  */
-export const EnhancedSEO = ({
+export function EnhancedSEO({
   title,
   description,
   pathname,
@@ -34,7 +34,7 @@ export const EnhancedSEO = ({
   noindex = false,
   breadcrumbs = [],
   faq = []
-}) => {
+}) {
   // IMPORTANT: Don't use useTranslation hooks in Head API - they're unreliable during build
   // Instead, we'll use the language prop and hardcoded translations
   const location = useLocation()
@@ -88,7 +88,7 @@ export const EnhancedSEO = ({
   const translations = getSEOTranslations(currentLanguage, pageType);
   
   // Determine default meta title based on page type
-  let pageTitle = title || translations.pageTitle || '';
+  const pageTitle = title || translations.pageTitle || '';
   
   // Debug what we're getting
   if (typeof window === 'undefined') {
@@ -96,7 +96,7 @@ export const EnhancedSEO = ({
   }
   
   // Determine default meta description based on page type
-  let pageDescription = description || translations.pageDescription || '';
+  const pageDescription = description || translations.pageDescription || '';
   
   // Use hardcoded site titles based on language
   const baseSiteTitle = translations.siteTitle || (currentLanguage === 'pl'
@@ -170,12 +170,12 @@ export const EnhancedSEO = ({
   // hreflang tags are now handled by gatsby-plugin-react-i18next
 
   // Create structured data for different types
-  const generateStructuredData = () => {
+  const generateStructuredData = () => 
     // We're removing the schema generation from here since
     // language-aware schemas are now handled by dedicated components
     // (LocalBusinessSchema, FAQSchema, etc.) on each page
-    return [];
-  }
+     []
+  
 
   return (
     <>
@@ -252,9 +252,9 @@ export const EnhancedSEO = ({
  * React component for use with Gatsby's Head API
  * This function is what gets exported from page components
  */
-export const PageSEO = (props) => (
-  <EnhancedSEO {...props} />
-)
+export function PageSEO(props) {
+  return <EnhancedSEO {...props} />
+}
 
 // Also export as Head for backward compatibility
 export const Head = PageSEO

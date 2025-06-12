@@ -4,8 +4,9 @@ import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { getCityPath } from 'utils/cityUtils'
 import { getLanguageFromPath } from 'consts/languageConfig'
 import cityCalculatorUtils from 'utils/cityDistanceCalculator'
-const { calculateDistance } = cityCalculatorUtils
 import { THEME } from 'consts/theme'
+
+const { calculateDistance } = cityCalculatorUtils
 
 const Section = styled.section`
   padding: 3rem 0;

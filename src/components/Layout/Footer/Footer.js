@@ -1,10 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useI18next } from 'gatsby-plugin-react-i18next'
+import { Link, useI18next, navigate } from 'gatsby-plugin-react-i18next'
 
 import * as CONTACT_DETAILS from 'consts/contactDetails'
-import { getCityPath, extractCitySlug, findCityBySlug } from 'utils/cityUtils'
-import { getLanguageFromPath, cleanLanguagePrefixes, buildLanguagePath } from 'consts/languageConfig'
+import { getCityPath } from 'utils/cityUtils'
+import { getLanguageFromPath } from 'consts/languageConfig'
+import citiesData from 'data/cities'
 
 import {
   StyledFooter,
@@ -16,29 +17,61 @@ import {
 
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 
-export const Footer = () => {
+export function Footer() {
   const { t } = useTranslation('footer')
   const { languages, originalPath, language } = useI18next()
   
+  
   // Import cities data for language switching logic
-  const citiesData = require('data/cities')
   const cities = citiesData.CITIES || citiesData.default || citiesData
   
-  // Simple, clean language path generation using imported utilities
+  // Function to generate correct language path (from working commit 11583a5)
   const getLanguagePath = (targetLanguage, currentPath) => {
-    const cleanPath = cleanLanguagePrefixes(currentPath)
-    const citySlug = extractCitySlug(cleanPath)
+    // Clean up any malformed URLs with multiple prefixes first
+    let cleanPath = currentPath
+    // Remove all consecutive /en/ and /pl/ prefixes iteratively
+    while (cleanPath.match(/^\/(?:en|pl)\/+(?:en|pl)\//)) {
+      cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/')
+    }
+    // Final cleanup of any remaining single prefix
+    cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/') || '/'
     
-    if (citySlug) {
-      const city = findCityBySlug(citySlug, cities)
+    // Check if this is a city page using the cleaned path
+    const cityPageMatch = cleanPath.match(/^\/cities\/([^\/]+)\/?$/)
+    
+    if (cityPageMatch) {
+      const currentSlug = cityPageMatch[1]
+      
+      // Find the city by current slug (could be in either language)
+      const city = cities.find(city => 
+        city.slug.pl === currentSlug || city.slug.en === currentSlug
+      )
+      
       if (city) {
-        // Use getCityPath for city pages - it handles the language prefixes
-        return getCityPath(city, targetLanguage)
+        // Always use English slug for consistency (like gatsby-node.js)
+        const targetSlug = city.slug.en
+        
+        // Build the correct path based on target language
+        const result = targetLanguage === 'pl' 
+          ? `/cities/${targetSlug}/`
+          : `/en/cities/${targetSlug}/`
+        
+        return result
+      } else {
+        // Fallback if city not found
+        return targetLanguage === 'pl' ? '/cities/' : '/en/cities/'
       }
     }
     
-    // For non-city pages, use buildLanguagePath utility
-    return buildLanguagePath(cleanPath, targetLanguage)
+    // For non-city pages, use the cleaned path
+    let result
+    if (targetLanguage === 'pl') {
+      result = cleanPath
+    } else {
+      result = cleanPath === '/' ? '/en/' : `/en${cleanPath}`
+    }
+    
+    return result
   }
   
   // Hardcode popular cities for footer with proper slugs
@@ -144,72 +177,64 @@ export const Footer = () => {
       
       <FooterSection>
         <FooterTitle>{t('popularCities')}</FooterTitle>
-        {(() => {
-          // Use actual current language from URL instead of hook to avoid cache issues
-          const currentPath = originalPath || (typeof window !== 'undefined' ? window.location.pathname : '/')
-          const actualLanguage = getLanguageFromPath(currentPath)
-          
+        {popularCities.map(city => {
+          const cityPath = getCityPath(city)
           
           return (
-            <>
-              {popularCities.map(city => {
-                const cityPath = getCityPath(city, actualLanguage)
-                
-                return (
-                  <FooterLink 
-                    key={`${city.id}-${actualLanguage}`}
-                    to={cityPath}
-                  >
-                    {city.name[actualLanguage]}
-                  </FooterLink>
-                )
-              })}
-              <FooterLink 
-                to="/cities/"
-                key={`all-cities-${actualLanguage}`}
-              >
-                {t('allCities')}
-              </FooterLink>
-            </>
+            <FooterLink 
+              key={city.id}
+              to={cityPath}
+            >
+              {city.name[language]}
+            </FooterLink>
           )
-        })()}
+        })}
+        <FooterLink 
+          to="/cities/"
+          key="all-cities"
+        >
+          {t('allCities')}
+        </FooterLink>
       </FooterSection>
 
       <FooterSection>
         <FooterTitle>{t('international')}</FooterTitle>
         {languages.map(lng => {
-          // Use originalPath from Gatsby instead of window.location to avoid double prefixes
-          const currentPath = originalPath || (typeof window !== 'undefined' ? window.location.pathname : '/')
-          const targetPath = getLanguagePath(lng, currentPath)
+          // Remove language prefix from originalPath to get clean path
+          let cleanPath = originalPath || '/'
+          // Remove /en/ prefix if exists
+          if (cleanPath.startsWith('/en/')) {
+            cleanPath = cleanPath.substring(3) // Remove '/en' part
+          }
           
           return (
-            <a
+            <Link
               key={lng}
-              href={targetPath}
+              to={cleanPath}
+              language={lng}
               style={{
                 textDecoration: 'none',
                 marginBottom: '10px',
                 display: 'block',
                 color: lng === language ? '#ffcc00' : '#ffffff',
-                transition: 'all 0.3s ease-in-out'
+                opacity: '0.5',
+                fontSize: '18px',
+                lineHeight: '27px',
+                textRendering: 'optimizeLegibility',
+                WebkitFontSmoothing: 'antialiased'
               }}
               onMouseEnter={(e) => {
                 e.target.style.opacity = '1'
                 e.target.style.textDecoration = 'underline'
+                e.target.style.transition = 'all 0.3s ease-in-out'
               }}
               onMouseLeave={(e) => {
-                e.target.style.opacity = '1'
+                e.target.style.opacity = '0.5'
                 e.target.style.textDecoration = 'none'
               }}
-              onClick={() => {
-                // Save language preference to localStorage when clicked
-                if (typeof window !== 'undefined') {
-                  window.localStorage.setItem('language', lng);
-                }
-              }}
             >
-              {lng === 'en' ? t('englishVersion') : t('polishVersion')}
-            </a>
+              {lng === 'en' ? (typeof t === 'function' ? t('englishVersion') : 'English Version') : (typeof t === 'function' ? t('polishVersion') : 'Polish Version')}
+            </Link>
           )
         })}
       </FooterSection>

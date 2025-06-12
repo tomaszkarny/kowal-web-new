@@ -9,7 +9,7 @@ import { AboutCraft } from './AboutCraft'
 import { AboutTestimonials } from './AboutTestimonials'
 import { SectionDivider, SectionWave, LinkWrapper } from './About.styles'
 
-export const About = () => {
+export function About() {
   const { t } = useTranslation('about')
 
   // Add smooth scrolling behavior to the page

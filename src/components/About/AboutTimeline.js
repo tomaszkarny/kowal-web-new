@@ -35,7 +35,7 @@ const timelineData = [
   }
 ]
 
-export const AboutTimeline = () => {
+export function AboutTimeline() {
   const { t } = useTranslation('about')
 
   return (

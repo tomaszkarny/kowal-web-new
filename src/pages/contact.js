@@ -14,7 +14,7 @@ import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetec
 import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML and BUSINESS_DESCRIPTION_ML
 import { getFAQData } from 'utils/faqData'
 
-const ContactPage = () => {
+function ContactPage() {
   return (
     <Layout>
       <Contact />
@@ -29,7 +29,7 @@ export default ContactPage
  * This includes both standard SEO tags and LocalBusiness schema
  * The contact page is especially important for local business schema
  */
-export const Head = ({ data, location, pageContext }) => {
+export function Head({ data, location, pageContext }) {
   // Detect language using our centralized utility
   const language = detectLanguageForSEO(pageContext, location);
   

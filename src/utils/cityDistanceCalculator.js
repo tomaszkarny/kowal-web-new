@@ -104,29 +104,23 @@ const processCityData = (city) => {
  * @param {array} cities - Array of city objects
  * @returns {array} Sorted cities with calculated data
  */
-const getCitiesSortedByDistance = (cities) => {
-  return cities
+const getCitiesSortedByDistance = (cities) => cities
     .map(processCityData)
     .sort((a, b) => a.distance - b.distance)
-}
 
 /**
  * Check if delivery is free for a given distance
  * @param {number} distance - Distance in kilometers
  * @returns {boolean} True if delivery is free
  */
-const isDeliveryFree = (distance) => {
-  return distance <= FREE_DELIVERY_RADIUS
-}
+const isDeliveryFree = (distance) => distance <= FREE_DELIVERY_RADIUS
 
 /**
  * Process all cities with calculated distances
  * @param {array} cities - Array of city objects
  * @returns {array} Cities with calculated data
  */
-const processAllCities = (cities) => {
-  return getCitiesSortedByDistance(cities)
-}
+const processAllCities = (cities) => getCitiesSortedByDistance(cities)
 
 module.exports = {
   WORKSHOP_LOCATION,

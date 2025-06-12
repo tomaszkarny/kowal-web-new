@@ -4,6 +4,8 @@ import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { css } from '@emotion/react'
 import { fadeIn } from 'components/common/animations/animations'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faStarHalfAlt, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 import {
   TestimonialsContainer,
   TestimonialsGrid,
@@ -13,8 +15,6 @@ import {
   TestimonialCompany,
   TestimonialRating
 } from './About.styles'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faStarHalfAlt, faQuoteLeft } from '@fortawesome/free-solid-svg-icons'
 
 // Sample testimonial data - this would ideally come from a CMS or translation file
 const testimonials = [
@@ -41,7 +41,7 @@ const testimonials = [
   }
 ]
 
-export const AboutTestimonials = () => {
+export function AboutTestimonials() {
   const { t } = useTranslation('about')
 
   return (

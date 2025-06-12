@@ -14,7 +14,7 @@ import { StyledLink } from 'components/common/Link/Link.styles'
  * @param {string} name - Optional name attribute
  * @param {string} customStyles - Optional custom CSS styles as template literal
  */
-export const Link = ({ text, primary, to, main, onClick, name, customStyles }) => {
+export function Link({ text, primary, to, main, onClick, name, customStyles }) {
   // Custom click handler
   const handleClick = (e) => {
     // If there's a custom onClick handler, call it

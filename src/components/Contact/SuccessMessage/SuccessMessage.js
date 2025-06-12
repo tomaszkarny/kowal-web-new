@@ -11,7 +11,7 @@ import {
   SuccessButton
 } from './SuccessMessage.styles'
 
-export const FormSuccessMessage = ({ onSendAnother }) => {
+export function FormSuccessMessage({ onSendAnother }) {
   const { t } = useTranslation('contact')
 
   return (

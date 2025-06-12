@@ -72,7 +72,7 @@ const imageRenderer = ({ index, photo, margin, direction, top, left, onClick }) 
  * 3. Ensures consistent rendering across different screen sizes
  * 4. Adds hover/focus animations to gallery images
  */
-export const GalleryWrapper = ({
+export function GalleryWrapper({
   photos,
   onClick,
   margin = 2,
@@ -80,7 +80,7 @@ export const GalleryWrapper = ({
   columns = undefined,
   direction = 'row',
   renderImage = undefined
-}) => {
+}) {
   const [mounted, setMounted] = useState(false);
   
   // Suppress console warnings from third-party libraries

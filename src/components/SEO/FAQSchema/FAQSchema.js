@@ -25,12 +25,12 @@ import { WEBSITE_URL } from 'consts/contactDetails'
  * 
  * <FAQSchema faqData={faqs} pathname={location.pathname} />
  */
-export const FAQSchema = ({
+export function FAQSchema({
   faqData = [],
   url,
   pathname,
   language = 'pl'
-}) => {
+}) {
   // Validate FAQ data
   if (!faqData || !Array.isArray(faqData) || faqData.length === 0) {
     return null

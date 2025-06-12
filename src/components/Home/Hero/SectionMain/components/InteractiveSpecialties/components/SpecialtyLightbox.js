@@ -3,7 +3,7 @@ import Lightbox from 'yet-another-react-lightbox';
 import Captions from 'yet-another-react-lightbox/plugins/captions';
 import 'yet-another-react-lightbox/styles.css';
 
-export const SpecialtyLightbox = ({
+export function SpecialtyLightbox({
   isViewerOpen,
   currentSlide,
   lightboxPhotos,
@@ -13,7 +13,7 @@ export const SpecialtyLightbox = ({
   setCurrentSlide,
   startProgressAndAutoCycle,
   lightboxSettings
-}) => {
+}) {
   if (!isViewerOpen) return null;
   
   return (
@@ -59,4 +59,4 @@ export const SpecialtyLightbox = ({
       styles={lightboxSettings.styles}
     />
   );
-};
+}

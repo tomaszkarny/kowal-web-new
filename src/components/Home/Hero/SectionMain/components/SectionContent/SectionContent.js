@@ -10,7 +10,7 @@ import {
   ContentWrapper
 } from '../../SectionMain.styles'
 
-export const SectionContent = () => {
+export function SectionContent() {
   const { t } = useTranslation('common')
 
   return (

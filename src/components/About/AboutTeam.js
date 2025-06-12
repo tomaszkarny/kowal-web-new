@@ -1,9 +1,9 @@
 import React from 'react'
-import { TeamSection, TeamGrid, TeamCard, TeamPhoto, TeamName, TeamRole } from './About.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { css } from '@emotion/react'
 import { fadeIn } from 'components/common/animations/animations'
+import { TeamSection, TeamGrid, TeamCard, TeamPhoto, TeamName, TeamRole } from './About.styles'
 
 const team = [
     {
@@ -23,8 +23,8 @@ const team = [
     }
 ]
 
-export const AboutTeam = () => (
-    <TeamSection
+export function AboutTeam() {
+  return <TeamSection
         css={css`
       animation: ${fadeIn} 1.2s cubic-bezier(0.4,0,0.2,1);
     `}
@@ -43,4 +43,4 @@ export const AboutTeam = () => (
             ))}
         </TeamGrid>
     </TeamSection>
-)
+}

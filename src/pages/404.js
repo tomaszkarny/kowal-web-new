@@ -24,7 +24,7 @@ const NotFoundWrapper = styled.div`
  * NotFoundPage component - Custom 404 page
  * Automatically used by Gatsby for 404 errors
  */
-const NotFoundPage = ({ pageContext }) => {
+function NotFoundPage({ pageContext }) {
   const { t } = useTranslation()
   // Get language from pageContext instead of useI18next
   const language = pageContext?.language || 'pl'
@@ -54,7 +54,7 @@ const NotFoundPage = ({ pageContext }) => {
 export default NotFoundPage;
 
 // SEO Metadata for the 404 page - z SEO-przyjaznym tytułem
-export const Head = ({ location, pageContext }) => {
+export function Head({ location, pageContext }) {
   const { t } = useTranslation('common');
   // Get language from pageContext instead of useI18next
   const language = pageContext?.language || 'pl';
@@ -75,10 +75,10 @@ export const Head = ({ location, pageContext }) => {
       description={descriptionFallback}
       pathname={location.pathname}
       pageType="other" // zmiana z "error" na "other" dla lepszej indeksacji
-      noindex={true} // prevent indexing of 404 page
+      noindex // prevent indexing of 404 page
     />
   );
-};
+}
 
 // Required for i18n support
 export const query = graphql`

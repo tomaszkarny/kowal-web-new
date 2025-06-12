@@ -22,7 +22,7 @@ import { LinkWrapper } from 'components/common/Link/Link.styles'
 
 import { SECTION_IDS } from 'consts/sectionID'
 
-export const Hero = () => {
+export function Hero() {
   const { t } = useTranslation('common')
   const { image } = useStaticQuery(graphql`
     query MyQuery {
@@ -57,8 +57,7 @@ export const Hero = () => {
   }
 
   return (
-    <>
-      <HeroWrapper>
+    <HeroWrapper>
         <ImageOverlay />
         <TitleWrapper>
           <SectionTitle>
@@ -91,6 +90,5 @@ export const Hero = () => {
           />
         </ImageContainer>
       </HeroWrapper>
-    </>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation, useI18next } from 'gatsby-plugin-react-i18next'
 import { navigate } from 'gatsby'
+import { buildLanguagePath } from 'consts/languageConfig'
 
 import { FORM_INPUTS } from 'components/Contact/ContactForm/ContactFormUtils'
 
@@ -16,7 +17,7 @@ import {
 } from 'components/Contact/ContactForm/ContactForm.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
-export const ContactForm = ({ onSubmitSuccess }) => {
+export function ContactForm({ onSubmitSuccess }) {
   const { t } = useTranslation('contact')
   const { language } = useI18next() // Get current language
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,7 +25,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
 
   // Generate language-aware success page URL
   // Make sure trailing slashes are consistent with your site's configuration
-  const successPageUrl = language === 'en' ? '/en/contact/?success=true' : '/contact/?success=true'
+  const successPageUrl = buildLanguagePath('/contact/?success=true', language)
   
   // For debugging - log the current language and URL
   console.log('Current language:', language, 'Success URL:', successPageUrl)
@@ -90,7 +91,7 @@ export const ContactForm = ({ onSubmitSuccess }) => {
         setIsSubmitting(false)
         setFormError(t('form_error'))
       }, 1000)
-      return
+      
     }
 
     // In production, handle Netlify form submission with fetch API

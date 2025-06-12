@@ -12,7 +12,7 @@ import {
 
 import { useOnClickOutside } from 'utils/hooks/useOnClickOutside'
 
-export const MainNav = () => {
+export function MainNav() {
   const { t, i18n } = useTranslation('common')
   const { language } = useI18next()
   const [isOpen, setOpen] = useState(false)

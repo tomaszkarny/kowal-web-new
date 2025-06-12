@@ -8,7 +8,7 @@ import { useI18next } from 'gatsby-plugin-react-i18next'
  * @param {Object} props Component props
  * @param {Array<string>} [props.namespaces] Optional array of specific namespaces to load
  */
-const TranslationPreloader = ({ namespaces = ['common', 'about', 'gallery', 'contact'] }) => {
+function TranslationPreloader({ namespaces = ['common', 'about', 'gallery', 'contact'] }) {
   const { i18n, language } = useI18next()
   const loadedRef = useRef({})
   const loadingRef = useRef({})

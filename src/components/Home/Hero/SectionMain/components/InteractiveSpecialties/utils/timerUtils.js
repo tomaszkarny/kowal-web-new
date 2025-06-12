@@ -21,8 +21,7 @@ export const startAutoCycleTimer = (
   setActiveItem,
   setProgress,
   restartCallback
-) => {
-  return setTimeout(() => {
+) => setTimeout(() => {
     setFadeOut(true);
     setTimeout(() => {
       const currentIndex = ListItemData.findIndex(item => item.id === activeItem);
@@ -33,4 +32,3 @@ export const startAutoCycleTimer = (
       restartCallback();
     }, fadeDuration);
   }, cycleDuration);
-};

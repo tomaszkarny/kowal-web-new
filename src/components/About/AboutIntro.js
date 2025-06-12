@@ -12,7 +12,7 @@ import {
     HeroScrollIndicator
 } from './About.styles'
 
-export const AboutIntro = () => {
+export function AboutIntro() {
     const { t } = useTranslation('about')
     const containerRef = useRef(null)
 

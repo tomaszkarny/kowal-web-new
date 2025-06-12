@@ -13,8 +13,7 @@ export const MemoizedSpecialtyItem = React.memo(({
   activeItemRef,
   t,
   triggerHaptic 
-}) => {
-  return (
+}) => (
     <MobileSpecialtyItem
       onClick={onClick}
       isActive={isActive}
@@ -31,8 +30,7 @@ export const MemoizedSpecialtyItem = React.memo(({
       />
       <span>{t(item.translationKey, item.text)}</span>
     </MobileSpecialtyItem>
-  );
-});
+  ));
 
 MemoizedSpecialtyItem.displayName = 'MemoizedSpecialtyItem';
 
@@ -44,8 +42,7 @@ export const MemoizedArrowButton = React.memo(({
   onClick, 
   icon, 
   ariaLabel 
-}) => {
-  return (
+}) => (
     <button
       aria-label={ariaLabel}
       onClick={onClick}
@@ -81,7 +78,6 @@ export const MemoizedArrowButton = React.memo(({
     >
       {icon}
     </button>
-  );
-});
+  ));
 
 MemoizedArrowButton.displayName = 'MemoizedArrowButton';

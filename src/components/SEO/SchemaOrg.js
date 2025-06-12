@@ -34,7 +34,7 @@ import {
  * Component for adding structured data (JSON-LD) to pages
  * Enhanced version that supports multiple schema.org types
  */
-export const SchemaOrg = ({
+export function SchemaOrg({
   url,
   title,
   description,
@@ -53,7 +53,7 @@ export const SchemaOrg = ({
   breadcrumbs = [],
   faq = [],
   language = 'pl'
-}) => {
+}) {
   // Get language-appropriate NAP information
   const napInfo = getNapInfo(language)
   

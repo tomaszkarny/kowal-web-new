@@ -4,7 +4,7 @@ import { navigate } from 'gatsby'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
 import { getNapInfo, GOOGLE_MAPS_URL } from 'consts/contactDetails'
-import { getLanguageFromPath } from 'consts/languageConfig'
+import { getLanguageFromPath, buildLanguagePath } from 'consts/languageConfig'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -193,7 +193,7 @@ export function CityContact({ city, language, templateData, pathname }) {
   }
   
   const handleContactClick = () => {
-    const contactPath = actualLanguage === 'en' ? '/en/contact/' : '/contact/'
+    const contactPath = buildLanguagePath('/contact/', actualLanguage)
     navigate(contactPath)
   }
 

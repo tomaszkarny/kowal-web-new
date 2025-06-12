@@ -1,12 +1,12 @@
 import React from 'react';
 import { ProgressContainer, ProgressDot } from '../styles/styles.js';
 
-export const ProgressDots = ({ 
+export function ProgressDots({ 
   items, 
   activeItem, 
   handleItemChange,
   t 
-}) => {
+}) {
   return (
     <ProgressContainer>
       {items.map(item => (
@@ -19,4 +19,4 @@ export const ProgressDots = ({
       ))}
     </ProgressContainer>
   );
-};
+}

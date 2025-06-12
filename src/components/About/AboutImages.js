@@ -3,13 +3,13 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { getImage } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { Image } from 'components/common/Image/Image'
-import { ImagesContainer, ImageFrame, ImageCaption, PlaceholderImage, ImagesTitle, ImagesDescription } from './About.styles'
 import { css } from '@emotion/react'
 import { fadeIn } from 'components/common/animations/animations'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
+import { ImagesContainer, ImageFrame, ImageCaption, PlaceholderImage, ImagesTitle, ImagesDescription } from './About.styles'
 
-export const AboutImages = () => {
+export function AboutImages() {
     const { t } = useTranslation('about')
     const { image, imageSecond } = useStaticQuery(graphql`
         query AboutImagesQuery {

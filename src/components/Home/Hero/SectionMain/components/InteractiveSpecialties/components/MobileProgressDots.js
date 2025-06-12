@@ -1,12 +1,12 @@
 import React from 'react';
 import { MobileProgressContainer, MobileProgressDot } from '../styles/mobile.styles';
 
-export const MobileProgressDots = ({ 
+export function MobileProgressDots({ 
   items, 
   activeItem, 
   handleItemChange,
   t 
-}) => {
+}) {
   return (
     <MobileProgressContainer>
       {items.map(item => (
@@ -19,4 +19,4 @@ export const MobileProgressDots = ({
       ))}
     </MobileProgressContainer>
   );
-};
+}

@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
-
 // Import the translation preloader
 import TranslationPreloader from 'components/common/TranslationPreloader/TranslationPreloader'
 
-import { ThemeProvider } from '@emotion/react'
-import { Global } from '@emotion/react'
+import { ThemeProvider, Global } from '@emotion/react'
 import { THEME } from 'consts/theme'
 import { GlobalStyles } from 'components/common/GlobalStyles'
 
@@ -17,8 +14,7 @@ import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
 import { LayoutContent } from 'components/Layout/Layout.styles'
 
-export const Layout = ({ children }) => {
-  const { t } = useTranslation('common')
+export function Layout({ children }) {
   const mountedRef = useRef(false)
 
   // Track initial mount
@@ -29,15 +25,9 @@ export const Layout = ({ children }) => {
 
       // Add a global flag to track page initialization
       if (typeof window !== 'undefined') {
+        // eslint-disable-next-line no-underscore-dangle
         window.__pageLoaded = true
         
-        // Clear i18next cache in localStorage to fix navigation label issues
-        // This will force a fresh load of translations
-        const localStorageKeys = Object.keys(localStorage);
-        const i18nextKeys = localStorageKeys.filter(key => key.startsWith('i18next_'));
-        i18nextKeys.forEach(key => {
-          localStorage.removeItem(key);
-        });
       }
     }
 

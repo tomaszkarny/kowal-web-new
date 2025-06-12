@@ -414,9 +414,7 @@ export const CITIES_SEO_DATA = {
 /**
  * Get enhanced SEO data for a specific city
  */
-export const getCitySeoData = (cityId) => {
-  return CITIES_SEO_DATA[cityId] || null
-}
+export const getCitySeoData = (cityId) => CITIES_SEO_DATA[cityId] || null
 
 /**
  * Get FAQ items for city page

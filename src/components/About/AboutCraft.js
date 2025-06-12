@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { CraftSection, CraftContent, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText, CraftVideo, CraftMediaContainer, CenteredTitle } from './About.styles'
 import heatVideo from 'src/assets/video/RedToWhiteHeat.mp4'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
@@ -8,8 +7,9 @@ import { css } from '@emotion/react'
 import { fadeIn } from 'components/common/animations/animations'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHammer, faFire, faGem, faHistory } from '@fortawesome/free-solid-svg-icons'
+import { CraftSection, CraftContent, CraftFeatures, CraftFeatureItem, CraftFeatureIcon, CraftFeatureText, CraftVideo, CraftMediaContainer, CenteredTitle } from './About.styles'
 
-export const AboutCraft = () => {
+export function AboutCraft() {
     const { t } = useTranslation('about')
 
     const features = [

@@ -11,7 +11,7 @@ import {
   MapLoadingElement
 } from './GoogleMap.styles'
 
-export const WrappedGoogleMap = ({ isMarkerShown }) => {
+export function WrappedGoogleMap({ isMarkerShown }) {
   const [selectedMarker, setSelectedMarker] = useState(null)
   const [map, setMap] = useState(null)
 

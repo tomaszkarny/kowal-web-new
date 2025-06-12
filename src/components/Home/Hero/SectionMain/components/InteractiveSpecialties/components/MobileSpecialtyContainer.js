@@ -1,14 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHammer } from '@fortawesome/free-solid-svg-icons';
+import { StyledIcon } from 'components/common/Icon/Icon.styles';
 import { MobileSpecialtyContainer as Container } from '../styles/mobile.styles';
 import { SectionHeading } from '../../../SectionMain.styles';
-import { StyledIcon } from 'components/common/Icon/Icon.styles';
 import { MobileSpecialtyItems } from './MobileSpecialtyItems';
 import { MobileSpecialtyImageDisplay } from './MobileSpecialtyImageDisplay';
 import { MobileProgressDots } from './MobileProgressDots';
 
-export const MobileSpecialtyContainer = ({
+export function MobileSpecialtyContainer({
   t,
   ListItemData,
   activeItem,
@@ -17,7 +17,7 @@ export const MobileSpecialtyContainer = ({
   imageMap,
   labelMap,
   openLightbox
-}) => {
+}) {
   return (
     <Container>
       <SectionHeading>
@@ -50,4 +50,4 @@ export const MobileSpecialtyContainer = ({
       />
     </Container>
   );
-};
+}

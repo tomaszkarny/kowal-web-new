@@ -12,7 +12,7 @@ import { ImageWrapper, StyledImg } from 'components/common/Image/Image.styles'
  * @param {boolean} props.small - Whether to show a small rounded image
  * @param {boolean} props.isHero - Whether this image is used in the hero section
  */
-export const Image = ({ alt, style, small, image, isHero }) => {
+export function Image({ alt, style, small, image, isHero }) {
   // Optimize loading for hero images (above the fold)
   const loadingProps = isHero ? {
     loading: "eager",
