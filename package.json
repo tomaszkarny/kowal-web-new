@@ -55,7 +55,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-webpack-plugin": "4.0.1",
     "facepaint": "^1.2.1",
-    "gatsby": "^5.13.1",
+    "gatsby": "^5.14.3",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-emotion": "^8.13.0",
     "gatsby-plugin-image": "^3.14.0",
@@ -96,7 +96,7 @@
     "gatsby-plugin-stylelint": "^3.2.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.5.1",
-    "multer": "^2.0.0-rc.4",
+    "multer": "^2.0.2",
     "node-fetch": "^3.3.2",
     "prettier": "^3.2.5"
   },
