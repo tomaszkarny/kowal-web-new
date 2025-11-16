@@ -17,11 +17,40 @@ import {
 } from 'components/Contact/ContactForm/ContactForm.styles'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function validateFormData(formData) {
+  const errors = []
+
+  FORM_INPUTS.forEach(({ name, minLength, maxLength, type }) => {
+    const value = (formData.get(name) || '').toString().trim()
+    formData.set(name, value)
+
+    if (minLength && value.length < minLength) {
+      errors.push(name)
+    }
+
+    if (maxLength && value.length > maxLength) {
+      errors.push(name)
+    }
+
+    if (type === 'email' && value && !EMAIL_REGEX.test(value)) {
+      errors.push(name)
+    }
+  })
+
+  return errors
+}
+
 export function ContactForm({ onSubmitSuccess }) {
   const { t } = useTranslation('contact')
   const { language } = useI18next() // Get current language
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState(null)
+  const fieldConstraints = FORM_INPUTS.reduce((acc, field) => {
+    acc[field.name] = field
+    return acc
+  }, {})
 
   // Generate language-aware success page URL
   // Make sure trailing slashes are consistent with your site's configuration
@@ -38,6 +67,14 @@ export function ContactForm({ onSubmitSuccess }) {
     // Get form data
     const form = event.target
     const formData = new FormData(form)
+
+    // Basic client-side validation to protect Netlify endpoint
+    const validationErrors = validateFormData(formData)
+    if (validationErrors.length) {
+      setIsSubmitting(false)
+      setFormError(t('form_validation_error', 'Sprawdź poprawność pól (email, długości) i spróbuj ponownie.'))
+      return
+    }
     
     // Ensure the form-name field is set
     if (!formData.has('form-name')) {
@@ -137,19 +174,26 @@ export function ContactForm({ onSubmitSuccess }) {
             Don't fill this out if you're human: <input name="bot-field" />
           </label>
         </p>
-        {FORM_INPUTS.map(({ label, type, name, translationKey }) => (
-          <React.Fragment key={name}>
-            <Label htmlFor={name}>{t(`form_${translationKey || name}`, label)}</Label>
+        {FORM_INPUTS.map(({ label, type, name, translationKey }) => {
+          const constraints = fieldConstraints[name] || {}
 
-            <Input
-              type={type}
-              name={name}
-              isTextarea={type === 'textarea'}
-              as={type === 'textarea' ? 'textarea' : Input}
-              required
-            />
-          </React.Fragment>
-        ))}
+          return (
+            <React.Fragment key={name}>
+              <Label htmlFor={name}>{t(`form_${translationKey || name}`, label)}</Label>
+
+              <Input
+                type={type}
+                name={name}
+                minLength={constraints.minLength}
+                maxLength={constraints.maxLength}
+                pattern={type === 'email' ? EMAIL_REGEX.source : undefined}
+                isTextarea={type === 'textarea'}
+                as={type === 'textarea' ? 'textarea' : Input}
+                required
+              />
+            </React.Fragment>
+          )
+        })}
 
         {formError && (
           <FormErrorWrapper>

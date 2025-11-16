@@ -59,6 +59,9 @@ typings/
 .cache/
 public
 
+# Lighthouse CI reports
+.lighthouseci/
+
 # i18n generated files
 scripts/i18n/schemas/*.schema.json
 
@@ -119,14 +122,6 @@ seo-prd.txt
 i18n-refactor-prd.txt
 README-task-master.md
 scripts/example_prd.txt
-.lighthouseci/assertion-results.json
-.lighthouseci/lhr-1746653876608.html
-.lighthouseci/lhr-1746653876608.json
-.lighthouseci/lhr-1746653888946.html
-.lighthouseci/lhr-1746653888946.json
-.lighthouseci/lhr-1746653900286.html
-.lighthouseci/lhr-1746653900286.json
-.lighthouseci/links.json
 
 # Added by Claude Task Master
 tasks/ 
