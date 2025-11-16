@@ -17,7 +17,6 @@ export function Contact() {
 
   // Handler for direct success callback (used in development mode)
   const handleSubmitSuccess = () => {
-    console.log('Contact form submission successful, showing success message')
     setShowSuccess(true)
     setShowForm(false)
   }
@@ -25,12 +24,10 @@ export function Contact() {
   useEffect(() => {
     // Check for success parameter in URL (used in production mode)
     if (typeof window !== 'undefined') {
-      console.log('Checking URL for success parameter')
       const urlParams = new URLSearchParams(window.location.search)
       const isSuccess = urlParams.get('success') === 'true'
       
       if (isSuccess) {
-        console.log('Success parameter found, showing success message')
         // Set a slight delay to prevent flickering
         setTimeout(() => {
           setShowSuccess(true)
@@ -39,8 +36,6 @@ export function Contact() {
           const newUrl = window.location.pathname
           window.history.replaceState({}, document.title, newUrl)
         }, 150)
-      } else {
-        console.log('No success parameter found, showing form')
       }
     }
   }, [])

@@ -26,9 +26,6 @@ export function ContactForm({ onSubmitSuccess }) {
   // Generate language-aware success page URL
   // Make sure trailing slashes are consistent with your site's configuration
   const successPageUrl = buildLanguagePath('/contact/?success=true', language)
-  
-  // For debugging - log the current language and URL
-  console.log('Current language:', language, 'Success URL:', successPageUrl)
 
   const handleSubmit = async (event) => {
     // Prevent the default form submission to handle it manually
@@ -47,15 +44,6 @@ export function ContactForm({ onSubmitSuccess }) {
       formData.append('form-name', 'contact')
     }
     
-    // Always log form data for debugging
-    const formValues = {}
-    formData.forEach((value, key) => {
-      if (key !== 'bot-field') {
-        formValues[key] = value
-      }
-    })
-    console.log('Form submission data:', formValues)
-    
     // In development mode, simulate form submission with success/error scenarios
     // Gatsby doesn't consistently expose process.env.NODE_ENV, so we use a different check
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -73,7 +61,6 @@ export function ContactForm({ onSubmitSuccess }) {
         
         // In development, directly update parent component state if callback provided
         if (typeof onSubmitSuccess === 'function') {
-          console.log('Using direct success callback')
           onSubmitSuccess()
         } else {
           // Fallback to URL navigation if no callback provided
@@ -83,23 +70,11 @@ export function ContactForm({ onSubmitSuccess }) {
       }, 1000)
       return
     }
-    
-    // Helper function to simulate form errors in development
-    function simulateFormError() {
-      setTimeout(() => {
-        console.log('Simulating form submission error')
-        setIsSubmitting(false)
-        setFormError(t('form_error'))
-      }, 1000)
-      
-    }
 
     // In production, handle Netlify form submission with fetch API
     try {
       // Convert FormData to URL-encoded string for Netlify
       const encodedData = new URLSearchParams(formData).toString()
-      
-      console.log('Submitting form to Netlify in production')
       
       // Submit the form data using fetch API
       await fetch('/', {
@@ -120,13 +95,9 @@ export function ContactForm({ onSubmitSuccess }) {
         
         // First try direct callback if available (best UX, no page reload)
         if (typeof onSubmitSuccess === 'function') {
-          console.log('Using direct callback for success handling in production')
           onSubmitSuccess()
         } else {
           // Otherwise fall back to URL navigation
-          console.log('Using URL navigation for success handling in production')
-          console.log('Navigating to:', successPageUrl)
-          
           // Add a slight delay before navigation to prevent flickering
           setTimeout(() => {
             navigate(successPageUrl)
