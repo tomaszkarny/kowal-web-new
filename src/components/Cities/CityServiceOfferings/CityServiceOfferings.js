@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
 import { buildLanguagePath, getLanguageFromPath } from 'consts/languageConfig'
+import { CityCtaButton } from 'components/Cities/CtaButton'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -12,14 +13,14 @@ const COLORS = {
 }
 
 const OfferingsSection = styled.section`
-  padding: 4rem 0;
+  padding: clamp(3.5rem, 5vw, 5rem) 0;
   background: ${COLORS.white};
 `
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
 `
 
 const Title = styled.h2`
@@ -36,8 +37,8 @@ const Title = styled.h2`
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 1.8vw, 2.25rem);
   margin-bottom: 3rem;
 `
 
@@ -107,22 +108,6 @@ const CTAText = styled.p`
   color: ${COLORS.textSecondary};
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-`
-
-const CTAButton = styled.a`
-  display: inline-block;
-  background: ${COLORS.primary};
-  color: ${COLORS.white};
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: ${COLORS.dark};
-    transform: translateY(-2px);
-  }
 `
 
 export function CityServiceOfferings({ city, language, pathname }) {
@@ -237,9 +222,12 @@ export function CityServiceOfferings({ city, language, pathname }) {
         <CTASection>
           <CTATitle>{ctaTitle}</CTATitle>
           <CTAText>{ctaText}</CTAText>
-          <CTAButton href={buildLanguagePath('/contact/', actualLanguage)}>
+          <CityCtaButton
+            as="a"
+            href={buildLanguagePath('/contact/', actualLanguage)}
+          >
             {ctaButtonText}
-          </CTAButton>
+          </CityCtaButton>
         </CTASection>
       </Container>
     </OfferingsSection>

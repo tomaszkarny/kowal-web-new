@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
 import { getNapInfo, GOOGLE_MAPS_URL } from 'consts/contactDetails'
 import { getLanguageFromPath, buildLanguagePath } from 'consts/languageConfig'
+import { CityCtaButton } from 'components/Cities/CtaButton'
 
 const COLORS = {
   primary: THEME.color.primary,
@@ -77,21 +78,6 @@ const ContactForm = styled.div`
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid ${COLORS.border};
-`
-
-const Button = styled.button`
-  background: ${COLORS.primary};
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  
-  &:hover {
-    background: ${COLORS.secondary};
-  }
 `
 
 const RatingSection = styled.div`
@@ -274,9 +260,9 @@ export function CityContact({ city, language, templateData, pathname }) {
                 : `Contact us to discuss your project in ${templateData.city}`
               }
             </p>
-            <Button onClick={handleContactClick}>
+            <CityCtaButton onClick={handleContactClick}>
               {actualLanguage === 'pl' ? 'Przejdź do formularza' : 'Go to contact form'}
-            </Button>
+            </CityCtaButton>
           </ContactForm>
         </ContactGrid>
       </Container>

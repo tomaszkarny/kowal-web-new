@@ -11,12 +11,16 @@ const COLORS = {
 export const ServicesSection = styled.section`
   padding: 5rem 0;
   background: #f8f9fa;
+
+  @media (max-width: ${THEME.breakpoints.desktop || 1440}px) {
+    padding: 4.5rem 0;
+  }
 `
 
 export const ServicesContainer = styled.div`
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
 `
 
 export const ServicesHeader = styled.div`
@@ -39,6 +43,7 @@ export const ServicesSubtitle = styled.p`
   color: ${COLORS.textSecondary};
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 `
 
 export const DeliveryInfo = styled.div`
@@ -67,7 +72,7 @@ export const DeliveryItem = styled.div`
 export const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: clamp(1.5rem, 1.8vw, 2.25rem);
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
