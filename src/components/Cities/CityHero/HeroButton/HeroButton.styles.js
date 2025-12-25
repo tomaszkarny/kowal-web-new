@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
-import { THEME } from 'consts/theme'
+import { FORGE_COLORS } from '../../styles'
 
+// Alias for compatibility
 const COLORS = {
-  primary: THEME.color.primary,
-  secondary: '#6c5ce7',
-  light: '#ffffff'
+  ...FORGE_COLORS,
+  light: FORGE_COLORS.white,
 }
 
 export const StyledHeroButton = styled.button`
@@ -12,51 +12,73 @@ export const StyledHeroButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  background: linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.secondary} 50%, ${COLORS.primary} 100%);
-  color: ${COLORS.light};
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: clamp(0.9rem, 1vw, 1rem);
+  position: relative;
+
+  /* Iron bar button style */
+  background: linear-gradient(180deg, ${COLORS.ironLight} 0%, ${COLORS.iron} 100%);
+  color: ${COLORS.textOnDark};
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 0.9rem 2.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  min-width: auto;
-  text-align: center;
   text-decoration: none;
   white-space: nowrap;
 
+  /* Decorative side bars */
+  &::before,
+  &::after {
+    content: '\u2550';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: ${COLORS.ember};
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    left: 0.75rem;
+  }
+
+  &::after {
+    right: 0.75rem;
+  }
+
   /* Mobile - smaller button */
   @media (max-width: 480px) {
-    padding: 0.65rem 1.25rem;
-    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    font-size: 0.85rem;
   }
 
   /* Desktop optimization */
   @media (min-width: 1024px) {
-    font-size: 1rem;
-    padding: 0.8rem 1.6rem;
-  }
-
-  /* Large desktop */
-  @media (min-width: 1440px) {
-    font-size: 1rem;
-    padding: 0.85rem 1.75rem;
+    font-size: 0.9rem;
+    padding: 0.9rem 2.5rem;
   }
 
   &:hover {
-    background: linear-gradient(135deg, ${COLORS.secondary} 0%, #8b7ff5 50%, ${COLORS.secondary} 100%);
-    box-shadow: 0 6px 16px rgba(82, 95, 196, 0.25);
+    background: linear-gradient(180deg, ${COLORS.ember} 0%, #c94a33 100%);
+    color: ${COLORS.light};
+    border-color: transparent;
+
+    &::before,
+    &::after {
+      color: ${COLORS.light};
+      opacity: 1;
+    }
   }
 
   &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(1px);
   }
 
   &:focus-visible {
-    outline: 2px solid ${COLORS.light};
+    outline: 2px solid ${COLORS.ember};
     outline-offset: 3px;
   }
 `

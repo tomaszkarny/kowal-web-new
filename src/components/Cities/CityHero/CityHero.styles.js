@@ -1,24 +1,14 @@
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
 import { fadeIn } from 'components/common/animations/animations'
+import { FORGE_COLORS } from '../styles'
 
-// "Forged Iron" Color Palette - matching CitiesIndex
+// Alias for compatibility
 const COLORS = {
-  // Existing brand colors
+  ...FORGE_COLORS,
   primary: THEME.color.primary,
   secondary: '#6c5ce7',
-
-  // Forge warmth
-  ember: '#e85c41',
-  emberGlow: '#ff6b4a',
-
-  // Iron tones
-  charcoal: '#1a1a2e',
-  iron: '#2d2d44',
-  ironLight: '#3a3a52',
-
-  // Text
-  textOnDark: '#e8e6e3',
+  charcoal: FORGE_COLORS.textPrimary,
 }
 
 export const HeroSection = styled.section`

@@ -1,15 +1,21 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import styled from '@emotion/styled'
-import { THEME } from 'consts/theme'
 import { getCitySeoData } from 'data/citiesSeoEnhanced'
+import {
+  FORGE_COLORS,
+  FORGE_TRANSITIONS,
+  FORGE_HOVER,
+  CityGrid
+} from '../styles'
 
+// Alias for compatibility
 const COLORS = {
-  primary: THEME.color.primary,
-  dark: THEME.color.dark.replace(';', ''),
-  textSecondary: THEME.color.darkGray,
-  border: THEME.color.lightGray,
-  background: '#f8f9fa'
+  ...FORGE_COLORS,
+  primary: FORGE_COLORS.ember,
+  dark: FORGE_COLORS.iron,
+  border: FORGE_COLORS.cardBorder,
+  background: FORGE_COLORS.sectionBg,
 }
 
 const ProjectsSection = styled.section`
@@ -37,25 +43,21 @@ const Subtitle = styled.p`
   margin-bottom: 3rem;
 `
 
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+// Use shared CityGrid with 300px minWidth for project cards
+const ProjectsGrid = styled(CityGrid)`
+  /* Extends shared CityGrid */
 `
+ProjectsGrid.defaultProps = { $minWidth: '300px' }
 
 const ProjectCard = styled.article`
   background: white;
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  transition: ${FORGE_TRANSITIONS.default};
+
   &:hover {
-    transform: translateY(-5px);
+    transform: ${FORGE_HOVER.liftXLarge};
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   }
 `

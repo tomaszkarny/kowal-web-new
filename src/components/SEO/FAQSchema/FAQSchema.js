@@ -1,5 +1,5 @@
 import React from 'react'
-import { WEBSITE_URL } from 'consts/contactDetails'
+import { StructuredDataScript } from 'components/common/StructuredDataScript'
 
 /**
  * Component for adding FAQ structured data to pages
@@ -61,12 +61,7 @@ export function FAQSchema({
     }))
   }
 
-  return (
-    <script 
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
+  return <StructuredDataScript schema={schema} id="faq-schema" />
 }
 
 export default FAQSchema

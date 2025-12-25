@@ -1,16 +1,13 @@
 import styled from '@emotion/styled'
 import { THEME } from 'consts/theme'
+import { FORGE_COLORS } from '../styles'
 
-const COLORS = {
-  primary: THEME.color.primary,
-  dark: THEME.color.dark.replace(';', ''),
-  textSecondary: THEME.color.darkGray,
-  success: '#00b894'
-}
+// Alias for compatibility
+const COLORS = FORGE_COLORS
 
 export const ServicesSection = styled.section`
   padding: 5rem 0;
-  background: #f8f9fa;
+  background: ${COLORS.sectionBg};
 
   @media (max-width: ${THEME.breakpoints.desktop || 1440}px) {
     padding: 4.5rem 0;
@@ -30,9 +27,20 @@ export const ServicesHeader = styled.div`
 
 export const ServicesTitle = styled.h2`
   font-size: 2.5rem;
-  color: ${COLORS.dark};
+  color: ${COLORS.iron};
   margin-bottom: 1rem;
-  
+  font-family: 'Merriweather', serif;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, ${COLORS.ember}, ${COLORS.emberGlow});
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+  }
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -48,16 +56,22 @@ export const ServicesSubtitle = styled.p`
 
 export const DeliveryInfo = styled.div`
   background: white;
-  border-radius: 12px;
+  border-radius: 4px 4px 4px 20px;
   padding: 2rem;
   margin-bottom: 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid ${COLORS.primary};
-  
+  box-shadow: 0 4px 20px rgba(45, 45, 68, 0.1);
+  border-top: 3px solid ${COLORS.iron};
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-top-color: ${COLORS.ember};
+  }
+
   h3 {
     margin: 0 0 1rem 0;
-    color: ${COLORS.dark};
+    color: ${COLORS.iron};
     font-size: 1.3rem;
+    font-family: 'Merriweather', serif;
   }
 `
 
@@ -73,7 +87,7 @@ export const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: clamp(1.5rem, 1.8vw, 2.25rem);
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -81,20 +95,22 @@ export const ServicesGrid = styled.div`
 `
 
 export const ServiceCard = styled.div`
-  background: white;
+  background: ${COLORS.cardLight};
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  border-radius: 0 0 4px 4px;
+  border: 1px solid ${COLORS.cardBorder};
+  border-top: 3px solid ${COLORS.iron};
+  transition: all 0.3s ease;
+
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    border-top-color: ${COLORS.ember};
+    box-shadow: 0 8px 24px rgba(45, 45, 68, 0.12);
   }
 `
 
 export const ServiceTitle = styled.h3`
-  color: ${COLORS.primary};
+  color: ${COLORS.ember};
   margin-bottom: 1rem;
   font-size: 1.3rem;
   font-weight: 600;

@@ -1,20 +1,15 @@
 import styled from '@emotion/styled'
-import { THEME } from 'consts/theme'
+import {
+  FORGE_COLORS,
+  FORGE_GRADIENTS,
+} from '../styles'
 
-const COLORS = {
-  primary: THEME.color.primary,
-  dark: THEME.color.dark.replace(';', ''),
-  textSecondary: THEME.color.darkGray,
-  border: THEME.color.lightGray,
-  background: '#f8f9fa',
-  white: '#ffffff',
-  success: '#28a745',
-  accent: '#007bff'
-}
+// Alias for compatibility with existing component code
+const COLORS = FORGE_COLORS
 
 export const Section = styled.section`
   padding: 5rem 0;
-  background: ${COLORS.white};
+  background: ${COLORS.sectionBg};
 `
 
 export const Container = styled.div`
@@ -25,10 +20,21 @@ export const Container = styled.div`
 
 export const Title = styled.h2`
   font-size: 2.5rem;
-  color: ${COLORS.dark};
+  color: ${COLORS.iron};
   text-align: center;
   margin-bottom: 3rem;
-  
+  font-family: 'Merriweather', serif;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, ${COLORS.ember}, ${COLORS.emberGlow});
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+  }
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -39,7 +45,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -47,29 +53,33 @@ export const Grid = styled.div`
 `
 
 export const Card = styled.div`
-  background: ${COLORS.background};
-  border-radius: 12px;
+  background: ${COLORS.cardLight};
+  border-radius: 0 0 4px 4px;
+  border: 1px solid ${COLORS.cardBorder};
+  border-top: 3px solid ${COLORS.iron};
   padding: 2rem;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+  transition: all 0.3s ease;
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    border-top-color: ${COLORS.ember};
+    box-shadow: 0 8px 24px rgba(45, 45, 68, 0.12);
   }
 `
 
 export const CardIcon = styled.div`
-  color: ${COLORS.primary};
+  color: ${COLORS.ember};
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
 `
 
 export const CardTitle = styled.h3`
-  color: ${COLORS.dark};
+  color: ${COLORS.iron};
   font-size: 1.3rem;
   margin-bottom: 1rem;
+  font-family: 'Merriweather', serif;
 `
 
 export const CardDescription = styled.p`
@@ -80,13 +90,16 @@ export const CardDescription = styled.p`
 `
 
 export const ProcessFlow = styled.div`
-  background: ${COLORS.background};
-  border-radius: 12px;
+  background: ${COLORS.white};
+  border-radius: 4px 4px 4px 20px;
+  border-top: 3px solid ${COLORS.iron};
   padding: 3rem 2rem;
   margin-bottom: 4rem;
-  
+
   h3 {
     margin-bottom: 2rem;
+    color: ${COLORS.iron};
+    font-family: 'Merriweather', serif;
   }
 `
 
@@ -96,7 +109,7 @@ export const ProcessStep = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1.5rem;
@@ -109,7 +122,7 @@ export const StepContent = styled.div`
   gap: 1.5rem;
   flex: 1;
   min-width: 200px;
-  
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -118,7 +131,7 @@ export const StepContent = styled.div`
 export const StepNumber = styled.div`
   width: 50px;
   height: 50px;
-  background: ${COLORS.primary};
+  background: linear-gradient(135deg, ${COLORS.ember} 0%, #c94a33 100%);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -127,10 +140,11 @@ export const StepNumber = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(232, 92, 65, 0.3);
 `
 
 export const StepTitle = styled.h4`
-  color: ${COLORS.dark};
+  color: ${COLORS.iron};
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
 `
@@ -142,9 +156,9 @@ export const StepDescription = styled.p`
 `
 
 export const Arrow = styled.div`
-  color: ${COLORS.primary};
+  color: ${COLORS.ember};
   font-size: 2rem;
-  
+
   @media (max-width: 768px) {
     transform: rotate(90deg);
   }
@@ -152,9 +166,11 @@ export const Arrow = styled.div`
 
 export const GuaranteeSection = styled.div`
   margin-bottom: 4rem;
-  
+
   h3 {
     margin-bottom: 2rem;
+    color: ${COLORS.iron};
+    font-family: 'Merriweather', serif;
   }
 `
 
@@ -162,7 +178,7 @@ export const GuaranteeGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -174,9 +190,15 @@ export const GuaranteeItem = styled.div`
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: ${COLORS.background};
-  border-radius: 8px;
+  background: ${COLORS.white};
+  border-radius: 4px;
   border-left: 4px solid ${COLORS.success};
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-left-color: ${COLORS.ember};
+    box-shadow: 0 4px 12px rgba(45, 45, 68, 0.08);
+  }
 `
 
 export const GuaranteeIcon = styled.div`
@@ -185,7 +207,7 @@ export const GuaranteeIcon = styled.div`
 `
 
 export const GuaranteeText = styled.p`
-  color: ${COLORS.dark};
+  color: ${COLORS.iron};
   margin: 0;
   font-weight: 500;
 `
@@ -194,10 +216,11 @@ export const ServiceRadiusInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 3rem;
-  background: ${COLORS.background};
-  border-radius: 12px;
+  background: ${COLORS.white};
+  border-radius: 4px 4px 4px 20px;
+  border-top: 3px solid ${COLORS.iron};
   padding: 3rem;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
@@ -207,8 +230,8 @@ export const ServiceRadiusInfo = styled.div`
 `
 
 export const RadiusMap = styled.div`
-  color: ${COLORS.accent};
-  
+  color: ${COLORS.ember};
+
   svg {
     width: 80px;
     height: 80px;
@@ -217,18 +240,19 @@ export const RadiusMap = styled.div`
 
 export const RadiusDetails = styled.div`
   flex: 1;
-  
+
   h3 {
-    color: ${COLORS.dark};
+    color: ${COLORS.iron};
     margin-bottom: 1rem;
     font-size: 1.5rem;
     text-align: left;
-    
+    font-family: 'Merriweather', serif;
+
     @media (max-width: 768px) {
       text-align: center;
     }
   }
-  
+
   p {
     color: ${COLORS.textSecondary};
     line-height: 1.6;

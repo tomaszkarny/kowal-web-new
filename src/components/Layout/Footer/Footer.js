@@ -4,7 +4,7 @@ import { Link, useI18next, navigate } from 'gatsby-plugin-react-i18next'
 
 import * as CONTACT_DETAILS from 'consts/contactDetails'
 import { getCityPath } from 'utils/cityUtils'
-import { getLanguageFromPath } from 'consts/languageConfig'
+import { cleanLanguagePrefixes, buildLanguagePath } from 'consts/languageConfig'
 import citiesData from 'data/cities'
 
 import {
@@ -24,54 +24,36 @@ export function Footer() {
   
   // Import cities data for language switching logic
   const cities = citiesData.CITIES || citiesData.default || citiesData
-  
-  // Function to generate correct language path (from working commit 11583a5)
+
+  // Function to generate correct language path using shared utilities
   const getLanguagePath = (targetLanguage, currentPath) => {
-    // Clean up any malformed URLs with multiple prefixes first
-    let cleanPath = currentPath
-    // Remove all consecutive /en/ and /pl/ prefixes iteratively
-    while (cleanPath.match(/^\/(?:en|pl)\/+(?:en|pl)\//)) {
-      cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/')
-    }
-    // Final cleanup of any remaining single prefix
-    cleanPath = cleanPath.replace(/^\/(?:en|pl)\/+/, '/') || '/'
-    
+    // Use shared utility to clean language prefixes
+    const cleanPath = cleanLanguagePrefixes(currentPath)
+
     // Check if this is a city page using the cleaned path
     const cityPageMatch = cleanPath.match(/^\/cities\/([^\/]+)\/?$/)
-    
+
     if (cityPageMatch) {
       const currentSlug = cityPageMatch[1]
-      
+
       // Find the city by current slug (could be in either language)
-      const city = cities.find(city => 
+      const city = cities.find(city =>
         city.slug.pl === currentSlug || city.slug.en === currentSlug
       )
-      
+
       if (city) {
         // Always use English slug for consistency (like gatsby-node.js)
-        const targetSlug = city.slug.en
-        
-        // Build the correct path based on target language
-        const result = targetLanguage === 'pl' 
-          ? `/cities/${targetSlug}/`
-          : `/en/cities/${targetSlug}/`
-        
-        return result
+        const cityPath = `/cities/${city.slug.en}/`
+        // Use shared utility to build language-specific path
+        return buildLanguagePath(cityPath, targetLanguage)
       } else {
         // Fallback if city not found
-        return targetLanguage === 'pl' ? '/cities/' : '/en/cities/'
+        return buildLanguagePath('/cities/', targetLanguage)
       }
     }
-    
-    // For non-city pages, use the cleaned path
-    let result
-    if (targetLanguage === 'pl') {
-      result = cleanPath
-    } else {
-      result = cleanPath === '/' ? '/en/' : `/en${cleanPath}`
-    }
-    
-    return result
+
+    // For non-city pages, use shared utility
+    return buildLanguagePath(cleanPath, targetLanguage)
   }
   
   // Hardcode popular cities for footer with proper slugs

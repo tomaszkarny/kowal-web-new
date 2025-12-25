@@ -1,5 +1,5 @@
 import React from 'react'
-import { 
+import {
   BUSINESS_TYPE,
   BUSINESS_IMAGES,
   WEBSITE_URL,
@@ -13,6 +13,7 @@ import {
   getNapInfo
 } from 'consts/contactDetails'
 import { getLanguageFromPath } from 'consts/languageConfig'
+import { StructuredDataScript } from 'components/common/StructuredDataScript'
 
 /**
  * Component for adding LocalBusiness structured data to pages
@@ -84,12 +85,7 @@ export function LocalBusinessSchema({
     ].filter(Boolean)
   }
   
-  return (
-    <script 
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
+  return <StructuredDataScript schema={schema} id="local-business-schema" />
 }
 
 export default LocalBusinessSchema

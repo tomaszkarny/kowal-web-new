@@ -1,68 +1,61 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
-import { getCityPath } from 'utils/cityUtils'
-import { getLanguageFromPath } from 'consts/languageConfig'
+import { useActualLanguage } from 'hooks/useActualLanguage'
 import cityCalculatorUtils from 'utils/cityDistanceCalculator'
-import { THEME } from 'consts/theme'
+import {
+  FORGE_COLORS,
+  FORGE_GRADIENTS,
+  FORGE_TRANSITIONS,
+  FORGE_HOVER,
+  FORGE_SHADOWS,
+  FORGE_SPACING,
+  CitySection,
+  CityContainer,
+  CityTitle,
+  CityGrid,
+} from '../styles'
 
 const { calculateDistance } = cityCalculatorUtils
 
-const Section = styled.section`
+// Compact section for related cities
+const RelatedSection = styled(CitySection)`
   padding: 3rem 0;
-  background: #f8f9fa;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid ${FORGE_COLORS.cardBorder};
 `
 
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-`
-
-const Title = styled.h3`
-  font-size: 1.5rem;
-  color: ${THEME.color.dark.replace(';', '')};
-  text-align: center;
-  margin-bottom: 2rem;
-`
-
-const CitiesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
+// Use shared CityGrid with smaller gap for compact layout
+const CitiesGrid = styled(CityGrid)`
+  gap: ${FORGE_SPACING.lg};
 `
 
 const CityCard = styled(Link)`
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
+  background: ${FORGE_COLORS.cardLight};
+  border-radius: 0 0 4px 4px;
+  padding: ${FORGE_SPACING.lg};
   text-decoration: none;
-  color: ${THEME.color.dark.replace(';', '')};
-  border: 1px solid #dee2e6;
-  transition: all 0.3s ease;
+  color: ${FORGE_COLORS.iron};
+  border: 1px solid ${FORGE_COLORS.cardBorder};
+  border-top: 3px solid ${FORGE_COLORS.iron};
+  transition: ${FORGE_TRANSITIONS.default};
   display: flex;
   flex-direction: column;
-  
+
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: ${THEME.color.primary};
+    transform: ${FORGE_HOVER.liftMedium};
+    box-shadow: ${FORGE_SHADOWS.cardHover};
+    border-top-color: ${FORGE_COLORS.ember};
   }
 `
 
 const CityName = styled.h4`
   font-size: 1.2rem;
-  color: ${THEME.color.primary};
+  color: ${FORGE_COLORS.ember};
   margin-bottom: 0.5rem;
 `
 
 const CityInfo = styled.div`
-  color: ${THEME.color.darkGray};
+  color: ${FORGE_COLORS.textSecondary};
   font-size: 0.9rem;
   line-height: 1.6;
 `
@@ -71,14 +64,15 @@ const Distance = styled.span`
   display: block;
   margin-top: 0.5rem;
   font-weight: 500;
+  color: ${FORGE_COLORS.iron};
 `
 
 const Badge = styled.span`
   display: inline-block;
-  background: ${THEME.color.primary}20;
-  color: ${THEME.color.primary};
+  background: ${FORGE_GRADIENTS.emberGradient};
+  color: white;
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 4px;
   font-size: 0.8rem;
   margin-top: 0.75rem;
   align-self: flex-start;
@@ -86,11 +80,7 @@ const Badge = styled.span`
 
 export function RelatedCities({ currentCity, allCities, language, pathname }) {
   const { t } = useTranslation('cities')
-  
-  // Get current path for language detection - use pathname prop during SSR
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : (pathname || '/')
-  // Use URL-based language detection instead of prop
-  const actualLanguage = getLanguageFromPath(currentPath)
+  const actualLanguage = useActualLanguage(pathname)
   
   // Calculate distances and sort by proximity
   const nearbyCities = allCities
@@ -112,9 +102,9 @@ export function RelatedCities({ currentCity, allCities, language, pathname }) {
     : 'We also serve'
   
   return (
-    <Section>
-      <Container>
-        <Title>{title}</Title>
+    <RelatedSection $bg={FORGE_COLORS.sectionBg}>
+      <CityContainer>
+        <CityTitle $size="md" $mb="2rem">{title}</CityTitle>
         <CitiesGrid>
           {nearbyCities.map(city => (
             <CityCard 
@@ -136,7 +126,7 @@ export function RelatedCities({ currentCity, allCities, language, pathname }) {
             </CityCard>
           ))}
         </CitiesGrid>
-      </Container>
-    </Section>
+      </CityContainer>
+    </RelatedSection>
   )
 }

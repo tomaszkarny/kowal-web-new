@@ -3,37 +3,26 @@ import { css } from '@emotion/react'
 import { Link } from 'gatsby-plugin-react-i18next'
 import { THEME } from 'consts/theme'
 import { fadeIn, emberPulse } from 'components/common/animations/animations'
+import {
+  FORGE_COLORS,
+  FORGE_MEDIA,
+  FORGE_TYPOGRAPHY,
+  CityGrid,
+  hammeredTexture
+} from '../styles'
 
-// "Forged Iron" Color Palette
+// Alias for compatibility with extended properties
 const COLORS = {
-  // Existing brand colors
+  ...FORGE_COLORS,
   primary: THEME.color.primary,
   secondary: '#6c5ce7',
   dark: THEME.color.dark.replace(';', ''),
-  textSecondary: THEME.color.darkGray,
   border: THEME.color.lightGray,
-
-  // Forge warmth
-  ember: '#e85c41',
-  emberGlow: '#ff6b4a',
-  emberHot: '#ffab40',
-  charcoal: '#1a1a2e',
-  iron: '#2d2d44',
-  ironLight: '#3a3a52',
-
-  // Card backgrounds
-  cardDark: '#1e1e32',
+  charcoal: FORGE_COLORS.textPrimary,
+  cardDark: FORGE_COLORS.ironDark,
   cardDarkLight: '#252540',
-  cardLight: '#faf9f7',
-  cardBorder: '#e5e3df',
-
-  // Text
-  textOnDark: '#e8e6e3',
-  textMuted: '#9a9a9a'
+  textMuted: FORGE_COLORS.textMuted,
 }
-
-// Hammered metal texture (subtle noise)
-const hammeredTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`
 
 // Hero Section - with background image support
 export const CitiesHeroSection = styled.section`
@@ -169,16 +158,12 @@ export const SectionDivider = styled.div`
   margin: 3rem auto;
 `
 
-export const CitiesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+// Re-export CityGrid with default props for CitiesIndex layout
+// Uses $minWidth="320px" for wider city cards
+export const CitiesGrid = styled(CityGrid)`
+  /* Extends shared CityGrid with default minWidth of 320px */
 `
+CitiesGrid.defaultProps = { $minWidth: '320px' }
 
 // Forge Badge for featured cards
 export const ForgeBadge = styled.div`

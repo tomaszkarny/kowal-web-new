@@ -1,6 +1,7 @@
 import React from 'react'
 import { generateBreadcrumbs } from 'utils/breadcrumbs'
 import { WEBSITE_URL } from 'consts/contactDetails'
+import { StructuredDataScript } from 'components/common/StructuredDataScript'
 
 /**
  * Component for adding BreadcrumbList structured data to pages
@@ -32,12 +33,7 @@ export function BreadcrumbSchema({ pathname, url, language = 'pl' }) {
     }))
   }
   
-  return (
-    <script 
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
+  return <StructuredDataScript schema={schema} id="breadcrumb-schema" />
 }
 
 export default BreadcrumbSchema

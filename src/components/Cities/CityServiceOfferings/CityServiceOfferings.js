@@ -1,39 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { THEME } from 'consts/theme'
-import { buildLanguagePath, getLanguageFromPath } from 'consts/languageConfig'
+import { buildLanguagePath } from 'consts/languageConfig'
+import { useActualLanguage } from 'hooks/useActualLanguage'
 import { CityCtaButton } from 'components/Cities/CtaButton'
-
-const COLORS = {
-  primary: THEME.color.primary,
-  dark: THEME.color.dark.replace(';', ''),
-  textSecondary: THEME.color.darkGray,
-  background: '#f8f9fa',
-  white: '#ffffff'
-}
-
-const OfferingsSection = styled.section`
-  padding: clamp(3.5rem, 5vw, 5rem) 0;
-  background: ${COLORS.white};
-`
-
-const Container = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-`
-
-const Title = styled.h2`
-  font-size: 2.5rem;
-  color: ${COLORS.dark};
-  text-align: center;
-  margin-bottom: 3rem;
-  font-weight: bold;
-  
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-`
+import {
+  FORGE_COLORS,
+  FORGE_RADIUS,
+  CitySection,
+  CityContainer,
+  CityTitle,
+  CityCard,
+  CityCardTitle,
+} from '../styles'
 
 const ServicesGrid = styled.div`
   display: grid;
@@ -42,29 +20,12 @@ const ServicesGrid = styled.div`
   margin-bottom: 3rem;
 `
 
-const ServiceCard = styled.div`
-  background: ${COLORS.background};
+const ServiceCard = styled(CityCard)`
   padding: 2rem;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    border-color: ${COLORS.primary};
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-`
-
-const ServiceTitle = styled.h3`
-  font-size: 1.5rem;
-  color: ${COLORS.primary};
-  margin-bottom: 1rem;
-  font-weight: bold;
 `
 
 const ServiceDescription = styled.p`
-  color: ${COLORS.textSecondary};
+  color: ${FORGE_COLORS.textSecondary};
   line-height: 1.6;
   margin-bottom: 1rem;
 `
@@ -76,16 +37,16 @@ const ServiceFeatures = styled.ul`
 `
 
 const FeatureItem = styled.li`
-  color: ${COLORS.textSecondary};
+  color: ${FORGE_COLORS.textSecondary};
   margin: 0.5rem 0;
   padding-left: 1.5rem;
   position: relative;
-  
+
   &::before {
-    content: '✓';
+    content: '\u2713';
     position: absolute;
     left: 0;
-    color: ${COLORS.primary};
+    color: ${FORGE_COLORS.ember};
     font-weight: bold;
   }
 `
@@ -93,28 +54,27 @@ const FeatureItem = styled.li`
 const CTASection = styled.div`
   text-align: center;
   padding: 2rem;
-  background: ${COLORS.background};
-  border-radius: 8px;
+  background: ${FORGE_COLORS.sectionBg};
+  border-radius: ${FORGE_RADIUS.cardWithCorner};
+  border-top: 3px solid ${FORGE_COLORS.iron};
   margin-top: 3rem;
 `
 
 const CTATitle = styled.h3`
   font-size: 1.8rem;
-  color: ${COLORS.dark};
+  color: ${FORGE_COLORS.iron};
   margin-bottom: 1rem;
+  font-family: 'Merriweather', serif;
 `
 
 const CTAText = styled.p`
-  color: ${COLORS.textSecondary};
+  color: ${FORGE_COLORS.textSecondary};
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 `
 
 export function CityServiceOfferings({ city, language, pathname }) {
-  // Get current path for language detection - use pathname prop during SSR
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : (pathname || '/')
-  // Use URL-based language detection instead of prop
-  const actualLanguage = getLanguageFromPath(currentPath)
+  const actualLanguage = useActualLanguage(pathname)
   
   const services = actualLanguage === 'pl' ? [
     {
@@ -201,14 +161,14 @@ export function CityServiceOfferings({ city, language, pathname }) {
   const ctaButtonText = actualLanguage === 'pl' ? 'Zamów Darmową Wycenę' : 'Get Free Quote'
 
   return (
-    <OfferingsSection>
-      <Container>
-        <Title>{mainTitle}</Title>
-        
+    <CitySection $bg={FORGE_COLORS.white}>
+      <CityContainer $maxWidth="1280px">
+        <CityTitle $size="lg" $mb="3rem">{mainTitle}</CityTitle>
+
         <ServicesGrid>
           {services.map((service, index) => (
             <ServiceCard key={index}>
-              <ServiceTitle>{service.title}</ServiceTitle>
+              <CityCardTitle>{service.title}</CityCardTitle>
               <ServiceDescription>{service.description}</ServiceDescription>
               <ServiceFeatures>
                 {service.features.map((feature, idx) => (
@@ -229,7 +189,7 @@ export function CityServiceOfferings({ city, language, pathname }) {
             {ctaButtonText}
           </CityCtaButton>
         </CTASection>
-      </Container>
-    </OfferingsSection>
+      </CityContainer>
+    </CitySection>
   )
 }
