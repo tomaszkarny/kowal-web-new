@@ -24,7 +24,7 @@ const CITIES = [
       lat: 53.1325,  // Białystok city center
       lng: 23.1688
     },
-    heroImage: 'ogrodz12.jpg',
+    heroImage: 'hero-bialystok.png',
     serviceArea: {
       radius: 50, // km - promień obsługi dla Białegostoku
       neighborhoods: {
@@ -58,7 +58,7 @@ const CITIES = [
       lat: 52.2297,
       lng: 21.0122
     },
-    heroImage: 'balu21.jpg',
+    heroImage: 'hero-warszawa.png',
     serviceArea: {
       radius: 150, // km - promień obsługi dla Warszawy
       neighborhoods: {
@@ -92,7 +92,7 @@ const CITIES = [
       lat: 54.1020,
       lng: 22.9308
     },
-    heroImage: 'ogrodz13.jpg',
+    heroImage: 'hero-suwalki.png',
     serviceArea: {
       radius: 100, // km - promień obsługi dla Suwałk
       neighborhoods: {
