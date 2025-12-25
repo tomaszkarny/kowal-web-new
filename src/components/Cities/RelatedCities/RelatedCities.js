@@ -97,9 +97,7 @@ export function RelatedCities({ currentCity, allCities, language, pathname }) {
     .sort((a, b) => a.distanceFromCurrent - b.distanceFromCurrent)
     .slice(0, 3)
   
-  const title = actualLanguage === 'pl' 
-    ? 'Obsługujemy również' 
-    : 'We also serve'
+  const title = t('cityPage.relatedCities.title')
   
   return (
     <RelatedSection $bg={FORGE_COLORS.sectionBg}>
@@ -115,12 +113,12 @@ export function RelatedCities({ currentCity, allCities, language, pathname }) {
               <CityInfo>
                 {city.region[actualLanguage]}
                 <Distance>
-                  {actualLanguage === 'pl' ? 'Odległość' : 'Distance'}: {Math.round(city.distanceFromCurrent)} km
+                  {t('cityPage.relatedCities.distanceLabel')}: {Math.round(city.distanceFromCurrent)} km
                 </Distance>
               </CityInfo>
               {city.freeDelivery && (
                 <Badge>
-                  {actualLanguage === 'pl' ? 'Darmowa dostawa' : 'Free delivery'}
+                  {t('cityPage.relatedCities.freeDeliveryBadge')}
                 </Badge>
               )}
             </CityCard>

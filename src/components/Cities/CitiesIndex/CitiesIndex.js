@@ -82,16 +82,8 @@ export function CitiesIndex() {
   const formatNumber = num =>
     new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-US').format(num)
 
-  // Get label text based on language
-  const getStatLabel = (key) => {
-    const labels = {
-      population: language === 'pl' ? 'mieszk.' : 'pop.',
-      distance: language === 'pl' ? 'dystans' : 'distance',
-      travelTime: language === 'pl' ? 'dojazd' : 'travel',
-      radius: language === 'pl' ? 'zasięg' : 'radius'
-    }
-    return labels[key]
-  }
+  // Get label text based on language using translation
+  const getStatLabel = (key) => t(`citiesList.statLabels.${key}`)
 
   return (
     <>

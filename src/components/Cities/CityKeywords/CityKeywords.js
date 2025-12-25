@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { getCitySeoData } from 'data/citiesSeoEnhanced'
 import {
   FORGE_COLORS,
@@ -35,6 +36,7 @@ const FeatureItem = styled.li`
 `
 
 export function CityKeywords({ city, language }) {
+  const { t } = useTranslation('cities')
   const seoData = getCitySeoData(city.id)
 
   if (!seoData) return null
@@ -42,10 +44,7 @@ export function CityKeywords({ city, language }) {
   const keywords = seoData.seoKeywords?.[language] || []
   const features = seoData.localFeatures?.[language] || []
 
-  const title =
-    language === 'pl'
-      ? `Usługi kowalskie w ${city.name[language]}`
-      : `Blacksmithing services in ${city.name[language]}`
+  const title = t('cityPage.keywords.titleTemplate', { city: city.name[language] })
 
   return (
     <CitySection $bg={FORGE_COLORS.white} style={{ padding: '3rem 0' }}>

@@ -149,7 +149,7 @@ export function CityContact({ city, language, templateData, pathname }) {
             <CityInfoTitle>{contactInfo.workshop}</CityInfoTitle>
             <InfoItem>
               <strong>
-                {actualLanguage === 'pl' ? 'Adres:' : 'Address:'}
+                {t('cityPage.contact.labels.address')}
               </strong>
               <br />
               <a
@@ -162,7 +162,7 @@ export function CityContact({ city, language, templateData, pathname }) {
             </InfoItem>
             <InfoItem>
               <strong>
-                {actualLanguage === 'pl' ? 'Telefon:' : 'Phone:'}
+                {t('cityPage.contact.labels.phone')}
               </strong>
               <br />
               <a href={`tel:${napInfo.phone.replace(/\s/g, '')}`}>
@@ -173,30 +173,28 @@ export function CityContact({ city, language, templateData, pathname }) {
               <strong>{contactInfo.serviceArea}</strong>
               <br />
               {city.name[actualLanguage]}{' '}
-              {actualLanguage === 'pl' ? 'i okolice' : 'and surroundings'}
+              {t('cityPage.contact.labels.surroundings')}
             </InfoItem>
             <InfoItem>{contactInfo.travelTime}</InfoItem>
             {city.freeDelivery && (
               <InfoItem style={{ color: FORGE_COLORS.success, fontWeight: '600' }}>
-                {actualLanguage === 'pl'
-                  ? '✅ Bezpłatny transport'
-                  : '✅ Free delivery'}
+                {t('cityPage.contact.freeTransport')}
               </InfoItem>
             )}
 
             <BusinessHours>
               <HoursTitle>
-                {actualLanguage === 'pl' ? 'Godziny otwarcia:' : 'Business hours:'}
+                {t('cityPage.contact.businessHours.title')}
               </HoursTitle>
               <HoursGrid>
-                <strong>{actualLanguage === 'pl' ? 'Pon-Pt:' : 'Mon-Fri:'}</strong>
+                <strong>{t('cityPage.contact.businessHours.monFri')}</strong>
                 <span>7:30 - 16:00</span>
-                <strong>{actualLanguage === 'pl' ? 'Sobota:' : 'Saturday:'}</strong>
+                <strong>{t('cityPage.contact.businessHours.saturday')}</strong>
                 <span>9:00 - 15:00</span>
                 <strong>
-                  {actualLanguage === 'pl' ? 'Niedziela:' : 'Sunday:'}
+                  {t('cityPage.contact.businessHours.sunday')}
                 </strong>
-                <span>{actualLanguage === 'pl' ? 'Zamknięte' : 'Closed'}</span>
+                <span>{t('cityPage.contact.businessHours.closed')}</span>
               </HoursGrid>
             </BusinessHours>
 
@@ -205,26 +203,20 @@ export function CityContact({ city, language, templateData, pathname }) {
                 <path d="M10 3h4v2h-4V3m0 18h4v-2h-4v2m2-16c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2m0 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .89-2 2-2z" />
               </svg>
               <p>
-                {actualLanguage === 'pl'
-                  ? 'Naprawy awaryjne 24/7 w promieniu 50km'
-                  : '24/7 emergency repairs within 50km radius'}
+                {t('cityPage.contact.emergencyRepairs')}
               </p>
             </EmergencyInfo>
           </CityInfoBox>
 
           <CityCard>
             <CityInfoTitle>
-              {actualLanguage === 'pl' ? 'Formularz kontaktowy' : 'Contact form'}
+              {t('cityPage.contact.formSection.title')}
             </CityInfoTitle>
             <p style={{ color: FORGE_COLORS.textSecondary, marginBottom: '1.5rem' }}>
-              {actualLanguage === 'pl'
-                ? `Skontaktuj się z nami, aby omówić projekt w ${templateData.city}`
-                : `Contact us to discuss your project in ${templateData.city}`}
+              {t('cityPage.contact.formSection.description', templateData)}
             </p>
             <CityCtaButton onClick={handleContactClick}>
-              {actualLanguage === 'pl'
-                ? 'Przejdź do formularza'
-                : 'Go to contact form'}
+              {t('cityPage.contact.formSection.buttonText')}
             </CityCtaButton>
           </CityCard>
         </ContactGrid>

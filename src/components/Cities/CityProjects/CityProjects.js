@@ -82,22 +82,17 @@ const ProjectMeta = styled.div`
 `
 
 export function CityProjects({ city, language, templateData }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation('cities')
   const seoData = getCitySeoData(city.id)
-  
+
   if (!seoData || !seoData.localProjects) {
     return null
   }
-  
+
   const projects = seoData.localProjects[language] || seoData.localProjects.pl
-  
-  const title = language === 'pl' 
-    ? `Nasze realizacje w ${city.name[language]}`
-    : `Our projects in ${city.name[language]}`
-    
-  const subtitle = language === 'pl'
-    ? 'Zobacz przykładowe prace wykonane dla klientów z Twojego miasta'
-    : 'See example works completed for clients from your city'
+
+  const title = t('cityPage.projects.titleTemplate', { city: city.name[language] })
+  const subtitle = t('cityPage.projects.subtitle')
   
   return (
     <ProjectsSection>
@@ -111,7 +106,7 @@ export function CityProjects({ city, language, templateData }) {
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectDescription>{project.description}</ProjectDescription>
               <ProjectMeta>
-                {language === 'pl' ? 'Lokalizacja: ' : 'Location: '}
+                {t('cityPage.projects.locationLabel')}
                 {city.name[language]}
               </ProjectMeta>
             </ProjectCard>

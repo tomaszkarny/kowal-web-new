@@ -75,6 +75,25 @@
     "contact": {
       "title": "Contact - {{city}}",
       "subtitle": "Contact us to discuss your project",
+      "labels": {
+        "address": "Address:",
+        "phone": "Phone:",
+        "surroundings": "and surroundings"
+      },
+      "businessHours": {
+        "title": "Business hours:",
+        "monFri": "Mon-Fri:",
+        "saturday": "Saturday:",
+        "sunday": "Sunday:",
+        "closed": "Closed"
+      },
+      "freeTransport": "✅ Free delivery",
+      "emergencyRepairs": "24/7 emergency repairs within 50km radius",
+      "formSection": {
+        "title": "Contact form",
+        "description": "Contact us to discuss your project in {{city}}",
+        "buttonText": "Go to contact form"
+      },
       "form": {
         "cityField": "City",
         "projectType": "Project type",
@@ -108,6 +127,107 @@
           "answer": "Yes, we offer free on-site estimates in {{city}}. We'll arrange a convenient time."
         }
       ]
+    },
+    "valueProposition": {
+      "titleTemplate": "Why choose us in {{city}}",
+      "subtitle": "Professional blacksmithing services with quality guarantee",
+      "cards": {
+        "delivery": {
+          "title": "Delivery and installation",
+          "costLabel": "Delivery cost",
+          "free": "FREE",
+          "travelTimeLabel": "Travel time",
+          "freeDeliveryNote": "Free delivery within {{radius}} km. Beyond - 2.5 PLN/km."
+        },
+        "quality": {
+          "title": "Quality guarantee",
+          "warranty": "5-year warranty",
+          "steel": "Premium steel",
+          "certificates": "Quality certificates",
+          "craftsmanship": "Professional craftsmanship"
+        },
+        "serviceArea": {
+          "title": "Service area",
+          "description": "We serve an area within {{radius}} km radius from {{city}}.",
+          "coverage": "All districts and surrounding localities."
+        }
+      },
+      "process": {
+        "title": "Implementation process",
+        "steps": [
+          { "title": "Consultation", "description": "Free quote and advice" },
+          { "title": "Design", "description": "Individual design and visualization" },
+          { "title": "Production", "description": "Manufacture in our workshop" },
+          { "title": "Installation", "description": "Professional installation at client's location" }
+        ]
+      },
+      "whyUs": {
+        "title": "Why us?",
+        "benefits": [
+          "Highest quality materials - S235, S355 steel",
+          "30 years of experience in artistic blacksmithing",
+          "Free quote and conceptual design",
+          "Comprehensive technical documentation",
+          "Post-warranty service and maintenance",
+          "Timeliness and professionalism"
+        ]
+      }
+    },
+    "serviceOfferings": {
+      "mainTitle": "Custom Artistic Blacksmithing in {{city}}",
+      "cta": {
+        "title": "Looking for a Blacksmith in {{city}}?",
+        "text": "Contact us today and get a free quote for custom fences, gates and railings.",
+        "buttonText": "Get Free Quote"
+      },
+      "items": [
+        {
+          "titleTemplate": "Custom Fences {{city}}",
+          "descriptionTemplate": "We design and manufacture custom wrought iron fences for clients in {{city}} and surrounding areas. Each fence is created according to an individual design.",
+          "features": [
+            "Individual fence designs",
+            "Various patterns and styles",
+            "Solid and openwork fences",
+            "Anti-corrosion protection",
+            "5-year warranty"
+          ]
+        },
+        {
+          "titleTemplate": "Custom Wrought Iron Gates {{city}}",
+          "descriptionTemplate": "We specialize in custom wrought iron gates. We offer driveway, sliding and double-leaf gates for homes in {{city}}.",
+          "features": [
+            "Double-leaf and sliding gates",
+            "Gate automation",
+            "Classic and modern designs",
+            "Installation and service",
+            "Delivery throughout the region"
+          ]
+        },
+        {
+          "titleTemplate": "Custom Railings {{city}}",
+          "descriptionTemplate": "We manufacture custom railings - interior and exterior. Ideal for homes and businesses in {{city}}.",
+          "features": [
+            "Staircase railings",
+            "Balcony railings",
+            "Terrace railings",
+            "Stainless and wrought steel",
+            "Installation within 24h"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "titleTemplate": "Our projects in {{city}}",
+      "subtitle": "See example works completed for clients from your city",
+      "locationLabel": "Location:"
+    },
+    "relatedCities": {
+      "title": "We also serve",
+      "distanceLabel": "Distance",
+      "freeDeliveryBadge": "Free delivery"
+    },
+    "keywords": {
+      "titleTemplate": "Blacksmithing services in {{city}}"
     }
   },
   "citiesList": {
@@ -117,7 +237,13 @@
     "population": "{{population}} residents",
     "travelTime": "Travel: {{travelTime}}",
     "serviceRadius": "Service within {{radius}} km radius",
-    "viewCity": "View city page"
+    "viewCity": "View city page",
+    "statLabels": {
+      "population": "pop.",
+      "distance": "distance",
+      "travelTime": "travel",
+      "radius": "radius"
+    }
   },
   "navigation": {
     "cities": "Cities",

@@ -828,41 +828,22 @@ export function CityValueProposition({ city, language, templateData }) {
     </svg>
   )
 
-  const title = language === 'pl'
-    ? `Dlaczego warto wybrać nas w ${city.name[language]}`
-    : `Why choose us in ${city.name[language]}`
+  const cityName = city.name[language]
+  const title = t('cityPage.valueProposition.titleTemplate', { city: cityName })
+  const subtitle = t('cityPage.valueProposition.subtitle')
 
-  const subtitle = language === 'pl'
-    ? 'Profesjonalne usługi kowalskie z gwarancją jakości'
-    : 'Professional blacksmithing services with quality guarantee'
+  // Get process steps from translations
+  const stepsData = t('cityPage.valueProposition.process.steps', { returnObjects: true })
+  const processSteps = Array.isArray(stepsData)
+    ? stepsData.map((step, index) => ({
+        num: index + 1,
+        title: step.title,
+        desc: step.description,
+      }))
+    : []
 
-  const processSteps = language === 'pl' ? [
-    { num: 1, title: 'Konsultacja', desc: 'Bezpłatna wycena i doradztwo' },
-    { num: 2, title: 'Projekt', desc: 'Indywidualny projekt i wizualizacja' },
-    { num: 3, title: 'Produkcja', desc: 'Wykonanie w naszym warsztacie' },
-    { num: 4, title: 'Montaż', desc: 'Profesjonalny montaż u klienta' }
-  ] : [
-    { num: 1, title: 'Consultation', desc: 'Free quote and consultation' },
-    { num: 2, title: 'Design', desc: 'Custom design and visualization' },
-    { num: 3, title: 'Production', desc: 'Manufacturing in our workshop' },
-    { num: 4, title: 'Installation', desc: 'Professional on-site installation' }
-  ]
-
-  const benefits = language === 'pl' ? [
-    'Materiały najwyższej jakości - stal S235, S355',
-    '30 lat doświadczenia w kowalstwie artystycznym',
-    'Bezpłatna wycena i projekt koncepcyjny',
-    'Kompleksowa dokumentacja techniczna',
-    'Serwis pogwarancyjny i konserwacja',
-    'Terminowość i profesjonalizm'
-  ] : [
-    'Highest quality materials - S235, S355 steel',
-    '30 years of experience in artistic blacksmithing',
-    'Free quote and conceptual design',
-    'Comprehensive technical documentation',
-    'Post-warranty service and maintenance',
-    'Timeliness and professionalism'
-  ]
+  // Get benefits from translations
+  const benefits = t('cityPage.valueProposition.whyUs.benefits', { returnObjects: true }) || []
 
   return (
     <Section>
@@ -876,23 +857,21 @@ export function CityValueProposition({ city, language, templateData }) {
           <ValueCard>
             <CardIconWrapper>{deliveryIcon}</CardIconWrapper>
             <CardTitle>
-              {language === 'pl' ? 'Dostawa i montaż' : 'Delivery and installation'}
+              {t('cityPage.valueProposition.cards.delivery.title')}
             </CardTitle>
             <CardContent>
               <DeliveryGrid>
                 <DeliveryMetric $highlight={isFreeDelivery}>
-                  <strong>{language === 'pl' ? 'Koszt dostawy' : 'Delivery cost'}</strong>
-                  <span>{isFreeDelivery ? (language === 'pl' ? 'GRATIS' : 'FREE') : `${deliveryCost} zł`}</span>
+                  <strong>{t('cityPage.valueProposition.cards.delivery.costLabel')}</strong>
+                  <span>{isFreeDelivery ? t('cityPage.valueProposition.cards.delivery.free') : `${deliveryCost} zł`}</span>
                 </DeliveryMetric>
                 <DeliveryMetric>
-                  <strong>{language === 'pl' ? 'Czas dojazdu' : 'Travel time'}</strong>
+                  <strong>{t('cityPage.valueProposition.cards.delivery.travelTimeLabel')}</strong>
                   <span>{city.travelTime[language]}</span>
                 </DeliveryMetric>
               </DeliveryGrid>
               <DeliveryNote>
-                {language === 'pl'
-                  ? `Darmowa dostawa w promieniu ${FREE_DELIVERY_RADIUS} km. Powyżej - 2,5 zł/km.`
-                  : `Free delivery within ${FREE_DELIVERY_RADIUS} km. Beyond - 2.5 PLN/km.`}
+                {t('cityPage.valueProposition.cards.delivery.freeDeliveryNote', { radius: FREE_DELIVERY_RADIUS })}
               </DeliveryNote>
             </CardContent>
           </ValueCard>
@@ -901,25 +880,25 @@ export function CityValueProposition({ city, language, templateData }) {
           <ValueCard>
             <CardIconWrapper>{qualityIcon}</CardIconWrapper>
             <CardTitle>
-              {language === 'pl' ? 'Gwarancja jakości' : 'Quality guarantee'}
+              {t('cityPage.valueProposition.cards.quality.title')}
             </CardTitle>
             <CardContent>
               <QualityList>
                 <QualityItem>
                   <CheckIcon>✓</CheckIcon>
-                  <span>{language === 'pl' ? '5 lat gwarancji' : '5-year warranty'}</span>
+                  <span>{t('cityPage.valueProposition.cards.quality.warranty')}</span>
                 </QualityItem>
                 <QualityItem>
                   <CheckIcon>✓</CheckIcon>
-                  <span>{language === 'pl' ? 'Stal premium' : 'Premium steel'}</span>
+                  <span>{t('cityPage.valueProposition.cards.quality.steel')}</span>
                 </QualityItem>
                 <QualityItem>
                   <CheckIcon>✓</CheckIcon>
-                  <span>{language === 'pl' ? 'Certyfikaty jakości' : 'Quality certificates'}</span>
+                  <span>{t('cityPage.valueProposition.cards.quality.certificates')}</span>
                 </QualityItem>
                 <QualityItem>
                   <CheckIcon>✓</CheckIcon>
-                  <span>{language === 'pl' ? 'Profesjonalne wykonanie' : 'Professional craftsmanship'}</span>
+                  <span>{t('cityPage.valueProposition.cards.quality.craftsmanship')}</span>
                 </QualityItem>
               </QualityList>
             </CardContent>
@@ -929,18 +908,14 @@ export function CityValueProposition({ city, language, templateData }) {
           <ValueCard>
             <CardIconWrapper>{radiusIcon}</CardIconWrapper>
             <CardTitle>
-              {language === 'pl' ? 'Zasięg obsługi' : 'Service area'}
+              {t('cityPage.valueProposition.cards.serviceArea.title')}
             </CardTitle>
             <CardContent>
               <p style={{ marginBottom: '0.75rem' }}>
-                {language === 'pl'
-                  ? `Obsługujemy obszar w promieniu ${city.serviceArea.radius} km od ${city.name[language]}.`
-                  : `We serve an area within ${city.serviceArea.radius} km radius from ${city.name[language]}.`}
+                {t('cityPage.valueProposition.cards.serviceArea.description', { radius: city.serviceArea.radius, city: cityName })}
               </p>
               <p style={{ color: COLORS.textMuted, fontSize: '0.9rem' }}>
-                {language === 'pl'
-                  ? 'Wszystkie dzielnice i okoliczne miejscowości.'
-                  : 'All districts and surrounding localities.'}
+                {t('cityPage.valueProposition.cards.serviceArea.coverage')}
               </p>
             </CardContent>
           </ValueCard>
@@ -949,7 +924,7 @@ export function CityValueProposition({ city, language, templateData }) {
         {/* Process Flow */}
         <ProcessSection>
           <ProcessTitle>
-            {language === 'pl' ? 'Proces realizacji' : 'Implementation process'}
+            {t('cityPage.valueProposition.process.title')}
           </ProcessTitle>
           <ProcessSteps>
             {processSteps.map((step) => (
@@ -969,7 +944,7 @@ export function CityValueProposition({ city, language, templateData }) {
           <WhyUsHeader>
             <WhyUsIcon>{checkIcon}</WhyUsIcon>
             <WhyUsTitle>
-              {language === 'pl' ? 'Dlaczego my?' : 'Why us?'}
+              {t('cityPage.valueProposition.whyUs.title')}
             </WhyUsTitle>
           </WhyUsHeader>
           <BenefitsGrid>

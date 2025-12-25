@@ -80,7 +80,13 @@ function generateSchemaForNamespace(namespace, translationData) {
             const itemRequired = [];
             
             Object.keys(firstItem).forEach(itemKey => {
-              itemProperties[itemKey] = { type: 'string' };
+              const itemValue = firstItem[itemKey];
+              // Handle nested arrays within object items (e.g., features: ["a", "b"])
+              if (Array.isArray(itemValue)) {
+                itemProperties[itemKey] = { type: 'array', items: { type: 'string' } };
+              } else {
+                itemProperties[itemKey] = { type: 'string' };
+              }
               itemRequired.push(itemKey);
             });
             

@@ -65,5 +65,185 @@
         "answer": "Oczywiście! Specjalizujemy się w realizacji indywidualnych projektów. Możesz dostarczyć własny projekt lub skorzystać z pomocy naszego projektanta. Wykonujemy nawet najbardziej nietypowe i wymagające zlecenia kowalstwa artystycznego."
       }
     ]
+  },
+  "schema": {
+    "products": {
+      "fences": {
+        "name": "Ogrodzenia na Zamówienie {{city}}",
+        "description": "Profesjonalne ogrodzenia kute na zamówienie w {{city}}. Indywidualne projekty, różnorodne wzory, 5 lat gwarancji. Najlepszy kowal w regionie."
+      },
+      "gates": {
+        "name": "Bramy Kute na Zamówienie {{city}}",
+        "description": "Ekskluzywne bramy kute na zamówienie w {{city}}. Bramy dwuskrzydłowe, przesuwne, z automatyką. Projekt, wykonanie, montaż.",
+        "priceDescription": "Bezpłatna wycena - cena zależy od typu bramy i automatyki"
+      },
+      "railings": {
+        "name": "Balustrady na Zamówienie {{city}}",
+        "description": "Balustrady na zamówienie w {{city}} - wewnętrzne i zewnętrzne. Balustrady schodowe, balkonowe, tarasowe. Stal kuta i nierdzewna.",
+        "priceDescription": "Bezpłatna wycena - cena zależy od typu i złożoności balustrady",
+        "material": "Stal kuta, stal nierdzewna"
+      },
+      "common": {
+        "priceDescription": "Bezpłatna wycena dostosowana do indywidualnego projektu",
+        "areaServed": "Województwo Podlaskie",
+        "material": "Stal kuta S235, S355"
+      },
+      "properties": {
+        "material": {
+          "name": "Materiał",
+          "value": "Stal S235, S355 - najwyższa jakość"
+        },
+        "warranty": {
+          "name": "Gwarancja",
+          "value": "5 lat na wykonanie i materiały"
+        },
+        "quote": {
+          "name": "Wycena",
+          "value": "Bezpłatna wycena i projekt koncepcyjny"
+        },
+        "installation": {
+          "name": "Montaż",
+          "value": "Profesjonalny montaż w cenie"
+        },
+        "experience": {
+          "name": "Doświadczenie",
+          "value": "30 lat w kowalstwie artystycznym"
+        },
+        "type": {
+          "name": "Typ",
+          "value": "Dwuskrzydłowe, przesuwne, z automatyką"
+        },
+        "automation": {
+          "name": "Automatyka",
+          "value": "Montaż i konfiguracja w cenie"
+        },
+        "design": {
+          "name": "Projekt",
+          "value": "Indywidualny projekt 3D"
+        },
+        "service": {
+          "name": "Serwis",
+          "value": "Serwis pogwarancyjny"
+        },
+        "application": {
+          "name": "Zastosowanie",
+          "value": "Wewnętrzne i zewnętrzne"
+        },
+        "types": {
+          "name": "Typy",
+          "value": "Schodowe, balkonowe, tarasowe"
+        },
+        "finish": {
+          "name": "Wykończenie",
+          "value": "Malowanie proszkowe, galwanizacja"
+        },
+        "gatesWarranty": {
+          "name": "Gwarancja",
+          "value": "5 lat na wykonanie i automatykę"
+        },
+        "railingsWarranty": {
+          "name": "Gwarancja",
+          "value": "5 lat na wykonanie"
+        },
+        "expressInstallation": {
+          "name": "Montaż",
+          "value": "Ekspresowy montaż w 24h"
+        }
+      }
+    },
+    "services": {
+      "gates": {
+        "name": "Wykonanie bram kutych",
+        "description": "Projektowanie i wykonanie bram kutych na zamówienie"
+      },
+      "railings": {
+        "name": "Balustrady kute",
+        "description": "Produkcja balustrad wewnętrznych i zewnętrznych"
+      },
+      "fences": {
+        "name": "Ogrodzenia kute",
+        "description": "Kompleksowe wykonanie ogrodzeń kutych"
+      }
+    },
+    "howTo": {
+      "ordering": {
+        "name": "Jak zamówić bramę kutą lub balustradę - przewodnik krok po kroku",
+        "description": "Kompletny przewodnik zamówienia wyrobu kowalskiego - od kontaktu po montaż. Poznaj proces realizacji bramy kutej, balustrady lub ogrodzenia w Pracowni Kowalstwa Artystycznego.",
+        "estimatedCost": "Wycena indywidualna",
+        "yield": "Profesjonalnie wykonana brama kuta, balustrada lub ogrodzenie z 5-letnią gwarancją",
+        "actionName": "Zamów bramę kutą"
+      },
+      "maintenance": {
+        "name": "Jak konserwować wyroby kute - przewodnik pielęgnacji",
+        "description": "Praktyczny przewodnik konserwacji bram kutych, balustrad i ogrodzeń. Poznaj sposoby zachowania pięknego wyglądu i długowieczności wyrobów kowalskich.",
+        "yield": "Długotrwała ochrona i piękny wygląd wyrobów kutych przez wiele lat"
+      },
+      "supplies": {
+        "measurements": "Pomiary miejsca montażu",
+        "concept": "Projekt koncepcyjny",
+        "materials": "Materiały stalowe S235/S355",
+        "cloth": "Miękka ściereczka",
+        "soapyWater": "Woda z mydłem",
+        "antiCorrosionPaint": "Farba antykorozyjna (w razie potrzeby)"
+      },
+      "tools": {
+        "blacksmithing": "Profesjonalny sprzęt kowalski",
+        "installation": "Urządzenia do montażu"
+      },
+      "steps": {
+        "ordering": {
+          "step1": {
+            "name": "Kontakt i konsultacja",
+            "text": "Skontaktuj się z nami telefonicznie lub poprzez formularz kontaktowy. Omówimy Twoje potrzeby, styl architektoniczny budynku i preferencje wzornicze."
+          },
+          "step2": {
+            "name": "Pomiary i wizja lokalna",
+            "text": "Umówimy się na wizytę w celu wykonania precyzyjnych pomiarów. Podczas spotkania omówimy szczegóły techniczne, materiały i opcje wykończenia."
+          },
+          "step3": {
+            "name": "Projekt i wycena",
+            "text": "Przygotujemy indywidualny projekt 3D oraz szczegółową wycenę. Uwzględnimy wszystkie Twoje wymagania oraz specyfikę miejsca montażu."
+          },
+          "step4": {
+            "name": "Zatwierdzenie i zaliczka",
+            "text": "Po zatwierdzeniu projektu i wyceny, wpłacasz zaliczkę (zwykle 50% wartości zamówienia). Od tego momentu rozpoczynamy realizację."
+          },
+          "step5": {
+            "name": "Wykonanie w kuźni",
+            "text": "Rozpoczynamy proces kucia w naszej pracowni. Czas realizacji wynosi 2-4 tygodnie w zależności od złożoności projektu. Informujemy o postępach prac."
+          },
+          "step6": {
+            "name": "Powierzchnia i zabezpieczenia",
+            "text": "Gotowy wyrób cynkujemy ogniowo i malujemy proszkowo lub lakierujemy. Zapewnia to długotrwałą ochronę przed korozją i piękny wygląd na lata."
+          },
+          "step7": {
+            "name": "Montaż i odbiór",
+            "text": "Nasz zespół montażowy przyjeżdża w umówionym terminie i przeprowadza profesjonalną instalację. Po montażu przekazujemy dokumenty gwarancyjne i instrukcję konserwacji."
+          }
+        },
+        "maintenance": {
+          "step1": {
+            "name": "Regularne czyszczenie",
+            "text": "Wyroby kute czyść regularnie miękką ściereczką i wodą z mydłem. Unikaj środków ściernych i wybielających, które mogą uszkodzić powłokę ochronną."
+          },
+          "step2": {
+            "name": "Inspekcja powierzchni",
+            "text": "Raz w roku dokładnie obejrzyj powierzchnię w poszukiwaniu zarysowań lub uszkodzeń powłoki. Szczególną uwagę zwróć na miejsca narażone na działanie warunków atmosferycznych."
+          },
+          "step3": {
+            "name": "Konserwacja powłoki",
+            "text": "W przypadku drobnych uszkodzeń powłoki, natychmiast zabezpiecz miejsce farbą antykorozyjną. Większe naprawy powierz profesjonalistom."
+          },
+          "step4": {
+            "name": "Konserwacja zawiasów",
+            "text": "Zawiasy bram należy smarować co najmniej raz w roku. Użyj smaru grafitowego lub specjalnego środka do mechanizmów zewnętrznych."
+          },
+          "step5": {
+            "name": "Przegląd profesjonalny",
+            "text": "Co 5-7 lat warto zlecić profesjonalny przegląd i ewentualne odnowienie powłoki lakierniczej, aby zachować optymalną ochronę przed korozją."
+          }
+        }
+      }
+    }
   }
 }

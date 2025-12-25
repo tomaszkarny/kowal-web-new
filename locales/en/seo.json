@@ -65,5 +65,185 @@
         "answer": "Absolutely! We specialize in custom projects. You can provide your own design or work with our designer. We execute even the most unique and demanding artistic blacksmithing commissions."
       }
     ]
+  },
+  "schema": {
+    "products": {
+      "fences": {
+        "name": "Custom Fences {{city}}",
+        "description": "Professional custom wrought iron fences in {{city}}. Individual designs, various patterns, 5-year warranty. Best blacksmith in the region."
+      },
+      "gates": {
+        "name": "Custom Wrought Iron Gates {{city}}",
+        "description": "Exclusive custom wrought iron gates in {{city}}. Double-leaf, sliding gates with automation. Design, manufacturing, installation.",
+        "priceDescription": "Free quote - price depends on gate type and automation"
+      },
+      "railings": {
+        "name": "Custom Railings {{city}}",
+        "description": "Custom railings in {{city}} - interior and exterior. Stair, balcony, terrace railings. Wrought and stainless steel.",
+        "priceDescription": "Free quote - price depends on type and complexity of railings",
+        "material": "Wrought steel, stainless steel"
+      },
+      "common": {
+        "priceDescription": "Free quote tailored to individual project requirements",
+        "areaServed": "Podlaskie Voivodeship",
+        "material": "Wrought Steel S235, S355"
+      },
+      "properties": {
+        "material": {
+          "name": "Material",
+          "value": "Steel S235, S355 - highest quality"
+        },
+        "warranty": {
+          "name": "Warranty",
+          "value": "5 years on workmanship and materials"
+        },
+        "quote": {
+          "name": "Quote",
+          "value": "Free quote and conceptual design"
+        },
+        "installation": {
+          "name": "Installation",
+          "value": "Professional installation included"
+        },
+        "experience": {
+          "name": "Experience",
+          "value": "30 years in artistic blacksmithing"
+        },
+        "type": {
+          "name": "Type",
+          "value": "Double-leaf, sliding, with automation"
+        },
+        "automation": {
+          "name": "Automation",
+          "value": "Installation and configuration included"
+        },
+        "design": {
+          "name": "Design",
+          "value": "Individual 3D design"
+        },
+        "service": {
+          "name": "Service",
+          "value": "Post-warranty service"
+        },
+        "application": {
+          "name": "Application",
+          "value": "Interior and exterior"
+        },
+        "types": {
+          "name": "Types",
+          "value": "Stair, balcony, terrace railings"
+        },
+        "finish": {
+          "name": "Finish",
+          "value": "Powder coating, galvanization"
+        },
+        "gatesWarranty": {
+          "name": "Warranty",
+          "value": "5 years on workmanship and automation"
+        },
+        "railingsWarranty": {
+          "name": "Warranty",
+          "value": "5 years on workmanship"
+        },
+        "expressInstallation": {
+          "name": "Installation",
+          "value": "Express installation within 24h"
+        }
+      }
+    },
+    "services": {
+      "gates": {
+        "name": "Wrought Iron Gates",
+        "description": "Custom design and manufacturing of wrought iron gates"
+      },
+      "railings": {
+        "name": "Wrought Iron Railings",
+        "description": "Production of interior and exterior wrought iron railings"
+      },
+      "fences": {
+        "name": "Wrought Iron Fences",
+        "description": "Complete wrought iron fence installation"
+      }
+    },
+    "howTo": {
+      "ordering": {
+        "name": "How to Order a Wrought Iron Gate or Railing - Step by Step Guide",
+        "description": "Complete guide to ordering blacksmith products - from contact to installation. Learn the process of creating wrought iron gates, railings or fences at our Artistic Blacksmithing Workshop.",
+        "estimatedCost": "Individual quote",
+        "yield": "Professionally crafted wrought iron gate, railing or fence with 5-year warranty",
+        "actionName": "Order wrought iron gate"
+      },
+      "maintenance": {
+        "name": "How to Maintain Wrought Iron Products - Care Guide",
+        "description": "Practical maintenance guide for wrought iron gates, railings and fences. Learn how to preserve beautiful appearance and longevity of blacksmith products.",
+        "yield": "Long-lasting protection and beautiful appearance of wrought iron products for many years"
+      },
+      "supplies": {
+        "measurements": "Installation site measurements",
+        "concept": "Conceptual design",
+        "materials": "Steel materials S235/S355",
+        "cloth": "Soft cloth",
+        "soapyWater": "Soapy water",
+        "antiCorrosionPaint": "Anti-corrosion paint (if needed)"
+      },
+      "tools": {
+        "blacksmithing": "Professional blacksmithing equipment",
+        "installation": "Installation equipment"
+      },
+      "steps": {
+        "ordering": {
+          "step1": {
+            "name": "Contact and consultation",
+            "text": "Contact us by phone or through our contact form. We'll discuss your needs, building's architectural style and design preferences."
+          },
+          "step2": {
+            "name": "Measurements and site visit",
+            "text": "We'll schedule a visit for precise measurements. During the meeting we'll discuss technical details, materials and finishing options."
+          },
+          "step3": {
+            "name": "Design and quote",
+            "text": "We'll prepare an individual 3D design and detailed quote. We'll consider all your requirements and installation site specifics."
+          },
+          "step4": {
+            "name": "Approval and deposit",
+            "text": "After approving the design and quote, you pay a deposit (usually 50% of order value). We begin production from this moment."
+          },
+          "step5": {
+            "name": "Blacksmith production",
+            "text": "We begin the forging process in our workshop. Production time is 2-4 weeks depending on project complexity. We keep you informed of progress."
+          },
+          "step6": {
+            "name": "Surface treatment and protection",
+            "text": "The finished product is hot-dip galvanized and powder coated or painted. This ensures long-lasting corrosion protection and beautiful appearance for years."
+          },
+          "step7": {
+            "name": "Installation and handover",
+            "text": "Our installation team arrives at the agreed time and performs professional installation. After installation we provide warranty documents and maintenance instructions."
+          }
+        },
+        "maintenance": {
+          "step1": {
+            "name": "Regular cleaning",
+            "text": "Clean wrought iron products regularly with a soft cloth and soapy water. Avoid abrasive and bleaching agents that may damage the protective coating."
+          },
+          "step2": {
+            "name": "Surface inspection",
+            "text": "Once a year thoroughly inspect the surface for scratches or coating damage. Pay special attention to areas exposed to weather conditions."
+          },
+          "step3": {
+            "name": "Coating maintenance",
+            "text": "In case of minor coating damage, immediately protect the area with anti-corrosion paint. Entrust major repairs to professionals."
+          },
+          "step4": {
+            "name": "Hinge maintenance",
+            "text": "Gate hinges should be lubricated at least once a year. Use graphite grease or special outdoor mechanism lubricant."
+          },
+          "step5": {
+            "name": "Professional inspection",
+            "text": "Every 5-7 years it's worth ordering a professional inspection and potential renewal of the paint coating to maintain optimal corrosion protection."
+          }
+        }
+      }
+    }
   }
 }

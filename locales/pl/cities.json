@@ -75,6 +75,25 @@
     "contact": {
       "title": "Kontakt - {{city}}",
       "subtitle": "Skontaktuj się z nami, aby omówić Twój projekt",
+      "labels": {
+        "address": "Adres:",
+        "phone": "Telefon:",
+        "surroundings": "i okolice"
+      },
+      "businessHours": {
+        "title": "Godziny otwarcia:",
+        "monFri": "Pon-Pt:",
+        "saturday": "Sobota:",
+        "sunday": "Niedziela:",
+        "closed": "Zamknięte"
+      },
+      "freeTransport": "✅ Bezpłatny transport",
+      "emergencyRepairs": "Naprawy awaryjne 24/7 w promieniu 50km",
+      "formSection": {
+        "title": "Formularz kontaktowy",
+        "description": "Skontaktuj się z nami, aby omówić projekt w {{city}}",
+        "buttonText": "Przejdź do formularza"
+      },
       "form": {
         "cityField": "Miasto",
         "projectType": "Rodzaj projektu",
@@ -108,6 +127,107 @@
           "answer": "Tak, oferujemy bezpłatne wyceny na miejscu w {{city}}. Umówimy się na dogodny termin."
         }
       ]
+    },
+    "valueProposition": {
+      "titleTemplate": "Dlaczego warto wybrać nas w {{city}}",
+      "subtitle": "Profesjonalne usługi kowalskie z gwarancją jakości",
+      "cards": {
+        "delivery": {
+          "title": "Dostawa i montaż",
+          "costLabel": "Koszt dostawy",
+          "free": "GRATIS",
+          "travelTimeLabel": "Czas dojazdu",
+          "freeDeliveryNote": "Darmowa dostawa w promieniu {{radius}} km. Powyżej - 2,5 zł/km."
+        },
+        "quality": {
+          "title": "Gwarancja jakości",
+          "warranty": "5 lat gwarancji",
+          "steel": "Stal premium",
+          "certificates": "Certyfikaty jakości",
+          "craftsmanship": "Profesjonalne wykonanie"
+        },
+        "serviceArea": {
+          "title": "Zasięg obsługi",
+          "description": "Obsługujemy obszar w promieniu {{radius}} km od {{city}}.",
+          "coverage": "Wszystkie dzielnice i okoliczne miejscowości."
+        }
+      },
+      "process": {
+        "title": "Proces realizacji",
+        "steps": [
+          { "title": "Konsultacja", "description": "Bezpłatna wycena i doradztwo" },
+          { "title": "Projekt", "description": "Indywidualny projekt i wizualizacja" },
+          { "title": "Produkcja", "description": "Wykonanie w naszym warsztacie" },
+          { "title": "Montaż", "description": "Profesjonalny montaż u klienta" }
+        ]
+      },
+      "whyUs": {
+        "title": "Dlaczego my?",
+        "benefits": [
+          "Materiały najwyższej jakości - stal S235, S355",
+          "30 lat doświadczenia w kowalstwie artystycznym",
+          "Bezpłatna wycena i projekt koncepcyjny",
+          "Kompleksowa dokumentacja techniczna",
+          "Serwis pogwarancyjny i konserwacja",
+          "Terminowość i profesjonalizm"
+        ]
+      }
+    },
+    "serviceOfferings": {
+      "mainTitle": "Kowalstwo Artystyczne na Zamówienie w {{city}}",
+      "cta": {
+        "title": "Szukasz Kowala w {{city}}?",
+        "text": "Skontaktuj się z nami już dziś i otrzymaj darmową wycenę na ogrodzenia, bramy i balustrady na zamówienie.",
+        "buttonText": "Zamów Darmową Wycenę"
+      },
+      "items": [
+        {
+          "titleTemplate": "Ogrodzenia na Zamówienie {{city}}",
+          "descriptionTemplate": "Projektujemy i wykonujemy ogrodzenia kute na zamówienie dla klientów z {{city}} i okolic. Każde ogrodzenie jest tworzone według indywidualnego projektu.",
+          "features": [
+            "Indywidualne projekty ogrodzeń",
+            "Różnorodne wzory i style",
+            "Ogrodzenia pełne i ażurowe",
+            "Zabezpieczenie antykorozyjne",
+            "5 lat gwarancji"
+          ]
+        },
+        {
+          "titleTemplate": "Bramy Kute na Zamówienie {{city}}",
+          "descriptionTemplate": "Specjalizujemy się w bramach kutych na zamówienie. Oferujemy bramy wjazdowe, przesuwne i dwuskrzydłowe dla domów w {{city}}.",
+          "features": [
+            "Bramy dwuskrzydłowe i przesuwne",
+            "Automatyka bramowa",
+            "Wzory klasyczne i nowoczesne",
+            "Montaż i serwis",
+            "Dostawa w całym regionie"
+          ]
+        },
+        {
+          "titleTemplate": "Balustrady na Zamówienie {{city}}",
+          "descriptionTemplate": "Wykonujemy balustrady na zamówienie - wewnętrzne i zewnętrzne. Idealne dla domów i firm w {{city}}.",
+          "features": [
+            "Balustrady schodowe",
+            "Balustrady balkonowe",
+            "Balustrady tarasowe",
+            "Stal nierdzewna i kuta",
+            "Montaż w 24h"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "titleTemplate": "Nasze realizacje w {{city}}",
+      "subtitle": "Zobacz przykładowe prace wykonane dla klientów z Twojego miasta",
+      "locationLabel": "Lokalizacja:"
+    },
+    "relatedCities": {
+      "title": "Obsługujemy również",
+      "distanceLabel": "Odległość",
+      "freeDeliveryBadge": "Darmowa dostawa"
+    },
+    "keywords": {
+      "titleTemplate": "Usługi kowalskie w {{city}}"
     }
   },
   "citiesList": {
@@ -117,7 +237,13 @@
     "population": "{{population}} mieszkańców",
     "travelTime": "Dojazd: {{travelTime}}",
     "serviceRadius": "Obsługa w promieniu {{radius}} km",
-    "viewCity": "Zobacz stronę miasta"
+    "viewCity": "Zobacz stronę miasta",
+    "statLabels": {
+      "population": "mieszk.",
+      "distance": "dystans",
+      "travelTime": "dojazd",
+      "radius": "zasięg"
+    }
   },
   "navigation": {
     "cities": "Miasta",
