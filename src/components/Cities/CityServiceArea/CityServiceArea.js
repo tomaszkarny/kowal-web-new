@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import styled from '@emotion/styled'
 import {
   FORGE_COLORS,
   CitySection,
@@ -11,18 +10,10 @@ import {
   CityInfoTitle,
   CityTagStatic,
 } from '../styles'
-
-const TagsGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-`
-
-const RadiusNote = styled.p`
-  margin-top: 1.5rem;
-  color: ${FORGE_COLORS.textSecondary};
-`
+import {
+  TagsGrid,
+  RadiusNote,
+} from './CityServiceArea.styles'
 
 export function CityServiceArea({ city, language, templateData }) {
   const { t } = useTranslation('cities')

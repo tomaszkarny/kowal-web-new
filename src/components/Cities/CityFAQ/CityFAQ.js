@@ -1,39 +1,16 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import styled from '@emotion/styled'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import {
-  FORGE_COLORS,
-  FORGE_GRADIENTS,
-  FORGE_RADIUS,
   CitySection,
   CityContainer,
   CityTitle,
 } from '../styles'
-
-// FAQ-specific components using shared theme
-const FAQItem = styled.div`
-  background: ${FORGE_COLORS.white};
-  margin-bottom: 1.5rem;
-  border-radius: ${FORGE_RADIUS.cardWithCorner};
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(45, 45, 68, 0.08);
-`
-
-const Question = styled.h3`
-  background: ${FORGE_GRADIENTS.ironGradient};
-  color: ${FORGE_COLORS.white};
-  margin: 0;
-  padding: 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-`
-
-const Answer = styled.div`
-  padding: 1.5rem;
-  line-height: 1.6;
-  color: ${FORGE_COLORS.textSecondary};
-`
+import {
+  FAQItem,
+  Question,
+  Answer,
+} from './CityFAQ.styles'
 
 export function CityFAQ({ city, language, templateData }) {
   const { t } = useTranslation('cities')

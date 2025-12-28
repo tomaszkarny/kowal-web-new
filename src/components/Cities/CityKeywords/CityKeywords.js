@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from '@emotion/styled'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { getCitySeoData } from 'data/citiesSeoEnhanced'
 import {
@@ -9,31 +8,11 @@ import {
   CityTitle,
   CityTag,
 } from '../styles'
-
-const KeywordsGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-`
-
-const LocalFeatures = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-  text-align: center;
-`
-
-const FeatureItem = styled.li`
-  color: ${FORGE_COLORS.textSecondary};
-  margin: 0.5rem 0;
-
-  &::before {
-    content: '\u2713 ';
-    color: ${FORGE_COLORS.ember};
-    font-weight: bold;
-  }
-`
+import {
+  KeywordsGrid,
+  LocalFeatures,
+  FeatureItem,
+} from './CityKeywords.styles'
 
 export function CityKeywords({ city, language }) {
   const { t } = useTranslation('cities')

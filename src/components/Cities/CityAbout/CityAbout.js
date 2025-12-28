@@ -1,25 +1,16 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import styled from '@emotion/styled'
 import {
-  FORGE_COLORS,
   CitySection,
   CityContainer,
   CityTitle,
   CityGrid,
-  CityCard,
   CityCardTitle,
 } from '../styles'
-
-// Local override for centered card text
-const FeatureCard = styled(CityCard)`
-  text-align: center;
-`
-
-const FeatureDescription = styled.p`
-  color: ${FORGE_COLORS.textSecondary};
-  line-height: 1.6;
-`
+import {
+  FeatureCard,
+  FeatureDescription,
+} from './CityAbout.styles'
 
 export function CityAbout({ city, language, templateData }) {
   const { t } = useTranslation('cities')
