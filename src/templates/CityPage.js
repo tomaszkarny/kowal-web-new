@@ -10,6 +10,10 @@ import { ErrorBoundary } from 'components/common/ErrorBoundary'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
 
+// Import translations directly for Head component (hooks not available in Head)
+import citiesTranslationsPL from '../../locales/pl/cities.json'
+import citiesTranslationsEN from '../../locales/en/cities.json'
+
 // Above-the-fold components loaded immediately
 import { CityHero } from 'components/Cities/CityHero'
 import { CityServices } from 'components/Cities/CityServices'
@@ -121,16 +125,20 @@ function CityPageTemplate({ pageContext, location }) {
  */
 export function Head({ pageContext, location }) {
   const { city, language } = pageContext
-  
-  // Use hardcoded translations instead of useTranslation hook in Head
-  const titleTemplate = language === 'pl' 
+
+  // Get city-specific SEO from translations (priority) or fall back to templates
+  const translations = language === 'pl' ? citiesTranslationsPL : citiesTranslationsEN
+  const citySpecificSeo = translations.seo?.[city.id]
+
+  // Template fallbacks (used if no city-specific SEO exists)
+  const titleTemplate = language === 'pl'
     ? 'Kowal {{city}} - Bramy Kute, Balustrady | Tadeusz Karny'
     : 'Blacksmith {{city}} - Wrought Iron Gates, Railings | Tadeusz Karny'
-    
+
   const descriptionTemplate = language === 'pl'
     ? 'Profesjonalne kowalstwo artystyczne w {{city}}. Wykonujemy bramy kute, balustrady i ogrodzenia. {{travelTime}} z naszego warsztatu w Białymstoku.'
     : 'Professional artistic blacksmithing in {{city}}. We create wrought iron gates, railings and fences. {{travelTime}} from our workshop in Białystok.'
-  
+
   const templateData = {
     city: city.name[language],
     region: city.region[language],
@@ -139,10 +147,11 @@ export function Head({ pageContext, location }) {
     radius: city.serviceArea.radius
   }
 
-  const pageTitle = titleTemplate
+  // Use city-specific SEO if available, otherwise use templates
+  const pageTitle = citySpecificSeo?.title || titleTemplate
     .replace('{{city}}', templateData.city)
-  
-  const pageDescription = descriptionTemplate
+
+  const pageDescription = citySpecificSeo?.description || descriptionTemplate
     .replace('{{city}}', templateData.city)
     .replace('{{travelTime}}', templateData.travelTime)
   

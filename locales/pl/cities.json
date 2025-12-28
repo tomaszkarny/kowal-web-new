@@ -1,4 +1,26 @@
 {
+  "seo": {
+    "bialystok": {
+      "title": "Kowal Białystok - Bramy Kute i Balustrady | Darmowa Dostawa",
+      "description": "Najlepszy kowal w Białymstoku. Bramy kute, balustrady, ogrodzenia na zamówienie. 30 lat doświadczenia. Darmowa dostawa. Szybka realizacja. Zadzwoń: 604 253 145"
+    },
+    "lomza": {
+      "title": "Kowal Łomża - Bramy Kute, Balustrady | Montaż w Całej Polsce",
+      "description": "Kowalstwo artystyczne dla Łomży i okolic. Bramy kute, balustrady, ogrodzenia. Specjalizacja w renowacji zabytkowych bram. Dojazd 55 min. Zadzwoń: 604 253 145"
+    },
+    "warszawa": {
+      "title": "Kowal Warszawa - Bramy Kute na Zamówienie | Profesjonalny Montaż",
+      "description": "Profesjonalne kowalstwo artystyczne w Warszawie. Bramy kute, balustrady, ogrodzenia na zamówienie. Obsługujemy całą aglomerację. Zadzwoń: 604 253 145"
+    },
+    "suwalki": {
+      "title": "Kowal Suwałki - Bramy Kute, Balustrady | Kowalstwo Artystyczne",
+      "description": "Kowalstwo artystyczne dla Suwałk i okolic. Bramy kute, balustrady, ogrodzenia na zamówienie. Regularne realizacje w regionie. Zadzwoń: 604 253 145"
+    },
+    "augustow": {
+      "title": "Kowal Augustów - Bramy Kute dla Domów Letniskowych",
+      "description": "Kowalstwo artystyczne w Augustowie. Specjalizujemy się w bramach i balustradach dla domów letniskowych i pensjonatów. Zadzwoń: 604 253 145"
+    }
+  },
   "page": {
     "title": "Obszar działania - Miasta obsługiwane przez Kowalstwo Karny",
     "description": "Obsługujemy miasta w województwie podlaskim i mazowieckim. Białystok, Warszawa, Suwałki, Augustów, Łomża - sprawdź obszar naszej działalności.",

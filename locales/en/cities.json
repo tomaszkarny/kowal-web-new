@@ -1,4 +1,26 @@
 {
+  "seo": {
+    "bialystok": {
+      "title": "Blacksmith Białystok - Wrought Iron Gates & Railings | Free Delivery",
+      "description": "Best blacksmith in Białystok. Custom wrought iron gates, railings, fences. 30 years experience. Free delivery. Fast completion. Call: +48 604 253 145"
+    },
+    "lomza": {
+      "title": "Blacksmith Łomża - Wrought Iron Gates, Railings | Poland-wide Installation",
+      "description": "Artistic blacksmithing for Łomża and region. Wrought iron gates, railings, fences. Specializing in historic gate restoration. 55 min travel. Call: +48 604 253 145"
+    },
+    "warszawa": {
+      "title": "Blacksmith Warsaw - Custom Wrought Iron Gates | Professional Installation",
+      "description": "Professional artistic blacksmithing in Warsaw. Custom wrought iron gates, railings, fences. We serve the entire agglomeration. Call: +48 604 253 145"
+    },
+    "suwalki": {
+      "title": "Blacksmith Suwałki - Wrought Iron Gates, Railings | Artistic Blacksmithing",
+      "description": "Artistic blacksmithing for Suwałki and region. Custom wrought iron gates, railings, fences. Regular projects in the region. Call: +48 604 253 145"
+    },
+    "augustow": {
+      "title": "Blacksmith Augustów - Wrought Iron Gates for Summer Houses",
+      "description": "Artistic blacksmithing in Augustów. Specializing in gates and railings for summer houses and guesthouses. Call: +48 604 253 145"
+    }
+  },
   "page": {
     "title": "Service Area - Cities served by Karny Blacksmithing",
     "description": "We serve cities in Podlaskie and Masovian voivodeships. Białystok, Warsaw, Suwałki, Augustów, Łomża - check our service area.",
