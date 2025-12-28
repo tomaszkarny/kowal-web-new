@@ -65,6 +65,10 @@
       "hours": "Pracujemy: Pon-Pt 7:30-16:00, Sob 9:00-15:00",
       "cta": "Formularz Kontaktowy"
     },
+    "gallery": {
+      "title": "Nasze Realizacje - Ogrodzenia",
+      "viewMore": "Zobacz więcej realizacji"
+    },
     "faq": {
       "q1": {
         "question": "Ile kosztują ogrodzenia na zamówienie?",
@@ -158,6 +162,10 @@
       "hours": "Godziny pracy: Pon-Pt 7:30-16:00, Sob 9:00-15:00",
       "text3": "Obsługujemy całą Polskę!",
       "cta": "Wypełnij Formularz"
+    },
+    "gallery": {
+      "title": "Nasze Realizacje - Bramy",
+      "viewMore": "Zobacz więcej realizacji"
     },
     "faq": {
       "q1": {

@@ -65,6 +65,10 @@
       "hours": "Working hours: Mon-Fri 7:30-16:00, Sat 9:00-15:00",
       "cta": "Contact Form"
     },
+    "gallery": {
+      "title": "Our Realizations - Fences",
+      "viewMore": "View more realizations"
+    },
     "faq": {
       "q1": {
         "question": "How much do custom fences cost?",
@@ -158,6 +162,10 @@
       "hours": "Working hours: Mon-Fri 7:30-16:00, Sat 9:00-15:00",
       "text3": "We serve all of Poland!",
       "cta": "Fill Out Form"
+    },
+    "gallery": {
+      "title": "Our Realizations - Gates",
+      "viewMore": "View more realizations"
     },
     "faq": {
       "q1": {
