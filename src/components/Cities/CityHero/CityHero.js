@@ -66,6 +66,36 @@ export function CityHero({ city, language, templateData }) {
           )
         }
       }
+      heroAugustow: file(relativePath: { eq: "cities/hero-augustow.png" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 1920
+            height: 800
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            quality: 85
+            transformOptions: {
+              cropFocus: CENTER
+              fit: COVER
+            }
+          )
+        }
+      }
+      heroLomza: file(relativePath: { eq: "cities/hero-lomza.png" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 1920
+            height: 800
+            placeholder: BLURRED
+            formats: [AUTO, WEBP, AVIF]
+            quality: 85
+            transformOptions: {
+              cropFocus: CENTER
+              fit: COVER
+            }
+          )
+        }
+      }
       balu20: file(relativePath: { eq: "gallery/balu20.jpg" }) {
         childImageSharp {
           gatsbyImageData(
@@ -104,6 +134,8 @@ export function CityHero({ city, language, templateData }) {
     'hero-bialystok.png': data.heroBialystok,
     'hero-suwalki.png': data.heroSuwalki,
     'hero-warszawa.png': data.heroWarszawa,
+    'hero-augustow.png': data.heroAugustow,
+    'hero-lomza.png': data.heroLomza,
     'balu20.jpg': data.balu20,
     'ogrodz11.jpg': data.ogrodz11
   }

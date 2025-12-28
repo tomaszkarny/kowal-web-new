@@ -126,7 +126,7 @@ const CITIES = [
       lat: 53.8433,
       lng: 23.0181
     },
-    heroImage: 'balu20.jpg',
+    heroImage: 'hero-augustow.png',
     serviceArea: {
       radius: 80, // km - promień obsługi dla Augustowa
       neighborhoods: {
@@ -160,7 +160,7 @@ const CITIES = [
       lat: 53.1781,
       lng: 22.0585
     },
-    heroImage: 'ogrodz11.jpg',
+    heroImage: 'hero-lomza.png',
     serviceArea: {
       radius: 100, // km - promień obsługi dla Łomży
       neighborhoods: {
