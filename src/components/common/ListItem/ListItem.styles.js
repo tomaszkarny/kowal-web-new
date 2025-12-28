@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 
 import { mq } from 'utils/mediaQueries'
+import { THEME } from 'consts/theme'
 
 const iconPulse = keyframes`
   0% { transform: scale(1); }
@@ -15,9 +16,9 @@ export const StyledListItem = styled.li`
   font-size: 16px;
   color: #3a3a3a;
   line-height: 1.6;
-  
+
   svg {
-    color: #525fc4;
+    color: ${THEME.color.primary};
     margin-right: 12px;
     transition: transform 0.3s ease;
   }

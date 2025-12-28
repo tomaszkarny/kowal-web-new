@@ -36,7 +36,7 @@ export const StyledLink = styled('a', {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: 0;
   box-shadow: ${({ primary }) =>
-    primary ? '0 6px 15px -3px rgba(82, 95, 196, 0.4)' : 'none'};
+    primary ? '0 6px 15px -3px rgba(232, 92, 65, 0.4)' : 'none'};
   color: ${({ primary, theme }) =>
     primary
       ? getColor(theme, 'white', fallbackColors.white)
@@ -83,7 +83,7 @@ export const StyledLink = styled('a', {
   }
 
   &:hover {
-    box-shadow: ${({ primary }) => (primary ? '0 8px 20px -4px rgba(82, 95, 196, 0.6)' : 'none')};
+    box-shadow: ${({ primary }) => (primary ? '0 8px 20px -4px rgba(232, 92, 65, 0.6)' : 'none')};
     color: ${({ primary, theme }) =>
       primary
         ? getColor(theme, 'white', fallbackColors.white)
@@ -98,7 +98,7 @@ export const StyledLink = styled('a', {
 
   &:active {
     transform: translateY(1px);
-    box-shadow: ${({ primary }) => (primary ? '0 3px 10px -2px rgba(82, 95, 196, 0.5)' : 'none')};
+    box-shadow: ${({ primary }) => (primary ? '0 3px 10px -2px rgba(232, 92, 65, 0.5)' : 'none')};
   }
 
   ${mq('tablet')} {

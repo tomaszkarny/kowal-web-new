@@ -16,7 +16,7 @@ async function createPWAIcons() {
   const baseIcon = await sharp(sourceIcon)
     .resize(512, 512, {
       fit: 'contain',
-      background: { r: 82, g: 95, b: 196, alpha: 1 } // #525fc4
+      background: { r: 232, g: 92, b: 65, alpha: 1 } // #e85c41 (ember)
     })
     .toBuffer();
   

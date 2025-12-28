@@ -69,16 +69,16 @@ export const HeroOverlay = styled.div`
     rgba(30, 30, 50, 0.85) 100%
   );
 
-  /* Ember/purple accent tint */
+  /* Ember accent tint - consistent with Forged Iron theme */
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba(82, 95, 196, 0.2) 0%,
+      rgba(232, 92, 65, 0.2) 0%,
       rgba(232, 92, 65, 0.1) 50%,
-      rgba(82, 95, 196, 0.15) 100%
+      rgba(232, 92, 65, 0.15) 100%
     );
     pointer-events: none;
   }

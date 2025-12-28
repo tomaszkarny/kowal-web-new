@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { keyframes, css } from '@emotion/react'
 import { mq } from 'utils/mediaQueries'
+import { THEME } from 'consts/theme'
 
 // Animation for immediate image transitions
 const fadeIn = keyframes`
@@ -53,7 +54,7 @@ export const SpecialtyContainer = styled.div`
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
+    background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight}, ${THEME.color.primary});
     background-size: 200% 100%;
     animation: ${shimmer} 3s infinite linear;
   }
@@ -129,7 +130,7 @@ export const ProgressDot = styled.button`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ active }) => active ? '#525fc4' : '#dddddd'};
+  background-color: ${({ active }) => active ? THEME.color.primary : '#dddddd'};
   border: none;
   padding: 0;
   cursor: pointer;
@@ -138,13 +139,13 @@ export const ProgressDot = styled.button`
   outline: none;
 
   &:hover, &:focus {
-    background-color: ${({ active }) => active ? '#525fc4' : '#bbbbbb'};
+    background-color: ${({ active }) => active ? THEME.color.primary : '#bbbbbb'};
     transform: scale(1.15); /* Subtle scale effect on hover for inactive dots */
   }
 
   ${({ active }) => active && css`
     transform: scale(1.4);
-    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
+    box-shadow: 0 0 0 4px rgba(232, 92, 65, 0.2);
   `}
 `
 
@@ -153,7 +154,7 @@ export const ProgressBar = styled.div`
   bottom: 0;
   left: 0;
   height: 4px;
-  background: linear-gradient(90deg, #525fc4, #6b7de0);
+  background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight});
   width: ${({ progress }) => `${progress}%`};
   transition: width 0.1s linear;
   z-index: 3;
@@ -189,16 +190,16 @@ export const SpecialtyItem = styled.li`
   transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1); /* Faster transition for more immediate feedback */
   cursor: pointer;
   position: relative;
-  background: ${({ isActive }) => isActive ? 'rgba(82, 95, 196, 0.1)' : 'transparent'};
-  border-left: ${({ isActive }) => isActive ? '5px solid #525fc4' : '5px solid transparent'};
+  background: ${({ isActive }) => isActive ? 'rgba(232, 92, 65, 0.1)' : 'transparent'};
+  border-left: ${({ isActive }) => isActive ? `5px solid ${THEME.color.primary}` : '5px solid transparent'};
   margin-bottom: 0.3rem;
-  box-shadow: ${({ isActive }) => isActive ? '0 4px 12px rgba(82, 95, 196, 0.1)' : 'none'};
+  box-shadow: ${({ isActive }) => isActive ? '0 4px 12px rgba(232, 92, 65, 0.1)' : 'none'};
   outline: none; /* Remove default focus outline */
 
   /* Add custom focus style for keyboard navigation */
   &:focus-visible {
-    box-shadow: 0 0 0 3px rgba(82, 95, 196, 0.4);
-    background: rgba(82, 95, 196, 0.05);
+    box-shadow: 0 0 0 3px rgba(232, 92, 65, 0.4);
+    background: rgba(232, 92, 65, 0.05);
   }
 
   /* Subtle pulse animation for the active item */
@@ -212,15 +213,15 @@ export const SpecialtyItem = styled.li`
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: #525fc4;
+      background-color: ${THEME.color.primary};
       animation: ${pulse} 2s infinite ease-in-out;
     }
   `}
 
   &:hover {
-    background: rgba(82, 95, 196, 0.08); /* Slightly more visible background on hover */
+    background: rgba(232, 92, 65, 0.08); /* Slightly more visible background on hover */
     transform: translateX(8px); /* Slightly more movement for better visual feedback */
-    box-shadow: 0 6px 14px rgba(82, 95, 196, 0.08); /* Subtle shadow on hover */
+    box-shadow: 0 6px 14px rgba(232, 92, 65, 0.08); /* Subtle shadow on hover */
   }
 
   /* Create subtle border effect for inactive items */
@@ -242,7 +243,7 @@ export const SpecialtyItem = styled.li`
     font-weight: 500;
 
     svg {
-      color: #525fc4;
+      color: ${THEME.color.primary};
       transform: scale(1.2);
     }
   `}
@@ -251,7 +252,7 @@ export const SpecialtyItem = styled.li`
   svg {
     margin-right: 1.2rem;
     transition: all 0.15s ease; /* Faster transition for icon color change */
-    color: ${({ isActive }) => isActive ? '#525fc4' : '#888'};
+    color: ${({ isActive }) => isActive ? THEME.color.primary : '#888'};
     font-size: 1.15rem;
   }
 
@@ -284,7 +285,7 @@ export const ImageContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(#525fc4 1px, transparent 1px);
+    background-image: radial-gradient(${THEME.color.primary} 1px, transparent 1px);
     background-size: 40px 40px;
     opacity: 0.03;
     pointer-events: none;
@@ -298,7 +299,7 @@ export const ImageContainer = styled.div`
     right: 0;
     width: 150px;
     height: 150px;
-    background: linear-gradient(135deg, transparent 50%, rgba(82, 95, 196, 0.06) 50%);
+    background: linear-gradient(135deg, transparent 50%, rgba(232, 92, 65, 0.06) 50%);
     z-index: 1;
   }
 

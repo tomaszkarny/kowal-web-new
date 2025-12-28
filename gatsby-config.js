@@ -135,7 +135,7 @@ module.exports = {
         lang: `pl`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#525fc4`,
+        theme_color: `#e85c41`,
         display: `standalone`,
         icon: `src/assets/images/anvil_2.webp`, // Using anvil as icon - square image
         icons: [

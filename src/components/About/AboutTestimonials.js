@@ -64,7 +64,7 @@ export function AboutTestimonials() {
               icon={faQuoteLeft}
               size="2x"
               style={{
-                color: 'rgba(107, 143, 214, 0.2)',
+                color: 'rgba(232, 92, 65, 0.2)',
                 position: 'absolute',
                 top: '20px',
                 left: '20px'

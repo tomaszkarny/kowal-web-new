@@ -75,20 +75,20 @@ const FilterButton = styled.button`
   /* Active state styles */
   ${props => props.active && css`
     transform: scale(1.05);
-    box-shadow: 0 2px 10px rgba(82, 95, 196, 0.3);
+    box-shadow: 0 2px 10px rgba(232, 92, 65, 0.3);
   `}
-  
+
   &:hover, &:focus {
     background: ${props => props.active ? THEME.color.primary : THEME.color.lightGray};
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     outline: none;
     transform: translateY(-2px);
   }
-  
+
   &:focus-visible {
     outline: 2px solid ${THEME.color.primary};
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
+    box-shadow: 0 0 0 4px rgba(232, 92, 65, 0.2);
   }
   
   @media (max-width: ${THEME.breakpoints.tablet}px) {

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { keyframes, css } from '@emotion/react'
 import { mq } from 'utils/mediaQueries'
+import { THEME } from 'consts/theme'
 
 // Mobile-specific animations
 const swipeHint = keyframes`
@@ -41,7 +42,7 @@ export const MobileSpecialtyContainer = styled.div`
     transform: translateX(-50%);
     width: 50px;
     height: 4px;
-    background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
+    background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight}, ${THEME.color.primary});
     border-radius: 2px;
     opacity: 0.5;
   }
@@ -103,10 +104,10 @@ export const MobileSpecialtyItem = styled.li`
   border-radius: 12px;
   cursor: pointer;
   position: relative;
-  background: ${({ isActive }) => isActive ? 'rgba(82, 95, 196, 0.15)' : 'rgba(255, 255, 255, 0.9)'};
-  border: ${({ isActive }) => isActive ? '2px solid #525fc4' : '2px solid rgba(0, 0, 0, 0.08)'};
-  box-shadow: ${({ isActive }) => isActive 
-    ? '0 4px 12px rgba(82, 95, 196, 0.25), 0 0 0 3px rgba(82, 95, 196, 0.1)' 
+  background: ${({ isActive }) => isActive ? 'rgba(232, 92, 65, 0.15)' : 'rgba(255, 255, 255, 0.9)'};
+  border: ${({ isActive }) => isActive ? `2px solid ${THEME.color.primary}` : '2px solid rgba(0, 0, 0, 0.08)'};
+  box-shadow: ${({ isActive }) => isActive
+    ? '0 4px 12px rgba(232, 92, 65, 0.25), 0 0 0 3px rgba(232, 92, 65, 0.1)'
     : '0 2px 4px rgba(0, 0, 0, 0.05)'};
   white-space: normal;
   min-width: 85px;
@@ -152,21 +153,21 @@ export const MobileSpecialtyItem = styled.li`
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background-color: #525fc4;
+      background-color: ${THEME.color.primary};
     }
   `}
 
   /* Touch feedback */
   &:active {
     transform: scale(0.97);
-    background: rgba(82, 95, 196, 0.15);
+    background: rgba(232, 92, 65, 0.15);
   }
 
   /* Icon styling */
   svg {
     margin-bottom: 0.5rem;
     transition: all 0.15s ease;
-    color: ${({ isActive }) => isActive ? '#525fc4' : '#666'};
+    color: ${({ isActive }) => isActive ? THEME.color.primary : '#666'};
     font-size: 1.2rem;
     
     @media (max-width: 480px) {
@@ -215,7 +216,7 @@ export const MobileImageContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(#525fc4 1px, transparent 1px);
+    background-image: radial-gradient(${THEME.color.primary} 1px, transparent 1px);
     background-size: 40px 40px;
     opacity: 0.03;
     pointer-events: none;
@@ -313,7 +314,7 @@ export const MobileProgressDot = styled.button`
   width: ${({ active }) => active ? '24px' : '10px'};
   height: 10px;
   border-radius: ${({ active }) => active ? '5px' : '50%'};
-  background-color: ${({ active }) => active ? '#525fc4' : '#c5c5c5'};
+  background-color: ${({ active }) => active ? THEME.color.primary : '#c5c5c5'};
   border: none;
   padding: 0;
   cursor: pointer;
@@ -333,7 +334,7 @@ export const MobileProgressDot = styled.button`
 
   ${({ active }) => active && css`
     transform: scale(1.4);
-    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
+    box-shadow: 0 0 0 4px rgba(232, 92, 65, 0.2);
   `}
 `
 
@@ -369,7 +370,7 @@ export const SwipeIndicator = styled.div`
   
   svg {
     font-size: 1.2rem;
-    color: #525fc4;
+    color: ${THEME.color.primary};
   }
 `
 
@@ -397,7 +398,7 @@ export const SpecialtyCaption = styled.div`
     transform: translateX(-50%);
     width: 40px;
     height: 3px;
-    background: #525fc4;
+    background: ${THEME.color.primary};
     border-radius: 2px;
   }
 `
@@ -413,7 +414,7 @@ export const SwipeInstruction = styled.div`
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: rgba(82, 95, 196, 0.05);
+  background: rgba(232, 92, 65, 0.05);
   border-radius: 20px;
   width: fit-content;
   margin-left: auto;
@@ -421,7 +422,7 @@ export const SwipeInstruction = styled.div`
 
   svg {
     font-size: 1rem;
-    color: #525fc4;
+    color: ${THEME.color.primary};
     animation: ${swipeHint} 2s ease-in-out infinite;
   }
 

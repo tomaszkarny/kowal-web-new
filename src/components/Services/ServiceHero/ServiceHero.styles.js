@@ -105,9 +105,9 @@ export const HeroOverlay = styled.div`
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba(82, 95, 196, 0.2) 0%,
+      rgba(232, 92, 65, 0.2) 0%,
       rgba(232, 92, 65, 0.1) 50%,
-      rgba(82, 95, 196, 0.15) 100%
+      rgba(232, 92, 65, 0.15) 100%
     );
     pointer-events: none;
   }

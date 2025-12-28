@@ -2,12 +2,14 @@ import styled from '@emotion/styled'
 import { keyframes, css } from '@emotion/react'
 
 import { mq } from 'utils/mediaQueries'
+import { FORGE_COLORS, FORGE_SHADOWS, FORGE_GRADIENTS } from '../../Cities/styles'
 
-// Subtle animations for brand-inspired hover effects
-const forgeGlow = keyframes`
-  0% { box-shadow: 0 0 5px rgba(82, 95, 196, 0.2); }
-  50% { box-shadow: 0 0 15px rgba(82, 95, 196, 0.5); }
-  100% { box-shadow: 0 0 5px rgba(82, 95, 196, 0.2); }
+// Subtle animations for brand-inspired hover effects (now ember-colored)
+// Named forgeEmberGlow to avoid collision with forgeGlow in animations.js
+const forgeEmberGlow = keyframes`
+  0% { box-shadow: 0 0 5px rgba(232, 92, 65, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(232, 92, 65, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(232, 92, 65, 0.2); }
 `
 
 const forgeSpark = keyframes`
@@ -32,12 +34,14 @@ export const Title = styled.h1`
   &:after {
     content: '';
     position: absolute;
-    width: 80px;
-    height: 3px;
-    background: #525fc4; // Brand accent color
+    width: 100px;
+    height: 4px;
+    background: ${FORGE_GRADIENTS.emberGradient};
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba(232, 92, 65, 0.3);
   }
 
   ${mq('medium')} {
@@ -162,10 +166,10 @@ export const ImageOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  /* Mobile overlay gradient - vertical direction */
+  /* Mobile overlay gradient - vertical direction with ember tint */
   background: linear-gradient(
     to bottom,
-    rgba(82, 95, 196, 0.4) 0%,
+    rgba(232, 92, 65, 0.25) 0%,
     rgba(0, 0, 0, 0.5) 100%
   );
   z-index: 1;
@@ -174,7 +178,7 @@ export const ImageOverlay = styled.div`
     background: linear-gradient(
       to right,
       rgba(255, 255, 255, 0.05) 10%,
-      rgba(82, 95, 196, 0.05) 40%,
+      rgba(232, 92, 65, 0.05) 40%,
       rgba(0, 0, 0, 0.2) 100%
     );
     /* Creates subtle texture for better visual integration */
@@ -207,9 +211,9 @@ export const ImageOverlay = styled.div`
 
 export const ButtonStyles = {
   primary: css`
-    background: #525fc4;
+    background: ${FORGE_GRADIENTS.emberGradient};
     color: #fff;
-    border: 2px solid #525fc4;
+    border: 2px solid ${FORGE_COLORS.ember};
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -217,6 +221,7 @@ export const ButtonStyles = {
     border-radius: 4px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    box-shadow: ${FORGE_SHADOWS.emberButton};
 
     &:before {
       content: '';
@@ -230,11 +235,11 @@ export const ButtonStyles = {
     }
 
     &:hover {
-      background: #4450a9;
-      border-color: #4450a9;
+      background: linear-gradient(90deg, #c94a33, ${FORGE_COLORS.ember});
+      border-color: #c94a33;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(82, 95, 196, 0.3);
-      animation: ${forgeGlow} 2s infinite;
+      box-shadow: 0 5px 15px rgba(232, 92, 65, 0.4);
+      animation: ${forgeEmberGlow} 2s infinite;
 
       &:before {
         left: 100%;
@@ -253,11 +258,11 @@ export const ButtonStyles = {
     letter-spacing: 0.5px;
 
     &:hover {
-      background: rgba(58, 58, 58, 0.05);
+      background: rgba(232, 92, 65, 0.05);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      color: #525fc4;
-      border-color: #525fc4;
+      box-shadow: 0 5px 15px rgba(232, 92, 65, 0.15);
+      color: ${FORGE_COLORS.ember};
+      border-color: ${FORGE_COLORS.ember};
     }
   `
 }

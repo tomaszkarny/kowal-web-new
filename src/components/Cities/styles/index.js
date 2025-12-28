@@ -1,6 +1,9 @@
 /**
  * City Styles - Barrel Export
  * Import from 'components/Cities/styles' for convenience
+ *
+ * This module exports the Forged Iron design system used across the site.
+ * For replacing blue (#525fc4) with ember, use SITE_COLORS and Ember* components.
  */
 
 // Theme constants
@@ -16,6 +19,8 @@ export {
   FORGE_TYPOGRAPHY,
   FORGE_SPACING,
   hammeredTexture,
+  // Site-wide color aliases (replaces #525fc4)
+  SITE_COLORS,
 } from './forgedIronTheme'
 
 // Shared styled components
@@ -41,4 +46,14 @@ export {
   // Info boxes
   CityInfoBox,
   CityInfoTitle,
+  // Site-wide reusable components (replaces blue components)
+  EmberButton,
+  EmberButtonOutline,
+  EmberLink,
+  EmberAccentLine,
+  EmberIcon,
+  EmberCheckIcon,
+  emberPulseKeyframes,
+  EmberInput,
+  EmberTextarea,
 } from './sharedStyles'

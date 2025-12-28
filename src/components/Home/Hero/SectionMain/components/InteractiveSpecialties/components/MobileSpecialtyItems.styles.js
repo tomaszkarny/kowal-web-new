@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { THEME } from 'consts/theme'
 
 export const ArrowButton = styled.button`
   background: none;
@@ -6,7 +7,7 @@ export const ArrowButton = styled.button`
   padding: 0.5rem;
   cursor: pointer;
   font-size: 1.5rem;
-  color: #525fc4;
+  color: ${THEME.color.primary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,11 +17,11 @@ export const ArrowButton = styled.button`
   min-height: 2.5rem;
 
   &:hover, &:focus {
-    background: rgba(82, 95, 196, 0.12);
+    background: rgba(232, 92, 65, 0.12);
     outline: none;
   }
 
   &:active {
-    background: rgba(82, 95, 196, 0.18);
+    background: rgba(232, 92, 65, 0.18);
   }
 `;

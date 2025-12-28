@@ -11,7 +11,7 @@ const pwaPlugins = [
       lang: `pl`,
       start_url: `/`,
       background_color: `#ffffff`,
-      theme_color: `#525fc4`,
+      theme_color: `#e85c41`,
       display: `standalone`,
       icon: `src/assets/images/anvil_2.webp`, // This will be automatically processed
       icons: [

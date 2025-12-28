@@ -113,3 +113,18 @@ export const FORGE_SPACING = {
   xl: '2rem',
   xxl: '3rem',
 }
+
+// Site-wide color aliases - for replacing theme.color.primary across the site
+// Use these in components that previously used #525fc4 (blue)
+export const SITE_COLORS = {
+  // Primary accent - replaces #525fc4
+  primary: FORGE_COLORS.ember, // #e85c41
+  primaryHover: '#c94a33', // darker ember for hover states
+  primaryLight: FORGE_COLORS.emberGlow, // #ff6b4a - for gradients
+
+  // Alpha variants for shadows and overlays
+  primaryAlpha: (opacity) => `rgba(232, 92, 65, ${opacity})`,
+
+  // Spread operator to include all forge colors
+  ...FORGE_COLORS,
+}

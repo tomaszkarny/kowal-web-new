@@ -22,7 +22,7 @@ export const SpecializationWrapper = styled.section`
   overflow: hidden; /* Prevent any content from spilling out */
   min-height: 100vh; /* Ensure enough space for content */
 
-  /* Top decorative bar */
+  /* Top decorative bar - ember gradient */
   &:before {
     content: '';
     position: absolute;
@@ -31,9 +31,9 @@ export const SpecializationWrapper = styled.section`
     transform: translateX(-50%);
     width: 100px;
     height: 6px;
-    background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
+    background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight || '#ff6b4a'}, ${THEME.color.primary});
     border-radius: 3px;
-    box-shadow: 0 2px 10px rgba(82, 95, 196, 0.2);
+    box-shadow: 0 2px 10px rgba(232, 92, 65, 0.2);
     z-index: 2;
   }
 
@@ -45,7 +45,7 @@ export const SpecializationWrapper = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(#525fc4 1px, transparent 1px);
+    background-image: radial-gradient(${THEME.color.primary} 1px, transparent 1px);
     background-size: 40px 40px;
     opacity: 0.03;
     pointer-events: none;
@@ -97,7 +97,7 @@ export const SectionHeading = styled.h3`
 
   svg {
     margin-right: 0.8rem;
-    color: #525fc4;
+    color: ${THEME.color.primary};
     font-size: 1.2rem;
   }
 `
@@ -112,7 +112,7 @@ export const HelpText = styled.div`
 
   svg {
     margin-right: 0.5rem;
-    color: #525fc4;
+    color: ${THEME.color.primary};
   }
 `
 
@@ -150,20 +150,20 @@ export const SpecialtyItem = styled.li`
 
   &:hover {
     transform: translateX(5px);
-    background: rgba(82, 95, 196, 0.05);
+    background: rgba(232, 92, 65, 0.05);
     border-radius: 4px;
   }
 
   /* Apply forge-inspired hover glow effect */
   &:hover svg {
-    color: #e85c41;
+    color: ${THEME.color.primary};
     filter: drop-shadow(0 0 3px rgba(232, 92, 65, 0.4));
   }
 `
 
 export const ItemIcon = styled.div`
   margin-right: 16px;
-  color: #525fc4;
+  color: ${THEME.color.primary};
   font-size: 24px;
   position: relative;
 
@@ -202,7 +202,7 @@ export const ContentWrapper = styled.div`
     transform: translateX(-50%);
     width: 50px;
     height: 4px;
-    background: linear-gradient(90deg, #525fc4, #6b7de0, #525fc4);
+    background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight || '#ff6b4a'}, ${THEME.color.primary});
     border-radius: 2px;
     opacity: 0.5;
   }
@@ -250,7 +250,7 @@ export const MainDescription = styled.div`
     left: 0;
     right: 0;
     height: 100px;
-    background: radial-gradient(ellipse at center, rgba(82, 95, 196, 0.08) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(232, 92, 65, 0.08) 0%, rgba(255,255,255,0) 70%);
     z-index: -1;
     opacity: 0.7;
   }
@@ -273,7 +273,7 @@ export const MainDescription = styled.div`
 
     /* Highlight key phrases */
     strong {
-      color: #525fc4;
+      color: ${THEME.color.primary};
       font-weight: 600;
     }
 

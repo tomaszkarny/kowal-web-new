@@ -145,7 +145,7 @@ export const IntroContainer = styled.div`
 `;
 
 export const LocationsTitle = styled.h2`
-  color: #3a4b7c;
+  color: #e85c41;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -175,7 +175,7 @@ export const SectionDivider = styled.hr`
   width: 80%;
   border: none;
   height: 2px;
-  background: linear-gradient(to right, rgba(107, 143, 214, 0.1), rgba(107, 143, 214, 0.5), rgba(107, 143, 214, 0.1));
+  background: linear-gradient(to right, rgba(232, 92, 65, 0.1), rgba(232, 92, 65, 0.5), rgba(232, 92, 65, 0.1));
   margin: 3.5rem auto 3.5rem auto;
   opacity: 0.7;
   border-radius: 2px;
@@ -214,7 +214,7 @@ export const SectionWave = styled.div`
 `;
 
 export const ImagesTitle = styled.h2`
-  color: #3a4b7c;
+  color: #e85c41;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -282,7 +282,7 @@ export const ImageFrame = styled.div`
 export const ImageCaption = styled.div`
   margin-top: 0.7rem;
   font-size: 1.08rem;
-  color: #3a4b7c;
+  color: #e85c41;
   font-weight: 600;
   text-align: center;
   letter-spacing: 0.01em;
@@ -329,10 +329,10 @@ export const AboutCTAButton = styled.a`
   font-size: 1.18rem;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(100deg, #3a4b7c 0%, #6b8fd6 100%);
+  background: linear-gradient(100deg, #e85c41 0%, #ff6b4a 100%);
   border: none;
   border-radius: 32px;
-  box-shadow: 0 2px 16px 0 rgba(60, 60, 90, 0.10);
+  box-shadow: 0 2px 16px 0 rgba(232, 92, 65, 0.20);
   text-decoration: none;
   text-align: center;
   letter-spacing: 0.02em;
@@ -340,8 +340,8 @@ export const AboutCTAButton = styled.a`
   cursor: pointer;
 
   &:hover, &:focus {
-    background: linear-gradient(100deg, #2d3860 0%, #4e6bb3 100%);
-    box-shadow: 0 4px 32px 0 rgba(60, 60, 90, 0.18);
+    background: linear-gradient(100deg, #c94a33 0%, #e85c41 100%);
+    box-shadow: 0 4px 32px 0 rgba(232, 92, 65, 0.30);
     transform: translateY(-2px) scale(1.03);
     color: #fff;
     outline: none;
@@ -403,13 +403,13 @@ export const TeamPhoto = styled.img`
 export const TeamName = styled.div`
   font-size: 1.18rem;
   font-weight: 700;
-  color: #2d3860;
+  color: #2d2d44;
   margin-bottom: 0.3rem;
 `;
 
 export const TeamRole = styled.div`
   font-size: 1rem;
-  color: #6b8fd6;
+  color: #ff6b4a;
   font-weight: 500;
   letter-spacing: 0.01em;
 `;
@@ -504,7 +504,7 @@ export const CraftFeatureIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #3a4b7c 0%, #6b8fd6 100%);
+  background: linear-gradient(135deg, #e85c41 0%, #ff6b4a 100%);
   color: white;
   border-radius: 50%;
   font-size: 1.2rem;
@@ -658,7 +658,7 @@ export const TestimonialCard = styled.div`
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, #3a4b7c 0%, #6b8fd6 100%);
+    background: linear-gradient(90deg, #e85c41 0%, #ff6b4a 100%);
   }
 
   &:hover {
@@ -689,13 +689,13 @@ export const TestimonialRating = styled.div`
 export const TestimonialAuthor = styled.div`
   font-weight: 700;
   font-size: 1.1rem;
-  color: #3a4b7c;
+  color: #e85c41;
   margin-bottom: 0.2rem;
 `
 
 export const TestimonialCompany = styled.div`
   font-size: 0.9rem;
-  color: #6b8fd6;
+  color: #ff6b4a;
   font-weight: 500;
 `
 

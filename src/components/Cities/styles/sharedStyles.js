@@ -262,3 +262,193 @@ export const CityInfoTitle = styled.h3`
   font-size: 1.3rem;
   font-family: ${FORGE_TYPOGRAPHY.heading};
 `
+
+// ============================================================================
+// SITE-WIDE REUSABLE COMPONENTS
+// These replace blue (#525fc4) components across the entire site
+// ============================================================================
+
+/**
+ * Primary ember button - replaces blue primary buttons
+ * Use: <EmberButton>Text</EmberButton> or extend with styled(EmberButton)
+ */
+export const EmberButton = styled.button`
+  background: ${FORGE_GRADIENTS.emberGradient};
+  color: ${FORGE_COLORS.white};
+  border: none;
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: ${FORGE_RADIUS.button};
+  cursor: pointer;
+  transition: ${FORGE_TRANSITIONS.default};
+  box-shadow: ${FORGE_SHADOWS.emberButton};
+
+  &:hover {
+    background: linear-gradient(90deg, #c94a33, #e85c41);
+    transform: ${FORGE_HOVER.liftSmall};
+    box-shadow: 0 4px 12px rgba(232, 92, 65, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 92, 65, 0.3);
+  }
+`
+
+/**
+ * Secondary ember button - outline style
+ */
+export const EmberButtonOutline = styled.button`
+  background: transparent;
+  color: ${FORGE_COLORS.ember};
+  border: 2px solid ${FORGE_COLORS.ember};
+  padding: 12px 26px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: ${FORGE_RADIUS.button};
+  cursor: pointer;
+  transition: ${FORGE_TRANSITIONS.default};
+
+  &:hover {
+    background: ${FORGE_COLORS.ember};
+    color: ${FORGE_COLORS.white};
+    transform: ${FORGE_HOVER.liftSmall};
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 92, 65, 0.3);
+  }
+`
+
+/**
+ * Ember link - replaces blue inline links
+ */
+export const EmberLink = styled.a`
+  color: ${FORGE_COLORS.ember};
+  text-decoration: none;
+  transition: ${FORGE_TRANSITIONS.fast};
+  font-weight: 500;
+
+  &:hover {
+    color: ${FORGE_COLORS.emberGlow};
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid ${FORGE_COLORS.ember};
+    outline-offset: 2px;
+  }
+`
+
+/**
+ * Accent line - replaces blue underlines on titles
+ */
+export const EmberAccentLine = styled.div`
+  width: ${({ $width }) => $width || '80px'};
+  height: ${({ $height }) => $height || '4px'};
+  background: ${FORGE_GRADIENTS.emberGradient};
+  border-radius: 2px;
+  margin: ${({ $margin }) => $margin || '0.75rem 0 0 0'};
+  box-shadow: 0 0 15px rgba(232, 92, 65, 0.3);
+`
+
+/**
+ * Ember icon wrapper - for icons that should be ember color
+ */
+export const EmberIcon = styled.span`
+  color: ${FORGE_COLORS.ember};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: ${FORGE_TRANSITIONS.fast};
+
+  &:hover {
+    color: ${FORGE_COLORS.emberGlow};
+  }
+`
+
+/**
+ * Ember checkmark icon for lists
+ */
+export const EmberCheckIcon = styled.span`
+  color: ${FORGE_COLORS.ember};
+  font-weight: bold;
+  margin-right: 0.5rem;
+
+  &::before {
+    content: '✓';
+  }
+`
+
+/**
+ * Ember pulse animation keyframes - for subtle glow effects
+ */
+export const emberPulseKeyframes = css`
+  @keyframes emberPulse {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(232, 92, 65, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(232, 92, 65, 0.5);
+    }
+  }
+`
+
+/**
+ * Form input with ember focus state
+ */
+export const EmberInput = styled.input`
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid ${FORGE_COLORS.cardBorder};
+  border-radius: ${FORGE_RADIUS.button};
+  font-size: 1rem;
+  transition: ${FORGE_TRANSITIONS.fast};
+  background: ${FORGE_COLORS.white};
+
+  &:focus {
+    outline: none;
+    border-color: ${FORGE_COLORS.ember};
+    box-shadow: 0 0 0 3px rgba(232, 92, 65, 0.15);
+  }
+
+  &::placeholder {
+    color: ${FORGE_COLORS.textMuted};
+  }
+`
+
+/**
+ * Form textarea with ember focus state
+ */
+export const EmberTextarea = styled.textarea`
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid ${FORGE_COLORS.cardBorder};
+  border-radius: ${FORGE_RADIUS.button};
+  font-size: 1rem;
+  font-family: inherit;
+  transition: ${FORGE_TRANSITIONS.fast};
+  background: ${FORGE_COLORS.white};
+  resize: vertical;
+  min-height: 120px;
+
+  &:focus {
+    outline: none;
+    border-color: ${FORGE_COLORS.ember};
+    box-shadow: 0 0 0 3px rgba(232, 92, 65, 0.15);
+  }
+
+  &::placeholder {
+    color: ${FORGE_COLORS.textMuted};
+  }
+`

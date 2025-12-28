@@ -24,7 +24,7 @@ const AnimatedImage = styled.img`
     outline: 2px solid ${THEME.color.primary};
     outline-offset: 2px;
     transform: scale(1.03);
-    box-shadow: 0 0 0 4px rgba(82, 95, 196, 0.2);
+    box-shadow: 0 0 0 4px rgba(232, 92, 65, 0.2);
   }
   
   @media (prefers-reduced-motion: reduce) {

@@ -52,7 +52,7 @@ export const MemoizedArrowButton = React.memo(({
         padding: '0.5rem',
         cursor: 'pointer',
         fontSize: '1.5rem',
-        color: '#525fc4',
+        color: '#e85c41',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -63,13 +63,13 @@ export const MemoizedArrowButton = React.memo(({
         touchAction: 'manipulation'
       }}
       onMouseEnter={(e) => {
-        e.target.style.background = 'rgba(82, 95, 196, 0.12)';
+        e.target.style.background = 'rgba(232, 92, 65, 0.12)';
       }}
       onMouseLeave={(e) => {
         e.target.style.background = 'none';
       }}
       onFocus={(e) => {
-        e.target.style.background = 'rgba(82, 95, 196, 0.12)';
+        e.target.style.background = 'rgba(232, 92, 65, 0.12)';
         e.target.style.outline = 'none';
       }}
       onBlur={(e) => {
