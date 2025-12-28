@@ -94,9 +94,19 @@
   },
   "gates": {
     "hero": {
-      "title": "Bramy Kute na Zamówienie",
-      "subtitle": "Ekskluzywne bramy wjazdowe - projekt, wykonanie, montaż",
+      "title": "Montaż Bram Kutych",
+      "subtitle": "Ekskluzywne bramy wjazdowe - projekt, wykonanie, profesjonalny montaż w całej Polsce",
       "cta": "Zapytaj o Wycenę"
+    },
+    "installation": {
+      "title": "Profesjonalny Montaż Bram Kutych",
+      "text": "Oferujemy kompleksowy montaż bram kutych na terenie całej Polski. Nasza wykwalifikowana ekipa montażowa zapewnia profesjonalną instalację wraz ze słupkami, automatyką i wszystkimi niezbędnymi elementami.",
+      "features": {
+        "nationwide": "Montaż w całej Polsce",
+        "team": "Doświadczona ekipa montażowa",
+        "time": "Montaż w 1-2 dni",
+        "automation": "Instalacja automatyki w cenie"
+      }
     },
     "types": {
       "title": "Rodzaje Bram Kutych",

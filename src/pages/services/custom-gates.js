@@ -146,13 +146,13 @@ export function Head({ location, pageContext }) {
       <EnhancedSEO
         title={
           isEnglish
-            ? 'Custom Wrought Iron Gates - Double-Leaf, Sliding | Blacksmith'
-            : 'Bramy Kute na Zamówienie - Dwuskrzydłowe, Przesuwne | Kowal'
+            ? 'Wrought Iron Gate Installation & Custom Gates | Poland Blacksmith'
+            : 'Montaż Bram Kutych ⭐ Bramy na Zamówienie - Kowal Białystok'
         }
         description={
           isEnglish
-            ? 'Custom wrought iron gates ⭐ Double-leaf and sliding gates. Design, manufacturing, installation throughout Poland. 30 years experience ✓ 5 year warranty ✓ Free quote ☎ +48 604 253 145'
-            : 'Bramy kute na zamówienie ⭐ Bramy dwuskrzydłowe i przesuwne. Projekt, wykonanie, montaż w całej Polsce. 30 lat doświadczenia ✓ 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
+            ? 'Professional wrought iron gate installation throughout Poland ⭐ Custom double-leaf & sliding gates. Design, manufacturing, expert installation. 30 years experience ✓ 5 year warranty ✓ Free quote ☎ +48 604 253 145'
+            : 'Profesjonalny montaż bram kutych w całej Polsce ⭐ Bramy dwuskrzydłowe i przesuwne na zamówienie. Projekt, wykonanie, fachowy montaż. 30 lat doświadczenia ✓ 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
         }
         pathname={location.pathname}
         pageType="service"
@@ -180,8 +180,8 @@ export function Head({ location, pageContext }) {
             '@type': 'ListItem',
             position: 3,
             name: isEnglish
-              ? 'Custom Wrought Iron Gates'
-              : 'Bramy Kute na Zamówienie',
+              ? 'Gate Installation & Custom Gates'
+              : 'Montaż Bram Kutych',
             item: `${WEBSITE_URL}${location.pathname}`,
           },
         ]}
@@ -195,6 +195,11 @@ export function Head({ location, pageContext }) {
         faqData={
           isEnglish
             ? [
+                {
+                  question: 'How does wrought iron gate installation work?',
+                  answer:
+                    'We provide comprehensive gate installation throughout Poland. Our installation team arrives on the scheduled date and professionally installs the gate with posts and automation. Standard gate installation takes 1-2 days. Installation cost is included in the price or set individually.',
+                },
                 {
                   question: 'How much does a custom wrought iron gate cost?',
                   answer:
@@ -222,6 +227,11 @@ export function Head({ location, pageContext }) {
                 },
               ]
             : [
+                {
+                  question: 'Jak wygląda montaż bram kutych?',
+                  answer:
+                    'Montaż bram kutych realizujemy kompleksowo w całej Polsce. Nasza ekipa montażowa przyjeżdża w umówionym terminie, wykonuje profesjonalną instalację bramy wraz z słupkami i automatyką. Montaż standardowej bramy trwa 1-2 dni. Koszt montażu jest wliczony w cenę lub ustalany indywidualnie.',
+                },
                 {
                   question: 'Ile kosztuje brama kuta na zamówienie?',
                   answer:

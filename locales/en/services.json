@@ -94,9 +94,19 @@
   },
   "gates": {
     "hero": {
-      "title": "Custom Wrought Iron Gates",
-      "subtitle": "Exclusive driveway gates - design, manufacturing, installation",
+      "title": "Wrought Iron Gate Installation",
+      "subtitle": "Exclusive driveway gates - design, manufacturing, professional installation throughout Poland",
       "cta": "Request a Quote"
+    },
+    "installation": {
+      "title": "Professional Gate Installation",
+      "text": "We offer comprehensive wrought iron gate installation throughout Poland. Our qualified installation team provides professional installation including posts, automation and all necessary components.",
+      "features": {
+        "nationwide": "Installation throughout Poland",
+        "team": "Experienced installation team",
+        "time": "Installation in 1-2 days",
+        "automation": "Automation installation included"
+      }
     },
     "types": {
       "title": "Types of Wrought Iron Gates",
