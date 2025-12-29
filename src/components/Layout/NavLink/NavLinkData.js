@@ -13,11 +13,18 @@ export const NavLinkData = [
     to: '/about/', // Already has trailing slash
   },
 
-  // {
-  //   text: 'Produkty',
-  //   id: 3,
-  //   to: '/products/',
-  // },
+  {
+    text: 'Bramy Kute',
+    translationKey: 'gates',
+    id: 3,
+    to: '/services/custom-gates/', // Service page - critical for indexing
+  },
+  {
+    text: 'Ogrodzenia',
+    translationKey: 'fences',
+    id: 8,
+    to: '/services/custom-fences/', // Service page - critical for indexing
+  },
   {
     text: 'Galeria',
     translationKey: 'gallery',

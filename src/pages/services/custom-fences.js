@@ -15,6 +15,7 @@ import {
   ProcessSteps,
   ServiceGallery,
   ServiceContact,
+  RelatedServices,
   QualityIcon,
   DesignIcon,
   WarrantyIcon,
@@ -120,6 +121,13 @@ function OgrodzeniaNaZamowieniePage({ pageContext }) {
         limit={8}
         viewMoreText={t('services:fences.gallery.viewMore')}
         viewMoreHref="/gallery/"
+      />
+
+      <RelatedServices
+        sectionTitle={t('services:fences.relatedServices.title')}
+        serviceTitle={t('services:fences.relatedServices.gates.title')}
+        serviceDescription={t('services:fences.relatedServices.gates.description')}
+        servicePath="/services/custom-gates/"
       />
 
       <ServiceContact

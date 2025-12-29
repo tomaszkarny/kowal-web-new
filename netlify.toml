@@ -156,6 +156,42 @@
   to = "/en/cities/"
   status = 301
 
+# Polish pages trailing slash redirects (fixes "Crawled but not indexed" issue)
+[[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/gallery"
+  to = "/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq/"
+  status = 301
+
+[[redirects]]
+  from = "/cities"
+  to = "/cities/"
+  status = 301
+
+[[redirects]]
+  from = "/services/custom-gates"
+  to = "/services/custom-gates/"
+  status = 301
+
+[[redirects]]
+  from = "/services/custom-fences"
+  to = "/services/custom-fences/"
+  status = 301
+
 # — SECURITY HEADERS —
 [[headers]]
   for = "/*"

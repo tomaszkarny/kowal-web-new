@@ -14,6 +14,7 @@ import {
   ServiceFeatures,
   ServiceGallery,
   ServiceContact,
+  RelatedServices,
   DesignIcon,
   InstallationIcon,
   WarrantyIcon,
@@ -121,6 +122,13 @@ function BramyKuteNaZamowieniePage({ pageContext }) {
         limit={8}
         viewMoreText={t('services:gates.gallery.viewMore')}
         viewMoreHref="/gallery/"
+      />
+
+      <RelatedServices
+        sectionTitle={t('services:gates.relatedServices.title')}
+        serviceTitle={t('services:gates.relatedServices.fences.title')}
+        serviceDescription={t('services:gates.relatedServices.fences.description')}
+        servicePath="/services/custom-fences/"
       />
 
       <ServiceContact

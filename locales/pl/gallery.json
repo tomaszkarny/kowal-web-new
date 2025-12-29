@@ -1,5 +1,9 @@
 {
   "title": "Nasze przykładowe prace",
+  "intro": {
+    "title": "Realizacje kowalstwa artystycznego",
+    "description": "Prezentujemy wybrane projekty bram kutych, balustrad i ogrodzeń wykonanych dla klientów z całej Polski. Każda realizacja jest unikatowa - tworzymy według indywidualnych projektów, łącząc tradycyjne techniki kowalskie z nowoczesnymi wzorami. W galerii znajdziesz przykłady bram wjazdowych, balustrad schodowych i tarasowych, ogrodzeń posesji oraz elementów dekoracyjnych. Wszystkie prace wykonane są z wysokiej jakości stali i zabezpieczone antykorozyjnie. Zachęcamy do kontaktu w celu omówienia Twojego projektu."
+  },
   "backToGallery": "Powrót do galerii",
   "filter": "Filtruj według kategorii",
   "emptyState": "Brak zdjęć w tej kategorii",

@@ -69,6 +69,13 @@
       "title": "Nasze Realizacje - Ogrodzenia",
       "viewMore": "Zobacz więcej realizacji"
     },
+    "relatedServices": {
+      "title": "Zobacz również",
+      "gates": {
+        "title": "Bramy kute na zamówienie",
+        "description": "Projektujemy i wykonujemy ekskluzywne bramy kute do kompletu z Twoim ogrodzeniem."
+      }
+    },
     "faq": {
       "q1": {
         "question": "Ile kosztują ogrodzenia na zamówienie?",
@@ -176,6 +183,13 @@
     "gallery": {
       "title": "Nasze Realizacje - Bramy",
       "viewMore": "Zobacz więcej realizacji"
+    },
+    "relatedServices": {
+      "title": "Zobacz również",
+      "fences": {
+        "title": "Ogrodzenia na zamówienie",
+        "description": "Projektujemy i wykonujemy ekskluzywne ogrodzenia kute pasujące do Twojej bramy."
+      }
     },
     "faq": {
       "q1": {

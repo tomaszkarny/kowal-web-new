@@ -69,6 +69,13 @@
       "title": "Our Realizations - Fences",
       "viewMore": "View more realizations"
     },
+    "relatedServices": {
+      "title": "See also",
+      "gates": {
+        "title": "Custom wrought iron gates",
+        "description": "We design and manufacture exclusive wrought iron gates to match your fence."
+      }
+    },
     "faq": {
       "q1": {
         "question": "How much do custom fences cost?",
@@ -176,6 +183,13 @@
     "gallery": {
       "title": "Our Realizations - Gates",
       "viewMore": "View more realizations"
+    },
+    "relatedServices": {
+      "title": "See also",
+      "fences": {
+        "title": "Custom wrought iron fences",
+        "description": "We design and manufacture exclusive wrought iron fences to match your gate."
+      }
     },
     "faq": {
       "q1": {

@@ -6,6 +6,7 @@ import { GalleryPage } from 'components/GalleryPage/GalleryPage'
 import { Layout } from 'components/Layout/Layout'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
+import { PageDescription } from 'components/common/PageDescription'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
@@ -15,11 +16,15 @@ import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function GalleryPageTemplate() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'gallery'])
   return (
     <Layout>
       <StyledSection>
-        <SectionTitle>{t('gallery_title', 'Nasze przykładowe prace')}</SectionTitle>
+        <SectionTitle>{t('common:gallery_title', 'Nasze przykładowe prace')}</SectionTitle>
+        {/* Intro section for SEO - adds unique text content */}
+        <PageDescription>
+          {t('gallery:intro.description')}
+        </PageDescription>
         <GalleryPage />
       </StyledSection>
     </Layout>
