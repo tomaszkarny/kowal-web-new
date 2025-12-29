@@ -122,7 +122,25 @@
   status = 301
   force  = true
 
-# Language redirects removed - Polish pages now use root URLs without /pl/ prefix
+# CRITICAL: Redirect old /pl/ paths to new root paths (fixes 5xx errors in GSC)
+# Polish pages now use root URLs without /pl/ prefix
+[[redirects]]
+  from = "/pl"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pl/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pl/*"
+  to = "/:splat"
+  status = 301
+  force = true
 
 # Simplified redirects - let Gatsby handle routing naturally
 # Handle pages without trailing slash (only essential ones)
