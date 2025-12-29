@@ -210,6 +210,11 @@
   to = "/services/custom-fences/"
   status = 301
 
+[[redirects]]
+  from = "/services/custom-railings"
+  to = "/services/custom-railings/"
+  status = 301
+
 # — SECURITY HEADERS —
 [[headers]]
   for = "/*"

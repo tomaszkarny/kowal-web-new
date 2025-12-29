@@ -26,6 +26,12 @@ export const NavLinkData = [
     to: '/services/custom-fences/', // Service page - critical for indexing
   },
   {
+    text: 'Balustrady',
+    translationKey: 'railings',
+    id: 9,
+    to: '/services/custom-railings/', // Service page - critical for SEO
+  },
+  {
     text: 'Galeria',
     translationKey: 'gallery',
     id: 4,

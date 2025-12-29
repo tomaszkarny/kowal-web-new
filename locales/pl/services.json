@@ -213,5 +213,109 @@
         "answer": "Nasze bramy są cynkowane ogniowo i malowane proszkowo, co minimalizuje potrzebę konserwacji. Zalecamy przegląd techniczny raz w roku oraz odświeżenie powłoki lakierniczej co 5-7 lat."
       }
     }
+  },
+  "railings": {
+    "hero": {
+      "title": "Balustrady Kute na Wymiar",
+      "subtitle": "Eleganckie balustrady wewnętrzne i zewnętrzne - projekt, wykonanie, profesjonalny montaż",
+      "cta": "Zapytaj o Wycenę"
+    },
+    "why": {
+      "title": "Dlaczego Nasze Balustrady?",
+      "quality": {
+        "title": "Najwyższa Jakość",
+        "text": "Każda balustrada wykonana jest z najlepszej stali i zabezpieczona antykorozyjnie. Gwarantujemy trwałość i bezpieczeństwo na lata."
+      },
+      "design": {
+        "title": "Indywidualne Projekty",
+        "text": "Tworzymy balustrady dopasowane do architektury Twojego domu. Od klasycznych wzorów po nowoczesne, minimalistyczne formy."
+      },
+      "warranty": {
+        "title": "5 Lat Gwarancji",
+        "text": "Jesteśmy pewni jakości naszych balustrad, dlatego udzielamy 5-letniej gwarancji na wszystkie wykonane prace."
+      }
+    },
+    "types": {
+      "title": "Rodzaje Balustrad",
+      "interior": {
+        "title": "Balustrady Wewnętrzne",
+        "text": "Eleganckie balustrady do schodów wewnętrznych, antresoli i galerii. Podkreślą charakter Twojego wnętrza."
+      },
+      "exterior": {
+        "title": "Balustrady Zewnętrzne",
+        "text": "Trwałe balustrady na balkony, tarasy i schody zewnętrzne. Odporne na warunki atmosferyczne."
+      },
+      "balcony": {
+        "title": "Balustrady Balkonowe",
+        "text": "Bezpieczne i estetyczne balustrady na balkony. Różnorodne wzory dopasowane do elewacji budynku."
+      },
+      "staircase": {
+        "title": "Balustrady Schodowe",
+        "text": "Kompleksowe rozwiązania dla klatek schodowych. Balustrady z poręczami zapewniające komfort i bezpieczeństwo."
+      }
+    },
+    "process": {
+      "title": "Jak Zamówić Balustradę?",
+      "step1": {
+        "title": "Kontakt i Konsultacja",
+        "text": "Skontaktuj się z nami telefonicznie lub przez formularz. Omówimy Twoje potrzeby i zaproponujemy rozwiązania."
+      },
+      "step2": {
+        "title": "Pomiary i Wycena",
+        "text": "Przyjedziemy na miejsce, wykonamy dokładne pomiary i przygotujemy szczegółową wycenę."
+      },
+      "step3": {
+        "title": "Projekt i Akceptacja",
+        "text": "Przygotujemy projekt balustrady. Po Twojej akceptacji rozpoczynamy produkcję."
+      },
+      "step4": {
+        "title": "Produkcja",
+        "text": "W naszym warsztacie wykonujemy balustradę zgodnie z zatwierdzonym projektem."
+      },
+      "step5": {
+        "title": "Montaż",
+        "text": "Nasza ekipa montażowa profesjonalnie zainstaluje balustradę w Twoim domu."
+      }
+    },
+    "contact": {
+      "title": "Skontaktuj się z Nami",
+      "text1": "Zapraszamy do kontaktu w celu omówienia szczegółów Twojego projektu.",
+      "text2": "Każda balustrada jest indywidualnie wyceniana w zależności od długości, wzoru i miejsca montażu.",
+      "hours": "Godziny pracy: Pon-Pt 7:30-16:00, Sob 9:00-15:00",
+      "cta": "Wypełnij Formularz"
+    },
+    "gallery": {
+      "title": "Nasze Realizacje - Balustrady",
+      "viewMore": "Zobacz więcej realizacji"
+    },
+    "relatedServices": {
+      "title": "Zobacz również",
+      "gates": {
+        "title": "Bramy kute na zamówienie",
+        "description": "Projektujemy i wykonujemy ekskluzywne bramy kute do kompletu z Twoją balustradą."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "Ile kosztują balustrady kute na wymiar?",
+        "answer": "Cena balustrad kutych zależy od długości, złożoności wzoru i miejsca montażu. Każda balustrada jest indywidualnie wyceniana. Oferujemy darmową wycenę po konsultacji i pomiarach na miejscu."
+      },
+      "q2": {
+        "question": "Jak długo trwa wykonanie balustrady?",
+        "answer": "Standardowy czas realizacji to 2-3 tygodnie od zatwierdzenia projektu. Dla większych projektów (całe klatki schodowe lub balkony) czas może się wydłużyć do 4-5 tygodni."
+      },
+      "q3": {
+        "question": "Czy montujecie balustrady w całej Polsce?",
+        "answer": "Tak, zapewniamy profesjonalny montaż wszystkich naszych balustrad. Nasza ekipa montażowa działa na terenie całej Polski, z bezpłatnym transportem do 50km od Białegostoku."
+      },
+      "q4": {
+        "question": "Jakie style balustrad oferujecie?",
+        "answer": "Oferujemy szeroki wybór stylów: klasyczne, nowoczesne, secesyjne, geometryczne oraz projekty indywidualne. Tworzymy balustrady wewnętrzne do schodów, zewnętrzne balkonowe i tarasowe."
+      },
+      "q5": {
+        "question": "Czy balustrady kute są bezpieczne dla dzieci?",
+        "answer": "Tak, wszystkie nasze balustrady spełniają normy bezpieczeństwa. Stosujemy odpowiednie odstępy między tralkami (max 12cm) i właściwe wysokości (min 110cm dla schodów). Możemy również dodać dodatkowe elementy zabezpieczające."
+      }
+    }
   }
 }

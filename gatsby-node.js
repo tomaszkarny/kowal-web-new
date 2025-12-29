@@ -134,6 +134,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       plPath: '/services/custom-gates/',
       enPath: '/en/services/custom-gates/',
       component: path.resolve('./src/pages/services/custom-gates.js')
+    },
+    {
+      plPath: '/services/custom-railings/',
+      enPath: '/en/services/custom-railings/',
+      component: path.resolve('./src/pages/services/custom-railings.js')
     }
   ]
   

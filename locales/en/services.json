@@ -213,5 +213,109 @@
         "answer": "Our gates are hot-dip galvanized and powder coated, which minimizes the need for maintenance. We recommend technical inspection once a year and refreshing the paint coating every 5-7 years."
       }
     }
+  },
+  "railings": {
+    "hero": {
+      "title": "Custom Wrought Iron Railings",
+      "subtitle": "Elegant interior and exterior railings - design, manufacturing, professional installation",
+      "cta": "Request a Quote"
+    },
+    "why": {
+      "title": "Why Choose Our Railings?",
+      "quality": {
+        "title": "Highest Quality",
+        "text": "Each railing is made from the best steel and protected against corrosion. We guarantee durability and safety for years."
+      },
+      "design": {
+        "title": "Individual Designs",
+        "text": "We create railings tailored to your home's architecture. From classic patterns to modern, minimalist forms."
+      },
+      "warranty": {
+        "title": "5 Year Warranty",
+        "text": "We are confident in the quality of our railings, which is why we provide a 5-year warranty on all completed work."
+      }
+    },
+    "types": {
+      "title": "Types of Railings",
+      "interior": {
+        "title": "Interior Railings",
+        "text": "Elegant railings for interior stairs, mezzanines and galleries. They will emphasize the character of your interior."
+      },
+      "exterior": {
+        "title": "Exterior Railings",
+        "text": "Durable railings for balconies, terraces and exterior stairs. Resistant to weather conditions."
+      },
+      "balcony": {
+        "title": "Balcony Railings",
+        "text": "Safe and aesthetic balcony railings. Various designs matched to the building facade."
+      },
+      "staircase": {
+        "title": "Staircase Railings",
+        "text": "Comprehensive solutions for staircases. Railings with handrails providing comfort and safety."
+      }
+    },
+    "process": {
+      "title": "How to Order Railings?",
+      "step1": {
+        "title": "Contact & Consultation",
+        "text": "Contact us by phone or form. We'll discuss your needs and propose solutions."
+      },
+      "step2": {
+        "title": "Measurements & Quote",
+        "text": "We'll visit the site, take precise measurements and prepare a detailed quote."
+      },
+      "step3": {
+        "title": "Design & Approval",
+        "text": "We'll prepare the railing design. After your approval we begin production."
+      },
+      "step4": {
+        "title": "Production",
+        "text": "In our workshop we create the railing according to the approved design."
+      },
+      "step5": {
+        "title": "Installation",
+        "text": "Our installation team will professionally install the railing in your home."
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text1": "We invite you to contact us to discuss your project details.",
+      "text2": "Each railing is individually priced depending on length, design and installation location.",
+      "hours": "Working hours: Mon-Fri 7:30-16:00, Sat 9:00-15:00",
+      "cta": "Fill Out Form"
+    },
+    "gallery": {
+      "title": "Our Realizations - Railings",
+      "viewMore": "View more realizations"
+    },
+    "relatedServices": {
+      "title": "See also",
+      "gates": {
+        "title": "Custom wrought iron gates",
+        "description": "We design and manufacture exclusive wrought iron gates to match your railings."
+      }
+    },
+    "faq": {
+      "q1": {
+        "question": "How much do custom wrought iron railings cost?",
+        "answer": "The price of custom railings depends on length, design complexity and installation location. Each railing is individually priced. We offer free quotes after consultation and on-site measurements."
+      },
+      "q2": {
+        "question": "How long does it take to make custom railings?",
+        "answer": "Standard completion time is 2-3 weeks from design approval. For larger projects (whole staircases or balconies) the time may extend to 4-5 weeks."
+      },
+      "q3": {
+        "question": "Do you install railings throughout Poland?",
+        "answer": "Yes, we provide professional installation of all our railings. Our installation team operates throughout Poland, with free transport within 50km of Bialystok."
+      },
+      "q4": {
+        "question": "What railing styles do you offer?",
+        "answer": "We offer a wide range of styles: classic, modern, Art Nouveau, geometric, and custom designs. We create interior stair railings, exterior balcony railings, and terrace railings."
+      },
+      "q5": {
+        "question": "Are wrought iron railings safe for children?",
+        "answer": "Yes, all our railings meet safety standards. We use appropriate spacing between balusters (max 12cm) and proper heights (min 110cm for stairs). We can also add additional child safety elements."
+      }
+    }
   }
 }
