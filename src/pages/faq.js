@@ -11,6 +11,10 @@ import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import styled from '@emotion/styled'
 
+// Import translations directly for Head component (hooks not available in Head)
+import seoTranslationsPL from '../../locales/pl/seo.json'
+import seoTranslationsEN from '../../locales/en/seo.json'
+
 const FAQContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
@@ -95,7 +99,11 @@ export function Head({ location, pageContext }) {
         pathname={location.pathname}
         language={language}
       />
-      <FAQSchema language={language} pathname={location.pathname} />
+      <FAQSchema
+        faqData={(language === 'pl' ? seoTranslationsPL : seoTranslationsEN).faq?.items || []}
+        language={language}
+        pathname={location.pathname}
+      />
       <LocalBusinessSchema language={language} />
       <BreadcrumbSchema 
         pathname={location.pathname}

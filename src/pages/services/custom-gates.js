@@ -181,17 +181,11 @@ export function Head({ location, pageContext }) {
             '@type': 'ListItem',
             position: 1,
             name: isEnglish ? 'Home' : 'Strona główna',
-            item: WEBSITE_URL,
+            item: isEnglish ? `${WEBSITE_URL}/en/` : WEBSITE_URL,
           },
           {
             '@type': 'ListItem',
             position: 2,
-            name: isEnglish ? 'Services' : 'Usługi',
-            item: `${WEBSITE_URL}/uslugi`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
             name: isEnglish
               ? 'Gate Installation & Custom Gates'
               : 'Montaż Bram Kutych',

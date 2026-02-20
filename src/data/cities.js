@@ -24,7 +24,7 @@ const CITIES = [
       lat: 53.1325,  // Białystok city center
       lng: 23.1688
     },
-    heroImage: 'hero-bialystok.png',
+    heroImage: 'hero-bialystok.webp',
     serviceArea: {
       radius: 50, // km - promień obsługi dla Białegostoku
       neighborhoods: {
@@ -58,7 +58,7 @@ const CITIES = [
       lat: 52.2297,
       lng: 21.0122
     },
-    heroImage: 'hero-warszawa.png',
+    heroImage: 'hero-warszawa.webp',
     serviceArea: {
       radius: 150, // km - promień obsługi dla Warszawy
       neighborhoods: {
@@ -92,7 +92,7 @@ const CITIES = [
       lat: 54.1020,
       lng: 22.9308
     },
-    heroImage: 'hero-suwalki.png',
+    heroImage: 'hero-suwalki.webp',
     serviceArea: {
       radius: 100, // km - promień obsługi dla Suwałk
       neighborhoods: {
@@ -126,7 +126,7 @@ const CITIES = [
       lat: 53.8433,
       lng: 23.0181
     },
-    heroImage: 'hero-augustow.png',
+    heroImage: 'hero-augustow.webp',
     serviceArea: {
       radius: 80, // km - promień obsługi dla Augustowa
       neighborhoods: {
@@ -160,7 +160,7 @@ const CITIES = [
       lat: 53.1781,
       lng: 22.0585
     },
-    heroImage: 'hero-lomza.png',
+    heroImage: 'hero-lomza.webp',
     serviceArea: {
       radius: 100, // km - promień obsługi dla Łomży
       neighborhoods: {

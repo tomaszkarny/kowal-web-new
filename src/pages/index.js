@@ -12,7 +12,7 @@ import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
-import { WEBSITE_URL } from 'consts/contactDetails'
+import { WEBSITE_URL, PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function IndexPage() {
@@ -67,10 +67,37 @@ export function Head({ location, pageContext }) {
         pathname={location.pathname}
         language={language}
       />
-      <ServiceSchema 
+      <ServiceSchema
         language={language}
         pathname={location.pathname}
       />
+      {/* Organization Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Pracownia Kowalstwa Artystycznego - Tadeusz Karny",
+          "url": WEBSITE_URL,
+          "logo": `${WEBSITE_URL}/icons/icon-512x512.png`,
+          "sameAs": [FACEBOOK_URL, INSTAGRAM_URL],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": PHONE_NUMBER,
+            "contactType": "customer service",
+            "availableLanguage": ["Polish", "English"]
+          }
+        })}
+      </script>
+      {/* WebSite Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Kowalstwo Artystyczne - Tadeusz Karny",
+          "url": WEBSITE_URL,
+          "inLanguage": ["pl", "en"]
+        })}
+      </script>
     </>
   )
 }

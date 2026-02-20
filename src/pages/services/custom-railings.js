@@ -7,6 +7,7 @@ import { ProductSchema } from 'components/SEO/ProductSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
 import { HowToSchema } from 'components/SEO/HowToSchema'
+import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema/LocalBusinessSchema'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import {
   ServiceHero,
@@ -170,7 +171,9 @@ export function Head({ location, pageContext }) {
         noindex={false}
       />
 
-      <ProductSchema language={language} cityName="Bialystok" />
+      <ProductSchema language={language} cityName="Białystok" />
+
+      <LocalBusinessSchema language={language} />
 
       <HowToSchema language={language} schemaType="ordering" />
 
@@ -179,19 +182,13 @@ export function Head({ location, pageContext }) {
           {
             '@type': 'ListItem',
             position: 1,
-            name: isEnglish ? 'Home' : 'Strona glowna',
-            item: WEBSITE_URL,
+            name: isEnglish ? 'Home' : 'Strona główna',
+            item: isEnglish ? `${WEBSITE_URL}/en/` : WEBSITE_URL,
           },
           {
             '@type': 'ListItem',
             position: 2,
-            name: isEnglish ? 'Services' : 'Uslugi',
-            item: `${WEBSITE_URL}/uslugi`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: isEnglish ? 'Custom Railings' : 'Balustrady na Zamowienie',
+            name: isEnglish ? 'Custom Railings' : 'Balustrady na Zamówienie',
             item: `${WEBSITE_URL}${location.pathname}`,
           },
         ]}

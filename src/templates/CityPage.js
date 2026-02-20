@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { ProductSchema } from 'components/SEO/ProductSchema'
+import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema/LocalBusinessSchema'
 import { ErrorBoundary } from 'components/common/ErrorBoundary'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
@@ -18,13 +19,7 @@ import citiesTranslationsEN from '../../locales/en/cities.json'
 import { CityHero } from 'components/Cities/CityHero'
 import { CityServices } from 'components/Cities/CityServices'
 
-import { 
-  WEBSITE_URL, 
-  PHONE_NUMBER,
-  ADDRESS_ML,
-  GOOGLE_MAP_DIRECTIONS,
-  BUSINESS_NAME_ML
-} from 'consts/contactDetails'
+import { WEBSITE_URL } from 'consts/contactDetails'
 
 const cities = citiesData.CITIES || citiesData.default || citiesData
 
@@ -155,115 +150,6 @@ export function Head({ pageContext, location }) {
     .replace('{{city}}', templateData.city)
     .replace('{{travelTime}}', templateData.travelTime)
   
-  // Schema.org dla LocalBusiness z obszarem działania
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": `${BUSINESS_NAME_ML[language]} - ${city.name[language]}`,
-    "description": pageDescription,
-    "url": `${WEBSITE_URL}${location.pathname}`,
-    "telephone": PHONE_NUMBER,
-    "image": [
-      `${WEBSITE_URL}/icons/icon-512x512.png`,
-      `${WEBSITE_URL}/icons/icon-192x192.png`
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": ADDRESS_ML[language].street,
-      "addressLocality": ADDRESS_ML[language].city,
-      "postalCode": ADDRESS_ML[language].postalCode,
-      "addressCountry": ADDRESS_ML[language].countryCode
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": GOOGLE_MAP_DIRECTIONS.lat,
-      "longitude": GOOGLE_MAP_DIRECTIONS.lng
-    },
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": city.name[language],
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": city.coordinates.lat,
-          "longitude": city.coordinates.lng
-        }
-      },
-      {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": city.coordinates.lat,
-          "longitude": city.coordinates.lng
-        },
-        "geoRadius": `${city.serviceArea.radius}000` // w metrach
-      }
-    ],
-    "serviceType": [
-      language === 'pl' ? "Bramy kute" : "Wrought iron gates",
-      language === 'pl' ? "Balustrady" : "Railings", 
-      language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences"
-    ],
-    "priceRange": "$$",
-    "openingHours": "Mo-Fr 07:30-16:00, Sa 09:00-15:00",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:30",
-        "closes": "16:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "09:00", 
-        "closes": "15:00"
-      }
-    ],
-    "paymentAccepted": ["Cash", "Bank Transfer"],
-    "currenciesAccepted": "PLN",
-    "hasMap": `https://maps.google.com/?q=${GOOGLE_MAP_DIRECTIONS.lat},${GOOGLE_MAP_DIRECTIONS.lng}`,
-    "makesOffer": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": language === 'pl' ? "Bramy kute na wymiar" : "Custom wrought iron gates"
-        }
-      },
-      {
-        "@type": "Offer", 
-        "itemOffered": {
-          "@type": "Service",
-          "name": language === 'pl' ? "Balustrady wewnętrzne i zewnętrzne" : "Interior and exterior railings"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service", 
-          "name": language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": language === 'pl' ? "Naprawy i konserwacja" : "Repairs and maintenance",
-          "description": language === 'pl' ? "Usługi awaryjne 24/7 w promieniu 50km" : "24/7 emergency service within 50km radius"
-        }
-      }
-    ],
-    "potentialAction": {
-      "@type": "OrderAction",
-      "target": {
-        "@type": "EntryPoint", 
-        "urlTemplate": `${WEBSITE_URL}/${language === 'pl' ? '' : 'en/'}contact`,
-        "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
-      }
-    }
-  }
-  
   // Service schema dla lepszego SEO
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -330,7 +216,7 @@ export function Head({ pageContext, location }) {
       "@type": "ListItem", 
       "position": 2,
       "name": language === 'pl' ? "Miasta" : "Cities",
-      "item": `${WEBSITE_URL}/cities/`
+      "item": language === 'pl' ? `${WEBSITE_URL}/cities/` : `${WEBSITE_URL}/en/cities/`
     },
     {
       "@type": "ListItem",
@@ -387,10 +273,8 @@ export function Head({ pageContext, location }) {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       
-      {/* Local Business Schema dla miasta */}
-      <script type="application/ld+json">
-        {JSON.stringify({...localBusinessSchema, "@id": `${WEBSITE_URL}${location.pathname}#localbusiness`})}
-      </script>
+      {/* Local Business Schema */}
+      <LocalBusinessSchema language={language} pathname={location.pathname} />
       
       {/* Service Schema */}
       <script type="application/ld+json">

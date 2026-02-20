@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import styled from '@emotion/styled'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
 
 /**
  * Grid container for gallery images
@@ -182,22 +182,12 @@ export function OptimizedGallery({
         })}
       </GalleryGrid>
       
-      {lightboxOpen && lightboxImages.length > 0 && (
-        <Lightbox
-          mainSrc={lightboxImages[photoIndex]}
-          nextSrc={lightboxImages[(photoIndex + 1) % lightboxImages.length]}
-          prevSrc={lightboxImages[(photoIndex + lightboxImages.length - 1) % lightboxImages.length]}
-          onCloseRequest={closeLightbox}
-          onMovePrevRequest={() =>
-            setPhotoIndex((photoIndex + lightboxImages.length - 1) % lightboxImages.length)
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % lightboxImages.length)
-          }
-          imageTitle={images[photoIndex]?.alt || images[photoIndex]?.node?.alt}
-          imageCaption={images[photoIndex]?.caption || images[photoIndex]?.node?.caption}
-        />
-      )}
+      <Lightbox
+        open={lightboxOpen}
+        close={closeLightbox}
+        index={photoIndex}
+        slides={lightboxImages.map(src => ({ src }))}
+      />
     </>
   )
 }

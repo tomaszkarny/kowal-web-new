@@ -21,7 +21,7 @@ export function CityHero({ city, language, templateData }) {
   // GraphQL query for all city hero images
   const data = useStaticQuery(graphql`
     query CityHeroImagesQuery {
-      heroBialystok: file(relativePath: { eq: "cities/hero-bialystok.png" }) {
+      heroBialystok: file(relativePath: { eq: "cities/hero-bialystok.webp" }) {
         childImageSharp {
           gatsbyImageData(
             width: 1920
@@ -36,7 +36,7 @@ export function CityHero({ city, language, templateData }) {
           )
         }
       }
-      heroSuwalki: file(relativePath: { eq: "cities/hero-suwalki.png" }) {
+      heroSuwalki: file(relativePath: { eq: "cities/hero-suwalki.webp" }) {
         childImageSharp {
           gatsbyImageData(
             width: 1920
@@ -51,7 +51,7 @@ export function CityHero({ city, language, templateData }) {
           )
         }
       }
-      heroWarszawa: file(relativePath: { eq: "cities/hero-warszawa.png" }) {
+      heroWarszawa: file(relativePath: { eq: "cities/hero-warszawa.webp" }) {
         childImageSharp {
           gatsbyImageData(
             width: 1920
@@ -66,7 +66,7 @@ export function CityHero({ city, language, templateData }) {
           )
         }
       }
-      heroAugustow: file(relativePath: { eq: "cities/hero-augustow.png" }) {
+      heroAugustow: file(relativePath: { eq: "cities/hero-augustow.webp" }) {
         childImageSharp {
           gatsbyImageData(
             width: 1920
@@ -81,7 +81,7 @@ export function CityHero({ city, language, templateData }) {
           )
         }
       }
-      heroLomza: file(relativePath: { eq: "cities/hero-lomza.png" }) {
+      heroLomza: file(relativePath: { eq: "cities/hero-lomza.webp" }) {
         childImageSharp {
           gatsbyImageData(
             width: 1920
@@ -131,11 +131,11 @@ export function CityHero({ city, language, templateData }) {
 
   // Map heroImage filename to GraphQL query result
   const HERO_IMAGES = {
-    'hero-bialystok.png': data.heroBialystok,
-    'hero-suwalki.png': data.heroSuwalki,
-    'hero-warszawa.png': data.heroWarszawa,
-    'hero-augustow.png': data.heroAugustow,
-    'hero-lomza.png': data.heroLomza,
+    'hero-bialystok.webp': data.heroBialystok,
+    'hero-suwalki.webp': data.heroSuwalki,
+    'hero-warszawa.webp': data.heroWarszawa,
+    'hero-augustow.webp': data.heroAugustow,
+    'hero-lomza.webp': data.heroLomza,
     'balu20.jpg': data.balu20,
     'ogrodz11.jpg': data.ogrodz11
   }
@@ -160,7 +160,7 @@ export function CityHero({ city, language, templateData }) {
         <HeroImageWrapper>
           <GatsbyImage
             image={heroImageData}
-            alt=""
+            alt={`${city.name[language]} - kowalstwo artystyczne`}
             style={{ width: '100%', height: '100%' }}
             objectFit="cover"
             objectPosition="center"

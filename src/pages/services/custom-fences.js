@@ -7,6 +7,7 @@ import { ProductSchema } from 'components/SEO/ProductSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
 import { HowToSchema } from 'components/SEO/HowToSchema'
+import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema/LocalBusinessSchema'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import {
   ServiceHero,
@@ -168,6 +169,8 @@ export function Head({ location, pageContext }) {
 
       <ProductSchema language={language} cityName="Białystok" />
 
+      <LocalBusinessSchema language={language} />
+
       <HowToSchema language={language} schemaType="ordering" />
 
       <BreadcrumbSchema
@@ -176,17 +179,11 @@ export function Head({ location, pageContext }) {
             '@type': 'ListItem',
             position: 1,
             name: isEnglish ? 'Home' : 'Strona główna',
-            item: WEBSITE_URL,
+            item: isEnglish ? `${WEBSITE_URL}/en/` : WEBSITE_URL,
           },
           {
             '@type': 'ListItem',
             position: 2,
-            name: isEnglish ? 'Services' : 'Usługi',
-            item: `${WEBSITE_URL}/uslugi`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
             name: isEnglish ? 'Custom Fences' : 'Ogrodzenia na Zamówienie',
             item: `${WEBSITE_URL}${location.pathname}`,
           },
