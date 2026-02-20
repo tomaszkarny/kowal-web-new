@@ -69,8 +69,8 @@ export const ADDRESS_COUNTRY = ADDRESS_ML.pl.country
 export const ADDRESS_COUNTRY_CODE = ADDRESS_ML.pl.countryCode
 
 // Social media profiles
-export const FACEBOOK_URL = 'www.facebook.com/kowalstwo.karny'
-export const INSTAGRAM_URL = 'www.instagram.com/kowalstwokarny'
+export const FACEBOOK_URL = 'https://www.facebook.com/kowalstwo.karny'
+export const INSTAGRAM_URL = 'https://www.instagram.com/kowalstwokarny'
 
 // Website information
 export const WEBSITE_URL = SITE_DOMAIN
@@ -81,7 +81,7 @@ export const GOOGLE_MAP_DIRECTIONS = { lat: 53.0805839, lng: 23.1371503 } // Upd
 export const GOOGLE_MAPS_URL = 'https://www.google.com/maps/place/Pracownia+Kowalstwa+Artystycznego+-+Tadeusz+Karny/@53.0812043,23.1342586,17z/data=!4m15!1m8!3m7!1s0x471ff978a337baf5:0x86342f5404acd36b!2sHryniewicze+31,+15-378+Hryniewicze!3b1!8m2!3d53.0812043!4d23.1368335!16s%2Fg%2F11fq0k72hs!3m5!1s0x471ff978bd2b0fa3:0xe1a3131fbae4b7cd!8m2!3d53.0805839!4d23.1371503!16s%2Fg%2F1td1_01m?entry=ttu'
 
 // Business details for LocalBusiness schema
-export const BUSINESS_TYPE = 'BlacksmithShop'
+export const BUSINESS_TYPE = 'HomeAndConstructionBusiness'
 /**
  * Business description - multilingual
  * @type {{pl: string, en: string}}

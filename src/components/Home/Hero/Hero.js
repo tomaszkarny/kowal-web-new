@@ -33,7 +33,7 @@ export function Hero() {
             height: 1080
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
-            quality: 95
+            quality: 85
             transformOptions: { 
               cropFocus: CENTER
               fit: COVER 

@@ -156,13 +156,13 @@ export function Head({ location, pageContext }) {
       <EnhancedSEO
         title={
           isEnglish
-            ? 'Wrought Iron Railings Bialystok - Custom Made | Karny Blacksmith'
-            : 'Balustrady Kute Bialystok - Na Wymiar | Kowalstwo Karny'
+            ? 'Custom Wrought Iron Railings - Interior & Exterior | Karny'
+            : 'Balustrady Kute na Wymiar - Wewnętrzne i Zewnętrzne | Karny'
         }
         description={
           isEnglish
-            ? 'Custom wrought iron railings in Bialystok. Interior and exterior railings. Free quote. Installation included. 25+ years of experience. Call now!'
-            : 'Balustrady kute na wymiar w Bialymstoku. Wewnetrzne i zewnetrzne. Darmowa wycena. Montaz w cenie. 25+ lat doswiadczenia. Zadzwon!'
+            ? 'Custom wrought iron railings - interior and exterior. ✓ Staircase, balcony & terrace railings ✓ Free quote ✓ 30 years experience ✓ Installation across Poland ☎ +48 604 253 145'
+            : 'Balustrady kute na wymiar - wewnętrzne i zewnętrzne. ✓ Schodowe, balkonowe, tarasowe ✓ Darmowa wycena ✓ 30 lat doświadczenia ✓ Montaż w całej Polsce ☎ 604 253 145'
         }
         pathname={location.pathname}
         pageType="service"

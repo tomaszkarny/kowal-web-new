@@ -7,6 +7,7 @@ import { ProductSchema } from 'components/SEO/ProductSchema'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
 import { HowToSchema } from 'components/SEO/HowToSchema'
+import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema/LocalBusinessSchema'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import {
   ServiceHero,
@@ -34,6 +35,8 @@ function BramyKuteNaZamowieniePage({ pageContext }) {
         t('services:gates.types.doubleLeaf.features.automation'),
         t('services:gates.types.doubleLeaf.features.designs'),
         t('services:gates.types.doubleLeaf.features.wicket'),
+        t('services:gates.types.doubleLeaf.features.protection'),
+        t('services:gates.types.doubleLeaf.features.warranty'),
       ],
     },
     {
@@ -154,13 +157,13 @@ export function Head({ location, pageContext }) {
       <EnhancedSEO
         title={
           isEnglish
-            ? 'Wrought Iron Gate Installation & Custom Gates | Poland Blacksmith'
-            : 'Montaż Bram Kutych ⭐ Bramy na Zamówienie - Kowal Białystok'
+            ? 'Custom Wrought Iron Gates - Installation Across Poland | Kowal Karny'
+            : 'Bramy Kute na Zamówienie - Montaż w Całej Polsce | Kowal Karny'
         }
         description={
           isEnglish
-            ? 'Professional wrought iron gate installation throughout Poland ⭐ Custom double-leaf & sliding gates. Design, manufacturing, expert installation. 30 years experience ✓ 5 year warranty ✓ Free quote ☎ +48 604 253 145'
-            : 'Profesjonalny montaż bram kutych w całej Polsce ⭐ Bramy dwuskrzydłowe i przesuwne na zamówienie. Projekt, wykonanie, fachowy montaż. 30 lat doświadczenia ✓ 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
+            ? 'Custom wrought iron gates with professional installation across Poland. ✓ Double-leaf & sliding gates ✓ Nice/FAAC automation ✓ 5 year warranty ✓ Free quote ☎ +48 604 253 145'
+            : 'Montaż bram kutych w całej Polsce. Bramy dwuskrzydłowe i przesuwne na zamówienie ✓ Automatyka Nice/FAAC ✓ 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
         }
         pathname={location.pathname}
         pageType="service"
@@ -169,6 +172,8 @@ export function Head({ location, pageContext }) {
       />
 
       <ProductSchema language={language} cityName="Białystok" />
+
+      <LocalBusinessSchema language={language} />
 
       <BreadcrumbSchema
         breadcrumbs={[
@@ -204,6 +209,31 @@ export function Head({ location, pageContext }) {
           isEnglish
             ? [
                 {
+                  question: 'What dimensions can a double-leaf gate have?',
+                  answer:
+                    'We manufacture double-leaf gates with widths from 3 to 6 meters and heights from 1.5 to 2.5 meters. Each gate is custom made according to the client design and individual measurements.',
+                },
+                {
+                  question: 'Can a wicket gate be added to a double-leaf gate?',
+                  answer:
+                    'Yes, we offer gate + wicket sets in matching style. The wicket can be built into the gate leaf or stand separately. We ensure consistent design across your entire fencing.',
+                },
+                {
+                  question: 'What automation for double-leaf gates?',
+                  answer:
+                    'We install Nice, FAAC and BFT automation. For double-leaf gates we recommend arm or underground actuators. Automation provides convenience and safety in daily use.',
+                },
+                {
+                  question: 'Double-leaf or sliding gates - which to choose?',
+                  answer:
+                    'Double-leaf gates are ideal for wider properties with space for opening the leaves. Sliding gates are better for narrow driveways. Double-leaf means classic elegance, sliding takes less space.',
+                },
+                {
+                  question: 'How does the double-leaf gate ordering process work?',
+                  answer:
+                    'The process includes: consultation and measurements, design preparation, approval, workshop production (3-4 weeks), transport and professional installation. We offer free quotes.',
+                },
+                {
                   question: 'How does wrought iron gate installation work?',
                   answer:
                     'We provide comprehensive gate installation throughout Poland. Our installation team arrives on the scheduled date and professionally installs the gate with posts and automation. Standard gate installation takes 1-2 days. Installation cost is included in the price or set individually.',
@@ -235,6 +265,31 @@ export function Head({ location, pageContext }) {
                 },
               ]
             : [
+                {
+                  question: 'Jakie wymiary może mieć brama dwuskrzydłowa?',
+                  answer:
+                    'Wykonujemy bramy dwuskrzydłowe o szerokości od 3 do 6 metrów i wysokości od 1,5 do 2,5 metra. Każda brama jest wykonywana na wymiar indywidualny według projektu klienta.',
+                },
+                {
+                  question: 'Czy można dodać furtkę do bramy dwuskrzydłowej?',
+                  answer:
+                    'Tak, oferujemy komplety brama + furtka w jednym stylu. Furtka może być wbudowana w skrzydło bramy lub stać osobno. Zapewniamy spójny design całego ogrodzenia.',
+                },
+                {
+                  question: 'Jaka automatyka do bram dwuskrzydłowych?',
+                  answer:
+                    'Montujemy automatykę Nice, FAAC i BFT. Dla bram dwuskrzydłowych polecamy siłowniki ramionowe lub podziemne. Automatyka zapewnia wygodę i bezpieczeństwo użytkowania.',
+                },
+                {
+                  question: 'Bramy dwuskrzydłowe czy przesuwne - co wybrać?',
+                  answer:
+                    'Bramy dwuskrzydłowe są idealne dla szerszych posesji z miejscem na otwarcie skrzydeł. Bramy przesuwne lepsze dla wąskich wjazdów. Dwuskrzydłowe to klasyczna elegancja, przesuwne zajmują mniej miejsca.',
+                },
+                {
+                  question: 'Jak wygląda proces zamówienia bramy dwuskrzydłowej?',
+                  answer:
+                    'Proces obejmuje: konsultację i pomiary, przygotowanie projektu, akceptację, wykonanie w warsztacie (3-4 tygodnie), transport i profesjonalny montaż. Oferujemy darmową wycenę.',
+                },
                 {
                   question: 'Jak wygląda montaż bram kutych?',
                   answer:

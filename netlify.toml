@@ -142,6 +142,19 @@
   status = 301
   force = true
 
+# Handle mixed /en/pl/ URLs that cause 5xx errors
+[[redirects]]
+  from = "/en/pl/*"
+  to = "/en/:splat"
+  status = 301
+  force = true
+
+# Handle undefined URLs that might be generated
+[[redirects]]
+  from = "/undefined/*"
+  to = "/"
+  status = 301
+
 # Simplified redirects - let Gatsby handle routing naturally
 # Handle pages without trailing slash (only essential ones)
 [[redirects]]

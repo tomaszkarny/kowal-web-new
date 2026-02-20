@@ -8,7 +8,7 @@ module.exports = {
     title: 'Tadeusz Karny Artistic Blacksmith',
     description: 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.',
     siteUrl: SITE_DOMAIN, // Using centralized domain constant
-    image: '/images/logo.jpg',
+    image: '/og-default.jpg',
     author: 'Tadeusz Karny',
     twitterUsername: '',
   },
@@ -25,7 +25,7 @@ module.exports = {
       options: {
         // Global Sharp.js optimizations
         defaults: {
-          quality: 90,
+          quality: 80,
           formats: [`auto`, `webp`, `avif`],
           placeholder: `blurred`,
           breakpoints: [576, 768, 992, 1200, 1400, 1920]
@@ -253,8 +253,8 @@ module.exports = {
           }
         `,
         serialize: ({ path }) => {
-          // Get current date in ISO format for lastmod
-          const lastmod = new Date().toISOString();
+          // Fixed lastmod date (avoid dynamic build-time dates)
+          const lastmod = '2026-02-20';
           
           // Is this an English page?
           const isEnglish = path.startsWith('/en');
@@ -314,6 +314,10 @@ module.exports = {
             // Contact page gets medium priority
             priority = 0.6;
             changefreq = 'monthly';
+          } else if (path.includes('/services/')) {
+            // Service pages get high priority
+            priority = 0.8;
+            changefreq = 'weekly';
           } else if (path.includes('/miasta/') || path.includes('/cities/')) {
             // City pages get good priority for local SEO
             // Featured cities get higher priority
@@ -382,7 +386,7 @@ module.exports = {
             host: null
           },
           production: {
-            policy: [{ userAgent: '*', allow: '/' }],
+            policy: [{ userAgent: '*', allow: '/', disallow: ['/page-data/', '/*.json'] }],
             sitemap: SITEMAP_URL,
             host: SITE_DOMAIN
           }

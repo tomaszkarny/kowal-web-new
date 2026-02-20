@@ -1,3 +1,10 @@
+import {
+  PHONE_NUMBER_FORMATTED,
+  EMAIL_ADDRESS,
+  ADDRESS_ML,
+  OPENING_HOURS_ML
+} from '../consts/contactDetails'
+
 // Static FAQ data for SSR
 export const getFAQData = (language, page) => {
   const faqDataPL = {
@@ -12,11 +19,11 @@ export const getFAQData = (language, page) => {
       },
       {
         question: "Gdzie znajduje się pracownia kowalstwa artystycznego?",
-        answer: "Nasza pracownia kowalstwa artystycznego znajduje się w Białymstoku przy ul. Ciołkowskiego 109/1. Realizujemy zlecenia na terenie całej Polski - od Warszawy, przez Białystok, po Gdańsk i Kraków."
+        answer: `Nasza pracownia kowalstwa artystycznego znajduje się pod adresem ${ADDRESS_ML.pl.street}, ${ADDRESS_ML.pl.postalCode} ${ADDRESS_ML.pl.city}. Realizujemy zlecenia na terenie całej Polski - od Warszawy, przez Białystok, po Gdańsk i Kraków.`
       },
       {
         question: "Ile kosztują bramy kute na zamówienie?",
-        answer: "Cena bram kutych zależy od rozmiaru, złożoności wzoru i użytych materiałów. Oferujemy bezpłatną wycenę - prosimy o kontakt pod numerem 604 253 145 lub 696 434 745, aby omówić szczegóły projektu."
+        answer: `Cena bram kutych zależy od rozmiaru, złożoności wzoru i użytych materiałów. Oferujemy bezpłatną wycenę - prosimy o kontakt pod numerem ${PHONE_NUMBER_FORMATTED}, aby omówić szczegóły projektu.`
       },
       {
         question: "Czy wykonujecie balustrady kute na wymiar?",
@@ -70,7 +77,7 @@ export const getFAQData = (language, page) => {
     contact: [
       {
         question: "Jak mogę umówić się na konsultację z kowalem?",
-        answer: "Aby umówić konsultację, prosimy o kontakt telefoniczny: 604 253 145 lub 696 434 745. Można też napisać na adres: kowalstwotk@gmail.com. Zapraszamy również do naszej pracowni w Białymstoku."
+        answer: `Aby umówić konsultację, prosimy o kontakt telefoniczny: ${PHONE_NUMBER_FORMATTED}. Można też napisać na adres: ${EMAIL_ADDRESS}. Zapraszamy również do naszej pracowni pod adresem ${ADDRESS_ML.pl.street}, ${ADDRESS_ML.pl.city}.`
       },
       {
         question: "Czy możliwa jest wycena na podstawie zdjęć?",
@@ -78,7 +85,7 @@ export const getFAQData = (language, page) => {
       },
       {
         question: "Jakie są godziny otwarcia pracowni kowalstwa?",
-        answer: "Nasza pracownia jest czynna od poniedziałku do piątku w godzinach 8:00-16:00. W soboty pracujemy po wcześniejszym umówieniu. Preferujemy wcześniejszy kontakt telefoniczny przed wizytą."
+        answer: `Nasza pracownia jest czynna: ${OPENING_HOURS_ML.pl[0].days} ${OPENING_HOURS_ML.pl[0].hours}, ${OPENING_HOURS_ML.pl[1].days} ${OPENING_HOURS_ML.pl[1].hours}. ${OPENING_HOURS_ML.pl[2].days}: ${OPENING_HOURS_ML.pl[2].hours}. Preferujemy wcześniejszy kontakt telefoniczny przed wizytą.`
       },
       {
         question: "Czy wykonujecie pomiary u klienta?",
@@ -99,11 +106,11 @@ export const getFAQData = (language, page) => {
       },
       {
         question: "Where is the artistic blacksmithing workshop located?",
-        answer: "Our artistic blacksmithing workshop is located in Białystok at Ciołkowskiego 109/1. We fulfill orders throughout Poland - from Warsaw, through Białystok, to Gdańsk and Kraków."
+        answer: `Our artistic blacksmithing workshop is located at ${ADDRESS_ML.en.street}, ${ADDRESS_ML.en.postalCode} ${ADDRESS_ML.en.city}, ${ADDRESS_ML.en.country}. We fulfill orders throughout Poland - from Warsaw, through Białystok, to Gdańsk and Kraków.`
       },
       {
         question: "How much do custom wrought iron gates cost?",
-        answer: "The price of wrought iron gates depends on size, design complexity, and materials used. We offer free estimates - please contact us at 604 253 145 or 696 434 745 to discuss your project details."
+        answer: `The price of wrought iron gates depends on size, design complexity, and materials used. We offer free estimates - please contact us at ${PHONE_NUMBER_FORMATTED} to discuss your project details.`
       },
       {
         question: "Do you make custom wrought iron railings?",
@@ -157,7 +164,7 @@ export const getFAQData = (language, page) => {
     contact: [
       {
         question: "How can I schedule a consultation with the blacksmith?",
-        answer: "To schedule a consultation, please call: 604 253 145 or 696 434 745. You can also email: kowalstwotk@gmail.com. We also welcome visits to our workshop in Białystok."
+        answer: `To schedule a consultation, please call: ${PHONE_NUMBER_FORMATTED}. You can also email: ${EMAIL_ADDRESS}. We also welcome visits to our workshop at ${ADDRESS_ML.en.street}, ${ADDRESS_ML.en.city}.`
       },
       {
         question: "Is it possible to get a quote based on photos?",
@@ -165,7 +172,7 @@ export const getFAQData = (language, page) => {
       },
       {
         question: "What are the blacksmithing workshop's opening hours?",
-        answer: "Our workshop is open Monday to Friday from 8:00 AM to 4:00 PM. We work Saturdays by appointment. We prefer advance phone contact before visits."
+        answer: `Our workshop is open: ${OPENING_HOURS_ML.en[0].days} ${OPENING_HOURS_ML.en[0].hours}, ${OPENING_HOURS_ML.en[1].days} ${OPENING_HOURS_ML.en[1].hours}. ${OPENING_HOURS_ML.en[2].days}: ${OPENING_HOURS_ML.en[2].hours}. We prefer advance phone contact before visits.`
       },
       {
         question: "Do you provide on-site measurements?",

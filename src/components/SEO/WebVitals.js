@@ -8,7 +8,7 @@ export function WebVitals() {
     // Web Vitals tracking
     if ('web-vital' in window) return;
 
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    import('web-vitals').then(({ getCLS, getINP, getFCP, getLCP, getTTFB }) => {
       const sendToAnalytics = ({ name, delta, id }) => {
         // Send to Google Analytics if available
         if (typeof window.gtag !== 'undefined') {
@@ -28,7 +28,7 @@ export function WebVitals() {
       };
 
       getCLS(sendToAnalytics);
-      getFID(sendToAnalytics);
+      getINP(sendToAnalytics);
       getFCP(sendToAnalytics);
       getLCP(sendToAnalytics);
       getTTFB(sendToAnalytics);

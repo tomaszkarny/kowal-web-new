@@ -35,7 +35,9 @@ exports.onClientEntry = () => {
   
   // Log initialization without trying to manually set up i18next
   // Let gatsby-plugin-react-i18next handle the initialization
-  console.log('Website initialized with i18next backend support');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Website initialized with i18next backend support');
+  }
   
   // Log navigation events (useful for debugging)  
   if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
@@ -89,7 +91,9 @@ exports.onRouteUpdate = ({ location, prevLocation }) => {
   // Prefetch pages that are linked to from the current page
   if (prevLocation !== null) {
     // Log navigation for debugging
-    console.log(`Navigation from ${prevLocation.pathname} to ${location.pathname}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Navigation from ${prevLocation.pathname} to ${location.pathname}`);
+    }
 
     // Force focus to the body to prevent any lingering focus issues
     document.body.focus();

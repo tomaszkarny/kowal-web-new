@@ -167,15 +167,11 @@ export function EnhancedSEO({
   // Canonical URL = clean URL without /pl/ prefix for Polish, with /en/ for English
   const canonicalUrl = `${siteDomain}${adjustedPath}`;
   
-  // hreflang tags are now handled by gatsby-plugin-react-i18next
+  // Ensure og:image is always an absolute URL
+  const ogImage = seo.image
+    ? (seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`)
+    : `${siteDomain}/images/logo.jpg`
 
-  // Create structured data for different types
-  const generateStructuredData = () => 
-    // We're removing the schema generation from here since
-    // language-aware schemas are now handled by dedicated components
-    // (LocalBusinessSchema, FAQSchema, etc.) on each page
-     []
-  
 
   return (
     <>
@@ -183,7 +179,7 @@ export function EnhancedSEO({
       <title key={languageKey}>{seo.title}</title>
       <meta name="description" content={seo.description} />
       {/* keywords meta tag removed - deprecated */}
-      <meta name="image" content={seo.image} />
+      <meta name="image" content={ogImage} />
       
       {/* Robots control for search engines */}
       {/* Remove canonical URL for noindex pages */}
@@ -196,17 +192,26 @@ export function EnhancedSEO({
       {/* Canonical URL - essential for SEO - only for indexable pages */}
       {!noindex && <link rel="canonical" href={canonicalUrl} key="canonical" />}
 
-      {/* Google Fonts - match original implementation exactly */}
+      {/* Hreflang tags for multilingual page association */}
+      {!noindex && (
+        <>
+          <link rel="alternate" hreflang="pl" href={languageUrls.pl} />
+          <link rel="alternate" hreflang="en" href={languageUrls.en} />
+          <link rel="alternate" hreflang="x-default" href={languageUrls.default} />
+        </>
+      )}
+
+      {/* Google Fonts with proper weights */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=PT+Sans&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={article ? 'article' : 'website'} />
       <meta property="og:url" content={noindex ? siteUrl : canonicalUrl} />
       <meta property="og:title" content={seo.title} />
       <meta property="og:description" content={seo.description} />
-      {seo.image && <meta property="og:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
+      <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={baseSiteTitle} />
@@ -231,14 +236,9 @@ export function EnhancedSEO({
       {twitterUsername && <meta name="twitter:site" content={twitterUsername} />}
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
-      {seo.image && <meta name="twitter:image" content={seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`} />}
+      <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={seo.title} />
       
-      {/* Schema.org structured data */}
-      <script type="application/ld+json">
-        {JSON.stringify(generateStructuredData())}
-      </script>
-
       {/* Page specific SEO */}
       {children}
       

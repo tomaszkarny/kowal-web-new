@@ -8,9 +8,6 @@ import { Global, css } from '@emotion/react'
 export function Fonts() {
   return <Global
     styles={css`
-      /* Import Google fonts directly in CSS */
-      @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=PT+Sans:wght@400;700&display=swap');
-
       /* Font display optimization */
       @font-face {
         font-family: 'Merriweather';

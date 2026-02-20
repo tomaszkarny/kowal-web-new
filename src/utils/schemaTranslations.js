@@ -118,14 +118,7 @@ export const getProductSchemaData = (language, cityName, businessName, phoneNumb
           "name": t('products.properties.experience.name'),
           "value": t('products.properties.experience.value')
         }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "127",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
+      ]
     },
     {
       "@context": "https://schema.org",
@@ -189,14 +182,7 @@ export const getProductSchemaData = (language, cityName, businessName, phoneNumb
           "name": t('products.properties.service.name'),
           "value": t('products.properties.service.value')
         }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "89",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
+      ]
     },
     {
       "@context": "https://schema.org",
@@ -260,14 +246,7 @@ export const getProductSchemaData = (language, cityName, businessName, phoneNumb
           "name": t('products.properties.finish.name'),
           "value": t('products.properties.finish.value')
         }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "73",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
+      ]
     }
   ]
 }

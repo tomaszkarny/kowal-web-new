@@ -152,13 +152,13 @@ export function Head({ location, pageContext }) {
       <EnhancedSEO
         title={
           isEnglish
-            ? 'Custom Wrought Iron Fences - Blacksmith Białystok | Poland'
-            : 'Ogrodzenia na Zamówienie - Kowal Białystok | Cała Polska'
+            ? 'Custom Wrought Iron Fences - Design & Installation | Karny'
+            : 'Ogrodzenia Kute na Zamówienie - Projekt i Montaż | Karny'
         }
         description={
           isEnglish
-            ? 'Custom wrought iron fences ⭐ Design and manufacturing of wrought iron fences. Best blacksmith in Poland. 5 year warranty ✓ Free quote ☎ +48 604 253 145'
-            : 'Ogrodzenia na zamówienie ⭐ Projektowanie i wykonanie ogrodzeń kutych. Najlepszy kowal w Polsce. 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
+            ? 'Custom wrought iron fences - design and professional installation. ✓ Classic, modern & decorative styles ✓ 5 year warranty ✓ Free quote ☎ +48 604 253 145'
+            : 'Ogrodzenia kute na zamówienie - projekt i profesjonalny montaż. ✓ Klasyczne, nowoczesne, ozdobne ✓ 5 lat gwarancji ✓ Darmowa wycena ☎ 604 253 145'
         }
         pathname={location.pathname}
         pageType="service"

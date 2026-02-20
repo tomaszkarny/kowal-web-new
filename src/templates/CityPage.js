@@ -380,7 +380,6 @@ export function Head({ pageContext, location }) {
       <meta name="ICBM" content={`${city.coordinates.lat}, ${city.coordinates.lng}`} />
       
       {/* Performance hints */}
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
       {/* Mobile optimization */}

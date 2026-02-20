@@ -118,13 +118,15 @@
     "types": {
       "title": "Types of Wrought Iron Gates",
       "doubleLeaf": {
-        "title": "Double-Leaf Gates",
-        "text": "Classic solution for elegant properties. Double-leaf gates combine functionality with beauty.",
+        "title": "Double-Leaf Wrought Iron Gates",
+        "text": "Double-leaf wrought iron gates are a classic solution for elegant properties and residences. We offer widths from 3 to 6 meters with optional wicket gate. Each gate is made from steel profiles and hand-forged decorative elements. Available in classic, modern and Art Nouveau styles. Hot-dip galvanizing + powder coating ensure durability for years.",
         "features": {
-          "width": "Width up to 6 meters",
-          "automation": "Nice or FAAC automation",
-          "designs": "Various designs",
-          "wicket": "Option to add wicket gate"
+          "width": "Width 3-6 meters",
+          "automation": "Nice, FAAC or BFT automation",
+          "designs": "Styles: classic, modern, Art Nouveau",
+          "wicket": "Optional matching wicket gate",
+          "protection": "Hot-dip galvanizing + powder coating",
+          "warranty": "5 year warranty"
         }
       },
       "sliding": {

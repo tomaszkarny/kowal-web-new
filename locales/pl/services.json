@@ -118,13 +118,15 @@
     "types": {
       "title": "Rodzaje Bram Kutych",
       "doubleLeaf": {
-        "title": "Bramy Dwuskrzydłowe",
-        "text": "Klasyczne rozwiązanie dla eleganckich posesji. Bramy dwuskrzydłowe łączą funkcjonalność z pięknem.",
+        "title": "Bramy Kute Dwuskrzydłowe",
+        "text": "Bramy kute dwuskrzydłowe to klasyczne rozwiązanie dla eleganckich posesji i rezydencji. Oferujemy szerokości od 3 do 6 metrów z możliwością dodania furtki. Każda brama wykonywana jest z profili stalowych i elementów ozdobnych kutych ręcznie. Dostępne w stylach: klasycznym, nowoczesnym i secesyjnym. Cynkowanie ogniowe + malowanie proszkowe zapewniają trwałość na lata.",
         "features": {
-          "width": "Szerokość do 6 metrów",
-          "automation": "Automatyka Nice lub FAAC",
-          "designs": "Różnorodne wzory",
-          "wicket": "Opcja dodania furtki"
+          "width": "Szerokość 3-6 metrów",
+          "automation": "Automatyka Nice, FAAC lub BFT",
+          "designs": "Style: klasyczny, nowoczesny, secesyjny",
+          "wicket": "Opcja dodania furtki w komplecie",
+          "protection": "Cynkowanie ogniowe + malowanie proszkowe",
+          "warranty": "5 lat gwarancji"
         }
       },
       "sliding": {
