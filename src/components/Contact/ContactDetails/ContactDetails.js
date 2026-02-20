@@ -43,7 +43,7 @@ export function ContactDetails() {
       <SectionDescription main isBolded isUnderLined>
         {t('likeUs')}{' '}
         <StyledAnchor
-          href={`https://${CONTACT_DETAILS.FACEBOOK_URL}`}
+          href={CONTACT_DETAILS.FACEBOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
           isBolded
@@ -55,7 +55,7 @@ export function ContactDetails() {
       <SectionDescription main isBolded isUnderLined>
         Instagram:{' '}
         <StyledAnchor
-          href={`https://${CONTACT_DETAILS.INSTAGRAM_URL}`}
+          href={CONTACT_DETAILS.INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
           isBolded
