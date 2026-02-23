@@ -36,6 +36,29 @@
     "oldest": "Najstarsze",
     "aToZ": "A do Z"
   },
+  "categoryPages": {
+    "gates": {
+      "h1": "Galeria Bram Kutych – Wzory i Realizacje",
+      "intro": "Prezentujemy galerię bram kutych wykonanych w naszej pracowni kowalstwa artystycznego. Każda brama jest tworzona na indywidualne zamówienie – od bram wjazdowych dwuskrzydłowych po nowoczesne bramy przesuwne z automatyką. Poniżej znajdziesz inspiracje i wzory bram kutych, które pomogą Ci wybrać idealny projekt dla Twojej posesji.",
+      "ctaService": "Zobacz ofertę bram kutych",
+      "ctaGallery": "Zobacz wszystkie realizacje",
+      "imageCount": "18+ realizacji"
+    },
+    "balustrades": {
+      "h1": "Galeria Balustrad Kutych – Schodowe, Balkonowe, Tarasowe",
+      "intro": "Odkryj naszą galerię balustrad kutych – od eleganckich balustrad schodowych wewnętrznych po wytrzymałe balustrady balkonowe i tarasowe. Każda balustrada jest ręcznie kuta z najwyższej jakości stali i zabezpieczona antykorozyjnie. Znajdź inspirację dla swojego projektu.",
+      "ctaService": "Zobacz ofertę balustrad",
+      "ctaGallery": "Zobacz wszystkie realizacje",
+      "imageCount": "27+ realizacji"
+    },
+    "fences": {
+      "h1": "Galeria Ogrodzeń Kutych – Projekty i Inspiracje",
+      "intro": "Przejrzyj naszą galerię ogrodzeń kutych – ogrodzenia posesji, płoty kute, panele ogrodzeniowe w stylu klasycznym i nowoczesnym. Wszystkie ogrodzenia wykonane są z ocynkowanej stali z 5-letnią gwarancją. Wybierz wzór lub zamów ogrodzenie według własnego projektu.",
+      "ctaService": "Zobacz ofertę ogrodzeń",
+      "ctaGallery": "Zobacz wszystkie realizacje",
+      "imageCount": "14+ realizacji"
+    }
+  },
   "images": {
     "brama1": "Brama wjazdowa - wzór klasyczny",
     "brama2": "Brama ozdobna - motyw roślinny",

@@ -36,6 +36,29 @@
     "oldest": "Oldest",
     "aToZ": "A to Z"
   },
+  "categoryPages": {
+    "gates": {
+      "h1": "Wrought Iron Gates Gallery – Designs & Projects",
+      "intro": "Browse our gallery of wrought iron gates crafted in our artistic blacksmithing workshop. Each gate is custom-made to order – from double-leaf driveway gates to modern sliding gates with automation. Find inspiration and designs to choose the perfect project for your property.",
+      "ctaService": "See our gates offer",
+      "ctaGallery": "See all projects",
+      "imageCount": "18+ projects"
+    },
+    "balustrades": {
+      "h1": "Wrought Iron Railings Gallery – Stair, Balcony, Terrace",
+      "intro": "Discover our gallery of wrought iron railings – from elegant interior stair railings to durable balcony and terrace railings. Each railing is hand-forged from the highest quality steel with anti-corrosion protection. Find inspiration for your project.",
+      "ctaService": "See our railings offer",
+      "ctaGallery": "See all projects",
+      "imageCount": "27+ projects"
+    },
+    "fences": {
+      "h1": "Wrought Iron Fences Gallery – Designs & Inspiration",
+      "intro": "Browse our gallery of wrought iron fences – property fences, wrought iron panels in classic and modern styles. All fences are made from galvanized steel with a 5-year warranty. Choose a design or order a custom fence.",
+      "ctaService": "See our fences offer",
+      "ctaGallery": "See all projects",
+      "imageCount": "14+ projects"
+    }
+  },
   "images": {
     "brama1": "Entrance Gate - Classic Design",
     "brama2": "Decorative Gate - Floral Motif",
