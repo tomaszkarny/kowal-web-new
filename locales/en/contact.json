@@ -28,5 +28,6 @@
   "email_us": "Email us",
   "closed": "Closed",
   "contact_info": "Contact Information",
-  "visit_us": "Visit Us"
+  "visit_us": "Visit Us",
+  "mapLoading": "Loading map..."
 }

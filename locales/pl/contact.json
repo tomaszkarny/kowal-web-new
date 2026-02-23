@@ -28,5 +28,6 @@
   "email_us": "Wyślij email",
   "closed": "Zamknięte",
   "contact_info": "Informacje kontaktowe",
-  "visit_us": "Odwiedź nas"
+  "visit_us": "Odwiedź nas",
+  "mapLoading": "Ładowanie mapy..."
 }
