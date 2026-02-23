@@ -1,0 +1,102 @@
+{
+  "h1": "Artistic Blacksmithing Pricing – Estimated Costs",
+  "intro": "The following price list is for guidance only. The final price of each project depends on its complexity, dimensions, materials used and finish. Contact us for a free, individual quote.",
+  "tableTitle": "Blacksmithing services price list",
+  "tableHeaders": {
+    "service": "Service",
+    "price": "Estimated price",
+    "notes": "Notes"
+  },
+  "items": [
+    {
+      "service": "Double-leaf wrought iron gates",
+      "price": "from 3,000 PLN/m²",
+      "notes": "Price depends on pattern and automation"
+    },
+    {
+      "service": "Sliding wrought iron gates",
+      "price": "from 3,500 PLN/m²",
+      "notes": "Rail-guided or cantilever"
+    },
+    {
+      "service": "Interior stair railings",
+      "price": "from 800 PLN/lm",
+      "notes": "Wrought steel, powder coated"
+    },
+    {
+      "service": "Balcony/terrace railings",
+      "price": "from 900 PLN/lm",
+      "notes": "Anti-corrosion protection included"
+    },
+    {
+      "service": "Wrought iron fences",
+      "price": "from 600 PLN/lm",
+      "notes": "Hot-dip galvanizing + painting"
+    },
+    {
+      "service": "Decorative elements",
+      "price": "from 500 PLN/piece",
+      "notes": "Individual quote"
+    },
+    {
+      "service": "Installation",
+      "price": "from 200 PLN/lm",
+      "notes": "Depending on location"
+    }
+  ],
+  "factors": {
+    "title": "What affects the price?",
+    "intro": "The final price of a blacksmith product depends on many factors:",
+    "items": [
+      {
+        "title": "Pattern complexity",
+        "description": "The more elaborate and ornate the pattern, the more time and materials are needed. Designs with plant motifs or Art Nouveau elements are more expensive than simple geometric projects."
+      },
+      {
+        "title": "Dimensions",
+        "description": "Larger gates, longer railings or fences require more material and labour. Prices are always quoted per square metre or per linear metre."
+      },
+      {
+        "title": "Material",
+        "description": "We use highest-quality S235 and S355 wrought steel. On request, we can use stainless steel or non-ferrous metals, which affects the final price."
+      },
+      {
+        "title": "Finish",
+        "description": "We apply powder coating as standard. Options include hot-dip galvanizing, patination, and gilding. Each additional anti-corrosion treatment increases durability and cost."
+      },
+      {
+        "title": "Automation",
+        "description": "Gates with electric drives (automation) cost more due to the actuator, remote control and installation. We offer reputable gate automation systems."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Request a free quote",
+    "description": "Every project is unique. Contact us and we will prepare a free quote tailored to your needs.",
+    "phone": "604 253 145",
+    "phoneLabel": "Call now",
+    "contactLink": "Go to contact",
+    "contactPath": "/en/contact/"
+  },
+  "faq": {
+    "title": "Frequently asked questions about pricing",
+    "items": [
+      {
+        "question": "How much does a double-leaf wrought iron gate cost?",
+        "answer": "A double-leaf wrought iron gate costs from 3,000 PLN/m². The price depends on the pattern, dimensions and chosen automation. For a gate measuring 4×1.8 m, the manufacturing cost is usually between 21,600 PLN and 40,000 PLN depending on project complexity."
+      },
+      {
+        "question": "Do prices include installation?",
+        "answer": "Prices in the price list cover manufacturing only. Installation is quoted separately – from 200 PLN/lm, depending on location and scope of work. We determine installation costs individually during a free quote."
+      },
+      {
+        "question": "How long does it take to complete an order?",
+        "answer": "Standard completion time is 4–6 weeks from design approval and deposit payment. For very large projects or during peak demand, the deadline may extend to 8–10 weeks. We inform clients of this in advance."
+      },
+      {
+        "question": "Can I pay in instalments or by invoice?",
+        "answer": "We accept cash, bank transfer and card payments. We typically require a 50% deposit when signing the contract, with the remainder due on delivery. We issue VAT invoices. Individual payment terms are possible for larger orders."
+      }
+    ]
+  }
+}

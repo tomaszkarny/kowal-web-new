@@ -161,8 +161,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     })
-    
-    
+
+
     // Create English version
     console.log(`[gatsby-node] Creating English service page: ${enPath}`)
     createPage({
@@ -182,6 +182,86 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     })
   })
+
+  // Cennik/Pricing page - EN version
+  const cennikComponent = path.resolve('./src/pages/cennik.js')
+  console.log('[gatsby-node] Creating English pricing page: /en/pricing/')
+  createPage({
+    path: '/en/pricing/',
+    component: cennikComponent,
+    context: {
+      language: 'en',
+      i18n: {
+        language: 'en',
+        languages: ['pl', 'en'],
+        defaultLanguage: 'pl',
+        generateDefaultLanguagePage: false,
+        routed: true,
+        originalPath: '/cennik/',
+        path: '/en/pricing/'
+      }
+    }
+  })
+  reporter.info('Created English pricing page at /en/pricing/')
+
+  // Gallery category pages
+  const galleryCategoryTemplate = path.resolve('./src/templates/GalleryCategoryPage.js')
+  const galleryCategories = [
+    { id: 'gates', slug: { pl: 'bramy-kute', en: 'wrought-iron-gates' }, imagePrefix: 'bramy', imageDir: 'gates' },
+    { id: 'balustrades', slug: { pl: 'balustrady-kute', en: 'wrought-iron-railings' }, imagePrefix: 'balu', imageDir: 'balustrades' },
+    { id: 'fences', slug: { pl: 'ogrodzenia-kute', en: 'wrought-iron-fences' }, imagePrefix: 'ogrodz', imageDir: 'fences' },
+  ]
+
+  galleryCategories.forEach(category => {
+    const plPath = `/gallery/${category.slug.pl}/`
+    const enPath = `/en/gallery/${category.slug.en}/`
+
+    console.log(`[gatsby-node] Creating Polish gallery category page: ${plPath}`)
+    createPage({
+      path: plPath,
+      component: galleryCategoryTemplate,
+      context: {
+        category: category.id,
+        categorySlug: category.slug,
+        imagePrefix: category.imagePrefix,
+        imageDir: category.imageDir,
+        language: 'pl',
+        i18n: {
+          language: 'pl',
+          languages: ['pl', 'en'],
+          defaultLanguage: 'pl',
+          generateDefaultLanguagePage: false,
+          routed: false,
+          originalPath: plPath,
+          path: plPath
+        }
+      }
+    })
+
+    console.log(`[gatsby-node] Creating English gallery category page: ${enPath}`)
+    createPage({
+      path: enPath,
+      component: galleryCategoryTemplate,
+      context: {
+        category: category.id,
+        categorySlug: category.slug,
+        imagePrefix: category.imagePrefix,
+        imageDir: category.imageDir,
+        language: 'en',
+        i18n: {
+          language: 'en',
+          languages: ['pl', 'en'],
+          defaultLanguage: 'pl',
+          generateDefaultLanguagePage: false,
+          routed: true,
+          originalPath: plPath,
+          path: enPath
+        }
+      }
+    })
+  })
+
+  reporter.info(`Created ${galleryCategories.length * 2} gallery category pages`)
 };
 
 // Add debugging for page creation

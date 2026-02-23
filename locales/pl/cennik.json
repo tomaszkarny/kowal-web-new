@@ -1,0 +1,102 @@
+{
+  "h1": "Cennik Kowalstwa Artystycznego – Orientacyjne Ceny",
+  "intro": "Poniższy cennik ma charakter orientacyjny. Ostateczna cena każdego projektu zależy od jego złożoności, wymiarów, zastosowanych materiałów i wykończenia. Zapraszamy do kontaktu w celu uzyskania darmowej, indywidualnej wyceny.",
+  "tableTitle": "Cennik usług kowalskich",
+  "tableHeaders": {
+    "service": "Usługa",
+    "price": "Cena orientacyjna",
+    "notes": "Uwagi"
+  },
+  "items": [
+    {
+      "service": "Bramy kute dwuskrzydłowe",
+      "price": "od 3 000 zł/m²",
+      "notes": "Cena zależy od wzoru i automatyki"
+    },
+    {
+      "service": "Bramy kute przesuwne",
+      "price": "od 3 500 zł/m²",
+      "notes": "Z szyną lub samonośne"
+    },
+    {
+      "service": "Balustrady schodowe wewnętrzne",
+      "price": "od 800 zł/mb",
+      "notes": "Stal kuta, malowanie proszkowe"
+    },
+    {
+      "service": "Balustrady balkonowe/tarasowe",
+      "price": "od 900 zł/mb",
+      "notes": "Zabezpieczenie antykorozyjne w cenie"
+    },
+    {
+      "service": "Ogrodzenia kute",
+      "price": "od 600 zł/mb",
+      "notes": "Cynkowanie ogniowe + malowanie"
+    },
+    {
+      "service": "Elementy dekoracyjne",
+      "price": "od 500 zł/szt",
+      "notes": "Wycena indywidualna"
+    },
+    {
+      "service": "Montaż",
+      "price": "od 200 zł/mb",
+      "notes": "W zależności od lokalizacji"
+    }
+  ],
+  "factors": {
+    "title": "Co wpływa na cenę?",
+    "intro": "Ostateczna cena wyrobu kowalskiego zależy od wielu czynników:",
+    "items": [
+      {
+        "title": "Złożoność wzoru",
+        "description": "Im bardziej rozbudowany i ozdobny wzór, tym więcej czasu i materiałów potrzeba do wykonania. Wzory z elementami roślinnymi lub secesyjnymi są droższe niż proste, geometryczne projekty."
+      },
+      {
+        "title": "Wymiary",
+        "description": "Większe bramy, dłuższe balustrady czy ogrodzenia wymagają więcej materiału i pracy. Cena jest zawsze podawana za metr kwadratowy lub metr bieżący."
+      },
+      {
+        "title": "Materiał",
+        "description": "Używamy stali kutej S235 i S355 najwyższej jakości. Na życzenie klienta możemy zastosować stal nierdzewną lub elementy z metali kolorowych, co wpływa na cenę końcową."
+      },
+      {
+        "title": "Wykończenie",
+        "description": "Standardowo stosujemy malowanie proszkowe. Opcjonalnie: cynkowanie ogniowe, patynowanie, złocenie. Każde dodatkowe zabezpieczenie antykorozyjne podnosi trwałość i cenę produktu."
+      },
+      {
+        "title": "Automatyka",
+        "description": "Bramy z napędem elektrycznym (automatyką) są droższe o koszt siłownika, pilota i instalacji. Oferujemy renomowane systemy automatyki bramowej."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Zamów darmową wycenę",
+    "description": "Każdy projekt jest inny. Skontaktuj się z nami, a przygotujemy bezpłatną wycenę dopasowaną do Twoich potrzeb.",
+    "phone": "604 253 145",
+    "phoneLabel": "Zadzwoń teraz",
+    "contactLink": "Przejdź do kontaktu",
+    "contactPath": "/contact/"
+  },
+  "faq": {
+    "title": "Najczęstsze pytania o cennik",
+    "items": [
+      {
+        "question": "Ile kosztuje brama kuta dwuskrzydłowa?",
+        "answer": "Brama kuta dwuskrzydłowa kosztuje od 3 000 zł/m². Cena zależy od wzoru, wymiarów i wybranej automatyki. Dla bramy o wymiarach 4×1,8 m koszt wykonania wynosi zwykle od 21 600 zł do 40 000 zł w zależności od złożoności projektu."
+      },
+      {
+        "question": "Czy ceny zawierają montaż?",
+        "answer": "Ceny w cenniku dotyczą wykonania wyrobu. Montaż wyceniamy osobno – od 200 zł/mb, w zależności od lokalizacji i zakresu prac. Koszt montażu ustalamy indywidualnie podczas bezpłatnej wyceny."
+      },
+      {
+        "question": "Jak długo czekać na realizację?",
+        "answer": "Standardowy czas realizacji to 4–6 tygodni od zatwierdzenia projektu i wpłaty zaliczki. W przypadku bardzo rozbudowanych projektów lub spiętrzenia zamówień, termin może się wydłużyć do 8–10 tygodni. Informujemy o tym z wyprzedzeniem."
+      },
+      {
+        "question": "Czy można zapłacić w ratach lub na fakturę?",
+        "answer": "Przyjmujemy płatność gotówką, przelewem bankowym lub kartą. Standardowo pobieramy 50% zaliczki przy podpisaniu umowy, resztę przy odbiorze. Wystawiamy faktury VAT. W przypadku większych zamówień możliwe są indywidualne warunki płatności."
+      }
+    ]
+  }
+}

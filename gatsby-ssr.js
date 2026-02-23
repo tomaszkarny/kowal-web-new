@@ -42,26 +42,6 @@ exports.onRenderBody = ({ setHeadComponents }) => {
       key: 'google-site-verification',
       name: 'google-site-verification',
       content: 'JKUnr_75ce6PD0-NuNVM1t-CWuSLqi_vBwMky594zTM'
-    }),
-
-    // Preload hints for faster navigation
-    React.createElement('link', {
-      key: 'preload-about',
-      rel: 'prefetch',
-      href: '/about/',
-      as: 'document'
-    }),
-    React.createElement('link', {
-      key: 'preload-gallery',
-      rel: 'prefetch',
-      href: '/gallery/',
-      as: 'document'
-    }),
-    React.createElement('link', {
-      key: 'preload-contact',
-      rel: 'prefetch',
-      href: '/contact/',
-      as: 'document'
     })
   ];
 

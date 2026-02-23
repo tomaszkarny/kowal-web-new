@@ -49,7 +49,7 @@ module.exports = {
         i18nextOptions: {
           // ===== NAMESPACES =====
           // Single source of truth for all translation namespaces
-          ns: ['common', 'about', 'gallery', 'contact', 'seo', 'footer', 'faq', 'cities', 'services'],
+          ns: ['common', 'about', 'gallery', 'contact', 'seo', 'footer', 'faq', 'cities', 'services', 'cennik'],
           defaultNS: 'common',
           
           // ===== LANGUAGE DETECTION =====

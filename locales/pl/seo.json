@@ -20,6 +20,10 @@
     "title": "Kontakt - Kowal Białystok",
     "description": "Kowal Białystok kontakt ☎604 253 145. Zamów bramę kutą, balustradę, ogrodzenie. Darmowa wycena ✓ Doradztwo ✓ Montaż w całej Polsce. Zadzwoń teraz!"
   },
+  "cennik": {
+    "title": "Cennik Kowalstwa Artystycznego ⭐ Bramy, Balustrady, Ogrodzenia",
+    "description": "Cennik usług kowalskich: bramy kute od 3000 zł/m², balustrady od 800 zł/mb, ogrodzenia od 600 zł/mb. Darmowa wycena ✓ Montaż w cenie ☎ 604 253 145"
+  },
   "breadcrumbs": {
     "home": "Strona główna",
     "about": "O nas",
@@ -65,6 +69,18 @@
         "answer": "Oczywiście! Specjalizujemy się w realizacji indywidualnych projektów. Możesz dostarczyć własny projekt lub skorzystać z pomocy naszego projektanta. Wykonujemy nawet najbardziej nietypowe i wymagające zlecenia kowalstwa artystycznego."
       }
     ]
+  },
+  "galleryGates": {
+    "title": "Galeria Bram Kutych ⭐ Wzory i Realizacje | Kowal Karny",
+    "description": "Galeria bram kutych – 18+ realizacji bram wjazdowych dwuskrzydłowych i przesuwnych. Wzory bram kutych klasycznych i nowoczesnych. Darmowa wycena ☎ 604 253 145"
+  },
+  "galleryBalustrades": {
+    "title": "Galeria Balustrad Kutych ⭐ Schodowe, Balkonowe | Karny",
+    "description": "Galeria balustrad kutych – 27+ realizacji balustrad schodowych, balkonowych i tarasowych. Balustrady wewnętrzne i zewnętrzne. Darmowa wycena ☎ 604 253 145"
+  },
+  "galleryFences": {
+    "title": "Galeria Ogrodzeń Kutych ⭐ Projekty i Wzory | Karny",
+    "description": "Galeria ogrodzeń kutych – 14+ realizacji ogrodzeń posesji. Ogrodzenia kute klasyczne i nowoczesne. Projekt i montaż. Darmowa wycena ☎ 604 253 145"
   },
   "schema": {
     "products": {
