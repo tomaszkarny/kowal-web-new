@@ -61,8 +61,8 @@ export function Head({ location, pageContext }) {
   
   // Użyj SEO-przyjaznego tytułu zamiast "Page Not Found"
   // To zapobiegnie problemom z indeksacją Google i migotaniem tytułu 404
-  const seoTitle = language === 'en' 
-    ? 'Kowalstwo Artystyczne - Tadeusz Karny' 
+  const seoTitle = language === 'en'
+    ? 'Tadeusz Karny - Artistic Blacksmith'
     : 'Kowalstwo Artystyczne - Tadeusz Karny';
     
   const descriptionFallback = language === 'en'

@@ -36,6 +36,7 @@ for (const lang of LANGS) {
   const json = JSON.parse(fs.readFileSync(seoPath, 'utf8'));
 
   Object.entries(json).forEach(([pageKey, obj]) => {
+    if (!['home', 'about', 'gallery', 'contact', 'faq', 'business'].includes(pageKey)) return;
     const title = obj.title || '';
     const desc  = obj.description || '';
 
