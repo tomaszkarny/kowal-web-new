@@ -18,6 +18,7 @@ import {
  * @param {string} props.serviceDescription - Brief description
  * @param {string} props.servicePath - URL path (e.g., "/services/custom-fences/")
  * @param {string} [props.ctaText] - Button text (defaults to serviceTitle with arrow)
+ * @param {string} [props.language] - Current page language ('pl' or 'en')
  */
 export function RelatedServices({
   sectionTitle,
@@ -25,7 +26,12 @@ export function RelatedServices({
   serviceDescription,
   servicePath,
   ctaText,
+  language,
 }) {
+  const localizedPath = language === 'en' && !servicePath.startsWith('/en/')
+    ? `/en${servicePath}`
+    : servicePath;
+
   return (
     <RelatedSection $bg={FORGE_COLORS.sectionBg}>
       <CityContainer>
@@ -35,7 +41,7 @@ export function RelatedServices({
         <CardContainer>
           <CardTitle>{serviceTitle}</CardTitle>
           <CardDescription>{serviceDescription}</CardDescription>
-          <CTALink to={servicePath}>
+          <CTALink to={localizedPath}>
             {ctaText || serviceTitle} &rarr;
           </CTALink>
         </CardContainer>

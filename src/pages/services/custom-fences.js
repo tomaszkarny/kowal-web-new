@@ -24,6 +24,7 @@ import {
 
 function OgrodzeniaNaZamowieniePage({ pageContext }) {
   const { t } = useTranslation(['services', 'common'])
+  const language = pageContext?.i18n?.language || 'pl'
 
   // Why choose us features
   const whyFeatures = [
@@ -129,6 +130,7 @@ function OgrodzeniaNaZamowieniePage({ pageContext }) {
         serviceTitle={t('services:fences.relatedServices.gates.title')}
         serviceDescription={t('services:fences.relatedServices.gates.description')}
         servicePath="/services/custom-gates/"
+        language={language}
       />
 
       <ServiceContact

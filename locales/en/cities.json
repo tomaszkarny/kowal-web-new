@@ -31,7 +31,7 @@
     "titleTemplate": "Blacksmith {{city}} - Wrought Iron Gates, Railings | Tadeusz Karny",
     "descriptionTemplate": "Professional artistic blacksmithing in {{city}}. We create wrought iron gates, railings and fences. {{travelTime}} from our workshop in Białystok.",
     "hero": {
-      "titleTemplate": "Artistic Blacksmithing {{city}}",
+      "titleTemplate": "Blacksmith {{city}} – Railings, Gates & Fences Made to Order",
       "subtitleTemplate": "We serve {{city}} and surrounding areas within {{radius}} km radius",
       "ctaButton": "Contact us",
       "distanceInfo": "Distance from Białystok: {{distance}} km"

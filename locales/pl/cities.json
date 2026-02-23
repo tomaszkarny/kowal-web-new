@@ -31,7 +31,7 @@
     "titleTemplate": "Kowal {{city}} - Bramy Kute, Balustrady | Tadeusz Karny",
     "descriptionTemplate": "Profesjonalne kowalstwo artystyczne w {{city}}. Wykonujemy bramy kute, balustrady i ogrodzenia. {{travelTime}} z naszego warsztatu w Białymstoku.",
     "hero": {
-      "titleTemplate": "Kowalstwo Artystyczne {{city}}",
+      "titleTemplate": "Kowal {{city}} – Balustrady, Bramy i Ogrodzenia na Zamówienie",
       "subtitleTemplate": "Obsługujemy {{city}} i okolice w promieniu {{radius}} km",
       "ctaButton": "Skontaktuj się z nami",
       "distanceInfo": "Odległość z naszego warsztatu: {{distance}} km"

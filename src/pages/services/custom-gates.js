@@ -24,6 +24,7 @@ import {
 
 function BramyKuteNaZamowieniePage({ pageContext }) {
   const { t } = useTranslation(['services', 'common'])
+  const language = pageContext?.i18n?.language || 'pl'
 
   // Gate types data
   const gateTypes = [
@@ -132,6 +133,7 @@ function BramyKuteNaZamowieniePage({ pageContext }) {
         serviceTitle={t('services:gates.relatedServices.fences.title')}
         serviceDescription={t('services:gates.relatedServices.fences.description')}
         servicePath="/services/custom-fences/"
+        language={language}
       />
 
       <ServiceContact

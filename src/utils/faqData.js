@@ -40,6 +40,22 @@ export const getFAQData = (language, page) => {
       {
         question: "Jakie style kowalstwa artystycznego wykonujecie?",
         answer: "Specjalizujemy się w różnych stylach: od klasycznego kowalstwa tradycyjnego, przez eleganckie wzory nowoczesne, po złożone projekty artystyczne. Dostosowujemy styl do charakteru budynku i preferencji klienta."
+      },
+      {
+        question: "Jakie wzory bram kutych są najpopularniejsze?",
+        answer: "Najczęściej wybierane wzory bram kutych to: klasyczne z ozdobnymi zwojami i liśćmi, nowoczesne z prostymi liniami geometrycznymi oraz w stylu art deco z eleganckim zdobieniem. Każdy wzór dostosowujemy do architektury posesji i indywidualnych preferencji klienta."
+      },
+      {
+        question: "Co wyróżnia bramy kute najwyższej jakości?",
+        answer: "Bramy kute najwyższej jakości charakteryzują się: ręcznym kuciem każdego elementu, grubością materiału minimum 12mm dla głównych profili, ocynkowaniem ogniowym przed malowaniem proszkowym, oraz precyzyjnym spawaniem. Nasze bramy spełniają te wszystkie standardy."
+      },
+      {
+        question: "Jak zamówić ogrodzenie kute na wymiar?",
+        answer: "Proces zamówienia ogrodzenia kutego obejmuje: bezpłatną wizję lokalną i pomiary, przygotowanie indywidualnego projektu, przedstawienie wyceny, akceptację i rozpoczęcie produkcji (3-6 tygodni), transport oraz profesjonalny montaż z gwarancją."
+      },
+      {
+        question: "Jaka automatyka do bram kutych jest najlepsza?",
+        answer: "Najlepszą automatykę do bram kutych oferują marki Nice, FAAC i BFT. Wybór zależy od typu bramy: dla dwuskrzydłowych polecamy siłowniki ramionowe lub podziemne, dla przesuwnych — napędy łańcuchowe. Wszystkie systemy gwarantują cichą i niezawodną pracę."
       }
     ],
     about: [
@@ -127,6 +143,22 @@ export const getFAQData = (language, page) => {
       {
         question: "What styles of artistic blacksmithing do you create?",
         answer: "We specialize in various styles: from classic traditional blacksmithing, through elegant modern designs, to complex artistic projects. We adapt the style to the building's character and client preferences."
+      },
+      {
+        question: "What are the most popular wrought iron gate designs?",
+        answer: "The most frequently chosen wrought iron gate designs are: classic with decorative scrolls and leaves, modern with clean geometric lines, and Art Deco style with elegant ornamentation. We customize every design to match the property architecture and individual client preferences."
+      },
+      {
+        question: "What distinguishes the highest quality wrought iron gates?",
+        answer: "The highest quality wrought iron gates are characterized by: hand forging of each element, material thickness of at least 12mm for main profiles, hot-dip galvanizing before powder coating, and precision welding. Our gates meet all these standards."
+      },
+      {
+        question: "How to order a custom wrought iron fence?",
+        answer: "The custom fence ordering process includes: free on-site visit and measurements, preparation of an individual design, presenting the quote, approval and starting production (3-6 weeks), transport, and professional installation with warranty."
+      },
+      {
+        question: "What is the best automation for wrought iron gates?",
+        answer: "The best gate automation is offered by Nice, FAAC and BFT brands. The choice depends on gate type: for double-leaf we recommend arm or underground actuators, for sliding gates — chain drives. All systems guarantee quiet and reliable operation."
       }
     ],
     about: [

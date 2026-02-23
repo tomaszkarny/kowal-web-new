@@ -24,6 +24,7 @@ import {
 
 function BalustradyNaZamowieniePage({ pageContext }) {
   const { t } = useTranslation(['services', 'common'])
+  const language = pageContext?.i18n?.language || 'pl'
 
   // Why choose us features
   const whyFeatures = [
@@ -133,6 +134,7 @@ function BalustradyNaZamowieniePage({ pageContext }) {
         serviceTitle={t('services:railings.relatedServices.gates.title')}
         serviceDescription={t('services:railings.relatedServices.gates.description')}
         servicePath="/services/custom-gates/"
+        language={language}
       />
 
       <ServiceContact
