@@ -83,6 +83,7 @@ export function GalleryWrapper({
 }) {
   const [mounted, setMounted] = useState(false);
   
+  // TODO: Remove when react-photo-gallery is replaced
   // Suppress console warnings from third-party libraries
   useEffect(() => {
     // Save original console.error

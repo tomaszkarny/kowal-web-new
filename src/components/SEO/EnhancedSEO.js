@@ -5,8 +5,6 @@ import { SITE_DOMAIN } from 'consts/site'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
 import { getSEOTranslations } from '../../utils/seoLanguageDetection'
-import { WebVitals } from './WebVitals'
-
 // Use the centralized domain constant for all SEO elements
 const CANONICAL_DOMAIN = SITE_DOMAIN
 
@@ -241,9 +239,6 @@ export function EnhancedSEO({
       
       {/* Page specific SEO */}
       {children}
-      
-      {/* Web Vitals monitoring */}
-      <WebVitals />
     </>
   )
 }

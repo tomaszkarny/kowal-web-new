@@ -212,16 +212,22 @@ module.exports = {
           `/en/contact/`,
           `/faq/`,
           `/en/faq/`,
+          `/cities/bialystok/`,
+          `/cities/lomza/`,
+          `/services/custom-gates/`,
+          `/services/custom-railings/`,
+          `/services/custom-fences/`,
         ],
         workboxConfig: {
-          globPatterns: ['**/*.{js,css,html,json,jpg,png,webp,woff,woff2}'],
+          globPatterns: ['**/*.{js,css,html,json,woff,woff2}'],
+          maximumFileSizeToCacheInBytes: 2 * 1024 * 1024,
           runtimeCaching: [
             {
               urlPattern: /^https?:.*\/static\//,
               handler: 'CacheFirst',
             },
             {
-              urlPattern: /^https?:.*\.(jpg|jpeg|png|webp|svg|gif|tiff|js|css|woff|woff2)$/,
+              urlPattern: /^https?:.*\.(jpg|jpeg|png|webp|avif|svg|gif|tiff|js|css|woff|woff2)$/,
               handler: 'StaleWhileRevalidate',
             },
           ],

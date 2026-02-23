@@ -48,6 +48,8 @@ exports.onClientEntry = () => {
   
   // Suppress the defaultProps warning in memo components
   // This is particularly an issue with react-photo-gallery
+  // TODO: Remove this override when react-photo-gallery is replaced
+  // react-photo-gallery triggers defaultProps warnings in React 18
   if (typeof window !== 'undefined') {
     const originalConsoleError = console.error;
     console.error = (...args) => {

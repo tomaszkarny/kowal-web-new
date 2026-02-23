@@ -11,14 +11,13 @@ module.exports = {
       /* or */
       /* npm run lighthouse:mobile */
       // The production URL - replace with the actual production URL once deployed
-      url: ['https://kowalstwo-karny.pl'],
-      // Additional important pages to test
-      // url: [
-      //   'https://kowalstwo-karny.pl',
-      //   'https://kowalstwo-karny.pl/about',
-      //   'https://kowalstwo-karny.pl/gallery',
-      //   'https://kowalstwo-karny.pl/contact',
-      // ],
+      url: [
+        'https://kowalstwo-karny.pl',
+        'https://kowalstwo-karny.pl/cities/bialystok/',
+        'https://kowalstwo-karny.pl/services/custom-gates/',
+        'https://kowalstwo-karny.pl/gallery/',
+        'https://kowalstwo-karny.pl/contact/',
+      ],
       // Uncomment to test against a local development server
       // url: ['http://localhost:8000'],
       numberOfRuns: 3,

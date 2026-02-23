@@ -13,6 +13,7 @@ import { Footer } from 'components/Layout/Footer/Footer'
 import { AsideFooter } from 'components/Layout/AsideFooter/AsideFooter'
 
 import { LayoutContent } from 'components/Layout/Layout.styles'
+import { WebVitals } from 'components/SEO/WebVitals'
 
 export function Layout({ children }) {
   const mountedRef = useRef(false)
@@ -51,6 +52,7 @@ export function Layout({ children }) {
       <LayoutContent>{children}</LayoutContent>
       <Footer />
       <AsideFooter />
+      <WebVitals />
     </ThemeProvider>
   )
 }
