@@ -22,7 +22,7 @@ export function GalleryPage() {
   const { t } = useTranslation('gallery')
   const { images } = useStaticQuery(graphql`
     query GalleryQuery {
-      images: allFile(filter: { relativeDirectory: { regex: "/gallery\\/.*$/" } }) {
+      images: allFile(filter: { relativeDirectory: { regex: "/^gallery(\\/.+)?$/" } }) {
         edges {
           node {
             id

@@ -339,8 +339,12 @@ module.exports = {
               priority = 0.7;
               changefreq = 'monthly';
             }
+          } else if (path.includes('/cennik')) {
+            // Pricing page
+            priority = 0.7;
+            changefreq = 'monthly';
           }
-          
+
           return {
             url: pathWithSlash,
             lastmod: lastmod,

@@ -183,11 +183,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  // Cennik/Pricing page - EN version
+  // Cennik/Pricing page - EN version (uses /en/cennik/ to match PL slug for hreflang)
   const cennikComponent = path.resolve('./src/pages/cennik.js')
-  console.log('[gatsby-node] Creating English pricing page: /en/pricing/')
+  console.log('[gatsby-node] Creating English pricing page: /en/cennik/')
   createPage({
-    path: '/en/pricing/',
+    path: '/en/cennik/',
     component: cennikComponent,
     context: {
       language: 'en',
@@ -198,23 +198,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         generateDefaultLanguagePage: false,
         routed: true,
         originalPath: '/cennik/',
-        path: '/en/pricing/'
+        path: '/en/cennik/'
       }
     }
   })
-  reporter.info('Created English pricing page at /en/pricing/')
+  reporter.info('Created English pricing page at /en/cennik/')
 
   // Gallery category pages
   const galleryCategoryTemplate = path.resolve('./src/templates/GalleryCategoryPage.js')
   const galleryCategories = [
-    { id: 'gates', slug: { pl: 'bramy-kute', en: 'wrought-iron-gates' }, imagePrefix: 'bramy', imageDir: 'gates' },
-    { id: 'balustrades', slug: { pl: 'balustrady-kute', en: 'wrought-iron-railings' }, imagePrefix: 'balu', imageDir: 'balustrades' },
-    { id: 'fences', slug: { pl: 'ogrodzenia-kute', en: 'wrought-iron-fences' }, imagePrefix: 'ogrodz', imageDir: 'fences' },
+    { id: 'gates', slug: 'bramy-kute', imagePrefix: 'bramy', imageDir: 'gates' },
+    { id: 'balustrades', slug: 'balustrady-kute', imagePrefix: 'balu', imageDir: 'balustrades' },
+    { id: 'fences', slug: 'ogrodzenia-kute', imagePrefix: 'ogrodz', imageDir: 'fences' },
   ]
 
   galleryCategories.forEach(category => {
-    const plPath = `/gallery/${category.slug.pl}/`
-    const enPath = `/en/gallery/${category.slug.en}/`
+    const plPath = `/gallery/${category.slug}/`
+    const enPath = `/en/gallery/${category.slug}/`
 
     console.log(`[gatsby-node] Creating Polish gallery category page: ${plPath}`)
     createPage({

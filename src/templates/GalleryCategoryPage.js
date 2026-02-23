@@ -343,7 +343,7 @@ export const query = graphql`
         }
       }
     }
-    images: allFile(filter: { relativeDirectory: { regex: "/gallery\\/.*$/" } }) {
+    images: allFile(filter: { relativeDirectory: { regex: "/^gallery(\\/.+)?$/" } }) {
       edges {
         node {
           id
