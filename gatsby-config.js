@@ -326,16 +326,16 @@ module.exports = {
             changefreq = 'weekly';
           } else if (path.includes('/miasta/') || path.includes('/cities/')) {
             // City pages get good priority for local SEO
-            // Featured cities get higher priority
             if (path.includes('bialystok') || path.includes('warszawa') || path.includes('warsaw')) {
+              // Featured cities get higher priority
               priority = 0.85;
               changefreq = 'weekly';
-            } else if (path.includes('/miasta/') || path.includes('/cities/')) {
+            } else if (path.endsWith('/cities/') || path.endsWith('/miasta/')) {
               // Cities index page
               priority = 0.75;
               changefreq = 'weekly';
             } else {
-              // Other city pages
+              // Other individual city pages
               priority = 0.7;
               changefreq = 'monthly';
             }

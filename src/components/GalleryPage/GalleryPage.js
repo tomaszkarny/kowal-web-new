@@ -52,6 +52,14 @@ export function GalleryPage() {
     }
   `)
 
+  // Map filename prefixes to categories for flat images (e.g. bramy1.jpg → gates)
+  const PREFIX_TO_CATEGORY = {
+    bramy: 'gates',
+    balu: 'balustrades',
+    ogrodz: 'fences',
+    elo: 'decorative_elements',
+  }
+
   // Extract unique categories from the image paths
   const categories = useMemo(() => {
     // Get all directories from the images
@@ -59,9 +67,13 @@ export function GalleryPage() {
       const relDir = edge.node.relativeDirectory;
       // Extract the category from paths like 'gallery/balustrades/exterior'
       const match = relDir.match(/gallery\/(\w+)(?:\/\w+)?/);
-      return match ? match[1] : null;
+      if (match) return match[1];
+      // Flat images (relativeDirectory === 'gallery') — infer from filename
+      const name = edge.node.name || '';
+      const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p => name.toLowerCase().startsWith(p));
+      return prefix ? PREFIX_TO_CATEGORY[prefix] : null;
     }).filter(Boolean);
-    
+
     // Get unique categories and sort alphabetically
     return ['all', ...new Set(dirs)].sort();
   }, [images]);
@@ -79,7 +91,15 @@ export function GalleryPage() {
       // Extract category from the relative directory
       const relDir = photo.node.relativeDirectory;
       const categoryMatch = relDir.match(/gallery\/(\w+)(?:\/\w+)?/);
-      const category = categoryMatch ? categoryMatch[1] : 'other';
+      let category = 'other';
+      if (categoryMatch) {
+        category = categoryMatch[1];
+      } else {
+        // Flat images — infer category from filename prefix
+        const name = photo.node.name || '';
+        const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p => name.toLowerCase().startsWith(p));
+        if (prefix) category = PREFIX_TO_CATEGORY[prefix];
+      }
       
       return {
         src: getSrc(imageData),
