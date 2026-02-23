@@ -207,9 +207,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Gallery category pages
   const galleryCategoryTemplate = path.resolve('./src/templates/GalleryCategoryPage.js')
   const galleryCategories = [
-    { id: 'gates', slug: 'bramy-kute', imagePrefix: 'bramy', imageDir: 'gates' },
-    { id: 'balustrades', slug: 'balustrady-kute', imagePrefix: 'balu', imageDir: 'balustrades' },
-    { id: 'fences', slug: 'ogrodzenia-kute', imagePrefix: 'ogrodz', imageDir: 'fences' },
+    { id: 'gates', slug: 'wrought-iron-gates', imagePrefix: 'bramy', imageDir: 'gates' },
+    { id: 'balustrades', slug: 'wrought-iron-railings', imagePrefix: 'balu', imageDir: 'balustrades' },
+    { id: 'fences', slug: 'wrought-iron-fences', imagePrefix: 'ogrodz', imageDir: 'fences' },
   ]
 
   galleryCategories.forEach(category => {
