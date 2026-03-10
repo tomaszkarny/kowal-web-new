@@ -11,7 +11,7 @@ export const StyledHamburger = styled.button`
   top: 15px;
   z-index: 9999;
 
-  ${mq('tablet')} {
+  ${mq('medium')} {
     display: none;
   }
 `

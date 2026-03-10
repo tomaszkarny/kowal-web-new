@@ -18,7 +18,7 @@ export const MainNavWrapper = styled.nav`
   transform: translateX(${({ isOpen }) => (isOpen ? '0' : '-100%')});
   transition: transform 0.25s ease-in-out;
 
-  ${mq('tablet')} {
+  ${mq('medium')} {
     height: 70px;
     align-items: center;
     align-items: flex-end;
@@ -48,9 +48,11 @@ export const NavItems = styled.ul`
   align-items: center;
   justify-content: center;
 
-  ${mq('tablet')} {
+  ${mq('medium')} {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
 `
 
@@ -61,9 +63,10 @@ export const NavItem = styled.li`
   /* font-family: */
   opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
   transition: opacity 0.25s 0.2s ease-in-out;
-  ${mq('tablet')} {
+  ${mq('medium')} {
     opacity: 1;
-    padding-left: 20px;
+    margin: 0;
+    padding-left: 0;
     &:last-of-type {
       margin-right: 20px;
     }

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { mq } from 'utils/mediaQueries'
 
 /**
  * Styled component using the 'as' prop for flexibility.
@@ -17,10 +18,24 @@ export const StyledNavLink = styled.a`
   text-decoration: none;
   text-rendering: optimizeLegibility;
 
+  ${mq('medium')} {
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 15px 8px;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  ${mq('large')} {
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    padding: 20px 18px;
+    margin: 0 0.5rem 0 0;
+  }
+
   &.current-page,
   &.active {
     color: ${({ theme }) => theme.color.primary};
-    /* border-bottom: 2px solid #222; */
   }
 
   &:hover {
