@@ -81,8 +81,12 @@ export const SectionConnector = styled.div`
 
 export const InteractiveSpecialtiesContainer = styled.div`
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   position: relative;
   z-index: 5;
+  overflow: hidden;
+  align-self: stretch;
 `
 
 export const SectionHeading = styled.h3`
@@ -189,7 +193,7 @@ export const ContentWrapper = styled.div`
   position: relative;
   z-index: 1; /* Ensure it's below the InteractiveSpecialties component */
   clear: both; /* Ensure it starts on a new line */
-  margin-top: 8rem; /* Add extra space to prevent overlap */
+  margin-top: 3rem;
 
   /* Add a visual separator to ensure content is clearly separated */
   &:before {
