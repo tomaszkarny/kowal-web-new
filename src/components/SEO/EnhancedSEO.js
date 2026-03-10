@@ -77,21 +77,11 @@ export function EnhancedSEO({
   // Force re-render on language change by using the language in the component key
   const languageKey = `seo-${currentLanguage}-${pageType}`;
   
-  // Debug logging for build issues
-  if (typeof window === 'undefined') {
-    console.log(`[EnhancedSEO SSR] Building page - language: ${currentLanguage}, pathname: ${pathname || path}, pageType: ${pageType}, title prop: ${title}, language prop: ${language}`);
-  }
-  
   // Get translations from our hardcoded data (same as in seoLanguageDetection.js)
   const translations = getSEOTranslations(currentLanguage, pageType);
   
   // Determine default meta title based on page type
   const pageTitle = title || translations.pageTitle || '';
-  
-  // Debug what we're getting
-  if (typeof window === 'undefined') {
-    console.log(`[EnhancedSEO SSR] pageTitle: ${pageTitle}, translations.pageTitle: ${translations.pageTitle}`);
-  }
   
   // Determine default meta description based on page type
   const pageDescription = description || translations.pageDescription || '';
@@ -132,11 +122,6 @@ export function EnhancedSEO({
     finalTitle = siteNameString; // Default to site name if all else fails
   }
   
-  // Debug final title
-  if (typeof window === 'undefined') {
-    console.log(`[EnhancedSEO SSR] Final title: ${finalTitle}`);
-  }
-
   const siteDescriptionFallback = currentLanguage === 'en'
     ? 'Artistic blacksmithing – bespoke gates, railings, fences and decorative ironwork.'
     : 'Kowalstwo artystyczne – bramy, balustrady i ogrodzenia na zamówienie.';
@@ -156,7 +141,6 @@ export function EnhancedSEO({
   // For Polish pages, ensure canonical URLs never have /pl/ prefix
   if (currentLanguage === 'pl' && adjustedPath.startsWith('/pl/')) {
     adjustedPath = adjustedPath.replace(/^\/pl/, '') || '/';
-    console.log(`[EnhancedSEO] Stripped /pl/ prefix from canonical: ${cleanPath} → ${adjustedPath}`);
   }
   
   // Get language-specific URLs using our configuration

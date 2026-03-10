@@ -12,7 +12,7 @@ import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
-import { WEBSITE_URL, PHONE_NUMBER, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
+import { WEBSITE_URL, PHONE_NUMBER, EMAIL_ADDRESS, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function IndexPage() {
@@ -72,28 +72,38 @@ export function Head({ location, pageContext }) {
       {/* Organization Schema */}
       <script type="application/ld+json">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Pracownia Kowalstwa Artystycznego - Tadeusz Karny",
-          "url": WEBSITE_URL,
-          "logo": `${WEBSITE_URL}/icons/icon-512x512.png`,
-          "sameAs": [FACEBOOK_URL, INSTAGRAM_URL],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": PHONE_NUMBER,
-            "contactType": "customer service",
-            "availableLanguage": ["Polish", "English"]
-          }
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: language === 'en'
+            ? 'Artistic Blacksmithing Workshop Tadeusz Karny'
+            : 'Pracownia Kowalstwa Artystycznego Tadeusz Karny',
+          url: WEBSITE_URL,
+          logo: `${WEBSITE_URL}/icons/icon-512x512.png`,
+          telephone: '+48604253145',
+          email: EMAIL_ADDRESS,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Hryniewicze 31',
+            addressLocality: 'Białystok',
+            postalCode: '15-378',
+            addressCountry: 'PL',
+          },
+          sameAs: [
+            FACEBOOK_URL,
+            INSTAGRAM_URL,
+          ],
         })}
       </script>
       {/* WebSite Schema */}
       <script type="application/ld+json">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Kowalstwo Artystyczne - Tadeusz Karny",
-          "url": WEBSITE_URL,
-          "inLanguage": ["pl", "en"]
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: language === 'en'
+            ? 'Artistic Blacksmithing Workshop Tadeusz Karny'
+            : 'Pracownia Kowalstwa Artystycznego Tadeusz Karny',
+          url: WEBSITE_URL,
+          inLanguage: language === 'en' ? 'en-US' : 'pl-PL',
         })}
       </script>
     </>

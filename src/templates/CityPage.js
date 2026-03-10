@@ -6,6 +6,7 @@ import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { ProductSchema } from 'components/SEO/ProductSchema'
+import { FAQSchema } from 'components/SEO/FAQSchema'
 import { LocalBusinessSchema } from 'components/Contact/LocalBusinessSchema/LocalBusinessSchema'
 import { ErrorBoundary } from 'components/common/ErrorBoundary'
 import { getCityFAQ } from 'data/citiesSeoEnhanced'
@@ -150,60 +151,6 @@ export function Head({ pageContext, location }) {
     .replace('{{city}}', templateData.city)
     .replace('{{travelTime}}', templateData.travelTime)
   
-  // Service schema dla lepszego SEO
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": language === 'pl' ? "Kowalstwo artystyczne" : "Artistic blacksmithing",
-    "description": language === 'pl' 
-      ? `Profesjonalne usługi kowalskie w ${city.name[language]} i okolicach. Projektowanie i wykonanie bram kutych, balustrad i ogrodzeń.`
-      : `Professional blacksmithing services in ${city.name[language]} and surrounding areas. Design and creation of wrought iron gates, railings and fences.`,
-    "provider": {
-      "@id": `${WEBSITE_URL}${location.pathname}#localbusiness`
-    },
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": city.coordinates.lat,
-        "longitude": city.coordinates.lng
-      },
-      "geoRadius": `${city.serviceArea.radius}000`
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": language === 'pl' ? "Katalog usług" : "Service catalog",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": language === 'pl' ? "Bramy kute" : "Wrought iron gates",
-          "description": language === 'pl' 
-            ? "Projektowanie i wykonanie bram kutych na zamówienie"
-            : "Custom design and creation of wrought iron gates"
-        },
-        {
-          "@type": "Offer", 
-          "name": language === 'pl' ? "Balustrady" : "Railings",
-          "description": language === 'pl'
-            ? "Balustrady wewnętrzne i zewnętrzne"
-            : "Interior and exterior railings"
-        },
-        {
-          "@type": "Offer",
-          "name": language === 'pl' ? "Ogrodzenia kute" : "Wrought iron fences",
-          "description": language === 'pl'
-            ? "Ogrodzenia kute według indywidualnego projektu"
-            : "Custom wrought iron fences"
-        }
-      ]
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "PLN",
-      "priceRange": "$$"
-    }
-  }
-
   // Breadcrumbs
   const breadcrumbs = [
     {
@@ -226,21 +173,6 @@ export function Head({ pageContext, location }) {
     }
   ]
   
-  // FAQ Schema for better SEO
-  const faqItems = getCityFAQ(city.name[language], language)
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.answer
-      }
-    }))
-  }
-
   return (
     <>
       <EnhancedSEO
@@ -275,17 +207,14 @@ export function Head({ pageContext, location }) {
       
       {/* Local Business Schema */}
       <LocalBusinessSchema language={language} pathname={location.pathname} />
-      
-      {/* Service Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(serviceSchema)}
-      </script>
-      
+
       {/* FAQ Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
-      
+      <FAQSchema
+        faqData={getCityFAQ(city.name[language], language)}
+        pathname={location.pathname}
+        language={language}
+      />
+
       {/* Breadcrumb Schema */}
       <BreadcrumbSchema 
         breadcrumbs={breadcrumbs}

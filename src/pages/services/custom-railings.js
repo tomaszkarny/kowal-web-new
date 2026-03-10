@@ -173,7 +173,7 @@ export function Head({ location, pageContext }) {
         noindex={false}
       />
 
-      <ProductSchema language={language} cityName="Białystok" />
+      <ProductSchema language={language} cityName={isEnglish ? 'Poland' : 'Polska'} />
 
       <LocalBusinessSchema language={language} />
 
