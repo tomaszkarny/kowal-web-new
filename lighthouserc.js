@@ -13,10 +13,19 @@ module.exports = {
       // The production URL - replace with the actual production URL once deployed
       url: [
         'https://kowalstwo-karny.pl',
-        'https://kowalstwo-karny.pl/cities/bialystok/',
-        'https://kowalstwo-karny.pl/services/custom-gates/',
+        'https://kowalstwo-karny.pl/about/',
+        'https://kowalstwo-karny.pl/pricing/',
         'https://kowalstwo-karny.pl/gallery/',
         'https://kowalstwo-karny.pl/contact/',
+        'https://kowalstwo-karny.pl/faq/',
+        'https://kowalstwo-karny.pl/cities/bialystok/',
+        'https://kowalstwo-karny.pl/cities/warsaw/',
+        'https://kowalstwo-karny.pl/cities/suwalki/',
+        'https://kowalstwo-karny.pl/cities/augustow/',
+        'https://kowalstwo-karny.pl/cities/lomza/',
+        'https://kowalstwo-karny.pl/services/custom-gates/',
+        'https://kowalstwo-karny.pl/services/custom-fences/',
+        'https://kowalstwo-karny.pl/services/custom-railings/',
       ],
       // Uncomment to test against a local development server
       // url: ['http://localhost:8000'],
