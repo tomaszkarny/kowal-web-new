@@ -32,6 +32,12 @@ export const NavLinkData = [
     to: '/services/custom-railings/', // Service page - critical for SEO
   },
   {
+    text: 'Cennik',
+    translationKey: 'pricing',
+    id: 10,
+    to: '/pricing/',
+  },
+  {
     text: 'Galeria',
     translationKey: 'gallery',
     id: 4,

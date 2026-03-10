@@ -46,6 +46,14 @@ const PAGE_HIERARCHY = {
   '/en/faq/': {
     parent: '/en/',
     level: 1
+  },
+  '/pricing/': {
+    parent: '/',
+    level: 1
+  },
+  '/en/pricing/': {
+    parent: '/en/',
+    level: 1
   }
 }
 
@@ -62,14 +70,16 @@ const getStaticTranslation = (key, lang) => {
       about: 'O nas',
       gallery: 'Galeria',
       contact: 'Kontakt',
-      faq: 'FAQ'
+      faq: 'FAQ',
+      pricing: 'Cennik'
     },
     en: {
       home: 'Home',
       about: 'About',
       gallery: 'Gallery',
       contact: 'Contact',
-      faq: 'FAQ'
+      faq: 'FAQ',
+      pricing: 'Pricing'
     }
   }
   
@@ -100,6 +110,8 @@ const getPageLabel = (path, t) => {
       return t('contact')
     case 'faq':
       return t('faq')
+    case 'pricing':
+      return t('pricing')
     default:
       // Fallback to capitalized page name if no translation exists
       return pageName.charAt(0).toUpperCase() + pageName.slice(1)

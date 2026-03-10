@@ -183,12 +183,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  // Cennik/Pricing page - EN version (uses /en/cennik/ to match PL slug for hreflang)
-  const cennikComponent = path.resolve('./src/pages/cennik.js')
-  console.log('[gatsby-node] Creating English pricing page: /en/cennik/')
+  // Pricing page - EN version
+  const pricingComponent = path.resolve('./src/pages/pricing.js')
+  console.log('[gatsby-node] Creating English pricing page: /en/pricing/')
   createPage({
-    path: '/en/cennik/',
-    component: cennikComponent,
+    path: '/en/pricing/',
+    component: pricingComponent,
     context: {
       language: 'en',
       i18n: {
@@ -197,12 +197,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         defaultLanguage: 'pl',
         generateDefaultLanguagePage: false,
         routed: true,
-        originalPath: '/cennik/',
-        path: '/en/cennik/'
+        originalPath: '/pricing/',
+        path: '/en/pricing/'
       }
     }
   })
-  reporter.info('Created English pricing page at /en/cennik/')
+  reporter.info('Created English pricing page at /en/pricing/')
 
   // Gallery category pages
   const galleryCategoryTemplate = path.resolve('./src/templates/GalleryCategoryPage.js')

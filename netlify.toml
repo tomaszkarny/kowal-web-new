@@ -228,6 +228,38 @@
   to = "/services/custom-railings/"
   status = 301
 
+# Cennik → Pricing slug migration (SEO redirect)
+[[redirects]]
+  from = "/cennik"
+  to = "/pricing/"
+  status = 301
+
+[[redirects]]
+  from = "/cennik/"
+  to = "/pricing/"
+  status = 301
+
+[[redirects]]
+  from = "/en/cennik"
+  to = "/en/pricing/"
+  status = 301
+
+[[redirects]]
+  from = "/en/cennik/"
+  to = "/en/pricing/"
+  status = 301
+
+# Pricing page trailing slash redirects
+[[redirects]]
+  from = "/pricing"
+  to = "/pricing/"
+  status = 301
+
+[[redirects]]
+  from = "/en/pricing"
+  to = "/en/pricing/"
+  status = 301
+
 # — SECURITY HEADERS —
 [[headers]]
   for = "/*"

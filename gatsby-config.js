@@ -339,7 +339,7 @@ module.exports = {
               priority = 0.7;
               changefreq = 'monthly';
             }
-          } else if (path.includes('/cennik')) {
+          } else if (path.includes('/pricing')) {
             // Pricing page
             priority = 0.7;
             changefreq = 'monthly';
