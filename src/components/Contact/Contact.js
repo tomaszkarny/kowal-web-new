@@ -16,6 +16,7 @@ const MapPlaceholder = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  min-height: 500px;
   background-color: #f0f0f0;
   color: #666;
   font-size: 1.1rem;
@@ -38,6 +39,10 @@ export function Contact() {
   // Lazy load Google Maps
   useEffect(() => {
     if (!mapRef.current) return
+    if (!('IntersectionObserver' in window)) {
+      setMapVisible(true)
+      return
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

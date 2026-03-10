@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import { THEME } from 'consts/theme'
 
 export const CategoryPageWrapper = styled.div`
@@ -62,14 +63,16 @@ export const CTASection = styled.div`
   margin-bottom: 2rem;
 `
 
-export const CTALink = styled.a`
+export const CTALink = styled(Link)`
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 
   &:first-of-type {
     background: ${THEME.color.primary};

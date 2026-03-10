@@ -82,5 +82,49 @@
       "question": "Czy wykonujecie pomiary u klienta?",
       "answer": "Tak, oferujemy profesjonalne pomiary w miejscu montażu. Jest to szczególnie ważne przy bramach kutych i balustradach, gdzie precyzja wykonania ma kluczowe znaczenie."
     }
-  ]
+  ],
+  "galleryCategories": {
+    "gates": [
+      {
+        "question": "Jakie wzory bram kutych oferujecie?",
+        "answer": "Oferujemy bramy kute w stylu klasycznym z elementami roślinnymi (liście, kwiaty, zwoje), bramy nowoczesne z czystymi liniami geometrycznymi oraz wzory inspirowane secesją. Każda brama może być wykonana według indywidualnego projektu klienta."
+      },
+      {
+        "question": "Ile kosztuje brama kuta z galerii?",
+        "answer": "Cena bramy kutej zależy od rozmiaru i złożoności wzoru. Orientacyjny zakres to 3000–8000 zł/m². Skontaktuj się z nami, by otrzymać bezpłatną wycenę indywidualną: ☎ 604 253 145."
+      },
+      {
+        "question": "Czy mogę zamówić bramę na podstawie zdjęcia z galerii?",
+        "answer": "Tak! Każde zdjęcie z galerii może być inspiracją do Twojego projektu. Możemy wykonać bramę identyczną jak na zdjęciu lub zmodyfikować ją według Twoich potrzeb. Zapraszamy na bezpłatną konsultację."
+      }
+    ],
+    "balustrades": [
+      {
+        "question": "Jakie balustrady kute są najpopularniejsze?",
+        "answer": "Najchętniej wybierane są balustrady schodowe wewnętrzne o klasycznych wzorach z elementami roślinnymi, balustrady balkonowe z delikatnymi zwojami oraz tarasowe w stylu nowoczesnym. Każda balustrada jest wykonywana na wymiar."
+      },
+      {
+        "question": "Czy balustrady z galerii można wykonać w innym rozmiarze?",
+        "answer": "Oczywiście. Wszystkie nasze balustrady są wykonywane na indywidualny wymiar. Wzór z galerii możemy dostosować do Twoich schodów, balkonu lub tarasu – wystarczy podać wymiary miejsca montażu."
+      },
+      {
+        "question": "Ile kosztuje balustrada kuta?",
+        "answer": "Cena balustrady kutej zależy od długości, wzoru i zastosowania (wewnętrzna/zewnętrzna). Balustrady schodowe zaczynają się od ok. 500 zł/mb, a bardziej ozdobne modele od 800 zł/mb. Wycena bezpłatna: ☎ 604 253 145."
+      }
+    ],
+    "fences": [
+      {
+        "question": "Jakie ogrodzenia kute oferujecie?",
+        "answer": "Wykonujemy ogrodzenia kute w stylu artystycznym, klasycznym i nowoczesnym – zarówno ogrodzenia posesyjne z przęsłami, jak i panele ogrodzeniowe ze słupkami murowanymi. Wszystkie ogrodzenia produkowane są z ocynkowanej stali z 5-letnią gwarancją."
+      },
+      {
+        "question": "Jak zamówić ogrodzenie kute na wymiar?",
+        "answer": "Proces zamówienia: kontakt telefoniczny → bezpłatna wizja lokalna i pomiary → indywidualny projekt → wycena → produkcja (3–6 tygodni) → montaż. Zadzwoń: ☎ 604 253 145."
+      },
+      {
+        "question": "Czy montujecie ogrodzenia w całej Polsce?",
+        "answer": "Tak, realizujemy montaż ogrodzeń kutych na terenie całej Polski. Dysponujemy własnym transportem i wykwalifikowaną ekipą montażową. Koszt montażu jest ustalany indywidualnie w zależności od lokalizacji."
+      }
+    ]
+  }
 }

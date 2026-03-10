@@ -37,7 +37,8 @@ const Table = styled.table`
 
   td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid ${({ theme }) => theme?.color?.lightGray || '#e5e5e5'};
+    border-bottom: 1px solid
+      ${({ theme }) => theme?.color?.lightGray || '#e5e5e5'};
     color: ${({ theme }) => theme?.color?.gray || '#555'};
   }
 
@@ -46,7 +47,8 @@ const Table = styled.table`
   }
 
   tr:nth-of-type(even) td {
-    background-color: ${({ theme }) => theme?.color?.lightBackground || '#f9f9f9'};
+    background-color: ${({ theme }) =>
+      theme?.color?.lightBackground || '#f9f9f9'};
   }
 
   ${mq('tablet')} {
@@ -174,7 +176,8 @@ const FAQSection = styled.div`
 
 const FAQItem = styled.div`
   margin-bottom: 1.75rem;
-  border-bottom: 1px solid ${({ theme }) => theme?.color?.lightGray || '#e5e5e5'};
+  border-bottom: 1px solid
+    ${({ theme }) => theme?.color?.lightGray || '#e5e5e5'};
   padding-bottom: 1.75rem;
 
   &:last-child {
@@ -210,7 +213,10 @@ function CennikPage({ pageContext }) {
   const language = pageContext?.i18n?.language || pageContext?.language || 'pl'
 
   const priceItems = t('items', { returnObjects: true, defaultValue: [] })
-  const factorItems = t('factors.items', { returnObjects: true, defaultValue: [] })
+  const factorItems = t('factors.items', {
+    returnObjects: true,
+    defaultValue: [],
+  })
   const faqItems = t('faq.items', { returnObjects: true, defaultValue: [] })
 
   return (
@@ -225,19 +231,22 @@ function CennikPage({ pageContext }) {
             <Table>
               <thead>
                 <tr>
-                  <th>{t('tableHeaders.service')}</th>
-                  <th>{t('tableHeaders.price')}</th>
-                  <th>{t('tableHeaders.notes')}</th>
+                  <th scope="col">{t('tableHeaders.service')}</th>
+                  <th scope="col">{t('tableHeaders.price')}</th>
+                  <th scope="col">{t('tableHeaders.notes')}</th>
                 </tr>
               </thead>
               <tbody>
-                {Array.isArray(priceItems) && priceItems.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.service}</td>
-                    <td><strong>{item.price}</strong></td>
-                    <td>{item.notes}</td>
-                  </tr>
-                ))}
+                {Array.isArray(priceItems) &&
+                  priceItems.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.service}</td>
+                      <td>
+                        <strong>{item.price}</strong>
+                      </td>
+                      <td>{item.notes}</td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </PriceTable>
@@ -246,12 +255,13 @@ function CennikPage({ pageContext }) {
             <h2>{t('factors.title')}</h2>
             <p>{t('factors.intro')}</p>
             <FactorsList>
-              {Array.isArray(factorItems) && factorItems.map((item, index) => (
-                <FactorItem key={index}>
-                  <FactorTitle>{item.title}</FactorTitle>
-                  <FactorText>{item.description}</FactorText>
-                </FactorItem>
-              ))}
+              {Array.isArray(factorItems) &&
+                factorItems.map((item, index) => (
+                  <FactorItem key={index}>
+                    <FactorTitle>{item.title}</FactorTitle>
+                    <FactorText>{item.description}</FactorText>
+                  </FactorItem>
+                ))}
             </FactorsList>
           </FactorsSection>
 
@@ -264,7 +274,9 @@ function CennikPage({ pageContext }) {
               <CTAPhoneLink href={`tel:${t('cta.phone')}`}>
                 {t('cta.phoneLabel')}: {t('cta.phone')}
               </CTAPhoneLink>
-              <CTAContactLink to={language === 'en' ? '/en/contact/' : '/contact/'}>
+              <CTAContactLink
+                to={language === 'en' ? '/en/contact/' : '/contact/'}
+              >
                 {t('cta.contactLink')}
               </CTAContactLink>
             </CTAActions>
@@ -272,12 +284,13 @@ function CennikPage({ pageContext }) {
 
           <FAQSection>
             <h2>{t('faq.title')}</h2>
-            {Array.isArray(faqItems) && faqItems.map((item, index) => (
-              <FAQItem key={index}>
-                <FAQQuestion>{item.question}</FAQQuestion>
-                <FAQAnswer>{item.answer}</FAQAnswer>
-              </FAQItem>
-            ))}
+            {Array.isArray(faqItems) &&
+              faqItems.map((item, index) => (
+                <FAQItem key={index}>
+                  <FAQQuestion>{item.question}</FAQQuestion>
+                  <FAQAnswer>{item.answer}</FAQAnswer>
+                </FAQItem>
+              ))}
           </FAQSection>
         </Container>
       </StyledSection>
@@ -289,14 +302,17 @@ export default CennikPage
 
 export function Head({ location, pageContext }) {
   const language = pageContext?.i18n?.language || pageContext?.language || 'pl'
-  const translations = language === 'pl' ? cennikTranslationsPL : cennikTranslationsEN
+  const translations =
+    language === 'pl' ? cennikTranslationsPL : cennikTranslationsEN
 
-  const seoTitle = language === 'pl'
-    ? 'Cennik Kowalstwa Artystycznego \u2b50 Bramy, Balustrady, Ogrodzenia'
-    : 'Artistic Blacksmithing Pricing \u2b50 Gates, Railings, Fences'
-  const seoDescription = language === 'pl'
-    ? 'Cennik us\u0142ug kowalskich: bramy kute od 3000 z\u0142/m\u00b2, balustrady od 800 z\u0142/mb, ogrodzenia od 600 z\u0142/mb. Darmowa wycena \u2713 Monta\u017c w cenie \u260e 604 253 145'
-    : 'Wrought iron pricing guide: gates from 3000 PLN/m\u00b2, railings from 800 PLN/lm, fences from 600 PLN/lm. Free quote \u2713 Installation included \u260e 604 253 145'
+  const seoTitle =
+    language === 'pl'
+      ? 'Cennik Kowalstwa Artystycznego \u2b50 Bramy, Balustrady, Ogrodzenia'
+      : 'Artistic Blacksmithing Pricing \u2b50 Gates, Railings, Fences'
+  const seoDescription =
+    language === 'pl'
+      ? 'Cennik us\u0142ug kowalskich: bramy kute od 3000 z\u0142/m\u00b2, balustrady od 800 z\u0142/mb, ogrodzenia od 600 z\u0142/mb. Darmowa wycena \u2713 Monta\u017c w cenie \u260e 604 253 145'
+      : 'Wrought iron pricing guide: gates from 3000 PLN/m\u00b2, railings from 800 PLN/lm, fences from 600 PLN/lm. Free quote \u2713 Installation included \u260e 604 253 145'
 
   return (
     <>
@@ -313,17 +329,14 @@ export function Head({ location, pageContext }) {
         pathname={location.pathname}
       />
       <LocalBusinessSchema language={language} />
-      <BreadcrumbSchema
-        pathname={location.pathname}
-        language={language}
-      />
+      <BreadcrumbSchema pathname={location.pathname} language={language} />
     </>
   )
 }
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: {language: {eq: $language}}) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns

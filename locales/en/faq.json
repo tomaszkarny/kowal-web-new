@@ -82,5 +82,49 @@
       "question": "Do you provide on-site measurements?",
       "answer": "Yes, we offer professional measurements at the installation site. This is particularly important for wrought iron gates and railings, where precision is crucial."
     }
-  ]
+  ],
+  "galleryCategories": {
+    "gates": [
+      {
+        "question": "What wrought iron gate designs do you offer?",
+        "answer": "We offer wrought iron gates in classic styles with floral elements (leaves, flowers, scrolls), modern gates with clean geometric lines, and Art Nouveau-inspired designs. Each gate can be made to the client's individual design."
+      },
+      {
+        "question": "How much does a wrought iron gate from the gallery cost?",
+        "answer": "The price of a wrought iron gate depends on size and design complexity. The indicative range is 3,000–8,000 PLN/m². Contact us for a free individual quote: ☎ +48 604 253 145."
+      },
+      {
+        "question": "Can I order a gate based on a photo from the gallery?",
+        "answer": "Yes! Any gallery photo can be the inspiration for your project. We can make a gate identical to the photo or modify it to your needs. We invite you for a free consultation."
+      }
+    ],
+    "balustrades": [
+      {
+        "question": "What wrought iron railings are most popular?",
+        "answer": "The most popular are interior stair railings with classic floral designs, balcony railings with delicate scrolls, and modern-style terrace railings. Every railing is made to individual measurements."
+      },
+      {
+        "question": "Can railings from the gallery be made in a different size?",
+        "answer": "Of course. All our railings are custom-made. Any gallery design can be adapted to fit your staircase, balcony, or terrace – just provide the measurements of the installation area."
+      },
+      {
+        "question": "How much does a wrought iron railing cost?",
+        "answer": "The price depends on length, design, and application (interior/exterior). Stair railings start from approximately 500 PLN/m, and more decorative models from 800 PLN/m. Free quote: ☎ +48 604 253 145."
+      }
+    ],
+    "fences": [
+      {
+        "question": "What wrought iron fences do you offer?",
+        "answer": "We make artistic, classic, and modern wrought iron fences – both property perimeter fences with panels and fencing with masonry pillars. All fences are made from galvanized steel with a 5-year warranty."
+      },
+      {
+        "question": "How do I order a custom wrought iron fence?",
+        "answer": "The ordering process: phone contact → free on-site visit and measurements → individual design → quote → production (3–6 weeks) → installation. Call: ☎ +48 604 253 145."
+      },
+      {
+        "question": "Do you install fences throughout Poland?",
+        "answer": "Yes, we install wrought iron fences throughout Poland. We have our own transport and a qualified installation team. Installation costs are determined individually depending on location."
+      }
+    ]
+  }
 }
