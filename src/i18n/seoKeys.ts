@@ -9,7 +9,11 @@ export enum SeoKeys {
   about = "about",
   gallery = "gallery",
   contact = "contact",
+  cennik = "cennik",
   breadcrumbs = "breadcrumbs",
   faq = "faq",
+  galleryGates = "galleryGates",
+  galleryBalustrades = "galleryBalustrades",
+  galleryFences = "galleryFences",
   schema = "schema",
 }

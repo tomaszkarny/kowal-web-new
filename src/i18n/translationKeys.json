@@ -38,7 +38,18 @@
     "locationsTitle": "locationsTitle",
     "locationsDescription": "locationsDescription"
   },
+  "cennik": {
+    "h1": "h1",
+    "intro": "intro",
+    "tableTitle": "tableTitle",
+    "tableHeaders": "tableHeaders",
+    "items": "items",
+    "factors": "factors",
+    "cta": "cta",
+    "faq": "faq"
+  },
   "cities": {
+    "seo": "seo",
     "page": "page",
     "cityPage": "cityPage",
     "citiesList": "citiesList",
@@ -57,6 +68,10 @@
     "contact": "contact",
     "cities": "cities",
     "faq": "faq",
+    "gates": "gates",
+    "fences": "fences",
+    "railings": "railings",
+    "pricing": "pricing",
     "gallery_title": "gallery_title",
     "specialties_section_title": "specialties_section_title",
     "specialties_title": "specialties_title",
@@ -112,13 +127,15 @@
     "email_us": "email_us",
     "closed": "closed",
     "contact_info": "contact_info",
-    "visit_us": "visit_us"
+    "visit_us": "visit_us",
+    "mapLoading": "mapLoading"
   },
   "faq": {
     "home": "home",
     "about": "about",
     "gallery": "gallery",
-    "contact": "contact"
+    "contact": "contact",
+    "galleryCategories": "galleryCategories"
   },
   "footer": {
     "pracownia": "pracownia",
@@ -133,6 +150,7 @@
     "contact": "contact",
     "about": "about",
     "gallery": "gallery",
+    "pricing": "pricing",
     "faq": "faq",
     "englishVersion": "englishVersion",
     "polishVersion": "polishVersion",
@@ -144,6 +162,7 @@
   },
   "gallery": {
     "title": "title",
+    "intro": "intro",
     "backToGallery": "backToGallery",
     "filter": "filter",
     "emptyState": "emptyState",
@@ -151,6 +170,8 @@
     "subcategories": "subcategories",
     "descriptions": "descriptions",
     "filterLabels": "filterLabels",
+    "categoryPages": "categoryPages",
+    "categorySection": "categorySection",
     "images": "images"
   },
   "seo": {
@@ -159,12 +180,17 @@
     "about": "about",
     "gallery": "gallery",
     "contact": "contact",
+    "cennik": "cennik",
     "breadcrumbs": "breadcrumbs",
     "faq": "faq",
+    "galleryGates": "galleryGates",
+    "galleryBalustrades": "galleryBalustrades",
+    "galleryFences": "galleryFences",
     "schema": "schema"
   },
   "services": {
     "fences": "fences",
-    "gates": "gates"
+    "gates": "gates",
+    "railings": "railings"
   }
 }

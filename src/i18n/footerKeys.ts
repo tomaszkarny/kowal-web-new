@@ -16,6 +16,7 @@ export enum FooterKeys {
   contact = "contact",
   about = "about",
   gallery = "gallery",
+  pricing = "pricing",
   faq = "faq",
   englishVersion = "englishVersion",
   polishVersion = "polishVersion",

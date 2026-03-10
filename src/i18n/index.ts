@@ -3,6 +3,7 @@
  */
 
 export { AboutKeys } from './aboutKeys';
+export { CennikKeys } from './cennikKeys';
 export { CitiesKeys } from './citiesKeys';
 export { CommonKeys } from './commonKeys';
 export { ContactKeys } from './contactKeys';

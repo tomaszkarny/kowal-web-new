@@ -4,6 +4,7 @@
  */
 
 export enum CitiesKeys {
+  seo = "seo",
   page = "page",
   cityPage = "cityPage",
   citiesList = "citiesList",

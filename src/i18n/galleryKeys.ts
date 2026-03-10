@@ -5,6 +5,7 @@
 
 export enum GalleryKeys {
   title = "title",
+  intro = "intro",
   backToGallery = "backToGallery",
   filter = "filter",
   emptyState = "emptyState",
@@ -12,5 +13,7 @@ export enum GalleryKeys {
   subcategories = "subcategories",
   descriptions = "descriptions",
   filterLabels = "filterLabels",
+  categoryPages = "categoryPages",
+  categorySection = "categorySection",
   images = "images",
 }

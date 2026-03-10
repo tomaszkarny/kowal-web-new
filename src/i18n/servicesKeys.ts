@@ -6,4 +6,5 @@
 export enum ServicesKeys {
   fences = "fences",
   gates = "gates",
+  railings = "railings",
 }

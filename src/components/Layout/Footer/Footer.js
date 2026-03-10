@@ -97,6 +97,7 @@ export function Footer() {
         <FooterLink to="/contact/">{t('contact')}</FooterLink>
         <FooterLink to="/about/">{t('about')}</FooterLink>
         <FooterLink to="/gallery/">{t('gallery')}</FooterLink>
+        <FooterLink to="/pricing/">{t('pricing')}</FooterLink>
         <FooterLink to="/faq/">{t('faq')}</FooterLink>
       </FooterSection>
 

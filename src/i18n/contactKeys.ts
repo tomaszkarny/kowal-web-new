@@ -33,4 +33,5 @@ export enum ContactKeys {
   closed = "closed",
   contact_info = "contact_info",
   visit_us = "visit_us",
+  mapLoading = "mapLoading",
 }
