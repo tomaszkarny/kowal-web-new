@@ -2,7 +2,13 @@ import styled from '@emotion/styled'
 import { keyframes, css } from '@emotion/react'
 
 import { mq } from 'utils/mediaQueries'
-import { FORGE_COLORS, FORGE_SHADOWS, FORGE_GRADIENTS } from '../../Cities/styles'
+import {
+  FORGE_COLORS,
+  FORGE_SHADOWS,
+  FORGE_GRADIENTS,
+  hammeredTexture,
+} from '../../Cities/styles'
+import { expandWidth } from '../../common/animations/animations'
 
 // Subtle animations for brand-inspired hover effects (now ember-colored)
 // Named forgeEmberGlow to avoid collision with forgeGlow in animations.js
@@ -18,18 +24,35 @@ const forgeSpark = keyframes`
   100% { transform: translateX(100%) scale(1); opacity: 0; }
 `
 
+// Subtle text-shadow pulse on title
+const subtleGlow = keyframes`
+  0%, 100% { text-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 30px rgba(232,92,65,0.08); }
+  50% { text-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 40px rgba(232,92,65,0.15); }
+`
+
+// Ember accent line pulse on panel edge
+const borderGlow = keyframes`
+  0%, 100% { opacity: 0.4; box-shadow: 0 0 8px rgba(232,92,65,0.2); }
+  50% { opacity: 0.7; box-shadow: 0 0 15px rgba(232,92,65,0.4); }
+`
+
 export const Title = styled.h1`
   text-align: center;
   box-sizing: inherit;
   font-weight: 800;
   margin: 0 0 30px;
-  color: #1a1a1a;
+  color: ${FORGE_COLORS.textOnDark};
   letter-spacing: 0.5px;
   line-height: 1.1;
   font-size: 42px;
   font-family: 'Merriweather';
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 30px rgba(232,92,65,0.08);
   position: relative;
+  animation: ${subtleGlow} 6s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 
   &:after {
     content: '';
@@ -41,7 +64,8 @@ export const Title = styled.h1`
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2px;
-    box-shadow: 0 0 15px rgba(232, 92, 65, 0.3);
+    box-shadow: 0 0 20px rgba(232, 92, 65, 0.4), 0 0 40px rgba(232, 92, 65, 0.15);
+    animation: ${expandWidth} 0.6s ease-out 0.4s both;
   }
 
   ${mq('medium')} {
@@ -52,14 +76,13 @@ export const Title = styled.h1`
 export const Description = styled.p`
   font-weight: 400;
   line-height: 1.8;
-  color: #${({ theme }) => theme.color.bluewood};
+  color: rgba(232, 230, 227, 0.8);
   font-size: 1.125rem;
   text-align: center;
   box-sizing: inherit;
   margin: 0 auto 35px;
   padding: 0;
   max-width: 600px;
-  opacity: 0.9;
 `
 
 export const HeroWrapper = styled.div`
@@ -129,34 +152,116 @@ export const TitleWrapper = styled.div`
   padding: 1.2rem 0.5rem;
   justify-content: center;
   flex: 1;
-  align-items: center; // Center-aligned content
+  align-items: center;
   text-align: center;
   position: relative;
   z-index: 2;
-  /* Mobile gradient - more opaque since content is stacked */
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(255, 255, 255, 0.92) 100%
+    rgba(30, 30, 50, 0.95) 0%,
+    rgba(30, 30, 50, 0.92) 50%,
+    rgba(30, 30, 50, 0.88) 100%
   );
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
+
+  /* Hammered metal texture overlay */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${hammeredTexture};
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* Ember accent line - horizontal on mobile (bottom edge) */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: ${FORGE_GRADIENTS.emberGradient};
+    opacity: 0.4;
+    box-shadow: 0 0 8px rgba(232, 92, 65, 0.2);
+    animation: ${borderGlow} 4s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+
+  /* Override shared SectionTitle/SectionDescription colors for dark background */
+  h1 {
+    color: ${FORGE_COLORS.textOnDark};
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4), 0 0 30px rgba(232,92,65,0.08);
+    animation: ${subtleGlow} 6s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  p {
+    color: rgba(232, 230, 227, 0.8);
+  }
+
+  /* Hero entrance animation - staggered children */
+  & > *:nth-child(1) {
+    opacity: ${({ isMounted }) => (isMounted ? 1 : 0)};
+    transform: ${({ isMounted }) => (isMounted ? 'none' : 'translateY(20px)')};
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  & > *:nth-child(2) {
+    opacity: ${({ isMounted }) => (isMounted ? 1 : 0)};
+    transform: ${({ isMounted }) => (isMounted ? 'none' : 'translateY(15px)')};
+    transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
+  }
+
+  & > *:nth-child(3) {
+    opacity: ${({ isMounted }) => (isMounted ? 1 : 0)};
+    transform: ${({ isMounted }) => (isMounted ? 'none' : 'translateY(15px)')};
+    transition: opacity 0.5s ease-out 0.6s, transform 0.5s ease-out 0.6s;
+  }
 
   ${mq('medium')} {
     padding: 5rem;
-    padding-right: 10rem; /* Extended padding for content to blend with image */
+    padding-right: 10rem;
     width: 55%;
     max-width: none;
     background: linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(255, 255, 255, 0.95) 30%,
-      rgba(255, 255, 255, 0.6) 70%,
-      rgba(255, 255, 255, 0) 100%
+      rgba(30, 30, 50, 0.95) 0%,
+      rgba(30, 30, 50, 0.88) 30%,
+      rgba(30, 30, 50, 0.45) 70%,
+      rgba(30, 30, 50, 0) 100%
     );
     box-shadow: none;
-    /* Ensures a seamless blend by extending past its container */
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+
+    /* Ember accent line - vertical on desktop (right edge) */
+    &::after {
+      bottom: 0;
+      top: 10%;
+      left: auto;
+      right: 15%;
+      width: 2px;
+      height: 80%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        ${FORGE_COLORS.ember} 20%,
+        ${FORGE_COLORS.emberGlow} 50%,
+        ${FORGE_COLORS.ember} 80%,
+        transparent 100%
+      );
+    }
   }
 `
 
@@ -166,19 +271,23 @@ export const ImageOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  /* Mobile overlay gradient - vertical direction with ember tint */
+  /* Mobile: dark at top (matching dark panel above), lighter toward bottom */
   background: linear-gradient(
     to bottom,
-    rgba(232, 92, 65, 0.25) 0%,
-    rgba(0, 0, 0, 0.5) 100%
+    rgba(30, 30, 50, 0.6) 0%,
+    rgba(30, 30, 50, 0.2) 30%,
+    rgba(0, 0, 0, 0.15) 70%,
+    rgba(0, 0, 0, 0.4) 100%
   );
   z-index: 1;
 
   ${mq('medium')} {
+    /* Desktop: stronger dark on left edge for seamless panel blend */
     background: linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.05) 10%,
-      rgba(232, 92, 65, 0.05) 40%,
+      rgba(30, 30, 50, 0.5) 0%,
+      rgba(30, 30, 50, 0.15) 25%,
+      rgba(232, 92, 65, 0.05) 50%,
       rgba(0, 0, 0, 0.2) 100%
     );
     /* Creates subtle texture for better visual integration */
@@ -248,9 +357,9 @@ export const ButtonStyles = {
     }
   `,
   secondary: css`
-    background: transparent;
-    color: #3a3a3a;
-    border: 2px solid #3a3a3a;
+    background: rgba(232, 230, 227, 0.08);
+    color: #e8e6e3;
+    border: 2px solid rgba(232, 230, 227, 0.6);
     transition: all 0.3s ease;
     padding: 12px 32px;
     border-radius: 4px;
@@ -258,10 +367,10 @@ export const ButtonStyles = {
     letter-spacing: 0.5px;
 
     &:hover {
-      background: rgba(232, 92, 65, 0.05);
+      background: rgba(232, 92, 65, 0.15);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(232, 92, 65, 0.15);
-      color: ${FORGE_COLORS.ember};
+      box-shadow: 0 5px 15px rgba(232, 92, 65, 0.25);
+      color: ${FORGE_COLORS.emberGlow};
       border-color: ${FORGE_COLORS.ember};
     }
   `

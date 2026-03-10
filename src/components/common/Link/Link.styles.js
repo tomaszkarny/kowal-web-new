@@ -27,7 +27,6 @@ export const StyledLink = styled('a', {
   &[data-gatsby-link="true"] {
     z-index: 2;
   }
-  ${({ customStyles }) => customStyles || ''}
   width: auto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -106,6 +105,9 @@ export const StyledLink = styled('a', {
     width: ${({ main }) => (main ? '250px' : 'auto')};
     font-size: 14px;
   }
+
+  /* Custom styles applied last to allow overrides */
+  ${({ customStyles }) => customStyles || ''}
 `
 
 export const LinkWrapper = styled.div`
