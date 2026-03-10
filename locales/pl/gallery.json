@@ -2,7 +2,7 @@
   "title": "Nasze przykładowe prace",
   "intro": {
     "title": "Realizacje kowalstwa artystycznego",
-    "description": "Prezentujemy wybrane projekty bram kutych, balustrad i ogrodzeń wykonanych dla klientów z całej Polski. Każda realizacja jest unikatowa - tworzymy według indywidualnych projektów, łącząc tradycyjne techniki kowalskie z nowoczesnymi wzorami. W galerii znajdziesz przykłady bram wjazdowych, balustrad schodowych i tarasowych, ogrodzeń posesji oraz elementów dekoracyjnych. Wszystkie prace wykonane są z wysokiej jakości stali i zabezpieczone antykorozyjnie. Zachęcamy do kontaktu w celu omówienia Twojego projektu."
+    "description": "Ponad 100 realizacji kowalstwa artystycznego z 30-letnim doświadczeniem — bramy wjazdowe, balustrady schodowe i balkonowe, ogrodzenia posesyjne oraz elementy dekoracyjne. Każdy projekt wykonujemy na indywidualne zamówienie z wysokiej jakości stali, łącząc tradycyjne techniki kowalskie z nowoczesnymi wzorami. Skontaktuj się z nami po darmową wycenę i doradztwo."
   },
   "backToGallery": "Powrót do galerii",
   "filter": "Filtruj według kategorii",
@@ -57,6 +57,24 @@
       "ctaService": "Zobacz ofertę ogrodzeń",
       "ctaGallery": "Zobacz wszystkie realizacje",
       "imageCount": "14+ realizacji"
+    }
+  },
+  "categorySection": {
+    "title": "Przeglądaj według kategorii",
+    "gates": {
+      "name": "Bramy Kute",
+      "description": "Bramy wjazdowe, dwuskrzydłowe, przesuwne — 18+ realizacji",
+      "count": "18+ realizacji"
+    },
+    "balustrades": {
+      "name": "Balustrady Kute",
+      "description": "Schodowe, balkonowe, tarasowe — 27+ realizacji",
+      "count": "27+ realizacji"
+    },
+    "fences": {
+      "name": "Ogrodzenia Kute",
+      "description": "Klasyczne i nowoczesne ogrodzenia posesji — 14+ realizacji",
+      "count": "14+ realizacji"
     }
   },
   "images": {

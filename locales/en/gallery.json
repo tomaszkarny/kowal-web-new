@@ -2,7 +2,7 @@
   "title": "Our Sample Works",
   "intro": {
     "title": "Artistic Blacksmithing Portfolio",
-    "description": "We present selected projects of wrought iron gates, railings and fences made for clients from all over Poland. Each creation is unique - we craft according to individual designs, combining traditional blacksmithing techniques with modern patterns. In our gallery you will find examples of driveway gates, staircase and terrace railings, property fences and decorative elements. All works are made from high-quality steel and protected against corrosion. Contact us to discuss your project."
+    "description": "Over 100 artistic blacksmithing projects with 30 years of experience — driveway gates, staircase and balcony railings, property fences and decorative elements. Every project is custom-made from high-quality steel, combining traditional forging techniques with modern designs. Contact us for a free quote and consultation."
   },
   "backToGallery": "Back to Gallery",
   "filter": "Filter By Category",
@@ -57,6 +57,24 @@
       "ctaService": "See our fences offer",
       "ctaGallery": "See all projects",
       "imageCount": "14+ projects"
+    }
+  },
+  "categorySection": {
+    "title": "Browse by Category",
+    "gates": {
+      "name": "Wrought Iron Gates",
+      "description": "Driveway, double-leaf, sliding gates — 18+ projects",
+      "count": "18+ projects"
+    },
+    "balustrades": {
+      "name": "Wrought Iron Railings",
+      "description": "Stair, balcony, terrace railings — 27+ projects",
+      "count": "27+ projects"
+    },
+    "fences": {
+      "name": "Wrought Iron Fences",
+      "description": "Classic and modern property fences — 14+ projects",
+      "count": "14+ projects"
     }
   },
   "images": {

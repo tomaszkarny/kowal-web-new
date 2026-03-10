@@ -88,7 +88,19 @@ export const getFAQData = (language, page) => {
       {
         question: "Czy wszystkie prace w galerii są Waszego autorstwa?",
         answer: "Tak, wszystkie prezentowane w galerii prace zostały zaprojektowane i wykonane w naszej pracowni kowalstwa artystycznego w Białymstoku."
-      }
+      },
+      {
+        question: 'Ile kosztują bramy kute widoczne w galerii?',
+        answer: `Ceny bram kutych prezentowanych w galerii zaczynają się od około 3000 zł/m² i zależą od stopnia złożoności wzoru, wymiarów oraz zastosowanych materiałów. Każdy projekt wyceniamy indywidualnie — oferujemy bezpłatną wycenę. Zadzwoń pod numer ${PHONE_NUMBER_FORMATTED}, aby omówić szczegóły i otrzymać dokładną ofertę.`,
+      },
+      {
+        question: 'Jak długo trwa wykonanie bramy lub balustrady na zamówienie?',
+        answer: 'Czas realizacji bramy lub balustrady na zamówienie wynosi zazwyczaj od 2 do 6 tygodni, w zależności od złożoności projektu, wymiarów i ilości elementów dekoracyjnych. Proces rozpoczynamy od konsultacji i ustalenia projektu, następnie przechodzimy do produkcji i wykończenia. Dokładny termin realizacji ustalamy indywidualnie podczas rozmowy.',
+      },
+      {
+        question: 'Czy wykonujecie montaż bram i balustrad w całej Polsce?',
+        answer: 'Tak, realizujemy transport i profesjonalny montaż bram kutych, balustrad oraz ogrodzeń na terenie całej Polski. Obsługujemy klientów m.in. w Białymstoku, Warszawie, Lublinie, Gdańsku, Krakowie i wielu innych miastach. Nasz zespół montażowy gwarantuje solidne i terminowe wykonanie instalacji.',
+      },
     ],
     contact: [
       {
@@ -191,7 +203,19 @@ export const getFAQData = (language, page) => {
       {
         question: "Are all works in the gallery your own?",
         answer: "Yes, all works presented in the gallery were designed and created in our artistic blacksmithing workshop in Białystok."
-      }
+      },
+      {
+        question: 'How much do the wrought iron gates shown in the gallery cost?',
+        answer: `Prices for wrought iron gates featured in the gallery start from approximately 3000 PLN/m² and depend on the complexity of the design, dimensions, and materials used. Each project is individually quoted — we offer free estimates. Call ${PHONE_NUMBER_FORMATTED} to discuss the details and receive an accurate offer.`,
+      },
+      {
+        question: 'How long does it take to make a custom gate or railing?',
+        answer: 'The production time for a custom gate or railing typically ranges from 2 to 6 weeks, depending on the complexity of the design, dimensions, and number of decorative elements. We begin with a consultation to finalize the design, then proceed to production and finishing. The exact timeline is determined individually during our initial conversation.',
+      },
+      {
+        question: 'Do you install gates and railings throughout Poland?',
+        answer: 'Yes, we provide transport and professional installation of wrought iron gates, railings, and fences throughout Poland. We serve clients in Białystok, Warsaw, Lublin, Gdańsk, Kraków, and many other cities. Our installation team guarantees solid and timely completion of every project.',
+      },
     ],
     contact: [
       {

@@ -15,8 +15,26 @@ import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetec
 import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
+import {
+  CategorySectionWrapper,
+  CategorySectionTitle,
+  CategoryGrid,
+  CategoryCard,
+  CategoryName,
+  CategoryDescription,
+  CategoryCount,
+} from 'components/GalleryPage/GalleryCategorySection.styles'
+
+const CATEGORIES = [
+  { key: 'gates', path: '/gallery/wrought-iron-gates/' },
+  { key: 'balustrades', path: '/gallery/wrought-iron-railings/' },
+  { key: 'fences', path: '/gallery/wrought-iron-fences/' },
+]
+
 function GalleryPageTemplate() {
-  const { t } = useTranslation(['common', 'gallery'])
+  const { t, i18n } = useTranslation(['common', 'gallery'])
+  const langPrefix = i18n.language === 'en' ? '/en' : ''
+
   return (
     <Layout>
       <StyledSection>
@@ -25,6 +43,27 @@ function GalleryPageTemplate() {
         <PageDescription>
           {t('gallery:intro.description')}
         </PageDescription>
+        {/* Category browsing section with internal links to subpages */}
+        <CategorySectionWrapper>
+          <CategorySectionTitle>
+            {t('gallery:categorySection.title')}
+          </CategorySectionTitle>
+          <CategoryGrid>
+            {CATEGORIES.map(({ key, path }) => (
+              <CategoryCard key={key} to={`${langPrefix}${path}`}>
+                <CategoryName>
+                  {t(`gallery:categorySection.${key}.name`)}
+                </CategoryName>
+                <CategoryDescription>
+                  {t(`gallery:categorySection.${key}.description`)}
+                </CategoryDescription>
+                <CategoryCount>
+                  {t(`gallery:categorySection.${key}.count`)}
+                </CategoryCount>
+              </CategoryCard>
+            ))}
+          </CategoryGrid>
+        </CategorySectionWrapper>
         <GalleryPage />
       </StyledSection>
     </Layout>
