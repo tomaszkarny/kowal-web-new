@@ -42,39 +42,39 @@
       "intro": "Browse our gallery of wrought iron gates crafted in our artistic blacksmithing workshop. Each gate is custom-made to order – from double-leaf driveway gates to modern sliding gates with automation. Find inspiration and designs to choose the perfect project for your property.",
       "ctaService": "See our gates offer",
       "ctaGallery": "See all projects",
-      "imageCount": "18+ projects"
+      "imageCount": "200+ projects"
     },
     "balustrades": {
       "h1": "Wrought Iron Railings Gallery – Stair, Balcony, Terrace",
       "intro": "Discover our gallery of wrought iron railings – from elegant interior stair railings to durable balcony and terrace railings. Each railing is hand-forged from the highest quality steel with anti-corrosion protection. Find inspiration for your project.",
       "ctaService": "See our railings offer",
       "ctaGallery": "See all projects",
-      "imageCount": "27+ projects"
+      "imageCount": "300+ projects"
     },
     "fences": {
       "h1": "Wrought Iron Fences Gallery – Designs & Inspiration",
       "intro": "Browse our gallery of wrought iron fences – property fences, wrought iron panels in classic and modern styles. All fences are made from galvanized steel with a 5-year warranty. Choose a design or order a custom fence.",
       "ctaService": "See our fences offer",
       "ctaGallery": "See all projects",
-      "imageCount": "14+ projects"
+      "imageCount": "150+ projects"
     }
   },
   "categorySection": {
     "title": "Browse by Category",
     "gates": {
       "name": "Wrought Iron Gates",
-      "description": "Driveway, double-leaf, sliding gates — 18+ projects",
-      "count": "18+ projects"
+      "description": "Driveway, double-leaf, sliding gates — 200+ projects",
+      "count": "200+ projects"
     },
     "balustrades": {
       "name": "Wrought Iron Railings",
-      "description": "Stair, balcony, terrace railings — 27+ projects",
-      "count": "27+ projects"
+      "description": "Stair, balcony, terrace railings — 300+ projects",
+      "count": "300+ projects"
     },
     "fences": {
       "name": "Wrought Iron Fences",
-      "description": "Classic and modern property fences — 14+ projects",
-      "count": "14+ projects"
+      "description": "Classic and modern property fences — 150+ projects",
+      "count": "150+ projects"
     }
   },
   "images": {

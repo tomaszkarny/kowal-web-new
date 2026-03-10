@@ -50,8 +50,8 @@ export const getSEOTranslations = (language, pageType) => {
         description: 'Artistic blacksmithing workshop Białystok since 1995. Traditional forging: wrought iron gates, railings, fences. Best blacksmith in Podlaskie ✓ Custom designs'
       },
       gallery: {
-        title: 'Wrought Iron Gallery - 100+ Projects | Karny Blacksmith',
-        description: 'Browse 100+ wrought iron projects: gates, railings, fences. Custom designs, traditional craftsmanship. Portfolio and inspiration.'
+        title: 'Wrought Iron Gallery - 500+ Projects | Karny Blacksmith',
+        description: 'Browse 500+ wrought iron projects: gates, railings, fences. Custom designs, traditional craftsmanship. Portfolio and inspiration.'
       },
       contact: {
         title: 'Contact - Blacksmith Białystok',
@@ -74,8 +74,8 @@ export const getSEOTranslations = (language, pageType) => {
         description: 'Pracownia kowalstwa artystycznego Białystok od 1995. Tradycyjne kucie: bramy, balustrady, ogrodzenia kute. Najlepszy kowal podlaskie ✓ Projekty własne'
       },
       gallery: {
-        title: 'Galeria Bram Kutych i Balustrad - 100+ Realizacji | Karny',
-        description: 'Zobacz ponad 100 realizacji bram kutych, balustrad i ogrodzeń. ✓ Bramy dwuskrzydłowe ✓ Balustrady schodowe ✓ Ogrodzenia kute. Inspiracje i portfolio.'
+        title: 'Galeria Bram Kutych i Balustrad - 500+ Realizacji | Karny',
+        description: 'Zobacz ponad 500 realizacji bram kutych, balustrad i ogrodzeń. ✓ Bramy dwuskrzydłowe ✓ Balustrady schodowe ✓ Ogrodzenia kute. Inspiracje i portfolio.'
       },
       contact: {
         title: 'Kontakt - Kowal Białystok',
