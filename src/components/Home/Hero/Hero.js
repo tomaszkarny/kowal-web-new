@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 import { graphql, useStaticQuery } from 'gatsby'
 import { getImage } from 'gatsby-plugin-image'
@@ -24,6 +24,10 @@ import { SECTION_IDS } from 'consts/sectionID'
 
 export function Hero() {
   const { t } = useTranslation('common')
+  const [isMounted, setIsMounted] = useState(false)
+  const [parallaxOffset, setParallaxOffset] = useState(0)
+  const heroRef = useRef(null)
+
   const { image } = useStaticQuery(graphql`
     query MyQuery {
       image: file(relativePath: { eq: "Hero_image.webp" }) {
@@ -34,9 +38,9 @@ export function Hero() {
             placeholder: BLURRED
             formats: [AUTO, WEBP, AVIF]
             quality: 85
-            transformOptions: { 
+            transformOptions: {
               cropFocus: CENTER
-              fit: COVER 
+              fit: COVER
             }
             breakpoints: [768, 1024, 1366, 1920]
           )
@@ -44,6 +48,38 @@ export function Hero() {
       }
     }
   `)
+
+  useEffect(() => {
+    // Trigger entrance animations after mount
+    const timer = setTimeout(() => setIsMounted(true), 100)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Parallax scroll handler - disabled on mobile
+  const handleScroll = useCallback(() => {
+    if (typeof window === 'undefined' || window.innerWidth < 768) return
+    const { scrollY } = window
+    const maxOffset = 200
+    setParallaxOffset(Math.min(scrollY * 0.3, maxOffset))
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth < 768) return undefined
+
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [handleScroll])
 
   const handleItemClick = e => {
     e.preventDefault()
@@ -57,9 +93,9 @@ export function Hero() {
   }
 
   return (
-    <HeroWrapper>
+    <HeroWrapper ref={heroRef}>
         <ImageOverlay />
-        <TitleWrapper>
+        <TitleWrapper isMounted={isMounted}>
           <SectionTitle>
             {t('heroTitle')}
           </SectionTitle>
@@ -82,7 +118,12 @@ export function Hero() {
             />
           </LinkWrapper>
         </TitleWrapper>
-        <ImageContainer className="image-container">
+        <ImageContainer
+          className="image-container"
+          style={{
+            transform: parallaxOffset ? `translateY(${parallaxOffset}px)` : undefined,
+          }}
+        >
           <Image
             image={getImage(image.childImageSharp)}
             alt={t('siteTitle')}

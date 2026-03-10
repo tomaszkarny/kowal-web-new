@@ -69,3 +69,19 @@ export const emberPulse = keyframes`
       0 0 60px rgba(232, 92, 65, 0.2);
   }
 `;
+
+/**
+ * Expand width animation for ember underline accent.
+ */
+export const expandWidth = keyframes`
+  from { width: 0; opacity: 0; }
+  to { width: 100px; opacity: 1; }
+`;
+
+/**
+ * Ken Burns slow zoom effect for hero images.
+ */
+export const kenBurns = keyframes`
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+`;

@@ -11,20 +11,22 @@ import {
 } from 'components/Layout/MainNav/MainNav.styles'
 
 import { useOnClickOutside } from 'utils/hooks/useOnClickOutside'
+import { useScrollPosition } from 'utils/hooks/useScrollPosition'
 
 export function MainNav() {
-  const { t, i18n } = useTranslation('common')
-  const { language } = useI18next()
+  const { t } = useTranslation('common')
+  useI18next()
   const [isOpen, setOpen] = useState(false)
   const handleBurgerClick = () => setOpen(!isOpen)
   const handleItemClick = () => setOpen(!isOpen)
   const node = useRef()
+  const isScrolled = useScrollPosition(50)
 
   useOnClickOutside(node, () => setOpen(false))
 
   return (
     <div ref={node}>
-      <MainNavWrapper isOpen={isOpen}>
+      <MainNavWrapper isOpen={isOpen} isScrolled={isScrolled}>
         <NavItems>
           {NavLinkData.map(data => (
             <NavItem isOpen={isOpen} key={data.id}>

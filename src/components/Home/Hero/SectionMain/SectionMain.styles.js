@@ -22,18 +22,16 @@ export const SpecializationWrapper = styled.section`
   overflow: hidden; /* Prevent any content from spilling out */
   min-height: 100vh; /* Ensure enough space for content */
 
-  /* Top decorative bar - ember gradient */
+  /* Curved top transition from hero to content */
   &:before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 6px;
-    background: linear-gradient(90deg, ${THEME.color.primary}, ${THEME.color.primaryLight || '#ff6b4a'}, ${THEME.color.primary});
-    border-radius: 3px;
-    box-shadow: 0 2px 10px rgba(232, 92, 65, 0.2);
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, #f8f9ff, #f8f9ff);
+    clip-path: ellipse(55% 100% at 50% 100%);
     z-index: 2;
   }
 

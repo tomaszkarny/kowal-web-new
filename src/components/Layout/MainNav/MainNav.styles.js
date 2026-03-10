@@ -24,7 +24,19 @@ export const MainNavWrapper = styled.nav`
     align-items: flex-end;
 
     transform: none;
-    transition: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease,
+      backdrop-filter 0.3s ease;
+
+    background-color: ${({ isScrolled }) =>
+      isScrolled
+        ? 'rgba(248, 248, 248, 0.95)'
+        : 'rgba(248, 248, 248, 0.6)'};
+    backdrop-filter: ${({ isScrolled }) =>
+      isScrolled ? 'blur(10px)' : 'none'};
+    box-shadow: ${({ isScrolled }) =>
+      isScrolled
+        ? '0 2px 20px rgba(0, 0, 0, 0.08)'
+        : 'none'};
   }
 `
 
