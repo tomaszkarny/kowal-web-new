@@ -237,6 +237,9 @@ export function EnhancedSEO({
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={seo.title} />
       
+      {/* Google Search Console verification */}
+      <meta name="google-site-verification" content="JKUnr_75ce6PD0-NuNVM1t-CWuSLqi_vBwMky594zTM" />
+
       {/* Page specific SEO */}
       {children}
     </>
