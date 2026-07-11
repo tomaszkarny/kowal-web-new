@@ -16,6 +16,7 @@ import {
   ServiceDescription,
   ServiceFeatures,
   FeatureItem,
+  GalleryLink,
   CTASection,
   CTATitle,
   CTAText,
@@ -35,8 +36,10 @@ export function CityServiceOfferings({ city, pathname }) {
         title: service.titleTemplate.replace('{{city}}', cityName),
         description: service.descriptionTemplate.replace('{{city}}', cityName),
         features: service.features,
+        galleryPath: service.galleryPath,
       }))
     : []
+  const galleryLinkText = t('cityPage.serviceOfferings.galleryLinkText')
 
   const mainTitle = t('cityPage.serviceOfferings.mainTitle', templateData)
   const ctaTitle = t('cityPage.serviceOfferings.cta.title', templateData)
@@ -58,6 +61,13 @@ export function CityServiceOfferings({ city, pathname }) {
                   <FeatureItem key={feature}>{feature}</FeatureItem>
                 ))}
               </ServiceFeatures>
+              {service.galleryPath && (
+                <GalleryLink
+                  href={buildLanguagePath(service.galleryPath, actualLanguage)}
+                >
+                  {galleryLinkText}
+                </GalleryLink>
+              )}
             </ServiceCard>
           ))}
         </ServicesGrid>

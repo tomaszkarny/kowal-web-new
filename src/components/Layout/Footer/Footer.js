@@ -118,7 +118,19 @@ export function Footer() {
         <FooterLink to="/services/custom-gates/">
           {t('customGates')}
         </FooterLink>
+        <FooterLink to="/services/custom-railings/">
+          {t('customRailings')}
+        </FooterLink>
         <FooterLink to="/gallery/">{t('gallery')}</FooterLink>
+        <FooterLink to="/gallery/wrought-iron-gates/">
+          {t('galleryGates')}
+        </FooterLink>
+        <FooterLink to="/gallery/wrought-iron-railings/">
+          {t('galleryRailings')}
+        </FooterLink>
+        <FooterLink to="/gallery/wrought-iron-fences/">
+          {t('galleryFences')}
+        </FooterLink>
       </FooterSection>
       
       <FooterSection>

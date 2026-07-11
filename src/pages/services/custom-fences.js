@@ -122,7 +122,7 @@ function OgrodzeniaNaZamowieniePage({ pageContext }) {
         variant="fences"
         limit={8}
         viewMoreText={t('services:fences.gallery.viewMore')}
-        viewMoreHref="/gallery/"
+        viewMoreHref="/gallery/wrought-iron-fences/"
       />
 
       <RelatedServices

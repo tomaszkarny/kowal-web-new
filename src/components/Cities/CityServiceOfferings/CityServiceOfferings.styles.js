@@ -43,6 +43,18 @@ export const FeatureItem = styled.li`
   }
 `
 
+export const GalleryLink = styled.a`
+  display: inline-block;
+  margin-top: 1rem;
+  color: ${FORGE_COLORS.ember};
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 export const CTASection = styled.div`
   text-align: center;
   padding: 2rem;

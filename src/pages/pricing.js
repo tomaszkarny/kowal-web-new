@@ -307,11 +307,11 @@ export function Head({ location, pageContext }) {
 
   const seoTitle =
     language === 'pl'
-      ? 'Cennik Kowalstwa Artystycznego \u2b50 Bramy, Balustrady, Ogrodzenia'
-      : 'Artistic Blacksmithing Pricing \u2b50 Gates, Railings, Fences'
+      ? 'Cennik Kowalstwa Artystycznego - Bramy, Balustrady | Karny'
+      : 'Wrought Iron Price List - Gates & Railings | Karny'
   const seoDescription =
     language === 'pl'
-      ? 'Cennik us\u0142ug kowalskich: bramy kute od 3000 z\u0142/m\u00b2, balustrady od 800 z\u0142/mb, ogrodzenia od 600 z\u0142/mb. Darmowa wycena \u2713 Monta\u017c w cenie \u260e 604 253 145'
+      ? 'Aktualny cennik kowalstwa artystycznego: bramy kute od 3000 z\u0142/m\u00b2, balustrady od 800 z\u0142/mb, ogrodzenia od 600 z\u0142/mb. Darmowa wycena \u2713 Monta\u017c \u260e 604 253 145'
       : 'Wrought iron pricing guide: gates from 3000 PLN/m\u00b2, railings from 800 PLN/lm, fences from 600 PLN/lm. Free quote \u2713 Installation included \u260e 604 253 145'
 
   return (

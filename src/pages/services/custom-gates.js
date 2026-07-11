@@ -125,7 +125,7 @@ function BramyKuteNaZamowieniePage({ pageContext }) {
         variant="gates"
         limit={8}
         viewMoreText={t('services:gates.gallery.viewMore')}
-        viewMoreHref="/gallery/"
+        viewMoreHref="/gallery/wrought-iron-gates/"
       />
 
       <RelatedServices

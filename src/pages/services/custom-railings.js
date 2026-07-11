@@ -126,7 +126,7 @@ function BalustradyNaZamowieniePage({ pageContext }) {
         variant="railings"
         limit={8}
         viewMoreText={t('services:railings.gallery.viewMore')}
-        viewMoreHref="/gallery/"
+        viewMoreHref="/gallery/wrought-iron-railings/"
       />
 
       <RelatedServices

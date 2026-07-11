@@ -5,19 +5,19 @@
       "description": "Wrought iron railings in Białystok — stair, balcony and exterior — plus custom gates. ✓ Free quote ✓ 30 years experience ✓ Installation and delivery"
     },
     "lomza": {
-      "title": "Blacksmith Łomża - Driveway Gates & Railings | Free Quote",
+      "title": "Blacksmith Łomża - Driveway Gates & Railings | Karny",
       "description": "Custom wrought iron driveway gates and railings in Łomża. ✓ Free quote ✓ Installation and delivery ✓ 30 years experience. Call: +48 604 253 145"
     },
     "warszawa": {
-      "title": "Blacksmith Warsaw - Custom Wrought Iron Gates | Professional Installation",
+      "title": "Blacksmith Warsaw - Wrought Iron Gates & Fences | Karny",
       "description": "Professional artistic blacksmithing in Warsaw. Custom wrought iron gates, railings, fences. We serve the entire agglomeration. Call: +48 604 253 145"
     },
     "suwalki": {
-      "title": "Blacksmith Suwałki - Railings & Wrought Iron Gates | Free Quote",
+      "title": "Blacksmith Suwałki - Railings & Iron Gates | Karny",
       "description": "Custom railings and wrought iron gates in Suwałki. ✓ Free quote ✓ Regular projects in the region ✓ 30 years experience. Call: +48 604 253 145"
     },
     "augustow": {
-      "title": "Blacksmith Augustów - Gates & Fences | Summer Houses",
+      "title": "Blacksmith Augustów - Gates & Fences | Karny",
       "description": "Custom wrought iron gates and fences in Augustów. ✓ Specializing in summer houses and guesthouses ✓ Free quote ✓ Installation. Call: +48 604 253 145"
     }
   },
@@ -209,6 +209,7 @@
     },
     "serviceOfferings": {
       "mainTitle": "Custom Artistic Blacksmithing in {{city}}",
+      "galleryLinkText": "See our projects →",
       "cta": {
         "title": "Looking for a Blacksmith in {{city}}?",
         "text": "Contact us today and get a free quote for custom fences, gates and railings.",
@@ -217,6 +218,7 @@
       "items": [
         {
           "titleTemplate": "Custom Fences {{city}}",
+          "galleryPath": "/gallery/wrought-iron-fences/",
           "descriptionTemplate": "We design and manufacture custom wrought iron fences for clients in {{city}} and surrounding areas. Each fence is created according to an individual design.",
           "features": [
             "Individual fence designs",
@@ -228,6 +230,7 @@
         },
         {
           "titleTemplate": "Custom Wrought Iron Gates {{city}}",
+          "galleryPath": "/gallery/wrought-iron-gates/",
           "descriptionTemplate": "We specialize in custom wrought iron gates. We offer driveway, sliding and double-leaf gates for homes in {{city}}.",
           "features": [
             "Double-leaf and sliding gates",
@@ -239,6 +242,7 @@
         },
         {
           "titleTemplate": "Custom Railings {{city}}",
+          "galleryPath": "/gallery/wrought-iron-railings/",
           "descriptionTemplate": "We manufacture custom railings - interior and exterior. Ideal for homes and businesses in {{city}}.",
           "features": [
             "Staircase railings",

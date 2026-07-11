@@ -85,24 +85,23 @@ export function EnhancedSEO({
   
   // Implement smart title handling with appendSiteTitle flag
   const baseTitle = pageTitle || ''; // pageTitle is the 'title' prop from page
-  const siteNameString = baseSiteTitle; // baseSiteTitle is already defined as: tCommon('siteTitle') || defaultTitle;
+  const siteNameString = baseSiteTitle; // full site name — kept for og:site_name
+  // Google truncates titles around 60 characters, so the <title> suffix uses a
+  // short brand instead of the 49-character full site name
+  const shortBrand = currentLanguage === 'pl' ? 'Kowal Karny' : 'Karny Blacksmith';
   let finalTitle;
 
   if (pageType === 'home') {
     // For the home page, use the title passed in (baseTitle).
     // If baseTitle is empty, fall back to the siteNameString.
     finalTitle = baseTitle || siteNameString;
-  } else if (appendSiteTitle && baseTitle && siteNameString) {
-    // Only append if baseTitle is not the same as siteNameString and does not already include it.
-    if (baseTitle.trim().toLowerCase() !== siteNameString.trim().toLowerCase() && 
-        !baseTitle.toLowerCase().includes(siteNameString.toLowerCase())) {
-      finalTitle = `${baseTitle} | ${siteNameString}`;
-    } else {
-      // baseTitle is already the site name or includes it.
-      finalTitle = baseTitle;
-    }
+  } else if (appendSiteTitle && baseTitle) {
+    // Titles that already mention the brand (e.g. "… | Karny") stay as-is
+    finalTitle = baseTitle.toLowerCase().includes('karny')
+      ? baseTitle
+      : `${baseTitle} | ${shortBrand}`;
   } else {
-    // If not appending, or baseTitle/siteNameString is missing, use baseTitle or fallback to siteNameString.
+    // If not appending, or baseTitle is missing, use baseTitle or fallback to siteNameString.
     finalTitle = baseTitle || siteNameString;
   }
 

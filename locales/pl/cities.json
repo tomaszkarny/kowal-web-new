@@ -5,19 +5,19 @@
       "description": "Balustrady kute Białystok — schodowe, balkonowe i zewnętrzne — oraz bramy na zamówienie. ✓ Darmowa wycena ✓ 30 lat doświadczenia ✓ Montaż i transport"
     },
     "lomza": {
-      "title": "Kowal Łomża - Bramy Wjazdowe i Balustrady | Darmowa Wycena",
+      "title": "Kowal Łomża - Bramy Wjazdowe i Balustrady | Karny",
       "description": "Bramy wjazdowe kute i balustrady na zamówienie w Łomży. ✓ Darmowa wycena ✓ Montaż i transport ✓ 30 lat doświadczenia. Zadzwoń: 604 253 145"
     },
     "warszawa": {
-      "title": "Kowal Warszawa - Bramy Kute na Zamówienie | Profesjonalny Montaż",
+      "title": "Kowal Warszawa - Bramy i Ogrodzenia Kute | Karny",
       "description": "Profesjonalne kowalstwo artystyczne w Warszawie. Bramy kute, balustrady, ogrodzenia na zamówienie. Obsługujemy całą aglomerację. Zadzwoń: 604 253 145"
     },
     "suwalki": {
-      "title": "Kowal Suwałki - Balustrady i Bramy Kute | Darmowa Wycena",
+      "title": "Kowal Suwałki - Balustrady i Bramy Kute | Karny",
       "description": "Balustrady kute i bramy na zamówienie w Suwałkach. ✓ Darmowa wycena ✓ Regularne realizacje w regionie ✓ 30 lat doświadczenia. Zadzwoń: 604 253 145"
     },
     "augustow": {
-      "title": "Kowal Augustów - Bramy i Ogrodzenia | Domy Letniskowe",
+      "title": "Kowal Augustów - Bramy i Ogrodzenia Kute | Karny",
       "description": "Bramy kute i ogrodzenia na zamówienie w Augustowie. ✓ Specjalizacja: domy letniskowe i pensjonaty ✓ Darmowa wycena ✓ Montaż. Zadzwoń: 604 253 145"
     }
   },
@@ -209,6 +209,7 @@
     },
     "serviceOfferings": {
       "mainTitle": "Kowalstwo Artystyczne na Zamówienie w {{city}}",
+      "galleryLinkText": "Zobacz realizacje →",
       "cta": {
         "title": "Szukasz Kowala w {{city}}?",
         "text": "Skontaktuj się z nami już dziś i otrzymaj darmową wycenę na ogrodzenia, bramy i balustrady na zamówienie.",
@@ -217,6 +218,7 @@
       "items": [
         {
           "titleTemplate": "Ogrodzenia na Zamówienie {{city}}",
+          "galleryPath": "/gallery/wrought-iron-fences/",
           "descriptionTemplate": "Projektujemy i wykonujemy ogrodzenia kute na zamówienie dla klientów z {{city}} i okolic. Każde ogrodzenie jest tworzone według indywidualnego projektu.",
           "features": [
             "Indywidualne projekty ogrodzeń",
@@ -228,6 +230,7 @@
         },
         {
           "titleTemplate": "Bramy Kute na Zamówienie {{city}}",
+          "galleryPath": "/gallery/wrought-iron-gates/",
           "descriptionTemplate": "Specjalizujemy się w bramach kutych na zamówienie. Oferujemy bramy wjazdowe, przesuwne i dwuskrzydłowe dla domów w {{city}}.",
           "features": [
             "Bramy dwuskrzydłowe i przesuwne",
@@ -239,6 +242,7 @@
         },
         {
           "titleTemplate": "Balustrady na Zamówienie {{city}}",
+          "galleryPath": "/gallery/wrought-iron-railings/",
           "descriptionTemplate": "Wykonujemy balustrady na zamówienie - wewnętrzne i zewnętrzne. Idealne dla domów i firm w {{city}}.",
           "features": [
             "Balustrady schodowe",
