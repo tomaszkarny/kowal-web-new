@@ -21,7 +21,7 @@ import {
   CTAText,
 } from './CityServiceOfferings.styles'
 
-export function CityServiceOfferings({ city, language, pathname }) {
+export function CityServiceOfferings({ city, pathname }) {
   const { t } = useTranslation('cities')
   const actualLanguage = useActualLanguage(pathname)
 
@@ -49,13 +49,13 @@ export function CityServiceOfferings({ city, language, pathname }) {
         <CityTitle $size="lg" $mb="3rem">{mainTitle}</CityTitle>
 
         <ServicesGrid>
-          {services.map((service, index) => (
-            <ServiceCard key={index}>
+          {services.map(service => (
+            <ServiceCard key={service.title}>
               <CityCardTitle>{service.title}</CityCardTitle>
               <ServiceDescription>{service.description}</ServiceDescription>
               <ServiceFeatures>
-                {service.features.map((feature, idx) => (
-                  <FeatureItem key={idx}>{feature}</FeatureItem>
+                {service.features.map(feature => (
+                  <FeatureItem key={feature}>{feature}</FeatureItem>
                 ))}
               </ServiceFeatures>
             </ServiceCard>

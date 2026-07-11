@@ -55,7 +55,6 @@ export default NotFoundPage;
 
 // SEO Metadata for the 404 page - z SEO-przyjaznym tytułem
 export function Head({ location, pageContext }) {
-  const { t } = useTranslation('common');
   // Get language from pageContext instead of useI18next
   const language = pageContext?.language || 'pl';
   

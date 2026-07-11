@@ -29,8 +29,8 @@ export const getSchemaValue = (translations, key, params = {}) => {
   const keys = key.split('.')
   let value = translations
 
-  for (const k of keys) {
-    value = value?.[k]
+  for (let i = 0; i < keys.length; i += 1) {
+    value = value?.[keys[i]]
     if (value === undefined) return key // fallback to key if not found
   }
 

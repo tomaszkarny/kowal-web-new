@@ -64,9 +64,13 @@ const calculateTravelTime = (distance) => {
     }
   }
   
-  const plHour = h === 1 ? 'godzina' : (h < 5 ? 'godziny' : 'godzin')
+  const plForm = (n, one, few, many) => {
+    if (n === 1) return one
+    return n < 5 ? few : many
+  }
+  const plHour = plForm(h, 'godzina', 'godziny', 'godzin')
   const enHour = h === 1 ? 'hour' : 'hours'
-  const plMin = m === 1 ? 'minuta' : (m < 5 ? 'minuty' : 'minut')
+  const plMin = plForm(m, 'minuta', 'minuty', 'minut')
   const enMin = m === 1 ? 'minute' : 'minutes'
   
   return {

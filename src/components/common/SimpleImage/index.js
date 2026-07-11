@@ -1,1 +1,1 @@
-export { default, SimpleImage } from './SimpleImage'
+export { SimpleImage } from './SimpleImage'

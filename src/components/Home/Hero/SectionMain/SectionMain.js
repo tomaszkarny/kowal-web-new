@@ -9,7 +9,6 @@ import { StatsCounter } from './components/StatsCounter/StatsCounter'
 
 import {
   SpecializationWrapper,
-  SectionConnector,
   InteractiveSpecialtiesContainer
 } from './SectionMain.styles'
 

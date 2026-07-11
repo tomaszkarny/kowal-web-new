@@ -170,8 +170,8 @@ export function ContactForm({ onSubmitSuccess }) {
         <input type="hidden" name="form-name" value="contact" />
         {/* Honeypot field to catch bots */}
         <p hidden>
-          <label>
-            Don't fill this out if you're human: <input name="bot-field" />
+          <label htmlFor="bot-field">
+            Don&apos;t fill this out if you&apos;re human: <input id="bot-field" name="bot-field" />
           </label>
         </p>
         {FORM_INPUTS.map(({ label, type, name, translationKey }) => {

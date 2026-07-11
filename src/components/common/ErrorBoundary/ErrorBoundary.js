@@ -3,11 +3,11 @@ import React from 'react'
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { hasError: false, error: null }
+    this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error }
+  static getDerivedStateFromError() {
+    return { hasError: true }
   }
 
   componentDidCatch(error, errorInfo) {
@@ -18,12 +18,14 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state
+    const { fallback = null, children } = this.props
+    if (hasError) {
       // Fallback UI - render nothing instead of crashing
-      return this.props.fallback || null
+      return fallback
     }
 
-    return this.props.children
+    return children
   }
 }
 

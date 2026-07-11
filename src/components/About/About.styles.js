@@ -35,7 +35,7 @@ export const HeroOverlay = styled.div`
   background: linear-gradient(180deg, rgba(30,30,40,0.85) 35%, rgba(60,60,90,0.78) 100%);
   z-index: 1;
 
-  /* ≥576 px: restore original angled gradient */
+  /* ≥576px: restore original angled gradient */
   ${mq('small')} {
     background: linear-gradient(120deg, rgba(30,30,40,0.82) 60%, rgba(60,60,90,0.7) 100%);
   }

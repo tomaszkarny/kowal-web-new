@@ -25,12 +25,7 @@ import { StructuredDataScript } from 'components/common/StructuredDataScript'
  * 
  * <FAQSchema faqData={faqs} pathname={location.pathname} />
  */
-export function FAQSchema({
-  faqData = [],
-  url,
-  pathname,
-  language = 'pl'
-}) {
+export function FAQSchema({ faqData = [] }) {
   // Validate FAQ data
   if (!faqData || !Array.isArray(faqData) || faqData.length === 0) {
     return null

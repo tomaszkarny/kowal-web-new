@@ -1,11 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useI18next, navigate } from 'gatsby-plugin-react-i18next'
+import { Link, useI18next } from 'gatsby-plugin-react-i18next'
 
 import * as CONTACT_DETAILS from 'consts/contactDetails'
 import { getCityPath } from 'utils/cityUtils'
-import { cleanLanguagePrefixes, buildLanguagePath } from 'consts/languageConfig'
-import citiesData from 'data/cities'
 
 import {
   StyledFooter,
@@ -20,41 +18,6 @@ import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 export function Footer() {
   const { t } = useTranslation('footer')
   const { languages, originalPath, language } = useI18next()
-  
-  
-  // Import cities data for language switching logic
-  const cities = citiesData.CITIES || citiesData.default || citiesData
-
-  // Function to generate correct language path using shared utilities
-  const getLanguagePath = (targetLanguage, currentPath) => {
-    // Use shared utility to clean language prefixes
-    const cleanPath = cleanLanguagePrefixes(currentPath)
-
-    // Check if this is a city page using the cleaned path
-    const cityPageMatch = cleanPath.match(/^\/cities\/([^\/]+)\/?$/)
-
-    if (cityPageMatch) {
-      const currentSlug = cityPageMatch[1]
-
-      // Find the city by current slug (could be in either language)
-      const city = cities.find(city =>
-        city.slug.pl === currentSlug || city.slug.en === currentSlug
-      )
-
-      if (city) {
-        // Always use English slug for consistency (like gatsby-node.js)
-        const cityPath = `/cities/${city.slug.en}/`
-        // Use shared utility to build language-specific path
-        return buildLanguagePath(cityPath, targetLanguage)
-      } 
-        // Fallback if city not found
-        return buildLanguagePath('/cities/', targetLanguage)
-      
-    }
-
-    // For non-city pages, use shared utility
-    return buildLanguagePath(cleanPath, targetLanguage)
-  }
   
   // Hardcode popular cities for footer with proper slugs
   const popularCities = [
@@ -224,7 +187,11 @@ export function Footer() {
                 }
               }}
             >
-              {lng === 'en' ? (typeof t === 'function' ? t('englishVersion') : 'English Version') : (typeof t === 'function' ? t('polishVersion') : 'Polish Version')}
+              {(() => {
+                const key = lng === 'en' ? 'englishVersion' : 'polishVersion'
+                const fallback = lng === 'en' ? 'English Version' : 'Polish Version'
+                return typeof t === 'function' ? t(key) : fallback
+              })()}
             </Link>
           )
         })}

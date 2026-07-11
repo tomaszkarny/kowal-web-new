@@ -29,9 +29,7 @@ import { StructuredDataScript } from 'components/common/StructuredDataScript'
  */
 export function LocalBusinessSchema({
   url = WEBSITE_URL,
-  title,
   description,
-  image,
   pathname,
   language = 'pl'
 }) {

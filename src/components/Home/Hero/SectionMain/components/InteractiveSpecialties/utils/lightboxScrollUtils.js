@@ -38,7 +38,7 @@ export const openLightbox = (
   autoTimerRef,
   progressTimerRef,
   scrollPosRef,
-  hasOpenedLightbox,
+  hasOpenedLightboxRef,
   activeItem,
   setCurrentSlide,
   setIsViewerOpen
@@ -49,7 +49,7 @@ export const openLightbox = (
   
   // Store current scroll position in ref
   scrollPosRef.current = window.scrollY;
-  hasOpenedLightbox.current = true;
+  hasOpenedLightboxRef.current = true;
   setCurrentSlide(activeItem - 1);
   setIsViewerOpen(true);
 };

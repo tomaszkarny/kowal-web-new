@@ -1,23 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api'
 
-import { WORKSHOP_LOCATION, GOOGLE_MAP_MARKER } from 'consts/consts'
+import { WORKSHOP_LOCATION } from 'consts/consts'
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 import {
   MapContainer,
   InfoTitle,
   InfoText,
-  mapContainerStyle,
-  MapLoadingElement
+  mapContainerStyle
 } from './GoogleMap.styles'
 
 export function WrappedGoogleMap({ isMarkerShown }) {
   const [selectedMarker, setSelectedMarker] = useState(null)
-  const [map, setMap] = useState(null)
-
-  const onMapLoad = useCallback((map) => {
-    setMap(map)
-  }, [])
+  const onMapLoad = useCallback(() => {}, [])
 
   useEffect(() => {
     const listener = e => {

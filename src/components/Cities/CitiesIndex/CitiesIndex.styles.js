@@ -5,8 +5,6 @@ import { THEME } from 'consts/theme'
 import { fadeIn, emberPulse } from 'components/common/animations/animations'
 import {
   FORGE_COLORS,
-  FORGE_MEDIA,
-  FORGE_TYPOGRAPHY,
   CityGrid,
   hammeredTexture
 } from '../styles'

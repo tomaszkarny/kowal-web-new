@@ -1,20 +1,19 @@
 const React = require('react');
 
 exports.onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
-  const headComponents = getHeadComponents();
-
-  // Enhance canonical URLs
-  headComponents.forEach(component => {
+  // Enhance canonical URLs (clone instead of mutating React element props)
+  const headComponents = getHeadComponents().map(component => {
     if (
       component.type === 'link' &&
       component.props &&
       component.props.rel === 'canonical'
     ) {
-      if (!component.props.key) {
-        component.props.key = 'canonical';
-      }
-      component.props['data-testid'] = 'canonical-link';
+      return React.cloneElement(component, {
+        key: component.props.key || 'canonical',
+        'data-testid': 'canonical-link',
+      });
     }
+    return component;
   });
 
   // Add viewport meta tag if missing

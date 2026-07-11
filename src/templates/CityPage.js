@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Layout } from 'components/Layout/Layout'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
@@ -38,9 +37,17 @@ const CityFAQ = lazy(() => import('components/Cities/CityFAQ').then(module => ({
  * Template dla stron miast
  * Tworzone dynamicznie w gatsby-node.js
  */
+// Simple loading component (module scope — stable identity across renders)
+function LoadingComponent() {
+  return (
+    <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <div style={{ color: '#6c757d' }}>...</div>
+    </div>
+  )
+}
+
 function CityPageTemplate({ pageContext, location }) {
   const { city, language } = pageContext
-  const { t } = useTranslation('cities')
   
   // Przygotowanie danych dla szablonów tłumaczeń
   const templateData = {
@@ -51,14 +58,6 @@ function CityPageTemplate({ pageContext, location }) {
     radius: city.serviceArea.radius,
     isFreeDelivery: city.freeDelivery
   }
-
-
-  // Simple loading component
-  function LoadingComponent() {
-  return <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <div style={{ color: '#6c757d' }}>...</div>
-    </div>
-}
 
   return (
     <Layout>

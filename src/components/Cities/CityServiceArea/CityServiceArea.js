@@ -34,8 +34,8 @@ export function CityServiceArea({ city, language, templateData }) {
         <CityInfoBox style={{ margin: '2rem 0' }}>
           <CityInfoTitle>{neighborhoodsTitle}</CityInfoTitle>
           <TagsGrid>
-            {neighborhoods.map((neighborhood, index) => (
-              <CityTagStatic key={index}>{neighborhood}</CityTagStatic>
+            {neighborhoods.map(neighborhood => (
+              <CityTagStatic key={neighborhood}>{neighborhood}</CityTagStatic>
             ))}
           </TagsGrid>
           <RadiusNote>{radiusInfo}</RadiusNote>

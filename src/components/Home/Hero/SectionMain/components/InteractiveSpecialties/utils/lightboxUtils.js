@@ -40,7 +40,7 @@ export const createImageAndLabelMaps = (data, t) => {
  * Creates lightbox photos array with original image dimensions
  */
 export const createLightboxPhotos = (imageMap, labelMap) => Object.keys(imageMap)
-    .sort((a, b) => parseInt(a) - parseInt(b))
+    .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
     .map(key => {
       const originalData = imageMap[key].original;
       return {

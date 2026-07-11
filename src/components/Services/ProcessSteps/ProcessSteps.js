@@ -31,7 +31,7 @@ export function ProcessSteps({ title, steps }) {
         <CityTitle>{title}</CityTitle>
         <StepsContainer>
           {steps.map((step, index) => (
-            <Step key={index}>
+            <Step key={step.title}>
               <StepNumber>{step.number || index + 1}</StepNumber>
               <StepContent>
                 <StepTitle>{step.title}</StepTitle>

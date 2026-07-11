@@ -59,12 +59,12 @@ exports.onClientEntry = () => {
       if (typeof message === 'string') {
         // Ignore defaultProps warnings for memo components
         if (message.includes('defaultProps will be removed from memo components')) {
-          return;
+          return undefined;
         }
         
         // Filter out i18next initialization errors
         if (message.includes('You will need to pass in an i18next instance by using initReactI18next')) {
-          return;
+          return undefined;
         }
       }
       

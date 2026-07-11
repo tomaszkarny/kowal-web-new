@@ -56,8 +56,8 @@ export function CityFAQ({ city, language, templateData }) {
         <CityTitle $size="lg" $mb="3rem">
           {title}
         </CityTitle>
-        {faqItems.map((item, index) => (
-          <FAQItem key={index}>
+        {faqItems.map(item => (
+          <FAQItem key={item.question}>
             <Question>
               {item.question.replace(/\{\{city\}\}/g, templateData.city)}
             </Question>

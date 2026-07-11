@@ -24,7 +24,7 @@ import {
   EmergencyInfo,
 } from './CityContact.styles'
 
-export function CityContact({ city, language, templateData, pathname }) {
+export function CityContact({ city, templateData, pathname }) {
   const { t } = useTranslation('cities')
   const actualLanguage = useActualLanguage(pathname)
 

@@ -16,13 +16,12 @@ import { StructuredDataScript } from 'components/common/StructuredDataScript'
 export function BreadcrumbSchema({
   breadcrumbs: breadcrumbsProp,
   pathname,
-  url,
   language = 'pl',
 }) {
   // Use provided breadcrumbs or generate from pathname
   const breadcrumbItems =
     breadcrumbsProp && breadcrumbsProp.length > 0
-      ? breadcrumbsProp.map((item, index) => ({
+      ? breadcrumbsProp.map(item => ({
           name: item.name,
           url: (item.item || '').startsWith('http')
             ? item.item

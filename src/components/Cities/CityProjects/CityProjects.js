@@ -13,7 +13,7 @@ import {
   ProjectMeta,
 } from './CityProjects.styles'
 
-export function CityProjects({ city, language, templateData }) {
+export function CityProjects({ city, language }) {
   const { t } = useTranslation('cities')
   const seoData = getCitySeoData(city.id)
 
@@ -33,8 +33,8 @@ export function CityProjects({ city, language, templateData }) {
         <Subtitle>{subtitle}</Subtitle>
 
         <ProjectsGrid>
-          {projects.map((project, index) => (
-            <ProjectCard key={index}>
+          {projects.map(project => (
+            <ProjectCard key={project.title}>
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectDescription>{project.description}</ProjectDescription>
               <ProjectMeta>

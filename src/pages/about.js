@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { About } from 'components/About/About'
 import { Layout } from 'components/Layout/Layout'
@@ -9,7 +8,7 @@ import { FAQSchema } from 'components/SEO/FAQSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
-import { BUSINESS_NAME_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML
+import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function AboutPage() {

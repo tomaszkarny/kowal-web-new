@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { graphql, useStaticQuery } from 'gatsby'
-import { getImage } from 'gatsby-plugin-image'
 import workbenchImg from 'assets/images/workbench.png'
 import {
     HeroContainer,
@@ -15,19 +13,6 @@ import {
 export function AboutIntro() {
     const { t } = useTranslation('about')
     const containerRef = useRef(null)
-
-    // Query for a better hero image
-    const { heroImage } = useStaticQuery(graphql`
-        query AboutHeroImageQuery {
-            heroImage: file(relativePath: { eq: "workbench.png" }) {
-                childImageSharp {
-                    gatsbyImageData(width: 1920, placeholder: BLURRED, formats: [AUTO, WEBP], quality: 90)
-                }
-            }
-        }
-    `)
-
-    const heroImg = heroImage?.childImageSharp ? getImage(heroImage.childImageSharp) : null
 
     // Parallax effect on scroll
     useEffect(() => {

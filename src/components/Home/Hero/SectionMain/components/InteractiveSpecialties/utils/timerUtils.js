@@ -7,7 +7,7 @@ export const startProgressTimer = (cycleDuration, updateInterval, setProgress) =
   const totalSteps = cycleDuration / updateInterval;
   let currentStep = 0;
   return setInterval(() => {
-    currentStep++;
+    currentStep += 1;
     setProgress((currentStep / totalSteps) * 100);
   }, updateInterval);
 };

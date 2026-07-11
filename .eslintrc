@@ -24,6 +24,20 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/display-name": [0],
     "react/prop-types": [0],
-    "import/prefer-default-export": [0]
+    "react/require-default-props": [0],
+    "react/forbid-prop-types": [0],
+    "react/jsx-props-no-spreading": [0],
+    "import/prefer-default-export": [0],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "acc", "accumulator", "e", "ctx", "context",
+          "req", "request", "res", "response", "$scope", "staticContext"
+        ],
+        "ignorePropertyModificationsForRegex": ["Ref$"]
+      }
+    ]
   }
 }

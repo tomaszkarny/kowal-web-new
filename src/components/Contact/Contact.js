@@ -26,7 +26,7 @@ const MapPlaceholder = styled.div`
 export function Contact() {
   const { t } = useTranslation('contact')
   const [showSuccess, setShowSuccess] = useState(false)
-  const [showForm, setShowForm] = useState(true)
+  const [, setShowForm] = useState(true)
   const [mapVisible, setMapVisible] = useState(false)
   const mapRef = useRef(null)
 
@@ -38,10 +38,10 @@ export function Contact() {
 
   // Lazy load Google Maps
   useEffect(() => {
-    if (!mapRef.current) return
+    if (!mapRef.current) return undefined
     if (!('IntersectionObserver' in window)) {
       setMapVisible(true)
-      return
+      return undefined
     }
     const observer = new IntersectionObserver(
       ([entry]) => {

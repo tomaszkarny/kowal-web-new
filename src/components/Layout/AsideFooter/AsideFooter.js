@@ -1,6 +1,4 @@
 import React from 'react'
-import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
-
 import { StyledSection } from 'components/Layout/AsideFooter/AsideFooter.styles'
 
 export function AsideFooter() {

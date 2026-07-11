@@ -2,23 +2,31 @@ import React from "react"
 import PropTypes from "prop-types"
 
 // HTML component that allows Gatsby's Head API to manage titles properly
-export default function HTML(props) {
+// lang="pl" is the default; htmlAttributes from the Head API override it per page
+export default function HTML({
+  htmlAttributes,
+  headComponents,
+  bodyAttributes,
+  preBodyComponents,
+  body,
+  postBodyComponents,
+}) {
   return (
-    <html {...props.htmlAttributes}>
+    <html lang="pl" {...htmlAttributes}>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        {props.headComponents}
+        {headComponents}
       </head>
-      <body {...props.bodyAttributes}>
-        {props.preBodyComponents}
+      <body {...bodyAttributes}>
+        {preBodyComponents}
         <div
           key="body"
           id="___gatsby"
-          dangerouslySetInnerHTML={{ __html: props.body }}
+          dangerouslySetInnerHTML={{ __html: body }}
         />
-        {props.postBodyComponents}
+        {postBodyComponents}
       </body>
     </html>
   )

@@ -33,15 +33,15 @@ export function CityKeywords({ city, language }) {
         </CityTitle>
 
         <KeywordsGrid>
-          {keywords.map((keyword, index) => (
-            <CityTag key={index}>{keyword}</CityTag>
+          {keywords.map(keyword => (
+            <CityTag key={keyword}>{keyword}</CityTag>
           ))}
         </KeywordsGrid>
 
         {features.length > 0 && (
           <LocalFeatures>
-            {features.map((feature, index) => (
-              <FeatureItem key={index}>{feature}</FeatureItem>
+            {features.map(feature => (
+              <FeatureItem key={feature}>{feature}</FeatureItem>
             ))}
           </LocalFeatures>
         )}

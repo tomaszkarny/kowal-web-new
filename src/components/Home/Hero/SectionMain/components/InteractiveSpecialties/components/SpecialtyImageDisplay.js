@@ -5,7 +5,7 @@ import {
   ProgressBar,
   SpecialtyImage,
   FallbackImage
-} from '../styles/styles.js';
+} from '../styles/styles';
 import { ProgressDots } from './ProgressDots';
 
 export function SpecialtyImageDisplay({

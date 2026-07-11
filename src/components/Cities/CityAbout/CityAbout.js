@@ -12,7 +12,7 @@ import {
   FeatureDescription,
 } from './CityAbout.styles'
 
-export function CityAbout({ city, language, templateData }) {
+export function CityAbout({ templateData }) {
   const { t } = useTranslation('cities')
 
   const title = t('cityPage.about.title', templateData)
@@ -42,8 +42,8 @@ export function CityAbout({ city, language, templateData }) {
           {title}
         </CityTitle>
         <CityGrid $minWidth="250px">
-          {features.map((feature, index) => (
-            <FeatureCard key={index}>
+          {features.map(feature => (
+            <FeatureCard key={feature.title}>
               <CityCardTitle>{feature.title}</CityCardTitle>
               <FeatureDescription>{feature.description}</FeatureDescription>
             </FeatureCard>

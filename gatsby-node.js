@@ -6,7 +6,7 @@
  */
 
 const path = require('path')
-const { CITIES, getAllCitySlugs } = require('./src/data/cities')
+const { CITIES } = require('./src/data/cities')
 const { processCityData } = require('./src/utils/cityDistanceCalculator')
 
 // Simple example to demonstrate the file exists and is properly configured
@@ -38,7 +38,7 @@ const validateCityData = (city, reporter) => {
 }
 
 // Create city pages programmatically
-exports.createPages = async ({ graphql, actions, reporter }) => {
+exports.createPages = async ({ actions, reporter }) => {
   const { createPage } = actions
   
   // Create pages for each city
@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     try {
       // Validate city data first
       if (!validateCityData(city, reporter)) {
-        skippedCities++
+        skippedCities += 1
         return
       }
       
@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // Validate processed city data
       if (!processedCity || !processedCity.distance || !processedCity.travelTime) {
         reporter.error(`Failed to process city data for ${city.id}`)
-        skippedCities++
+        skippedCities += 1
         return
       }
     
@@ -112,11 +112,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     })
     
-    validCities++
+    validCities += 1
     
     } catch (error) {
       reporter.error(`Error creating pages for city ${city.id}: ${error.message}`)
-      skippedCities++
+      skippedCities += 1
     }
   })
   
@@ -265,9 +265,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 };
 
 // Add debugging for page creation
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
-
+exports.onCreatePage = ({ page }) => {
   // Log page creation and context for debugging
   console.log(`[gatsby-node] Creating page: ${page.path}`);
   console.log(`[gatsby-node] Page context:`, JSON.stringify(page.context, null, 2));

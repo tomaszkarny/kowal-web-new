@@ -89,13 +89,13 @@ export function LazyImage({
     // If eager loading, load immediately
     if (eager) {
       setIsIntersecting(true)
-      return
+      return undefined
     }
     
     // Check if Intersection Observer is supported
     if (!('IntersectionObserver' in window)) {
       setIsIntersecting(true)
-      return
+      return undefined
     }
     
     // Create observer

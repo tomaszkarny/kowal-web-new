@@ -1,5 +1,3 @@
-import { graphql } from 'gatsby';
-
 /**
  * GraphQL query template for specialty images
  * Note: This is not directly used with useStaticQuery but used as a template

@@ -40,16 +40,16 @@ export function ServiceTypes({
       <CityContainer>
         <CityTitle>{title}</CityTitle>
         <TypesGrid $columns={columns}>
-          {types.map((type, index) => (
-            <TypeCard key={index}>
+          {types.map(type => (
+            <TypeCard key={type.title}>
               <TypeTitle>{type.title}</TypeTitle>
               <TypeDescription $hasFeatures={type.features?.length > 0}>
                 {type.description}
               </TypeDescription>
               {type.features && type.features.length > 0 && (
                 <FeaturesList>
-                  {type.features.map((feature, featureIndex) => (
-                    <FeatureItem key={featureIndex}>{feature}</FeatureItem>
+                  {type.features.map(feature => (
+                    <FeatureItem key={feature}>{feature}</FeatureItem>
                   ))}
                 </FeaturesList>
               )}

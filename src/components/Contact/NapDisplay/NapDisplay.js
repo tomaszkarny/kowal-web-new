@@ -4,14 +4,8 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { StyledAnchor } from 'components/common/StyledAnchor/StyledAnchor'
 
 // Styles
-import { 
-  getNapInfo, 
-  BUSINESS_NAME_ML,
-  ADDRESS_ML,
-  PHONE_NUMBER,
-  PHONE_NUMBER_DISPLAY,
-  EMAIL_ADDRESS,
-  OPENING_HOURS_ML,
+import {
+  getNapInfo,
   FACEBOOK_URL,
   INSTAGRAM_URL
 } from 'consts/contactDetails'
@@ -58,8 +52,6 @@ export function NapDisplay({
   
   // Determine what elements to show based on variant
   const isCompact = variant === 'compact'
-  const isFooter = variant === 'footer'
-  
   // Adjust what to show based on variant
   const displayHours = showHours && !isCompact
   const displaySocial = showSocialLinks && !isCompact
@@ -109,8 +101,8 @@ export function NapDisplay({
             {t('opening_hours')}
           </SectionHeader>
           <HoursList>
-            {napInfo.openingHours.map((item, index) => (
-              <HoursItem key={`hours-${index}`}>
+            {napInfo.openingHours.map(item => (
+              <HoursItem key={item.days}>
                 <DayLabel>{item.days}</DayLabel>
                 <HoursLabel>{item.hours}</HoursLabel>
               </HoursItem>

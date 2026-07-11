@@ -15,13 +15,13 @@ function TranslationPreloader({ namespaces = ['common', 'about', 'gallery', 'con
 
   useEffect(() => {
     // Skip if no i18n instance or already loaded/loading
-    if (!i18n || !language) return
+    if (!i18n || !language) return undefined
     
     const cacheKey = `${language}_namespaces_loaded`
     const isAlreadyLoaded = loadedRef.current[language] || sessionStorage.getItem(cacheKey)
     const isCurrentlyLoading = loadingRef.current[language]
     
-    if (isAlreadyLoaded || isCurrentlyLoading) return
+    if (isAlreadyLoaded || isCurrentlyLoading) return undefined
 
     // Set loading flag immediately to prevent race conditions
     loadingRef.current[language] = true
@@ -38,7 +38,7 @@ function TranslationPreloader({ namespaces = ['common', 'about', 'gallery', 'con
       } catch (e) {
         // Ignore storage errors
       }
-      return
+      return undefined
     }
 
     // Load only the missing namespaces

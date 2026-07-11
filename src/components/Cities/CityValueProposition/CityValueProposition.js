@@ -106,7 +106,7 @@ function CheckmarkIcon() {
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════
 
-export function CityValueProposition({ city, language, templateData }) {
+export function CityValueProposition({ city, language }) {
   const { t } = useTranslation('cities')
 
   // Calculate delivery cost
@@ -241,8 +241,8 @@ export function CityValueProposition({ city, language, templateData }) {
             </WhyUsTitle>
           </WhyUsHeader>
           <BenefitsGrid>
-            {benefits.map((benefit, index) => (
-              <BenefitItem key={index}>
+            {benefits.map(benefit => (
+              <BenefitItem key={benefit}>
                 <BenefitCheck />
                 <BenefitText>{benefit}</BenefitText>
               </BenefitItem>

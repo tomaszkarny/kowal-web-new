@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import heatVideo from 'src/assets/video/RedToWhiteHeat.mp4'
+import heatVideo from 'assets/video/RedToWhiteHeat.mp4'
 import { SectionTitle } from 'components/common/SectionTitle/SectionTitle'
 import { SectionDescription } from 'components/common/SectionDescription/SectionDescription'
 import { css } from '@emotion/react'
@@ -46,8 +46,8 @@ export function AboutCraft() {
             </CraftMediaContainer>
             
             <CraftFeatures>
-                {features.map((feature, index) => (
-                    <CraftFeatureItem key={index}>
+                {features.map(feature => (
+                    <CraftFeatureItem key={feature.translationKey}>
                         <CraftFeatureIcon>
                             <FontAwesomeIcon icon={feature.icon} />
                         </CraftFeatureIcon>

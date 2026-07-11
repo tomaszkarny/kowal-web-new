@@ -238,8 +238,8 @@ function CennikPage({ pageContext }) {
               </thead>
               <tbody>
                 {Array.isArray(priceItems) &&
-                  priceItems.map((item, index) => (
-                    <tr key={index}>
+                  priceItems.map(item => (
+                    <tr key={item.service}>
                       <td>{item.service}</td>
                       <td>
                         <strong>{item.price}</strong>
@@ -256,8 +256,8 @@ function CennikPage({ pageContext }) {
             <p>{t('factors.intro')}</p>
             <FactorsList>
               {Array.isArray(factorItems) &&
-                factorItems.map((item, index) => (
-                  <FactorItem key={index}>
+                factorItems.map(item => (
+                  <FactorItem key={item.title}>
                     <FactorTitle>{item.title}</FactorTitle>
                     <FactorText>{item.description}</FactorText>
                   </FactorItem>
@@ -285,8 +285,8 @@ function CennikPage({ pageContext }) {
           <FAQSection>
             <h2>{t('faq.title')}</h2>
             {Array.isArray(faqItems) &&
-              faqItems.map((item, index) => (
-                <FAQItem key={index}>
+              faqItems.map(item => (
+                <FAQItem key={item.question}>
                   <FAQQuestion>{item.question}</FAQQuestion>
                   <FAQAnswer>{item.answer}</FAQAnswer>
                 </FAQItem>

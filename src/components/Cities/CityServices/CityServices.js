@@ -14,7 +14,7 @@ import {
   ServiceDescription
 } from './CityServices.styles'
 
-export function CityServices({ city, language, templateData }) {
+export function CityServices({ city, templateData }) {
   const { t } = useTranslation('cities')
   
   const servicesTitle = t('cityPage.services.title', templateData)
@@ -49,8 +49,8 @@ export function CityServices({ city, language, templateData }) {
         </DeliveryInfo>
 
         <ServicesGrid>
-          {services.map((service, index) => (
-            <ServiceCard key={index}>
+          {services.map(service => (
+            <ServiceCard key={service.title}>
               <ServiceTitle>{service.title}</ServiceTitle>
               <ServiceDescription 
                 dangerouslySetInnerHTML={{ 

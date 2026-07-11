@@ -58,8 +58,8 @@ export function AboutTestimonials() {
       </SectionDescription>
 
       <TestimonialsGrid>
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard key={index}>
+        {testimonials.map(testimonial => (
+          <TestimonialCard key={testimonial.translationKey}>
             <FontAwesomeIcon
               icon={faQuoteLeft}
               size="2x"
@@ -75,6 +75,7 @@ export function AboutTestimonials() {
             </TestimonialQuote>
             <TestimonialRating>
               {Array.from({ length: Math.floor(testimonial.rating) }).map((_, i) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <FontAwesomeIcon key={i} icon={faStar} />
               ))}
               {testimonial.rating % 1 !== 0 && (

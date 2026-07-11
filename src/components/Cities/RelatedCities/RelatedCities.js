@@ -19,7 +19,7 @@ import {
 
 const { calculateDistance } = cityCalculatorUtils
 
-export function RelatedCities({ currentCity, allCities, language, pathname }) {
+export function RelatedCities({ currentCity, allCities, pathname }) {
   const { t } = useTranslation('cities')
   const actualLanguage = useActualLanguage(pathname)
 

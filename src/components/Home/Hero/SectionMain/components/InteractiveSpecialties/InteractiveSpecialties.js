@@ -147,23 +147,6 @@ export function InteractiveSpecialties() {
     [imageMap, labelMap]
   );
 
-  const handleItemChange = useCallback((id) => {
-    if (id === activeItem) return;
-
-    if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
-    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
-
-    setActiveItem(id);
-    setProgress(0);
-    startProgressAndAutoCycle();
-  }, [activeItem]);
-
-  const handleMouseEnter = handleItemChange;
-
-  const handleKeyDown = useCallback((e, id) => {
-    handleKeyNavigation(e, id, activeItem, ListItemData, handleItemChange);
-  }, [activeItem, handleItemChange]);
-
   const startProgressAndAutoCycle = useCallback(() => {
     if (!isPageVisible) return;
 
@@ -196,6 +179,24 @@ export function InteractiveSpecialties() {
       startProgressAndAutoCycle
     );
   }, [activeItem, isPageVisible]);
+
+  const handleItemChange = useCallback((id) => {
+    if (id === activeItem) return;
+
+    if (autoTimerRef.current) clearTimeout(autoTimerRef.current);
+    if (progressTimerRef.current) clearInterval(progressTimerRef.current);
+
+    setActiveItem(id);
+    setProgress(0);
+    startProgressAndAutoCycle();
+  }, [activeItem]);
+
+  const handleMouseEnter = handleItemChange;
+
+  const handleKeyDown = useCallback((e, id) => {
+    handleKeyNavigation(e, id, activeItem, ListItemData, handleItemChange);
+  }, [activeItem, handleItemChange]);
+
 
   useEffect(() => {
     if (!isPageVisible) {

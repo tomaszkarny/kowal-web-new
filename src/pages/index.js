@@ -12,7 +12,7 @@ import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
 import { SECTION_IDS } from 'consts/sectionID'
-import { WEBSITE_URL, PHONE_NUMBER, EMAIL_ADDRESS, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
+import { WEBSITE_URL, EMAIL_ADDRESS, FACEBOOK_URL, INSTAGRAM_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function IndexPage() {

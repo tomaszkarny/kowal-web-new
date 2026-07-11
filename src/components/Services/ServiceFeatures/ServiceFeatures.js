@@ -39,8 +39,8 @@ export function ServiceFeatures({
       <CityContainer>
         <CityTitle>{title}</CityTitle>
         <FeaturesGrid $columns={columns}>
-          {features.map((feature, index) => (
-            <FeatureCard key={index} $dark={isDark}>
+          {features.map(feature => (
+            <FeatureCard key={feature.title} $dark={isDark}>
               <IconWrapper>{feature.icon}</IconWrapper>
               <FeatureTitle $dark={isDark}>{feature.title}</FeatureTitle>
               <FeatureText $dark={isDark}>{feature.text}</FeatureText>

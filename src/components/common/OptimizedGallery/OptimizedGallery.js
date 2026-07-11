@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react'
 import styled from '@emotion/styled'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Lightbox from 'yet-another-react-lightbox'
+// eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css'
 
 /**
@@ -155,14 +156,15 @@ export function OptimizedGallery({
           const image = getImage(imageData.node || imageData)
           const alt = imageData.alt || imageData.node?.alt || `Gallery image ${index + 1}`
           const caption = imageData.caption || imageData.node?.caption || alt
+          const stableKey = imageData.node?.id || imageData.id || imageData.src || alt
           
           if (!image) {
-            return <SkeletonLoader key={index} />
+            return <SkeletonLoader key={stableKey} />
           }
           
           return (
             <ImageWrapper
-              key={index}
+              key={stableKey}
               onClick={() => openLightbox(index)}
               aria-label={`View ${alt} in fullscreen`}
             >

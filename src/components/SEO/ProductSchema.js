@@ -12,9 +12,9 @@ export function ProductSchema({ language, cityName }) {
 
   return (
     <>
-      {products.map((product, index) => (
+      {products.map(product => (
         <script
-          key={index}
+          key={product.name || JSON.stringify(product).slice(0, 40)}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(product) }}
         />

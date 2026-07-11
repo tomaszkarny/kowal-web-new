@@ -2,7 +2,6 @@ import React from 'react'
 // Gatsby aliases @reach/router to its vendored copy at build time
 // eslint-disable-next-line import/no-unresolved
 import { useLocation } from '@reach/router'
-import { WEBSITE_URL } from 'consts/contactDetails'
 import { SITE_DOMAIN } from 'consts/site'
 import { useSiteMetadata } from '../../utils/hooks/useSiteMetadata'
 import { getLanguageUrls, getLanguageFromPath } from '../../consts/languageConfig'
@@ -22,30 +21,21 @@ export function EnhancedSEO({
   socialCard,
   article = false,
   datePublished,
-  dateModified,
   pageType = 'other',
   language, // Accept language prop
   children,
-  /* ⬇ NEW FLAGS */
   appendSiteTitle = true,
-  injectBaseSchemas = true,
-  structuredData = 'website',
   /* keywords removed - deprecated */
   noindex = false,
-  breadcrumbs = [],
-  faq = []
 }) {
   // IMPORTANT: Don't use useTranslation hooks in Head API - they're unreliable during build
   // Instead, we'll use the language prop and hardcoded translations
   const location = useLocation()
-  const { 
-    title: defaultTitle, 
-    description: defaultDescription, 
-    siteUrl, 
+  const {
+    siteUrl,
     image: defaultImage,
     author,
     twitterUsername,
-    organization
   } = useSiteMetadata()
   
   // Always use the canonical domain for all SEO elements to ensure consistent indexing
@@ -102,21 +92,18 @@ export function EnhancedSEO({
     // For the home page, use the title passed in (baseTitle).
     // If baseTitle is empty, fall back to the siteNameString.
     finalTitle = baseTitle || siteNameString;
-  } else {
-    // For other pages, apply append logic if appendSiteTitle is true.
-    if (appendSiteTitle && baseTitle && siteNameString) {
-      // Only append if baseTitle is not the same as siteNameString and does not already include it.
-      if (baseTitle.trim().toLowerCase() !== siteNameString.trim().toLowerCase() && 
-          !baseTitle.toLowerCase().includes(siteNameString.toLowerCase())) {
-        finalTitle = `${baseTitle} | ${siteNameString}`;
-      } else {
-        // baseTitle is already the site name or includes it.
-        finalTitle = baseTitle;
-      }
+  } else if (appendSiteTitle && baseTitle && siteNameString) {
+    // Only append if baseTitle is not the same as siteNameString and does not already include it.
+    if (baseTitle.trim().toLowerCase() !== siteNameString.trim().toLowerCase() && 
+        !baseTitle.toLowerCase().includes(siteNameString.toLowerCase())) {
+      finalTitle = `${baseTitle} | ${siteNameString}`;
     } else {
-      // If not appending, or baseTitle/siteNameString is missing, use baseTitle or fallback to siteNameString.
-      finalTitle = baseTitle || siteNameString;
+      // baseTitle is already the site name or includes it.
+      finalTitle = baseTitle;
     }
+  } else {
+    // If not appending, or baseTitle/siteNameString is missing, use baseTitle or fallback to siteNameString.
+    finalTitle = baseTitle || siteNameString;
   }
 
   // Final fallback if somehow finalTitle is still empty (e.g., baseTitle and siteNameString were both empty)
@@ -152,9 +139,10 @@ export function EnhancedSEO({
   const canonicalUrl = `${siteDomain}${adjustedPath}`;
   
   // Ensure og:image is always an absolute URL
-  const ogImage = seo.image
-    ? (seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`)
-    : `${siteDomain}/images/logo.jpg`
+  let ogImage = `${siteDomain}/images/logo.jpg`
+  if (seo.image) {
+    ogImage = seo.image.startsWith('http') ? seo.image : `${siteDomain}${seo.image}`
+  }
 
 
   return (

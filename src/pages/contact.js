@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { Contact } from 'components/Contact/Contact'
 import { Layout } from 'components/Layout/Layout'
@@ -11,7 +10,7 @@ import { HowToSchema } from 'components/SEO/HowToSchema'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { detectLanguageForSEO, getSEOTranslations } from 'utils/seoLanguageDetection'
 
-import { BUSINESS_NAME_ML, BUSINESS_DESCRIPTION_ML, WEBSITE_URL } from 'consts/contactDetails'; // Switched to BUSINESS_NAME_ML and BUSINESS_DESCRIPTION_ML
+import { WEBSITE_URL } from 'consts/contactDetails'
 import { getFAQData } from 'utils/faqData'
 
 function ContactPage() {
@@ -29,7 +28,7 @@ export default ContactPage
  * This includes both standard SEO tags and LocalBusiness schema
  * The contact page is especially important for local business schema
  */
-export function Head({ data, location, pageContext }) {
+export function Head({ location, pageContext }) {
   // Detect language using our centralized utility
   const language = detectLanguageForSEO(pageContext, location);
   
