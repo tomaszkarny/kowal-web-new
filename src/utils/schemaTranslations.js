@@ -16,9 +16,7 @@ const seoTranslations = {
  * @param {string} language - 'pl' or 'en'
  * @returns {object} Schema translations object
  */
-export const getSchemaTranslations = (language) => {
-  return seoTranslations[language]?.schema || seoTranslations.pl.schema
-}
+export const getSchemaTranslations = (language) => seoTranslations[language]?.schema || seoTranslations.pl.schema
 
 /**
  * Get translated value with template variable replacement

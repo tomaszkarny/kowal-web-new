@@ -147,7 +147,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     console.log(`[gatsby-node] Creating Polish service page: ${plPath}`)
     createPage({
       path: plPath,
-      component: component,
+      component,
       context: {
         language: 'pl',
         i18n: {
@@ -167,7 +167,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     console.log(`[gatsby-node] Creating English service page: ${enPath}`)
     createPage({
       path: enPath,
-      component: component,
+      component,
       context: {
         language: 'en',
         i18n: {

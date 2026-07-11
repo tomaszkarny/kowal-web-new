@@ -13,14 +13,14 @@ import { getCityFAQ } from 'data/citiesSeoEnhanced'
 import citiesData from 'data/cities'
 
 // Import translations directly for Head component (hooks not available in Head)
-import citiesTranslationsPL from '../../locales/pl/cities.json'
-import citiesTranslationsEN from '../../locales/en/cities.json'
 
 // Above-the-fold components loaded immediately
 import { CityHero } from 'components/Cities/CityHero'
 import { CityServices } from 'components/Cities/CityServices'
 
 import { WEBSITE_URL } from 'consts/contactDetails'
+import citiesTranslationsEN from '../../locales/en/cities.json'
+import citiesTranslationsPL from '../../locales/pl/cities.json'
 
 const cities = citiesData.CITIES || citiesData.default || citiesData
 

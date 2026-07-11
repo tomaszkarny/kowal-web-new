@@ -1,4 +1,6 @@
 import React from 'react'
+// Gatsby aliases @reach/router to its vendored copy at build time
+// eslint-disable-next-line import/no-unresolved
 import { useLocation } from '@reach/router'
 import { WEBSITE_URL } from 'consts/contactDetails'
 import { SITE_DOMAIN } from 'consts/site'
@@ -177,9 +179,9 @@ export function EnhancedSEO({
       {/* Hreflang tags for multilingual page association */}
       {!noindex && (
         <>
-          <link rel="alternate" hreflang="pl" href={languageUrls.pl} />
-          <link rel="alternate" hreflang="en" href={languageUrls.en} />
-          <link rel="alternate" hreflang="x-default" href={languageUrls.default} />
+          <link rel="alternate" hrefLang="pl" href={languageUrls.pl} />
+          <link rel="alternate" hrefLang="en" href={languageUrls.en} />
+          <link rel="alternate" hrefLang="x-default" href={languageUrls.default} />
         </>
       )}
 

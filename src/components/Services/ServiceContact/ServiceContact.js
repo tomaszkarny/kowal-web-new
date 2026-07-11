@@ -5,6 +5,7 @@
 
 import React from 'react'
 import { Link } from 'gatsby-plugin-react-i18next'
+import { PHONE_NUMBER } from 'consts/contactDetails'
 import {
   CitySection,
   CityContainer,
@@ -12,7 +13,6 @@ import {
 } from '../../Cities/styles/sharedStyles'
 import { CityCtaButton } from '../../Cities/CtaButton'
 import { FORGE_COLORS } from '../../Cities/styles/forgedIronTheme'
-import { PHONE_NUMBER } from 'consts/contactDetails'
 import { PhoneIcon } from '../ServiceIcons'
 import {
   ContactContent,

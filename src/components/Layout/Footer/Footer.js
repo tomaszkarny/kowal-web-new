@@ -46,10 +46,10 @@ export function Footer() {
         const cityPath = `/cities/${city.slug.en}/`
         // Use shared utility to build language-specific path
         return buildLanguagePath(cityPath, targetLanguage)
-      } else {
+      } 
         // Fallback if city not found
         return buildLanguagePath('/cities/', targetLanguage)
-      }
+      
     }
 
     // For non-city pages, use shared utility

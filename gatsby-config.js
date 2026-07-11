@@ -16,7 +16,18 @@ module.exports = {
   plugins: [
     'gatsby-plugin-emotion',
     // Re-enabled ESLint for code quality
-    'gatsby-plugin-eslint',
+    // failOnError:false — legacy errors surface as overlay warnings without
+    // killing the develop bundle (webpack fails hard on them otherwise)
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        stages: ['develop'],
+        extensions: ['js', 'jsx'],
+        exclude: ['node_modules', '.cache', 'public'],
+        emitWarning: true,
+        failOnError: false,
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',

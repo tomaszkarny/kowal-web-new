@@ -46,8 +46,8 @@ const COLORS = FORGE_COLORS
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Delivery truck - elegant silhouette with refined details
-const DeliveryIcon = () => (
-  <svg viewBox="0 0 24 24">
+function DeliveryIcon() {
+  return <svg viewBox="0 0 24 24">
     {/* Truck body - main cargo area */}
     <path d="M2 5.5h12v10H2z" />
     {/* Cab section with window */}
@@ -63,11 +63,11 @@ const DeliveryIcon = () => (
     {/* Ground line - subtle base */}
     <path d="M1 18.5h22" strokeDasharray="2 2" opacity="0.4" />
   </svg>
-)
+}
 
 // Shield with star - quality guarantee emblem
-const QualityIcon = () => (
-  <svg viewBox="0 0 24 24">
+function QualityIcon() {
+  return <svg viewBox="0 0 24 24">
     {/* Shield outline - flowing protective form */}
     <path d="M12 2.5L3.5 6v5.5c0 5.25 3.75 10.15 8.5 11.5 4.75-1.35 8.5-6.25 8.5-11.5V6L12 2.5z" />
     {/* Inner shield detail line */}
@@ -75,11 +75,11 @@ const QualityIcon = () => (
     {/* Central star - 5-pointed, hand-drawn feel */}
     <path d="M12 7l1.2 2.5 2.8.4-2 2 .5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-2 2.8-.4L12 7z" />
   </svg>
-)
+}
 
 // Location pin with radiating rings - service area reach
-const RadiusIcon = () => (
-  <svg viewBox="0 0 24 24">
+function RadiusIcon() {
+  return <svg viewBox="0 0 24 24">
     {/* Pin body - elegant teardrop form */}
     <path d="M12 2C8.4 2 5.5 4.9 5.5 8.5c0 4.8 6.5 11.5 6.5 11.5s6.5-6.7 6.5-11.5C18.5 4.9 15.6 2 12 2z" />
     {/* Inner circle - the focal point */}
@@ -88,11 +88,11 @@ const RadiusIcon = () => (
     <circle cx="12" cy="12" r="7" opacity="0.3" strokeDasharray="3 2" />
     <circle cx="12" cy="12" r="10" opacity="0.15" strokeDasharray="2 3" />
   </svg>
-)
+}
 
 // Checkmark with decorative flourish - refined confirmation
-const CheckmarkIcon = () => (
-  <svg viewBox="0 0 24 24">
+function CheckmarkIcon() {
+  return <svg viewBox="0 0 24 24">
     {/* Outer ring - elegant circle */}
     <circle cx="12" cy="12" r="9" />
     {/* Checkmark - flowing, confident stroke */}
@@ -100,7 +100,7 @@ const CheckmarkIcon = () => (
     {/* Subtle inner glow ring */}
     <circle cx="12" cy="12" r="6.5" opacity="0.25" strokeDasharray="1 2" />
   </svg>
-)
+}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MAIN COMPONENT

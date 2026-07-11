@@ -4,6 +4,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next';
 
 // Import modern lightbox library
 import Lightbox from 'yet-another-react-lightbox';
+// eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css';
 
 // Import styles

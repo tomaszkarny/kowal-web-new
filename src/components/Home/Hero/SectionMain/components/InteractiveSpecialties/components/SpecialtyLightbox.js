@@ -1,6 +1,8 @@
 import React from 'react';
 import Lightbox from 'yet-another-react-lightbox';
+// eslint-disable-next-line import/no-unresolved
 import Captions from 'yet-another-react-lightbox/plugins/captions';
+// eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css';
 
 export function SpecialtyLightbox({

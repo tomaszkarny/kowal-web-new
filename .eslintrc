@@ -7,15 +7,16 @@
     }
   },
   "extends": ["airbnb", "eslint:recommended", "prettier"],
-  "globals": {
-    "window": true,
-    "document": true
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
   },
   "settings": {
     "import/resolver": {
       "node": {
         "paths": ["./src"],
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".mp4"]
       }
     }
   },
