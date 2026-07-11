@@ -648,6 +648,86 @@ export const GlobalStyles = css`
     opacity: 1 !important;
   }
 
+  /* ===== Forge-themed lightbox overrides ===== */
+
+  /* Dark iron backdrop */
+  .yarl__root {
+    --yarl__color_backdrop: rgba(30, 30, 50, 0.95) !important;
+  }
+
+  /* Ember-coloured navigation buttons */
+  .yarl__navigation_prev,
+  .yarl__navigation_next {
+    color: #ff6b4a !important;
+  }
+  .yarl__navigation_prev:not([disabled]):hover,
+  .yarl__navigation_next:not([disabled]):hover {
+    color: #e85c41 !important;
+  }
+
+  /* Counter styling */
+  .yarl__counter_container {
+    color: #e8e6e3 !important;
+    font-family: 'Open Sans', sans-serif !important;
+  }
+
+  /* Thumbnail strip */
+  .yarl__thumbnails_container {
+    background: rgba(30, 30, 50, 0.8) !important;
+  }
+
+  .yarl__thumbnails_thumbnail {
+    border: 2px solid transparent !important;
+    border-radius: 4px !important;
+    opacity: 0.6;
+    transition: all 0.3s ease !important;
+  }
+
+  .yarl__thumbnails_thumbnail_active,
+  .yarl__thumbnails_thumbnail:hover {
+    border-color: #e85c41 !important;
+    opacity: 1;
+  }
+
+  /* Caption overlay */
+  .yarl__slide_captions_container {
+    background: linear-gradient(to top, rgba(30, 30, 50, 0.9), transparent) !important;
+  }
+
+  .yarl__slide_title {
+    color: #e8e6e3 !important;
+    font-family: 'Merriweather', Georgia, serif !important;
+    font-size: 1.1rem !important;
+  }
+
+  .yarl__slide_description {
+    color: rgba(232, 230, 227, 0.7) !important;
+    font-family: 'Open Sans', sans-serif !important;
+  }
+
+  /* Fullscreen and zoom control buttons */
+  .yarl__button {
+    color: #e8e6e3 !important;
+  }
+  .yarl__button:hover {
+    color: #ff6b4a !important;
+  }
+
+  /* Hide thumbnails on mobile for performance */
+  @media (max-width: 768px) {
+    .yarl__thumbnails_container {
+      display: none !important;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .yarl__slide,
+    .yarl__thumbnails_thumbnail {
+      transition: none !important;
+    }
+  }
+
   /* Fix for overlapping components */
   section {
     position: relative;

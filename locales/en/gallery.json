@@ -1,4 +1,20 @@
 {
+  "hero": {
+    "title": "Artistic Blacksmithing Gallery",
+    "subtitle": "Over 30 years of hand-forging expertise — gates, railings, fences and decorative elements",
+    "stats": {
+      "gates": "200+",
+      "gatesLabel": "Gates",
+      "railings": "300+",
+      "railingsLabel": "Railings",
+      "fences": "150+",
+      "fencesLabel": "Fences"
+    }
+  },
+  "filterBar": {
+    "showing": "Showing {{count}} images",
+    "ariaLabel": "Filter gallery by category"
+  },
   "title": "Our Sample Works",
   "intro": {
     "title": "Artistic Blacksmithing Portfolio",
@@ -14,10 +30,13 @@
     "fences": "Fences",
     "decorative_elements": "Decorative Elements"
   },
+  "imageClickToEnlarge": "{{name}} — click to enlarge",
+  "faqHeading": "Frequently Asked Questions",
   "subcategories": {
     "balustrades": {
       "exterior": "Exterior Balustrades",
-      "interior": "Interior Balustrades"
+      "interior": "Interior Balustrades",
+      "ariaLabel": "Filter balustrades"
     }
   },
   "descriptions": {

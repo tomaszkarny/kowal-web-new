@@ -3,23 +3,65 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { getImage, getSrc } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
-// Import the modern lightbox library
+// Lightbox
 import Lightbox from 'yet-another-react-lightbox'
+// eslint-disable-next-line import/no-unresolved
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
+// eslint-disable-next-line import/no-unresolved
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+// eslint-disable-next-line import/no-unresolved
+import Counter from 'yet-another-react-lightbox/plugins/counter'
+// eslint-disable-next-line import/no-unresolved
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+// eslint-disable-next-line import/no-unresolved
+import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
+// eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/thumbnails.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/captions.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/counter.css'
 
-import { GalleryWrapper } from 'components/common/GalleryWrapper/GalleryWrapper'
 import { ContentContainer } from 'components/common/Container/Container.styles'
+import { PageDescription } from 'components/common/PageDescription'
+import { MasonryGallery } from './MasonryGallery'
+import { GalleryHero } from './GalleryHero'
+import { GalleryFilterBar } from './GalleryFilterBar'
 import {
-  GalleryFilterContainer,
-  GalleryHeading,
-  FilterLabel,
-  FilterButtonGroup,
-  FilterButton,
   EmptyStateMessage,
+  GalleryGridSection,
 } from './GalleryPage.styles'
+import {
+  CategorySectionWrapper,
+  CategorySectionTitle,
+  CategoryGrid,
+  CategoryCard,
+  CategoryName,
+  CategoryDescription,
+  CategoryCount,
+} from './GalleryCategorySection.styles'
+
+// Map filename prefixes to categories for flat images (e.g. bramy1.jpg → gates)
+const PREFIX_TO_CATEGORY = {
+  bramy: 'gates',
+  balu: 'balustrades',
+  ogrodz: 'fences',
+  elo: 'decorative_elements',
+}
+
+// SEO internal links to category subpages — preserved for crawlability
+const SEO_CATEGORIES = [
+  { key: 'gates', path: '/gallery/wrought-iron-gates/' },
+  { key: 'balustrades', path: '/gallery/wrought-iron-railings/' },
+  { key: 'fences', path: '/gallery/wrought-iron-fences/' },
+]
 
 export function GalleryPage() {
-  const { t } = useTranslation('gallery')
+  const { t, i18n } = useTranslation('gallery')
+  const langPrefix = i18n.language === 'en' ? '/en' : ''
+
   const { images } = useStaticQuery(graphql`
     query GalleryQuery {
       images: allFile(filter: { relativeDirectory: { regex: "/^gallery(\\/.+)?$/" } }) {
@@ -30,13 +72,8 @@ export function GalleryPage() {
             childImageSharp {
               gatsbyImageData(
                 width: 800
-                height: 600
                 placeholder: BLURRED
                 formats: [AUTO, WEBP, AVIF]
-                transformOptions: { 
-                  cropFocus: CENTER
-                  fit: COVER 
-                }
                 quality: 85
                 breakpoints: [400, 600, 800, 1200]
               )
@@ -52,233 +89,193 @@ export function GalleryPage() {
     }
   `)
 
-  // Map filename prefixes to categories for flat images (e.g. bramy1.jpg → gates)
-  const PREFIX_TO_CATEGORY = {
-    bramy: 'gates',
-    balu: 'balustrades',
-    ogrodz: 'fences',
-    elo: 'decorative_elements',
-  }
-
-  // Extract unique categories from the image paths
+  // Extract unique primary categories from image paths
   const categories = useMemo(() => {
-    // Get all directories from the images
     const dirs = images.edges.map(edge => {
-      const relDir = edge.node.relativeDirectory;
-      // Extract the category from paths like 'gallery/balustrades/exterior'
-      const match = relDir.match(/gallery\/(\w+)(?:\/\w+)?/);
-      if (match) return match[1];
-      // Flat images (relativeDirectory === 'gallery') — infer from filename
-      const name = edge.node.name || '';
-      const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p => name.toLowerCase().startsWith(p));
-      return prefix ? PREFIX_TO_CATEGORY[prefix] : null;
-    }).filter(Boolean);
+      const relDir = edge.node.relativeDirectory
+      const match = relDir.match(/gallery\/(\w+)(?:\/\w+)?/)
+      if (match) return match[1]
+      const name = edge.node.name || ''
+      const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p =>
+        name.toLowerCase().startsWith(p)
+      )
+      return prefix ? PREFIX_TO_CATEGORY[prefix] : null
+    }).filter(Boolean)
 
-    // Get unique categories and sort alphabetically
-    return ['all', ...new Set(dirs)].sort();
-  }, [images]);
+    return ['all', ...new Set(dirs)].sort()
+  }, [images])
 
-  // State for the currently selected category and subcategory
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [activeSubcategory, setActiveSubcategory] = useState(null);
+  // Active category + transition state
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const handleCategoryChange = useCallback(newCategory => {
+    if (newCategory === activeCategory) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActiveCategory(newCategory)
+      setIsTransitioning(false)
+    }, 200)
+  }, [activeCategory])
 
   // Process the gallery photos with category information
   const allGalleryPhotos = useMemo(() => images.edges.map(photo => {
-      const imageData = getImage(photo.node.childImageSharp);
-      // Try to find a translation key based on the image name, fall back to the name itself
-      const translationKey = `images.${photo.node.name}`;
-      
-      // Extract category from the relative directory
-      const relDir = photo.node.relativeDirectory;
-      const categoryMatch = relDir.match(/gallery\/(\w+)(?:\/\w+)?/);
-      let category = 'other';
-      if (categoryMatch) {
-        category = categoryMatch[1];
-      } else {
-        // Flat images — infer category from filename prefix
-        const name = photo.node.name || '';
-        const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p => name.toLowerCase().startsWith(p));
-        if (prefix) category = PREFIX_TO_CATEGORY[prefix];
-      }
-      
-      return {
-        src: getSrc(imageData),
-        width: photo.node.childImageSharp.original.width,
-        height: photo.node.childImageSharp.original.height,
-        alt: t(translationKey, photo.node.name),
-        title: t(translationKey, photo.node.name),
-        category,
-        relativeDirectory: relDir, // Keep the full relative directory for subcategory filtering
-      };
-    }), [images, t]);
-  
-  // Filter photos based on the active category and subcategory
+    const translationKey = `images.${photo.node.name}`
+    const relDir = photo.node.relativeDirectory
+    const categoryMatch = relDir.match(/gallery\/(\w+)(?:\/\w+)?/)
+    // eslint-disable-next-line prefer-destructuring
+    let category = categoryMatch ? categoryMatch[1] : 'other'
+    if (!categoryMatch) {
+      const name = photo.node.name || ''
+      const prefix = Object.keys(PREFIX_TO_CATEGORY).find(p =>
+        name.toLowerCase().startsWith(p)
+      )
+      if (prefix) category = PREFIX_TO_CATEGORY[prefix]
+    }
+
+    return {
+      node: photo.node,
+      alt: t(translationKey, photo.node.name),
+      title: t(translationKey, photo.node.name),
+      category,
+      relativeDirectory: relDir,
+    }
+  }), [images, t])
+
+  // Filter photos based on active category
   const galleryPhotos = useMemo(() => {
-    // Show all photos
-    if (activeCategory === 'all') {
-      return allGalleryPhotos;
-    }
-    
-    // Handle special subcategory cases
+    if (activeCategory === 'all') return allGalleryPhotos
+
     if (activeCategory === 'balustrades-interior') {
-      return allGalleryPhotos.filter(photo => {
-        // Match interior balustrades by looking at the directory
-        const isInteriorBalustrade = photo.relativeDirectory && 
-          photo.relativeDirectory.includes('balustrades/interior');
-        return isInteriorBalustrade;
-      });
+      return allGalleryPhotos.filter(photo =>
+        photo.relativeDirectory &&
+        photo.relativeDirectory.includes('balustrades/interior')
+      )
     }
-    
+
     if (activeCategory === 'balustrades-exterior') {
-      return allGalleryPhotos.filter(photo => {
-        // Match exterior balustrades by looking at the directory
-        const isExteriorBalustrade = photo.relativeDirectory && 
-          photo.relativeDirectory.includes('balustrades/exterior');
-        return isExteriorBalustrade;
-      });
+      return allGalleryPhotos.filter(photo =>
+        photo.relativeDirectory &&
+        photo.relativeDirectory.includes('balustrades/exterior')
+      )
     }
-    
-    // Default: filter by main category
-    return allGalleryPhotos.filter(photo => photo.category === activeCategory);
-  }, [allGalleryPhotos, activeCategory, activeSubcategory])
-  
-  // Format photos for lightbox which has a slightly different format
+
+    return allGalleryPhotos.filter(photo => photo.category === activeCategory)
+  }, [allGalleryPhotos, activeCategory])
+
+  // Compute image counts for each pill
+  const imageCounts = useMemo(() => {
+    const counts = { all: allGalleryPhotos.length }
+    categories.forEach(cat => {
+      if (cat === 'all') return
+      counts[cat] = allGalleryPhotos.filter(p => p.category === cat).length
+    })
+    counts['balustrades-interior'] = allGalleryPhotos.filter(p =>
+      p.relativeDirectory && p.relativeDirectory.includes('balustrades/interior')
+    ).length
+    counts['balustrades-exterior'] = allGalleryPhotos.filter(p =>
+      p.relativeDirectory && p.relativeDirectory.includes('balustrades/exterior')
+    ).length
+    return counts
+  }, [allGalleryPhotos, categories])
+
+  // Format photos for lightbox — resolve full-size src from the node
   const lightboxPhotos = galleryPhotos.map(photo => ({
-    src: photo.src,
+    src: getSrc(getImage(photo.node.childImageSharp)),
     alt: photo.alt,
     title: photo.title,
+    description: photo.alt, // Use alt as description for captions plugin
   }))
 
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
-  const openLightbox = useCallback((event, { index }) => {
+  const openLightbox = useCallback(index => {
     setCurrentImage(index)
     setViewerIsOpen(true)
   }, [])
 
   const closeLightbox = useCallback(() => {
     setViewerIsOpen(false)
-    // Delay resetting currentImage to prevent flickering
     setTimeout(() => setCurrentImage(0), 300)
   }, [])
 
   return (
-    <ContentContainer>
-      <GalleryFilterContainer>
-        <GalleryHeading>{t('title')}</GalleryHeading>
-        <FilterLabel>{t('filter')}</FilterLabel>
-        
-        {/* Primary category filter buttons */}
-        <FilterButtonGroup>
-          <FilterButton 
-            key="all"
-            index={0}
-            active={activeCategory === 'all'}
-            onClick={() => setActiveCategory('all')}
-            aria-pressed={activeCategory === 'all'}
-          >
-            {/* Use translated value from translation files */}
-            {t('categories.all')}
-          </FilterButton>
-          
-          {/* Only show balustrades directly */}
-          <FilterButton 
-            key="balustrades"
-            index={1}
-            active={activeCategory === 'balustrades'}
-            onClick={() => setActiveCategory('balustrades')}
-            aria-pressed={activeCategory === 'balustrades'}
-            title={t('descriptions.balustrades')}
-          >
-            {t('categories.balustrades')}
-          </FilterButton>
+    <>
+      <GalleryHero />
 
-          {/* Direct interior balustrades button */}
-          <FilterButton 
-            key="balustrades-interior"
-            index={2}
-            active={activeCategory === 'balustrades-interior'}
-            onClick={() => setActiveCategory('balustrades-interior')}
-            aria-pressed={activeCategory === 'balustrades-interior'}
-            title={t('descriptions.balustrades_interior')}
-          >
-            {t('subcategories.balustrades.interior')}
-          </FilterButton>
+      <ContentContainer>
+        <PageDescription>
+          {t('intro.description')}
+        </PageDescription>
+      </ContentContainer>
 
-          {/* Direct exterior balustrades button */}
-          <FilterButton 
-            key="balustrades-exterior"
-            index={3}
-            active={activeCategory === 'balustrades-exterior'}
-            onClick={() => setActiveCategory('balustrades-exterior')}
-            aria-pressed={activeCategory === 'balustrades-exterior'}
-            title={t('descriptions.balustrades_exterior')}
-          >
-            {t('subcategories.balustrades.exterior')}
-          </FilterButton>
+      <CategorySectionWrapper aria-label={t('categorySection.title', 'Browse by Category')}>
+        <CategorySectionTitle>
+          {t('categorySection.title', 'Browse by Category')}
+        </CategorySectionTitle>
+        <CategoryGrid>
+          {SEO_CATEGORIES.map(({ key, path }) => (
+            <CategoryCard key={key} to={`${langPrefix}${path}`}>
+              <CategoryName>
+                {t(`categorySection.${key}.name`, key)}
+              </CategoryName>
+              <CategoryDescription>
+                {t(`categorySection.${key}.description`, '')}
+              </CategoryDescription>
+              <CategoryCount>
+                {t(`categorySection.${key}.count`, '')}
+              </CategoryCount>
+            </CategoryCard>
+          ))}
+        </CategoryGrid>
+      </CategorySectionWrapper>
 
-          {/* Gates button */}
-          <FilterButton 
-            key="gates"
-            index={4}
-            active={activeCategory === 'gates'}
-            onClick={() => setActiveCategory('gates')}
-            aria-pressed={activeCategory === 'gates'}
-            title={t('descriptions.gates')}
-          >
-            {t('categories.gates')}
-          </FilterButton>
-          
-          {/* Fences button */}
-          <FilterButton 
-            key="fences"
-            index={5}
-            active={activeCategory === 'fences'}
-            onClick={() => setActiveCategory('fences')}
-            aria-pressed={activeCategory === 'fences'}
-            title={t('descriptions.fences')}
-          >
-            {t('categories.fences')}
-          </FilterButton>
-          
-          {/* Decorative Elements button */}
-          <FilterButton 
-            key="decorative_elements"
-            index={6}
-            active={activeCategory === 'decorative_elements'}
-            onClick={() => setActiveCategory('decorative_elements')}
-            aria-pressed={activeCategory === 'decorative_elements'}
-            title={t('descriptions.decorative_elements')}
-          >
-            {t('categories.decorative_elements')}
-          </FilterButton>
-        </FilterButtonGroup>
-        
-        {/* No subcategory section as per request */}
-      </GalleryFilterContainer>
+      <GalleryFilterBar
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+        categories={categories}
+        imageCounts={imageCounts}
+      />
 
-      {galleryPhotos.length > 0 ? (
-        <GalleryWrapper 
-          photos={galleryPhotos.map(({ relativeDirectory, ...rest }) => rest)} 
-          onClick={openLightbox} 
-          margin={4} 
-        />
-      ) : (
-        <EmptyStateMessage>{t('emptyState', 'No images found in this category')}</EmptyStateMessage>
-      )}
-      
-      {/* Modern Lightbox component that doesn't use deprecated React APIs */}
+      <GalleryGridSection isTransitioning={isTransitioning}>
+        <ContentContainer>
+          {galleryPhotos.length > 0 ? (
+            <MasonryGallery
+              images={galleryPhotos}
+              onImageClick={openLightbox}
+            />
+          ) : (
+            <EmptyStateMessage>
+              {t('emptyState', 'No images found in this category')}
+            </EmptyStateMessage>
+          )}
+        </ContentContainer>
+      </GalleryGridSection>
+
       <Lightbox
         open={viewerIsOpen}
         close={closeLightbox}
         index={currentImage}
         slides={lightboxPhotos}
+        plugins={[Thumbnails, Captions, Counter, Zoom, Fullscreen]}
         carousel={{ finite: true }}
+        thumbnails={{
+          position: 'bottom',
+          width: 100,
+          height: 80,
+          border: 0,
+          borderRadius: 4,
+          padding: 4,
+          gap: 8,
+          showToggle: false,
+        }}
+        captions={{ showToggle: false, descriptionTextAlign: 'center' }}
+        zoom={{ maxZoomPixelRatio: 3 }}
         on={{
           view: ({ index }) => setCurrentImage(index),
         }}
       />
-    </ContentContainer>
+    </>
   )
 }

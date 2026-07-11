@@ -4,11 +4,28 @@ import { getImage, getSrc } from 'gatsby-plugin-image'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 import Lightbox from 'yet-another-react-lightbox'
+// eslint-disable-next-line import/no-unresolved
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
+// eslint-disable-next-line import/no-unresolved
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+// eslint-disable-next-line import/no-unresolved
+import Counter from 'yet-another-react-lightbox/plugins/counter'
+// eslint-disable-next-line import/no-unresolved
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+// eslint-disable-next-line import/no-unresolved
+import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
+// eslint-disable-next-line import/no-unresolved
 import 'yet-another-react-lightbox/styles.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/thumbnails.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/captions.css'
+// eslint-disable-next-line import/no-unresolved
+import 'yet-another-react-lightbox/plugins/counter.css'
 
 import { Layout } from 'components/Layout/Layout'
 import { StyledSection } from 'components/common/StyledSection/StyledSection'
-import { GalleryWrapper } from 'components/common/GalleryWrapper/GalleryWrapper'
+import { MasonryGallery } from 'components/GalleryPage/MasonryGallery'
 import { EnhancedSEO } from 'components/SEO/EnhancedSEO'
 import { BreadcrumbSchema } from 'components/SEO/BreadcrumbSchema'
 import { FAQSchema } from 'components/SEO/FAQSchema'
@@ -25,10 +42,11 @@ import faqTranslationsEN from '../../locales/en/faq.json'
 
 import {
   CategoryPageWrapper,
-  CategoryHeading,
-  CategoryIntro,
-  ImageCountBadge,
-  ImageCountWrapper,
+  CategoryHeaderSection,
+  CategoryHeaderInner,
+  CategoryHeaderTitle,
+  CategoryHeaderIntro,
+  CategoryHeaderBadge,
   CTASection,
   CTALink,
   FAQSection,
@@ -62,17 +80,13 @@ function filterImagesByCategory(images, category, imagePrefix, imageDir) {
         name.toLowerCase().startsWith(imagePrefix.toLowerCase())
       )
     })
-    .map(({ node }) => {
-      const imageData = getImage(node.childImageSharp)
-      return {
-        src: getSrc(imageData),
-        width: node.childImageSharp.original.width,
-        height: node.childImageSharp.original.height,
-        alt: node.name,
-        title: node.name,
-      }
-    })
-    .filter((photo) => photo.src)
+    .map(({ node }) => ({
+      node,
+      alt: node.name,
+      title: node.name,
+      category,
+    }))
+    .filter((photo) => getImage(photo.node.childImageSharp))
 }
 
 function GalleryCategoryPageTemplate({ data, pageContext }) {
@@ -95,15 +109,16 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
   )
 
   const lightboxPhotos = filteredPhotos.map((photo) => ({
-    src: photo.src,
+    src: getSrc(getImage(photo.node.childImageSharp)),
     alt: photo.alt,
     title: photo.title,
+    description: photo.alt, // Use alt as description for captions plugin
   }))
 
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
-  const openLightbox = useCallback((event, { index }) => {
+  const openLightbox = useCallback((index) => {
     setCurrentImage(index)
     setViewerIsOpen(true)
   }, [])
@@ -132,20 +147,21 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
 
   return (
     <Layout>
+      {/* Dark forge header — consistent with main GalleryHero but compact */}
+      <CategoryHeaderSection>
+        <CategoryHeaderInner>
+          <CategoryHeaderTitle>{h1}</CategoryHeaderTitle>
+          {intro && <CategoryHeaderIntro>{intro}</CategoryHeaderIntro>}
+          <CategoryHeaderBadge>{imageCount}</CategoryHeaderBadge>
+        </CategoryHeaderInner>
+      </CategoryHeaderSection>
+
       <StyledSection>
         <CategoryPageWrapper>
-          <CategoryHeading>{h1}</CategoryHeading>
-          <CategoryIntro>{intro}</CategoryIntro>
-
-          <ImageCountWrapper>
-            <ImageCountBadge>{imageCount}</ImageCountBadge>
-          </ImageCountWrapper>
-
           {filteredPhotos.length > 0 ? (
-            <GalleryWrapper
-              photos={filteredPhotos}
-              onClick={openLightbox}
-              margin={4}
+            <MasonryGallery
+              images={filteredPhotos}
+              onImageClick={openLightbox}
             />
           ) : null}
 
@@ -154,7 +170,20 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
             close={closeLightbox}
             index={currentImage}
             slides={lightboxPhotos}
+            plugins={[Thumbnails, Captions, Counter, Zoom, Fullscreen]}
             carousel={{ finite: true }}
+            thumbnails={{
+              position: 'bottom',
+              width: 100,
+              height: 80,
+              border: 0,
+              borderRadius: 4,
+              padding: 4,
+              gap: 8,
+              showToggle: false,
+            }}
+            captions={{ showToggle: false, descriptionTextAlign: 'center' }}
+            zoom={{ maxZoomPixelRatio: 3 }}
             on={{
               view: ({ index }) => setCurrentImage(index),
             }}
@@ -168,9 +197,7 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
           {faqItems.length > 0 && (
             <FAQSection>
               <FAQHeading>
-                {language === 'en'
-                  ? 'Frequently Asked Questions'
-                  : 'Często zadawane pytania'}
+                {t('faqHeading', 'Frequently Asked Questions')}
               </FAQHeading>
               {faqItems.map((item) => (
                 <FAQItem key={item.question}>
@@ -247,10 +274,8 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData(
               width: 800
-              height: 600
               placeholder: BLURRED
               formats: [AUTO, WEBP, AVIF]
-              transformOptions: { cropFocus: CENTER, fit: COVER }
               quality: 85
               breakpoints: [400, 600, 800, 1200]
             )

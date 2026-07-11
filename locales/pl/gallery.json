@@ -1,4 +1,20 @@
 {
+  "hero": {
+    "title": "Galeria Kowalstwa Artystycznego",
+    "subtitle": "Ponad 30 lat doświadczenia w ręcznym kuciu — bramy, balustrady, ogrodzenia i elementy dekoracyjne",
+    "stats": {
+      "gates": "200+",
+      "gatesLabel": "Bram",
+      "railings": "300+",
+      "railingsLabel": "Balustrad",
+      "fences": "150+",
+      "fencesLabel": "Ogrodzeń"
+    }
+  },
+  "filterBar": {
+    "showing": "Wyświetlanie {{count}} zdjęć",
+    "ariaLabel": "Filtruj galerię według kategorii"
+  },
   "title": "Nasze przykładowe prace",
   "intro": {
     "title": "Realizacje kowalstwa artystycznego",
@@ -14,10 +30,13 @@
     "fences": "Ogrodzenia",
     "decorative_elements": "Elementy ozdobne"
   },
+  "imageClickToEnlarge": "{{name}} — kliknij aby powiększyć",
+  "faqHeading": "Często zadawane pytania",
   "subcategories": {
     "balustrades": {
       "exterior": "Balustrady zewnętrzne",
-      "interior": "Balustrady wewnętrzne"
+      "interior": "Balustrady wewnętrzne",
+      "ariaLabel": "Filtruj balustrady"
     }
   },
   "descriptions": {
