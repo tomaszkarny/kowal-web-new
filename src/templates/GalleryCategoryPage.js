@@ -70,7 +70,7 @@ const SERVICE_LINK_MAP = {
   fences: '/services/custom-fences/',
 }
 
-function filterImagesByCategory(images, category, imagePrefix, imageDir) {
+function filterImagesByCategory(images, category, imagePrefix, imageDir, t) {
   return images.edges
     .filter(({ node }) => {
       const dir = node.relativeDirectory || ''
@@ -80,12 +80,15 @@ function filterImagesByCategory(images, category, imagePrefix, imageDir) {
         name.toLowerCase().startsWith(imagePrefix.toLowerCase())
       )
     })
-    .map(({ node }) => ({
-      node,
-      alt: node.name,
-      title: node.name,
-      category,
-    }))
+    .map(({ node }) => {
+      const label = t(`images.${node.name}`, node.name)
+      return {
+        node,
+        alt: label,
+        title: label,
+        category,
+      }
+    })
     .filter((photo) => getImage(photo.node.childImageSharp))
 }
 
@@ -103,9 +106,10 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
         data.images,
         category,
         imagePrefix || category,
-        imageDir || category
+        imageDir || category,
+        t
       ),
-    [data.images, category, imagePrefix, imageDir]
+    [data.images, category, imagePrefix, imageDir, t]
   )
 
   const lightboxPhotos = filteredPhotos.map((photo) => ({
@@ -183,6 +187,9 @@ function GalleryCategoryPageTemplate({ data, pageContext }) {
               showToggle: false,
             }}
             captions={{ showToggle: false, descriptionTextAlign: 'center' }}
+            counter={{
+              container: { style: { top: 'unset', bottom: 0, left: 0 } },
+            }}
             zoom={{ maxZoomPixelRatio: 3 }}
             on={{
               view: ({ index }) => setCurrentImage(index),

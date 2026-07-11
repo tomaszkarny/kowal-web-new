@@ -271,6 +271,9 @@ export function GalleryPage() {
           showToggle: false,
         }}
         captions={{ showToggle: false, descriptionTextAlign: 'center' }}
+        counter={{
+          container: { style: { top: 'unset', bottom: 0, left: 0 } },
+        }}
         zoom={{ maxZoomPixelRatio: 3 }}
         on={{
           view: ({ index }) => setCurrentImage(index),
