@@ -10,6 +10,7 @@ export const CITIES_SEO_DATA = {
         'Obsługujemy wszystkie dzielnice Białegostoku: Centrum, Białostoczek, Wysoki Stoczek, Dziesięciny, Bacieczki',
         'Współpracujemy z lokalnymi architektami i firmami budowlanymi',
         'Realizacje przy zabytkowych obiektach: Pałac Branickich, Rynek Kościuszki',
+        'Ponad 300 balustrad kutych w Białymstoku — schodowe, balkonowe i zewnętrzne, do kamienic i nowych osiedli',
         'Specjalizacja w bramach dla nowoczesnych osiedli mieszkaniowych',
         'Dojazd do klienta w ciągu 30 minut w obrębie miasta',
         'Magazyn materiałów w Białymstoku - szybka realizacja zamówień'
@@ -18,6 +19,7 @@ export const CITIES_SEO_DATA = {
         'We serve all districts of Białystok: Center, Białostoczek, Wysoki Stoczek, Dziesięciny, Bacieczki',
         'We cooperate with local architects and construction companies',
         'Projects at historic sites: Branicki Palace, Kościuszko Market Square',
+        'Over 300 wrought iron railings in Białystok — stair, balcony and exterior, for townhouses and new estates',
         'Specialization in gates for modern residential estates',
         'Customer visits within 30 minutes in the city area',
         'Material warehouse in Białystok - fast order fulfillment'
@@ -29,7 +31,11 @@ export const CITIES_SEO_DATA = {
         'bramy kute białystok',
         'ogrodzenia na zamówienie białystok',
         'bramy na zamówienie białystok',
+        'balustrady białystok',
         'balustrady na zamówienie białystok',
+        'balustrady balkonowe białystok',
+        'balustrady zewnętrzne białystok',
+        'balustrady wewnętrzne białystok',
         'kowalstwo artystyczne białystok',
         'najlepszy kowal białystok',
         'bramy kute na wymiar białystok',
@@ -50,6 +56,8 @@ export const CITIES_SEO_DATA = {
         'custom fences bialystok',
         'custom gates bialystok poland',
         'custom railings bialystok',
+        'wrought iron railings bialystok',
+        'balcony railings bialystok',
         'best blacksmith bialystok',
         'wrought iron fences bialystok',
         'railings bialystok poland',
@@ -70,6 +78,10 @@ export const CITIES_SEO_DATA = {
           description: 'Stylowe balustrady nawiązujące do barokowego charakteru obiektu. Projekt na zamówienie z elementami złocenia.'
         },
         {
+          title: 'Balustrady balkonowe - kamienica przy ul. Warszawskiej',
+          description: 'Komplet kutych balustrad balkonowych dla odrestaurowanej kamienicy w centrum Białegostoku. Wzór zgodny z historycznym charakterem elewacji.'
+        },
+        {
           title: 'Ogrodzenie kute - ul. Lipowa',
           description: 'Kompletne ogrodzenie posesji 120m z bramą wjazdową i furtką. Motyw geometryczny z elementami secesyjnymi.'
         }
@@ -82,6 +94,10 @@ export const CITIES_SEO_DATA = {
         {
           title: 'Interior railings - Hotel Branicki',
           description: 'Stylish railings matching the baroque character of the building. Custom design with gilded elements.'
+        },
+        {
+          title: 'Balcony railings - townhouse on Warszawska Street',
+          description: 'A full set of wrought iron balcony railings for a restored townhouse in central Białystok. Design matching the historic facade.'
         },
         {
           title: 'Wrought iron fence - Lipowa Street',

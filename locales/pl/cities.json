@@ -2,7 +2,7 @@
   "seo": {
     "bialystok": {
       "title": "Kowal Białystok - Balustrady i Bramy Kute na Zamówienie | Karny",
-      "description": "Profesjonalne balustrady kute i bramy na zamówienie w Białymstoku. ✓ Darmowa wycena ✓ 30 lat doświadczenia ✓ Montaż i transport"
+      "description": "Balustrady kute Białystok — schodowe, balkonowe i zewnętrzne — oraz bramy na zamówienie. ✓ Darmowa wycena ✓ 30 lat doświadczenia ✓ Montaż i transport"
     },
     "lomza": {
       "title": "Kowal Łomża - Bramy Wjazdowe i Balustrady | Darmowa Wycena",
@@ -177,10 +177,22 @@
       "process": {
         "title": "Proces realizacji",
         "steps": [
-          { "title": "Konsultacja", "description": "Bezpłatna wycena i doradztwo" },
-          { "title": "Projekt", "description": "Indywidualny projekt i wizualizacja" },
-          { "title": "Produkcja", "description": "Wykonanie w naszym warsztacie" },
-          { "title": "Montaż", "description": "Profesjonalny montaż u klienta" }
+          {
+            "title": "Konsultacja",
+            "description": "Bezpłatna wycena i doradztwo"
+          },
+          {
+            "title": "Projekt",
+            "description": "Indywidualny projekt i wizualizacja"
+          },
+          {
+            "title": "Produkcja",
+            "description": "Wykonanie w naszym warsztacie"
+          },
+          {
+            "title": "Montaż",
+            "description": "Profesjonalny montaż u klienta"
+          }
         ]
       },
       "whyUs": {

@@ -2,7 +2,7 @@
   "seo": {
     "bialystok": {
       "title": "Blacksmith Białystok - Custom Railings & Wrought Iron Gates | Karny",
-      "description": "Professional custom railings and wrought iron gates in Białystok. ✓ Free quote ✓ 30 years experience ✓ Installation and delivery"
+      "description": "Wrought iron railings in Białystok — stair, balcony and exterior — plus custom gates. ✓ Free quote ✓ 30 years experience ✓ Installation and delivery"
     },
     "lomza": {
       "title": "Blacksmith Łomża - Driveway Gates & Railings | Free Quote",
@@ -177,10 +177,22 @@
       "process": {
         "title": "Implementation process",
         "steps": [
-          { "title": "Consultation", "description": "Free quote and advice" },
-          { "title": "Design", "description": "Individual design and visualization" },
-          { "title": "Production", "description": "Manufacture in our workshop" },
-          { "title": "Installation", "description": "Professional installation at client's location" }
+          {
+            "title": "Consultation",
+            "description": "Free quote and advice"
+          },
+          {
+            "title": "Design",
+            "description": "Individual design and visualization"
+          },
+          {
+            "title": "Production",
+            "description": "Manufacture in our workshop"
+          },
+          {
+            "title": "Installation",
+            "description": "Professional installation at client's location"
+          }
         ]
       },
       "whyUs": {
