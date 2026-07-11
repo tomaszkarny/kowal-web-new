@@ -115,7 +115,7 @@ export function NapDisplay({
         <SocialLinks>
           {FACEBOOK_URL && (
             <StyledAnchor 
-              href={`https://${FACEBOOK_URL}`}
+              href={FACEBOOK_URL}
               target="_blank" 
               rel="noopener noreferrer"
               aria-label={t('visit_facebook')}
@@ -125,7 +125,7 @@ export function NapDisplay({
           )}
           {INSTAGRAM_URL && (
             <StyledAnchor 
-              href={`https://${INSTAGRAM_URL}`}
+              href={INSTAGRAM_URL}
               target="_blank" 
               rel="noopener noreferrer"
               aria-label={t('visit_instagram')}

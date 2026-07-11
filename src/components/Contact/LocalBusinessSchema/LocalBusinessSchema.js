@@ -78,8 +78,8 @@ export function LocalBusinessSchema({
     })),
     foundingDate: YEAR_ESTABLISHED,
     sameAs: [
-      napInfo.social.facebook ? `https://${napInfo.social.facebook}` : null, 
-      napInfo.social.instagram ? `https://${napInfo.social.instagram}` : null
+      napInfo.social.facebook || null,
+      napInfo.social.instagram || null
     ].filter(Boolean)
   }
   
