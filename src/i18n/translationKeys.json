@@ -94,6 +94,13 @@
     "specialties_items_gratings": "specialties_items_gratings",
     "specialties_items_decorative": "specialties_items_decorative",
     "hover_to_see": "hover_to_see",
+    "stats_years": "stats_years",
+    "stats_projects": "stats_projects",
+    "stats_handmade": "stats_handmade",
+    "card_title_colors": "card_title_colors",
+    "card_title_precision": "card_title_precision",
+    "card_title_consulting": "card_title_consulting",
+    "card_title_experience": "card_title_experience",
     "notFoundTitle": "notFoundTitle",
     "notFoundMessage": "notFoundMessage",
     "goHome": "goHome"
@@ -131,10 +138,6 @@
     "mapLoading": "mapLoading"
   },
   "faq": {
-    "home": "home",
-    "about": "about",
-    "gallery": "gallery",
-    "contact": "contact",
     "galleryCategories": "galleryCategories"
   },
   "footer": {
@@ -145,6 +148,10 @@
     "services": "services",
     "customFences": "customFences",
     "customGates": "customGates",
+    "customRailings": "customRailings",
+    "galleryGates": "galleryGates",
+    "galleryRailings": "galleryRailings",
+    "galleryFences": "galleryFences",
     "popularCities": "popularCities",
     "allCities": "allCities",
     "contact": "contact",
@@ -161,12 +168,16 @@
     "followInstagram": "followInstagram"
   },
   "gallery": {
+    "hero": "hero",
+    "filterBar": "filterBar",
     "title": "title",
     "intro": "intro",
     "backToGallery": "backToGallery",
     "filter": "filter",
     "emptyState": "emptyState",
     "categories": "categories",
+    "imageClickToEnlarge": "imageClickToEnlarge",
+    "faqHeading": "faqHeading",
     "subcategories": "subcategories",
     "descriptions": "descriptions",
     "filterLabels": "filterLabels",

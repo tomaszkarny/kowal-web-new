@@ -4,12 +4,16 @@
  */
 
 export enum GalleryKeys {
+  hero = "hero",
+  filterBar = "filterBar",
   title = "title",
   intro = "intro",
   backToGallery = "backToGallery",
   filter = "filter",
   emptyState = "emptyState",
   categories = "categories",
+  imageClickToEnlarge = "imageClickToEnlarge",
+  faqHeading = "faqHeading",
   subcategories = "subcategories",
   descriptions = "descriptions",
   filterLabels = "filterLabels",

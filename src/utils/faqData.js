@@ -5,7 +5,13 @@ import {
   OPENING_HOURS_ML
 } from '../consts/contactDetails'
 
-// Static FAQ data for SSR
+// Static FAQ data for SSR — SINGLE SOURCE OF TRUTH for the FAQ schema (JSON-LD)
+// rendered via FAQSchema on the home (/), /about/, /gallery/ and /contact/ pages.
+// NAP details (address, phone, email, opening hours) are interpolated from
+// src/consts/contactDetails.js — edit them there, not here.
+// Note: locales/{pl,en}/faq.json holds ONLY the galleryCategories section
+// (used by src/templates/GalleryCategoryPage.js); its per-page FAQ sections
+// were removed as dead data in favour of this file.
 export const getFAQData = (language, page) => {
   const faqDataPL = {
     home: [

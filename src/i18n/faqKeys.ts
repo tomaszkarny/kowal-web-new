@@ -4,9 +4,5 @@
  */
 
 export enum FaqKeys {
-  home = "home",
-  about = "about",
-  gallery = "gallery",
-  contact = "contact",
   galleryCategories = "galleryCategories",
 }
