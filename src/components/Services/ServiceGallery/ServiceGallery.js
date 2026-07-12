@@ -29,7 +29,7 @@ function ArrowIcon() {
 /**
  * @param {Object} props
  * @param {string} props.title - Section title
- * @param {string} props.variant - 'gates' | 'fences'
+ * @param {string} props.variant - 'gates' | 'railings' | 'fences'
  * @param {number} [props.limit=8] - Number of images to show
  * @param {string} [props.viewMoreText] - "View more" link text
  * @param {string} [props.viewMoreHref='/gallery/'] - Link to full gallery
@@ -47,6 +47,28 @@ export function ServiceGallery({
         filter: {
           sourceInstanceName: { eq: "images" }
           relativePath: { regex: "/gallery/bramy/" }
+        }
+        sort: { name: ASC }
+        limit: 18
+      ) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            gatsbyImageData(
+              width: 400
+              height: 300
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+              transformOptions: { fit: COVER, cropFocus: CENTER }
+            )
+          }
+        }
+      }
+      railingsImages: allFile(
+        filter: {
+          sourceInstanceName: { eq: "images" }
+          relativePath: { regex: "/gallery/balu/" }
         }
         sort: { name: ASC }
         limit: 18
@@ -90,9 +112,12 @@ export function ServiceGallery({
     }
   `)
 
-  const images = variant === 'gates'
-    ? data.gatesImages.nodes.slice(0, limit)
-    : data.fencesImages.nodes.slice(0, limit)
+  const variantImages = {
+    gates: data.gatesImages.nodes,
+    railings: data.railingsImages.nodes,
+    fences: data.fencesImages.nodes,
+  }
+  const images = (variantImages[variant] || data.fencesImages.nodes).slice(0, limit)
 
   if (!images || images.length === 0) {
     return null
